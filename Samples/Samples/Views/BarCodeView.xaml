@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="Samples.Views.BarCodeView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0">
+            <Label Text="ACR XamForms" />
+            <Label Text="Bar Codes" />
+        </StackLayout>
+
+        <!--ContentPanel - place additional content here-->
+        <StackLayout Grid.Row="1">
+            <Button Command="{Binding Scan}" Text="Scan Bar Code" />
+
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Top Text" />
+                    <Entry Text="{Binding Scanner.DefaultOptions.TopText, Mode=TwoWay}" />
+
+                    <Label Text="Bottom Text" />
+                    <Entry Text="{Binding Scanner.DefaultOptions.BottomText, Mode=TwoWay}" />
+
+                    <Label Text="Cancel Text" />
+                    <Entry Text="{Binding Scanner.DefaultOptions.CancelText, Mode=TwoWay}" />
+
+                    <Label Text="Flashlight Text" />
+                    <Entry Text="{Binding Scanner.DefaultOptions.FlashlightText, Mode=TwoWay}" />
+
+                    <!--<StackLayout Orientation="Horizontal">
+                        <Label Text="Auto Rotate" />
+                        <Switch IsToggled="{Binding Scanner.DefaultOptions.AutoRotate, Mode=TwoWay, TargetNullValue=False}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Use Front Camera" />
+                        <Switch IsToggled="{Binding Scanner.DefaultOptions.UseFrontCameraIfAvailable, Mode=TwoWay, TargetNullValue=False}" />
+                    </StackLayout>-->
+                    <!--<Label Text="Format" />-->
+                    <!--<Picker ItemsSource="{Binding Formats}" />-->
+                    <!--<Picker ItemsSource="{Binding Formats}" SelectedItem="{Binding SelectedFormat}" />-->
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Acr.XamForms.BarCodeScanner</id>
+        <version>1.0.0</version>
+        <title>Xamarin Forms BarCode Scanner</title>
+        <description>Barcode scanning for Xamarin Forms built on ZXing.Net.Mobile.  Supports iOS, Android, and WinPhone8</description>
+        <authors>Allan Ritchie</authors>
+        <owners>Allan Ritchie</owners>
+        <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
+        <projectUrl>https://github.com/aritchie/acxamarinforms</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>xamarin barcode android ios winphone</tags>
+        <dependencies>
+            <dependency id="Xamarin.Forms" version="(1.0, 2.0]" />
+            <group targetFramework="MonoAndroid">
+                <dependency id="ZXing.Net.Mobile" version="1.4.2.1" />
+            </group>
+            <group targetFramework="MonoTouch">
+                <dependency id="ZXing.Net.Mobile" version="1.4.2.1" />
+            </group>
+            <group targetFramework="wp8">
+                <dependency id="ZXing.Net.Mobile" version="1.4.2.1" />
+            </group>
+        </dependencies>
+        <releaseNotes>
+1.0
+Initial Release
+        </releaseNotes>
+    </metadata>
+    <files>
+        <!-- PCL -->
+        <file src="..\bin\Release\Portable\Acr.Xamarin.Forms.BarCodeScanner.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.Xamarin.Forms.BarCodeScanner.dll" />
+
+        <!-- droid -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoAndroid\Acr.XamForms.BarCodeScanner.dll" />
+        <file src="..\bin\Release\MonoAndroid\Acr.XamForms.BarCodeScanner.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.BarCodeScanner.Droid.dll" />
+
+        <!-- ios -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.dll" />
+        <file src="..\bin\Release\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" />
+
+        <!--winphone-->
+        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\wp8\Acr.XamForms.BarCodeScanner.dll" />
+        <file src="..\bin\Release\WinPhone\Acr.XamForms.BarCodeScanner.WindowsPhone.dll" target="lib\wp8\Acr.XamForms.BarCodeScanner.WindowsPhone.dll" />
+    </files>
+</package>

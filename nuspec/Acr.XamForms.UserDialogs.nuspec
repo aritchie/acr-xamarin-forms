@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Acr.XamForms.UserDialogs</id>
+        <version>1.0.0</version>
+        <title>Xamarin Forms User Dialogs</title>
+        <authors>Allan Ritchie</authors>
+        <owners>Allan Ritchie</owners>
+        <description>Alert, Confirm, Prompt, Toast, Action Sheet, Loading, and Progress Dialogs calls for Xamarin Forms. Loading and Progress dialogs courtesy of AndHUD, BTProgressHUD, and Coding4Fun toolkit</description>
+        <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
+        <projectUrl>https://github.com/aritchie/acrxamarinforms</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>xamarin forms</tags>
+        <dependencies>
+            <dependency id="Xamarin.Forms" version="[1.0, 1.1)" />
+            <group targetFramework="wp8">
+                <dependency id="Coding4Fun.Toolkit.Controls" version="2.0.7" />
+            </group>
+        </dependencies>
+        <releaseNotes>
+1.0
+Initial Release
+        </releaseNotes>
+    </metadata>
+    <files>
+        <!-- PCL -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.UserDialogs.dll" />
+
+        <!-- droid -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\MonoAndroid\Acr.XamForms.UserDialogs.dll" />
+        <file src="..\bin\Release\MonoAndroid\Acr.XamForms.UserDialogs.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.UserDialogs.Droid.dll" />
+        <file src="..\bin\Release\MonoAndroid\AndHUD.dll" target="lib\MonoAndroid\AndHUD.dll" />
+
+        <!-- ios -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.dll" />
+        <file src="..\bin\Release\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" />
+        <file src="..\bin\Release\MonoTouch\BTProgressHUD.dll" target="lib\MonoTouch\BTProgressHUD.dll" />
+
+        <!-- winphone -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\wp8\Acr.XamForms.UserDialogs.dll" />
+        <file src="..\bin\Release\WinPhone\Acr.XamForms.UserDialogs.WindowsPhone.dll" target="lib\wp8\Acr.XamForms.UserDialogs.WindowsPhone.dll" />
+    </files>
+</package>

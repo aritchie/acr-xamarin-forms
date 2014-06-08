@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="btprogresshud">
+  <name>BTProgressHUD</name>
+  <publisher>Nic Wise / Big Ted Ltd</publisher>
+  <publisher-url>http://fastchicken.co.nz/</publisher-url>
+  <version>1.10</version>
+  <summary>Add awesome HUDs to your iOS apps.</summary>
+  <samples>
+    <sample id="BTProgressHUDSample">
+      <name>iOS Sample.</name>
+      <summary>Demonstrates how to use the component on iOS.</summary>
+    </sample>
+  </samples>
+</component>

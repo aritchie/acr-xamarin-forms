@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Acr.XamForms.Settings</id>
+        <version>1.0.0</version>
+        <title>Xamarin Forms Settings</title>
+        <description>Settings platform plugin for Xamarin Forms</description>
+        <authors>Allan Ritchie</authors>
+        <owners>Allan Ritchie</owners>
+        <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
+        <projectUrl>https://github.com/aritchie/acrxamarinforms</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>xamarin forms settings</tags>
+        <dependencies>
+            <dependency id="Xamarin.Forms" version="[1.0, 1.1)" />
+            <dependency id="Newtonsoft.Json" version="[6, 7)" />
+        </dependencies>
+        <releaseNotes>
+1.0
+Initial Release
+        </releaseNotes>
+    </metadata>
+    <files>
+        <!-- PCL -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.Settings.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.Settings.dll" />
+
+        <!-- droid -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.Settings.dll" target="lib\MonoAndroid\Acr.XamForms.Settings.dll" />
+        <file src="..\bin\Release\MonoAndroid\Acr.XamForms.Settings.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.Settings.Droid.dll" />
+
+        <!-- touch -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.Settings.dll" target="lib\MonoTouch\Acr.XamForms.Settings.dll" />
+        <file src="..\bin\Release\MonoTouch\Acr.XamForms.Settings.iOS.dll" target="lib\MonoTouch\Acr.XamForms.Settings.iOS.dll" />
+
+        <!--winphone-->
+        <file src="..\bin\Release\Portable\Acr.XamForms.Settings.dll" target="lib\wp8\Acr.XamForms.Settings.dll" />
+        <file src="..\bin\Release\WinPhone\Acr.XamForms.Settings.WindowsPhone.dll" target="lib\wp8\Acr.XamForms.Settings.WindowsPhone.dll" />
+    </files>
+</package>

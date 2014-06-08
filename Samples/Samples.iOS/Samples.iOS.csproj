@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2142B859-21E9-484D-880A-26AD708569DB}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Samples.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>FormsTemplateiOS</AssemblyName>
+    <NuGetPackageImportStamp>e968a099</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <BuildIpa>True</BuildIpa>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Acr.XamForms.BarCodeScanner.iOS\Acr.XamForms.BarCodeScanner.iOS.csproj">
+      <Project>{f1fced90-6343-42b9-8769-5f5b1c5fe1e3}</Project>
+      <Name>Acr.XamForms.BarCodeScanner.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.BarCodeScanner\Acr.XamForms.BarCodeScanner.csproj">
+      <Project>{1ed7e825-98ed-4740-8dd7-96e4aa3f1128}</Project>
+      <Name>Acr.XamForms.BarCodeScanner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.DeviceInfo.iOS\Acr.XamForms.DeviceInfo.iOS.csproj">
+      <Project>{fd60e343-6dad-4164-aac2-70b4d8d00ef5}</Project>
+      <Name>Acr.XamForms.DeviceInfo.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.DeviceInfo\Acr.XamForms.DeviceInfo.csproj">
+      <Project>{62822de8-ceb9-4602-b780-84e9e3d11b88}</Project>
+      <Name>Acr.XamForms.DeviceInfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Mobile.iOS\Acr.XamForms.Mobile.iOS.csproj">
+      <Project>{a2908b9c-d5d0-4715-851d-3eb81ab2e452}</Project>
+      <Name>Acr.XamForms.Mobile.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>Acr.XamForms.Mobile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Network.iOS\Acr.XamForms.Network.iOS.csproj">
+      <Project>{e23d6213-060d-4fd3-9f9d-f49f55f4db68}</Project>
+      <Name>Acr.XamForms.Network.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Network\Acr.XamForms.Network.csproj">
+      <Project>{3b14346e-92d8-425c-aa46-7dfc88cc6f1c}</Project>
+      <Name>Acr.XamForms.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Settings.iOS\Acr.XamForms.Settings.iOS.csproj">
+      <Project>{0f210fae-78bb-4d1a-bcc8-ecdabb99ecc0}</Project>
+      <Name>Acr.XamForms.Settings.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Settings\Acr.XamForms.Settings.csproj">
+      <Project>{90ab40eb-c012-482c-8c61-fcf2ba56fb60}</Project>
+      <Name>Acr.XamForms.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.UserDialogs.iOS\Acr.XamForms.UserDialogs.iOS.csproj">
+      <Project>{290f8977-f101-4bd8-8a29-19c78b4ebc23}</Project>
+      <Name>Acr.XamForms.UserDialogs.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.UserDialogs\Acr.XamForms.UserDialogs.csproj">
+      <Project>{fb69b463-0dd5-49d2-afed-6e3a31eb37a1}</Project>
+      <Name>Acr.XamForms.UserDialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms\Acr.XamForms.csproj">
+      <Project>{85e3c63b-a17e-46ef-87ce-9a8e58fede4d}</Project>
+      <Name>Acr.XamForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples\Samples.csproj">
+      <Name>Samples</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\..\packages\Xamarin.Forms.1.0.6197\lib\MonoTouch10\Xamarin.Forms.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Xamarin.Forms.1.0.6197\lib\MonoTouch10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Xamarin.Forms.1.0.6197\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <Import Project="..\..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets'))" />
+  </Target>
+</Project>

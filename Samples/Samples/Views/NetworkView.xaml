@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="Samples.Views.NetworkView">
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Internet Available" />
+            <Switch IsToggled="{Binding Network.IsConnected}" IsEnabled="False" />
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal">
+            <Label Text="WIFI" />
+            <Switch IsToggled="{Binding Network.IsWifi}" IsEnabled="False" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Mobile" />
+            <Switch IsToggled="{Binding Network.IsMobile}" IsEnabled="False" />
+        </StackLayout>
+        
+        <Label Text="Host Test" />
+        <Entry Text="{Binding Host, Mode=TwoWay}" />
+        <Button Text="Ping Text" Command="{Binding Ping}" />
+    </StackLayout>
+</ContentPage>

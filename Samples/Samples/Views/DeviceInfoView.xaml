@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="Samples.Views.DeviceInfoView">
+    <StackLayout>
+        <Label Text="{Binding Device.ScreenWidth}" />
+        <Label Text="{Binding Device.ScreenHeight}" />
+        <Label Text="{Binding Device.Manufacturer}" />
+        <Label Text="{Binding Device.Model}" />
+        <Label Text="{Binding Device.OperatingSystem}" />
+        <!--<Switch IsToggled="{Binding Device.IsFrontCameraAvailable}" IsEnabled="False">Front Camera</Switch>
+        <Switch IsToggled="{Binding Device.IsRearCameraAvailable}" IsEnabled="False">Primary/Rear Camera</Switch>
+        <Switch IsToggled="{Binding Device.IsSimulator}" IsEnabled="False">Simulator Detected</Switch>-->
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Acr.XamForms</id>
+        <version>1.0.0</version>
+        <title>Xamarin Forms Utilities</title>
+        <description></description>
+        <authors>Allan Ritchie</authors>
+        <owners>Allan Ritchie</owners>
+        <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
+        <projectUrl>https://github.com/aritchie/acrxamarinforms</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>		
+        <tags>xamarin</tags>
+        <dependencies>
+        </dependencies>
+    </metadata>
+    <files>		
+        <!-- PCL -->
+        <file src="..\bin\Release\Portable\Acr.XamForms.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.dll" />
+    </files>
+</package>
