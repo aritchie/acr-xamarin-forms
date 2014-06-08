@@ -10,6 +10,7 @@ using Xamarin.Forms.Platform.iOS;
 
 namespace Acr.XamForms.SignaturePad.iOS {
     
+    //[Preserve]
     public class SignaturePadRenderer : IViewRenderer {
 
         #region IViewRenderer Members

@@ -7,7 +7,6 @@ namespace Acr.XamForms.Mobile.iOS {
     
     public class PhoneService : IPhoneService {
         
-        #region IPhoneService Members
 
         public void Call(string person, string number) {
             var url = new NSUrl("tel:" + number);
@@ -16,45 +15,9 @@ namespace Acr.XamForms.Mobile.iOS {
 
 
         public void Sms(string number, string message) {
-            var smsTo = NSUrl.FromString("sms:" + number);
-            if (UIApplication.SharedApplication.CanOpenUrl(smsTo)) {
-                UIApplication.SharedApplication.OpenUrl(smsTo);
-            } else {
-                // warn the user, or hide the button...
-            }
+            // TODO: pass message
+            var url = NSUrl.FromString("sms:" + number);
+            UIApplication.SharedApplication.OpenUrl(url);
         }
-
-        #endregion
-
-/*
-         private readonly IMvxTouchModalHost _modalHost;
-        private MFMessageComposeViewController _sms;
-
-        public SmsTask()
-        {
-            _modalHost = Mvx.Resolve<IMvxTouchModalHost>();
-        }
-
-        public void SendSMS(string body, string phoneNumber)
-        {
-            if (!MFMessageComposeViewController.CanSendText)
-                return;
-
-            _sms = new MFMessageComposeViewController {Body = body, Recipients = new[] {phoneNumber}};
-            _sms.Finished += HandleSmsFinished;
-
-            _modalHost.PresentModalViewController(_sms, true);
-        }
-
-        private void HandleSmsFinished(object sender, MFMessageComposeResultEventArgs e)
-        {
-            var uiViewController = sender as UIViewController;
-            if (uiViewController == null)
-                throw new ArgumentException("sender");
-
-            uiViewController.DismissViewController(true, () => {});
-            _modalHost.NativeModalViewControllerDisappearedOnItsOwn();
-        }
- */
     }
 }

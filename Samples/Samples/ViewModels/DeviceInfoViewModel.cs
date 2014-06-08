@@ -1,5 +1,5 @@
 ﻿using System;
-using Acr.XamForms.DeviceInfo;
+using Acr.XamForms.Mobile;
 using Acr.XamForms.ViewModels;
 
 
@@ -7,9 +7,9 @@ namespace Samples.ViewModels {
     
     public class DeviceInfoViewModel : ViewModel {
 
-        public IDeviceInfoService Device { get; private set; }
+        public IDeviceInfo Device { get; private set; }
 
-        public DeviceInfoViewModel(IDeviceInfoService deviceInfo) {
+        public DeviceInfoViewModel(IDeviceInfo deviceInfo) {
             this.Device = deviceInfo;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using Acr.XamForms.Network;
+using Acr.XamForms.Mobile;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
 using Xamarin.Forms;

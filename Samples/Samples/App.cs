@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Acr.XamForms.BarCodeScanner;
-using Acr.XamForms.DeviceInfo;
 using Acr.XamForms.Mobile;
-using Acr.XamForms.Network;
 using Acr.XamForms.Settings;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
@@ -19,18 +17,24 @@ namespace Samples {
         private static INavigation navigator;
 
         static App() {
-            container = new ContainerBuilder()
+            var builder = new ContainerBuilder()
                 .RegisterViewModels()
                 .RegisterXamDependency<IBarCodeScanner>()
                 .RegisterXamDependency<IUserDialogService>()
-                .RegisterXamDependency<IDeviceInfoService>()
+                .RegisterXamDependency<IDeviceInfo>()
                 .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<ISettingsService>()
                 .RegisterXamDependency<ILocationService>()
                 .RegisterXamDependency<IMailService>()
                 .RegisterXamDependency<IPhoneService>()
-                .RegisterXamDependency<IPhotoService>()
-                .Build();
+                .RegisterXamDependency<IPhotoService>();
+
+            builder
+                .Register(x => navigator)
+                .As<INavigation>()
+                .SingleInstance();
+
+            container = builder.Build();
         }
 
 

@@ -37,10 +37,15 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="IDeviceInfo.cs" />
+    <Compile Include="IFileViewer.cs" />
+    <Compile Include="INetworkService.cs" />
+    <Compile Include="ITextToSpeechService.cs" />
     <Compile Include="MailAddress.cs" />
     <Compile Include="MailAttachment.cs" />
     <Compile Include="MailExtensions.cs" />
     <Compile Include="MailMessage.cs" />
+    <Compile Include="NetworkStatusChangedEventArgs.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="PositionErrorEventArgs.cs" />
     <Compile Include="PositionEventArgs.cs" />

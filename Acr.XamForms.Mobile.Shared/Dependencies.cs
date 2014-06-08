@@ -1,15 +1,14 @@
-﻿using System.Reflection;
-using System.Resources;
+﻿using System;
 using Acr.XamForms.Mobile;
+#if __IOS__
+using Acr.XamForms.Mobile.iOS;
+#elif WINDOWS_PHONE
 using Acr.XamForms.Mobile.WindowsPhone;
+#else
+using Acr.XamForms.Mobile.Droid;
+#endif
 using Xamarin.Forms;
 
-
-[assembly: AssemblyTitle("Acr.XamForms.Mobile.WindowsPhone")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
 
 [assembly: Dependency(typeof(DeviceInfo))]
 [assembly: Dependency(typeof(LocationService))]

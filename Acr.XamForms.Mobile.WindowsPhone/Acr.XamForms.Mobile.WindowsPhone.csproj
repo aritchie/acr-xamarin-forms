@@ -87,9 +87,12 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="FileViewer.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="PhoneService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DeviceInfo.cs" />
+    <Compile Include="NetworkService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
@@ -117,6 +120,7 @@
       <Name>Acr.XamForms.Mobile</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />

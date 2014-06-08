@@ -102,14 +102,6 @@
       <Project>{1ed7e825-98ed-4740-8dd7-96e4aa3f1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.DeviceInfo.Droid\Acr.XamForms.DeviceInfo.Droid.csproj">
-      <Project>{d4b35565-a9b3-4b4b-aa68-cce7d5a67f78}</Project>
-      <Name>Acr.XamForms.DeviceInfo.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.DeviceInfo\Acr.XamForms.DeviceInfo.csproj">
-      <Project>{62822de8-ceb9-4602-b780-84e9e3d11b88}</Project>
-      <Name>Acr.XamForms.DeviceInfo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile.Droid\Acr.XamForms.Mobile.Droid.csproj">
       <Project>{07658008-eb02-4c74-b798-0b8ed2beca6d}</Project>
       <Name>Acr.XamForms.Mobile.Droid</Name>
@@ -117,14 +109,6 @@
     <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
       <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
       <Name>Acr.XamForms.Mobile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Network.Droid\Acr.XamForms.Network.Droid.csproj">
-      <Project>{872c26ac-5559-4e0d-8b8d-dbf39f7f4331}</Project>
-      <Name>Acr.XamForms.Network.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Network\Acr.XamForms.Network.csproj">
-      <Project>{3b14346e-92d8-425c-aa46-7dfc88cc6f1c}</Project>
-      <Name>Acr.XamForms.Network</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Settings.Droid\Acr.XamForms.Settings.Droid.csproj">
       <Project>{7a000a7c-9c30-46f3-9994-003d4f70ba0f}</Project>
