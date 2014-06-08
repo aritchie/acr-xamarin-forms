@@ -19,20 +19,22 @@ namespace Samples.Views {
                         Font = Font.BoldSystemFontOfSize(40),
                         HorizontalOptions = LayoutOptions.Center
                     },
-                    new StackLayout {
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
-                        Children = {
-                            this.Nav<BarCodeViewModel>("BarCode Scanning"),
-                            this.Nav<UserDialogViewModel>("User Dialogs"),
-                            this.Nav<DeviceInfoViewModel>("Device Information"),
-                            this.Nav<NetworkViewModel>("Network"),
-                            this.Nav<SettingsViewModel>("Settings"),
-                            this.Nav<PhoneViewModel>("Phone Call"),
-                            this.Nav<SmsViewModel>("Send SMS"),
-                            this.Nav<MailViewModel>("Send E-Mail")
-                            this.Nav<LocationViewModel>("Location"),
-                            this.Nav<PhotoViewModel>("Camera/Photo Gallery")
-                        }
+                    new ScrollView {
+                        Content = new StackLayout {
+                            HorizontalOptions = LayoutOptions.CenterAndExpand,
+                            Children = {
+                                this.Nav<BarCodeViewModel>("BarCode Scanning"),
+                                this.Nav<UserDialogViewModel>("User Dialogs"),
+                                this.Nav<DeviceInfoViewModel>("Device Information"),
+                                this.Nav<NetworkViewModel>("Network"),
+                                this.Nav<SettingsViewModel>("Settings"),
+                                this.Nav<PhoneViewModel>("Phone Call"),
+                                this.Nav<SmsViewModel>("Send SMS"),
+                                this.Nav<MailViewModel>("Send E-Mail"),
+                                this.Nav<LocationViewModel>("Location"),
+                                this.Nav<PhotoViewModel>("Camera/Photo Gallery")
+                            }
+                    }
                     }
                 }
             };

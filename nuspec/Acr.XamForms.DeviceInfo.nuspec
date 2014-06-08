@@ -8,7 +8,7 @@
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
-        <projectUrl>https://github.com/aritchie/acrxamarinforms</projectUrl>
+        <projectUrl>https://github.com/aritchie/acr-xamarin-forms</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>

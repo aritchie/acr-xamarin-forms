@@ -47,11 +47,18 @@ namespace Samples.ViewModels {
         public ICommand FromCamera { get; private set; }
 
 
+        private string imagePath;
+        public string ImagePath {
+            get { return this.imagePath; }
+            set { this.SetProperty(ref this.imagePath, value); }
+        }
+
+
         private void OnPhotoReceived(PhotoResult result) {
             if (result.IsCancelled)
                 this.dialogs.Alert("Photo Cancelled");
-            else {
-            }
+            else 
+                this.ImagePath = result.Path;
         }
     }
 }

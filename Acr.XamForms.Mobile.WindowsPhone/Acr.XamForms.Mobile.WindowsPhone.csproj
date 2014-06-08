@@ -89,7 +89,6 @@
     </Compile>
     <Compile Include="MailService.cs" />
     <Compile Include="PhoneService.cs" />
-    <Compile Include="PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

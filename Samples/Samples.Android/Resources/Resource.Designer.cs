@@ -73,6 +73,8 @@ namespace Samples.Droid
 			global::Acr.XamForms.BarCodeScanner.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.DeviceInfo.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.DeviceInfo.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
+			global::Acr.XamForms.Mobile.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
+			global::Acr.XamForms.Mobile.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.Network.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.Network.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.Settings.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;

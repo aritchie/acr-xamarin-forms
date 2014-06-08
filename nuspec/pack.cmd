@@ -1,9 +1,10 @@
 @echo off
 del *.nupkg
-nuget pack Acr.Xamarin.Forms.nuspec
-nuget pack Acr.Xamarin.Forms.BarCodeScanner.nuspec
-nuget pack Acr.Xamarin.Forms.DeviceInfo.nuspec
-nuget pack Acr.Xamarin.Forms.Settings.nuspec
-nuget pack Acr.Xamarin.Forms.UserDialogs.nuspec
-nuget pack Acr.Xamarin.Forms.Network.nuspec
+nuget pack Acr.XamForms.nuspec
+nuget pack Acr.XamForms.Mobile.nuspec
+nuget pack Acr.XamForms.BarCodeScanner.nuspec
+nuget pack Acr.XamForms.DeviceInfo.nuspec
+nuget pack Acr.XamForms.Settings.nuspec
+nuget pack Acr.XamForms.UserDialogs.nuspec
+nuget pack Acr.XamForms.Network.nuspec
 pause

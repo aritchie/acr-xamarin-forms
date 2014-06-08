@@ -34,7 +34,7 @@ namespace Samples {
         }
 
 
-        private static ContainerBuilder RegisterViewModels(this ContainerBuilder buidler) {
+        private static ContainerBuilder RegisterViewModels(this ContainerBuilder builder) {
             var ass = Assembly.Load(new AssemblyName("Samples"));
 
             builder
@@ -46,7 +46,7 @@ namespace Samples {
                 )
                 .InstancePerDependency();
             
-            return buidler;
+            return builder;
         }
 
 

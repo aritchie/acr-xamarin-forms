@@ -8,7 +8,7 @@
         <owners>Allan Ritchie</owners>
         <description>Alert, Confirm, Prompt, Toast, Action Sheet, Loading, and Progress Dialogs calls for Xamarin Forms. Loading and Progress dialogs courtesy of AndHUD, BTProgressHUD, and Coding4Fun toolkit</description>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
-        <projectUrl>https://github.com/aritchie/acrxamarinforms</projectUrl>
+        <projectUrl>https://github.com/aritchie/acr-xamarin-forms</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin forms</tags>
         <dependencies>
