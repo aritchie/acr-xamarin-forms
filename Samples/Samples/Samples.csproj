@@ -35,9 +35,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Models\Signature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BarCodeViewModel.cs" />
+    <Compile Include="ViewModels\SignaturePadConfigViewModel.cs" />
     <Compile Include="ViewModels\DeviceInfoViewModel.cs" />
+    <Compile Include="ViewModels\SignatureListViewModel.cs" />
     <Compile Include="ViewModels\LocationViewModel.cs" />
     <Compile Include="ViewModels\MailViewModel.cs" />
     <Compile Include="ViewModels\NetworkViewModel.cs" />
@@ -70,6 +73,12 @@
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignatureListView.xaml.cs">
+      <DependentUpon>SignatureListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignaturePadConfigView.xaml.cs">
+      <DependentUpon>SignaturePadConfigView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SmsView.xaml.cs">
       <DependentUpon>SmsView.xaml</DependentUpon>
@@ -118,6 +127,10 @@
     <ProjectReference Include="..\..\Acr.XamForms.Settings\Acr.XamForms.Settings.csproj">
       <Project>{90ab40eb-c012-482c-8c61-fcf2ba56fb60}</Project>
       <Name>Acr.XamForms.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.SignaturePad\Acr.XamForms.SignaturePad.csproj">
+      <Project>{b2af970d-d640-451c-95af-92af531b8c1e}</Project>
+      <Name>Acr.XamForms.SignaturePad</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.UserDialogs\Acr.XamForms.UserDialogs.csproj">
       <Project>{fb69b463-0dd5-49d2-afed-6e3a31eb37a1}</Project>
@@ -178,6 +191,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SignaturePadConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SignatureListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

@@ -9,7 +9,6 @@
     <Import_RootNamespace>Acr.XamForms.Mobile</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AddressBookService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PhotoService.cs" />
   </ItemGroup>

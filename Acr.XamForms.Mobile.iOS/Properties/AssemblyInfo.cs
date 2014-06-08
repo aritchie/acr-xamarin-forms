@@ -10,7 +10,6 @@ using Xamarin.Forms;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: Dependency(typeof(AddressBookService))]
 [assembly: Dependency(typeof(LocationService))]
 [assembly: Dependency(typeof(MailService))]
 [assembly: Dependency(typeof(PhoneService))]

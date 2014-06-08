@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="Samples.Views.SignaturePadConfigView">
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Save Button Text:" />
+            <Entry Text="{Binding SaveText}" />
+            
+            <Label Text="Cancel Button Text:" />
+            <Entry Text="{Binding CancelText}" />
+            
+            <Label Text="Prompt Text:" />
+            <Entry Text="{Binding PromptText}" />
+            
+            <Label Text="Caption Text:" />
+            <Entry Text="{Binding CaptionText}" />
+            
+            <Label Text="Background Color:" />
+            <!--<MvxSpinner
+                local:MvxBind="ItemsSource Colors; SelectedItem BgColor"
+                local:MvxItemTemplate="@layout/spinnercolordefinition"
+                local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
+            <Label Text="Signature Line Color:" />
+            <!--<MvxSpinner
+                local:MvxBind="ItemsSource Colors; SelectedItem SignatureLineColor"
+                local:MvxItemTemplate="@layout/spinnercolordefinition"
+                local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
+            <Label Text="Stroke Color:" />
+            <!--<MvxSpinner
+                local:MvxBind="ItemsSource Colors; SelectedItem StrokeColor"
+                local:MvxItemTemplate="@layout/spinnercolordefinition"
+                local:MvxDropDownItemTemplate="@layout/spinnercolordefinition"
+                
+                 />-->
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

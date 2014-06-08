@@ -4,15 +4,17 @@
         <id>Acr.XamForms.BarCodeScanner</id>
         <version>1.0.0</version>
         <title>Xamarin Forms BarCode Scanner</title>
-        <description>Barcode scanning for Xamarin Forms built on ZXing.Net.Mobile.  Supports iOS, Android, and WinPhone8</description>
+        <description>Barcode scanning for Xamarin Forms built on ZXing.Net.Mobile for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
-        <projectUrl>https://github.com/aritchie/acxamarinforms</projectUrl>
+        <projectUrl>https://github.com/aritchie/acr-xamarin-forms</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin barcode android ios winphone</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="(1.0, 2.0]" />
+            <group>
+                <dependency id="Xamarin.Forms" version="[1.0, 1.1)" />
+            </group>
             <group targetFramework="MonoAndroid">
                 <dependency id="ZXing.Net.Mobile" version="1.4.2.1" />
             </group>
@@ -30,7 +32,7 @@ Initial Release
     </metadata>
     <files>
         <!-- PCL -->
-        <file src="..\bin\Release\Portable\Acr.Xamarin.Forms.BarCodeScanner.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.Xamarin.Forms.BarCodeScanner.dll" />
+        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.BarCodeScanner.dll" />
 
         <!-- droid -->
         <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoAndroid\Acr.XamForms.BarCodeScanner.dll" />

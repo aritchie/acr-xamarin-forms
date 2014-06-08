@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					   x:Class="Samples.Views.SignatureListView">
+	<Label Text="TODO" VerticalOptions="Center" HorizontalOptions="Center" />
+    
+    <!--
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Button
+        local:MvxBind="Click Create"
+        android:text="Create Signature"
+        android_layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        local:MvxBind="Click Configure"
+        android:text="Configuration"
+        android_layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <MvxListView
+        local:MvxBind="ItemsSource List; ItemLongClick Delete; ItemClick View; Visible If(List.Count == 0, false, true)"
+        local:MvxItemTemplate="@layout/homelistitem"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+    <TextView
+        local:MvxBind="Visible If(List.Count == 0, true, false)"
+        android:text="No Signatures Found"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+</LinearLayout>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <MvxImageView
+        local:MvxBind="ImageUrl FileName"
+        android:layout_weight="1"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+    <TextView
+        local:MvxBind="Text FileName"
+        android:layout_weight="2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+    -->
+</ContentPage>

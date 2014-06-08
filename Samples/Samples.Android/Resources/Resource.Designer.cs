@@ -79,6 +79,8 @@ namespace Samples.Droid
 			global::Acr.XamForms.Network.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.Settings.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.Settings.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.UserDialogs.Droid.Resource.Attribute.ahBarColor = global::Samples.Droid.Resource.Attribute.ahBarColor;
 			global::Acr.XamForms.UserDialogs.Droid.Resource.Attribute.ahBarLength = global::Samples.Droid.Resource.Attribute.ahBarLength;
 			global::Acr.XamForms.UserDialogs.Droid.Resource.Attribute.ahBarWidth = global::Samples.Droid.Resource.Attribute.ahBarWidth;
@@ -200,8 +202,14 @@ namespace Samples.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050004
-			public const int contentFrame = 2131034116;
+			// aapt resource value: 0x7f050006
+			public const int btnCancel = 2131034118;
+			
+			// aapt resource value: 0x7f050007
+			public const int btnSave = 2131034119;
+			
+			// aapt resource value: 0x7f050008
+			public const int contentFrame = 2131034120;
 			
 			// aapt resource value: 0x7f050002
 			public const int loadingImage = 2131034114;
@@ -211,6 +219,12 @@ namespace Samples.Droid
 			
 			// aapt resource value: 0x7f050003
 			public const int loadingProgressWheel = 2131034115;
+			
+			// aapt resource value: 0x7f050004
+			public const int rootView = 2131034116;
+			
+			// aapt resource value: 0x7f050005
+			public const int signatureView = 2131034117;
 			
 			// aapt resource value: 0x7f050001
 			public const int textViewStatus = 2131034113;
@@ -238,10 +252,13 @@ namespace Samples.Droid
 			public const int loadingprogress = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int zxingscanneractivitylayout = 2130903043;
+			public const int signaturepad = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int zxingscannerfragmentlayout = 2130903044;
+			public const int zxingscanneractivitylayout = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int zxingscannerfragmentlayout = 2130903045;
 			
 			static Layout()
 			{

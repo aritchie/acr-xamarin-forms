@@ -122,6 +122,14 @@
       <Project>{90ab40eb-c012-482c-8c61-fcf2ba56fb60}</Project>
       <Name>Acr.XamForms.Settings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.SignaturePad.iOS\Acr.XamForms.SignaturePad.iOS.csproj">
+      <Project>{b12d20aa-0edf-4903-b385-bb8090848532}</Project>
+      <Name>Acr.XamForms.SignaturePad.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.SignaturePad\Acr.XamForms.SignaturePad.csproj">
+      <Project>{b2af970d-d640-451c-95af-92af531b8c1e}</Project>
+      <Name>Acr.XamForms.SignaturePad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.UserDialogs.iOS\Acr.XamForms.UserDialogs.iOS.csproj">
       <Project>{290f8977-f101-4bd8-8a29-19c78b4ebc23}</Project>
       <Name>Acr.XamForms.UserDialogs.iOS</Name>

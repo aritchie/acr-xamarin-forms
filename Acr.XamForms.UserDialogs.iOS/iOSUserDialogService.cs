@@ -5,8 +5,8 @@ using BigTed;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
 
-
 [assembly: Dependency(typeof(iOSUserDialogService))]
+
 
 namespace Acr.XamForms.UserDialogs.iOS {
     
@@ -16,10 +16,6 @@ namespace Acr.XamForms.UserDialogs.iOS {
             this.Dispatch(() => {
                 var action = new UIActionSheet(options.Title);
                 options.Options.ToList().ForEach(x => action.AddButton(x.Text));
-                //if (options.Cancel != null) {
-                //    action.AddButton(options.Cancel.Text);
-                //    action.CancelButtonIndex = options.Options.Count + 1;
-                //}
 
                 action.Clicked += (sender, btn) => options.Options[btn.ButtonIndex].Action();
                 var view = UIApplication.SharedApplication.KeyWindow.RootViewController.View;
@@ -31,9 +27,9 @@ namespace Acr.XamForms.UserDialogs.iOS {
         public override void Alert(string message, string title, string okText, Action onOk) {
             this.Dispatch(() => {
                 var dlg = new UIAlertView(title ?? String.Empty, message, null, null, okText);
-                if (onOk != null) { 
+                if (onOk != null) 
                     dlg.Clicked += (s, e) => onOk();
-                }
+                
                 dlg.Show();
             });
         }

@@ -32,7 +32,8 @@ namespace Samples.Views {
                                 this.Nav<SmsViewModel>("Send SMS"),
                                 this.Nav<MailViewModel>("Send E-Mail"),
                                 this.Nav<LocationViewModel>("Location"),
-                                this.Nav<PhotoViewModel>("Camera/Photo Gallery")
+                                this.Nav<PhotoViewModel>("Camera/Photo Gallery"),
+                                this.Nav<SignatureListViewModel>("Signature Pad")
                             }
                     }
                     }
@@ -45,7 +46,8 @@ namespace Samples.Views {
             return new Button {
                 Text = text,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                Command = new Command(() => this.Navigation.PushAsync(App.ResolveView<T>())),
+                //Command = new Command(() => this.Navigation.PushAsync(App.ResolveView<T>())),
+                Command = new Command(() => App.NavigateTo<T>()),
                 Font = Font.SystemFontOfSize(NamedSize.Large)
             };     
         }

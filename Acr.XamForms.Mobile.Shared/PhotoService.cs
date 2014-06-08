@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using Xamarin.Media;
 
 
@@ -14,16 +13,14 @@ namespace Acr.XamForms.Mobile {
             this.IsCameraAvailable = picker.IsCameraAvailable && picker.PhotosSupported;
             this.IsGalleryAvailable = picker.PhotosSupported;
         }
-#if __IOS__
+#if __IOS__ || WINDOWS_PHONE
         private MediaPicker CreateMediaPicker() {
             return new MediaPicker();
         }
 #elif __ANDROID__
         private MediaPicker CreateMediaPicker() {
-            return new MediaPicker(Forms.Context);
+            return new MediaPicker(Xamarin.Forms.Forms.Context);
         }
-#elif WINDOWSPHONE
-
 #endif
 
         public bool IsGalleryAvailable { get; protected set; }

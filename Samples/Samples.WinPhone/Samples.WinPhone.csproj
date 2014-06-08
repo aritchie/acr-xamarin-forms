@@ -195,6 +195,14 @@
       <Project>{90ab40eb-c012-482c-8c61-fcf2ba56fb60}</Project>
       <Name>Acr.XamForms.Settings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.SignaturePad.WindowsPhone\Acr.XamForms.SignaturePad.WindowsPhone.csproj">
+      <Project>{fb73d461-d197-42a2-8928-086333277e54}</Project>
+      <Name>Acr.XamForms.SignaturePad.WindowsPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.SignaturePad\Acr.XamForms.SignaturePad.csproj">
+      <Project>{b2af970d-d640-451c-95af-92af531b8c1e}</Project>
+      <Name>Acr.XamForms.SignaturePad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.UserDialogs.WindowsPhone\Acr.XamForms.UserDialogs.WindowsPhone.csproj">
       <Project>{732d3a68-83f1-4cc0-97cb-ab5095998d70}</Project>
       <Name>Acr.XamForms.UserDialogs.WindowsPhone</Name>

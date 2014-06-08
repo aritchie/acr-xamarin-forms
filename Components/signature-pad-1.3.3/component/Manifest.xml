@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="signature-pad">
+  <name>Signature Pad</name>
+  <publisher>Xamarin, Inc.</publisher>
+  <publisher-url>http://xamarin.com/</publisher-url>
+  <src-url>https://github.com/xamarin/SignaturePad</src-url>
+  <version>1.3.3</version>
+  <summary>Makes capturing, saving, and displaying signatures extremely simple.</summary>
+  <screenshots>
+    <img src="screenshots/signature-ios.jpg" title="signature-ios" />
+  </screenshots>
+  <samples>
+    <sample id="Sample.Android">
+      <name>Android Sample</name>
+      <summary>Android Sample</summary>
+    </sample>
+    <sample id="Sample.iOS">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

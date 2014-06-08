@@ -10,9 +10,11 @@
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
         <projectUrl>https://github.com/aritchie/acr-xamarin-forms</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <tags>xamarin forms</tags>
+        <tags>xamarin forms dialogs</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.0, 1.1)" />
+            <group>
+                <dependency id="Xamarin.Forms" version="[1.0, 1.1)" />
+            </group>
             <group targetFramework="wp8">
                 <dependency id="Coding4Fun.Toolkit.Controls" version="2.0.7" />
             </group>

@@ -134,6 +134,14 @@
       <Project>{90ab40eb-c012-482c-8c61-fcf2ba56fb60}</Project>
       <Name>Acr.XamForms.Settings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.SignaturePad.Droid\Acr.XamForms.SignaturePad.Droid.csproj">
+      <Project>{1d5482f6-aa89-422c-9e34-88a8a1ad8ab6}</Project>
+      <Name>Acr.XamForms.SignaturePad.Droid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.SignaturePad\Acr.XamForms.SignaturePad.csproj">
+      <Project>{b2af970d-d640-451c-95af-92af531b8c1e}</Project>
+      <Name>Acr.XamForms.SignaturePad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.UserDialogs.Droid\Acr.XamForms.UserDialogs.Droid.csproj">
       <Project>{f68a14ab-0965-4582-9399-f22f5c4ceb15}</Project>
       <Name>Acr.XamForms.UserDialogs.Droid</Name>
