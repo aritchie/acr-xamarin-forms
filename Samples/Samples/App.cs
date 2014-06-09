@@ -20,14 +20,16 @@ namespace Samples {
             var builder = new ContainerBuilder()
                 .RegisterViewModels()
                 .RegisterXamDependency<IBarCodeScanner>()
-                .RegisterXamDependency<IUserDialogService>()
                 .RegisterXamDependency<IDeviceInfo>()
-                .RegisterXamDependency<INetworkService>()
-                .RegisterXamDependency<ISettingsService>()
+                .RegisterXamDependency<IFileViewer>()
                 .RegisterXamDependency<ILocationService>()
                 .RegisterXamDependency<IMailService>()
+                .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()
-                .RegisterXamDependency<IPhotoService>();
+                .RegisterXamDependency<IPhotoService>()
+                .RegisterXamDependency<ISettingsService>()
+                .RegisterXamDependency<ITextToSpeechService>()
+                .RegisterXamDependency<IUserDialogService>();
 
             builder
                 .Register(x => navigator)
@@ -91,8 +93,6 @@ namespace Samples {
                     dispose.Dispose();
             };
             
-            //var nav = DependencyService.Get<INavigation>();
-            //return nav.PushAsync(page);
             return page;
         }
 

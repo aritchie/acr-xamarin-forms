@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Samples", ".Samples", "{21
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.XamForms", "Acr.XamForms\Acr.XamForms.csproj", "{85E3C63B-A17E-46EF-87CE-9A8E58FEDE4D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xamarin Forms", "Xamarin Forms", "{98DD5441-283D-4D48-AFD1-0522524F20C7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Services", "Core Services", "{98DD5441-283D-4D48-AFD1-0522524F20C7}"
 	ProjectSection(SolutionItems) = preProject
 		nuspec\Acr.XamForms.Mobile.nuspec = nuspec\Acr.XamForms.Mobile.nuspec
 		nuspec\Acr.XamForms.nuspec = nuspec\Acr.XamForms.nuspec

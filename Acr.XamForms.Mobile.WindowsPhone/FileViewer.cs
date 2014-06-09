@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.System;
 
 
 namespace Acr.XamForms.Mobile.WindowsPhone {
@@ -6,7 +7,13 @@ namespace Acr.XamForms.Mobile.WindowsPhone {
     public class FileViewer : IFileViewer {
 
         public bool Open(string fileName) {
-            throw new NotImplementedException();
+            try { 
+                Launcher.LaunchUriAsync(new Uri(fileName));
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
     }
 }

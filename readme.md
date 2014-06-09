@@ -32,6 +32,12 @@ Allows for messagebox style dialogs
 * WinPhone - All dialogs by Coding4Fun Toolkit  
 
 
+##Text-To-Speech
+
+
+##File Viewer
+
+
 ##Bar Code Scanner
 Powered by Redth's ZXing.Net.Mobile
 
@@ -50,30 +56,30 @@ Powered by Redth's ZXing.Net.Mobile
 Call for a signature pad dialog in 1 line of xplat code from a view model!
 
     var signatureService = DepedencyService.Get<ISignatureService>();
-	
+    
     signatureService.RequestSignature(result => {
-		if (result.Cancelled)
-			return;
+        if (result.Cancelled)
+            return;
 
-		// use the image stream to write to file or serialize the draw points
-		// result.Stream or result.Points
-	});
+        // use the image stream to write to file or serialize the draw points
+        // result.Stream or result.Points
+    });
 
 
-	signatureService.LoadSignature(drawPoints);
+    signatureService.LoadSignature(drawPoints);
 
 
 #Configuration
 
-	signatureService.DefaultConfiguration.ClearText = "Why clear?";
+    signatureService.DefaultConfiguration.ClearText = "Why clear?";
 
-	or pass overridden configuration to each method:
+    or pass overridden configuration to each method:
 
-	signatureService.RequestSignature(callback, new SignaturePadConfiguration {
-		SaveText = "Signed!",
-		CancelText = "No way!",
-		PromptText = "Right here"
-	});
+    signatureService.RequestSignature(callback, new SignaturePadConfiguration {
+        SaveText = "Signed!",
+        CancelText = "No way!",
+        PromptText = "Right here"
+    });
 
 ##Network
 Detecting network state changes so that you can inform

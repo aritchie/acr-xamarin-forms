@@ -50,6 +50,7 @@
     <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SmsViewModel.cs" />
+    <Compile Include="ViewModels\TextToSpeechViewModel.cs" />
     <Compile Include="ViewModels\UserDialogViewModel.cs" />
     <Compile Include="Views\BarCodeView.xaml.cs">
       <DependentUpon>BarCodeView.xaml</DependentUpon>
@@ -84,6 +85,9 @@
     </Compile>
     <Compile Include="Views\SmsView.xaml.cs">
       <DependentUpon>SmsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TextToSpeechView.xaml.cs">
+      <DependentUpon>TextToSpeechView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserDialogView.xaml.cs">
       <DependentUpon>UserDialogView.xaml</DependentUpon>
@@ -197,6 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SignatureListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\TextToSpeechView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
