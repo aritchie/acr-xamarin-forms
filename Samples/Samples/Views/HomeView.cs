@@ -33,6 +33,7 @@ namespace Samples.Views {
                                 this.Nav<MailViewModel>("Send E-Mail"),
                                 this.Nav<LocationViewModel>("Location"),
                                 this.Nav<PhotoViewModel>("Camera/Photo Gallery"),
+                                this.Nav<TextToSpeechViewModel>("Text-to-Speech"),
                                 this.Nav<SignatureListViewModel>("Signature Pad")
                             }
                     }
