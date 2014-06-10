@@ -10,13 +10,7 @@ namespace Acr.XamForms.BarCodeScanner {
         public BarCodeFormat Format { get; private set; }
 
 
-        public static BarCodeResult Fail { get; private set; }
-
-        static BarCodeResult() {
-            Fail = new BarCodeResult {
-                Success = false
-            };
-        }
+        public readonly static BarCodeResult Fail = new BarCodeResult { Success = false };
 
         private BarCodeResult() { }
 
