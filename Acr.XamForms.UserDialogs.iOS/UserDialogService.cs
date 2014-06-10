@@ -5,12 +5,12 @@ using BigTed;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(iOSUserDialogService))]
+[assembly: Dependency(typeof(UserDialogService))]
 
 
 namespace Acr.XamForms.UserDialogs.iOS {
     
-    public class iOSUserDialogService : AbstractUserDialogService<iOSProgressDialog> {
+    public class UserDialogService : AbstractUserDialogService<ProgressDialog> {
 
         public override void ActionSheet(ActionSheetOptions options) {
             this.Dispatch(() => {
@@ -57,15 +57,16 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string hint) {
+        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string placeholder, int lines) {
             this.Dispatch(() => {
                 var result = new PromptResult();
                 var dlg = new UIAlertView(title ?? String.Empty, message, null, cancelText, okText) {
                     AlertViewStyle = UIAlertViewStyle.PlainTextInput
                 };
                 var txt = dlg.GetTextField(0);
-                txt.Placeholder = hint;
+                txt.Placeholder = placeholder;
 
+                //UITextView = editable
                 dlg.Clicked += (s, e) => {
                     result.Ok = (dlg.CancelButtonIndex != e.ButtonIndex);
                     result.Text = txt.Text;
@@ -76,8 +77,8 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-        protected override iOSProgressDialog CreateProgressDialogInstance() {
-            return new iOSProgressDialog();
+        protected override ProgressDialog CreateProgressDialogInstance() {
+            return new ProgressDialog();
         }
 
 

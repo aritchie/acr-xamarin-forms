@@ -16,8 +16,8 @@ namespace Acr.XamForms.UserDialogs {
         void Confirm(string message, Action<bool> onConfirm, string title = null, string okText = "OK", string cancelText = "Cancel");
         Task<bool> ConfirmAsync(string message, string title = null, string okText = "OK", string cancelText = "Cancel");
 
-        void Prompt(string message, Action<PromptResult> promptResult, string title = null, string okText = "OK", string cancelText = "Cancel", string hint = null);
-        Task<PromptResult> PromptAsync(string message, string title = null, string okText = "OK", string cancelText = "Cancel", string hint = null);
+        void Prompt(string message, Action<PromptResult> promptResult, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = null, int textLines = 1);
+        Task<PromptResult> PromptAsync(string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = null, int textLines = 1);
         
         IProgressDialog Progress(string title = null, Action onCancel = null, string cancelText = "Cancel", bool show = true);
         IProgressDialog Loading(string title = "Loading", Action onCancel = null, string cancelText = "Cancel", bool show = true);

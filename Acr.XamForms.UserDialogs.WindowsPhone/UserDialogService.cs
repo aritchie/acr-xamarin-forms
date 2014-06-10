@@ -8,12 +8,12 @@ using Coding4Fun.Toolkit.Controls;
 using Xamarin.Forms;
 using Button = System.Windows.Controls.Button;
 
+[assembly: Dependency(typeof(UserDialogService))]
 
-[assembly: Dependency(typeof(WinPhoneUserDialogService))]
 
 namespace Acr.XamForms.UserDialogs.WindowsPhone {
     
-    public class WinPhoneUserDialogService : AbstractUserDialogService<WinPhoneProgressDialog> {
+    public class UserDialogService : AbstractUserDialogService<ProgressDialog> {
 
         public override void ActionSheet(ActionSheetOptions options) {
             this.Dispatch(() => {
@@ -70,7 +70,8 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
         }
 
 
-        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string hint) {
+        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string placeholder, int textLines) {
+            // TODO: multiline text
             this.Dispatch(() => {
                 var yes = false;
 
@@ -122,8 +123,8 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
         }
 
 
-        protected override WinPhoneProgressDialog CreateProgressDialogInstance() {
-            return new WinPhoneProgressDialog();
+        protected override ProgressDialog CreateProgressDialogInstance() {
+            return new ProgressDialog();
         }
 
 

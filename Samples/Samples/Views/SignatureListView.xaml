@@ -1,57 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-					   x:Class="Samples.Views.SignatureListView">
-	<Label Text="TODO" VerticalOptions="Center" HorizontalOptions="Center" />
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:acr="clr-namespace:Acr.XamForms.Converters"
+             x:Class="Samples.Views.SignatureListView">
+    <ContentPage.Resources>
+        <acr:InverseBoolConverter x:Key="Not" />
+        <acr:FileSizeConverter x:Key="FileSize" />
+    </ContentPage.Resources>
     
-    <!--
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <Button
-        local:MvxBind="Click Create"
-        android:text="Create Signature"
-        android_layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        local:MvxBind="Click Configure"
-        android:text="Configuration"
-        android_layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <MvxListView
-        local:MvxBind="ItemsSource List; ItemLongClick Delete; ItemClick View; Visible If(List.Count == 0, false, true)"
-        local:MvxItemTemplate="@layout/homelistitem"
-        android:layout_weight="1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
-    <TextView
-        local:MvxBind="Visible If(List.Count == 0, true, false)"
-        android:text="No Signatures Found"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-</LinearLayout>
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <MvxImageView
-        local:MvxBind="ImageUrl FileName"
-        android:layout_weight="1"
-        android:layout_width="80dp"
-        android:layout_height="80dp" />
-    <TextView
-        local:MvxBind="Text FileName"
-        android:layout_weight="2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
-    -->
+    <Button Text="Create Signature" Command="{Binding Create}" />
+    <Button Text="Configuration" Command="{Binding Configure}" />
+    <Label Text="No Signatures Found" IsVisible="{Binding NoData}" />
+    
+    <ListView IsVisible="{Binding NoData, Converter={StaticResource Not}}" ItemsSource="{Binding List}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{Binding FilePath}" WidthRequest="40" HeightRequest="40" />
+                            <Label Text="{Binding FileName}" HorizontalOptions="FillAndExpand" />
+                            <Label Text="{Binding FileSize, Converter={StaticResource FileSize}}" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

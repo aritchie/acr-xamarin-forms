@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.UserDialogs.Droid {
     
-    public class DroidProgressDialog : IProgressDialog {
+    public class ProgressDialog : IProgressDialog {
 
         #region IProgressDialog Members
 

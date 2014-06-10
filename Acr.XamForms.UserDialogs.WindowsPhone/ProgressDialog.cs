@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace Acr.XamForms.UserDialogs.WindowsPhone {
     
-    public class WinPhoneProgressDialog : IProgressDialog {
+    public class ProgressDialog : IProgressDialog {
         private readonly ProgressPopUp progress = new ProgressPopUp();
 
         #region IProgressDialog Members

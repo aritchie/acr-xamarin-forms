@@ -41,7 +41,8 @@ namespace Samples {
 
 
         public static Page GetMainPage() {
-            var page = new NavigationPage(new HomeView());
+            //var page = new NavigationPage(new HomeView());
+            var page = new HomeView();
             navigator = page.Navigation;
             return page;
         }

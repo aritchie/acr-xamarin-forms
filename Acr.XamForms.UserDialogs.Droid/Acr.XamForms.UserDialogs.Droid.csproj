@@ -68,8 +68,8 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Droid.cs" />
-    <Compile Include="DroidProgressDialog.cs" />
-    <Compile Include="DroidUserDialogService.cs" />
+    <Compile Include="ProgressDialog.cs" />
+    <Compile Include="UserDialogService.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>
@@ -94,7 +94,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\Acr.XamForms.UserDialogs.Shared\Acr.XamForms.UserDialogs.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.XamForms.UserDialogs.Shared\Acr.XamForms.UserDialogs.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

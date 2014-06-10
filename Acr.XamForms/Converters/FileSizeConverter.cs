@@ -1,40 +1,30 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Globalization;
-
-//namespace Acr.XamForms.Converters {
-    
-//    public class FileSizeConverter : MvxValueConverter<long> {
-//        private static readonly List<string> suffixes = new List<string> { "bytes", "KB", "MB", "GB", "TB" };
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using Xamarin.Forms;
 
 
-//         TODO: multilingual on types above?
-//        protected override object Convert(long fileSize, Type targetType, object parameter, CultureInfo culture) {
-//            var pow = Math.Floor((fileSize > 0 ? Math.Log(fileSize) : 0) / Math.Log(1024));
-//            pow = Math.Min(pow, suffixes.Count - 1);
-//            var value = fileSize / Math.Pow(1024, pow);
-//            return value.ToString(pow == 0 ? "F0" : "F2") + " " + suffixes[(int)pow];
-//        }
-//    }
-//}
-//using System;
-//using System.Globalization;
-//using Xamarin.Forms;
+namespace Acr.XamForms.Converters {
 
-//namespace Crosschat.Client.Views.ValueConverters
-//{
-//    public class InverterConverter : IValueConverter
-//    {
-//        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-//        {
-//            if (value is bool)
-//                return !((bool) value);
-//            return false;
-//        }
+    public class FileSizeConverter : IValueConverter {
+        // TODO: globalization
+        private static readonly List<string> suffixes = new List<string> { "bytes", "KB", "MB", "GB", "TB" };
+        
 
-//        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-//        {
-//            throw new NotSupportedException();
-//        }
-//    }
-//}
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            if (targetType != typeof(long))
+                return 0;
+
+            var fileSize = (long)value;
+            var pow = Math.Floor((fileSize > 0 ? Math.Log(fileSize) : 0) / Math.Log(1024));
+            pow = Math.Min(pow, suffixes.Count - 1);
+            var result = fileSize / Math.Pow(1024, pow);
+            return result.ToString(pow == 0 ? "F0" : "F2") + " " + suffixes[(int)pow];
+        }
+
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+            throw new NotSupportedException("FileSize conversion is one-way");
+        }
+    }
+}

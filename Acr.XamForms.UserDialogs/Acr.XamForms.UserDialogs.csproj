@@ -36,6 +36,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AbstractUserDialogService.cs" />
     <Compile Include="ActionSheetOptions.cs" />
     <Compile Include="IUserDialogService.cs" />
     <Compile Include="IProgressDialog.cs" />

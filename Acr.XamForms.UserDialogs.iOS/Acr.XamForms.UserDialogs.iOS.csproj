@@ -36,8 +36,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="iOSProgressDialog.cs" />
-    <Compile Include="iOSUserDialogService.cs" />
+    <Compile Include="ProgressDialog.cs" />
+    <Compile Include="UserDialogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +75,6 @@
       <Version>1.10</Version>
     </XamarinComponentReference>
   </ItemGroup>
-  <Import Project="..\Acr.XamForms.UserDialogs.Shared\Acr.XamForms.UserDialogs.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.XamForms.UserDialogs.Shared\Acr.XamForms.UserDialogs.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.0.6197\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

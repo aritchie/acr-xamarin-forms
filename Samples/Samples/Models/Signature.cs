@@ -7,6 +7,7 @@ namespace Samples.Models {
 
         public string FilePath { get; set; }
         public string FileName { get; set; }
+        public long FileSize { get; set; }
     }
 }
 

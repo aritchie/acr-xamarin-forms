@@ -39,6 +39,8 @@
     </Compile>
     <Compile Include="Collections\ObjectModel\ObservableDictionary.cs" />
     <Compile Include="Converters\FileSizeConverter.cs" />
+    <Compile Include="Converters\ImageBytesConverter.cs" />
+    <Compile Include="Converters\NotBoolConverter.cs" />
     <Compile Include="Converters\TimeAgoConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

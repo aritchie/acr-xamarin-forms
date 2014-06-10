@@ -11,7 +11,7 @@ namespace Acr.XamForms.UserDialogs {
         public abstract void ActionSheet(ActionSheetOptions options);
         public abstract void Alert(string message, string title, string okText, Action onOk);
         public abstract void Confirm(string message, Action<bool> onConfirm, string title, string okText, string cancelText);
-        public abstract void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string hint);
+        public abstract void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string placeholder, int textLines);
         public abstract void Toast(string message, int timeoutSeconds, Action onClick);
         
         public abstract IProgressDialog Progress(string title, Action onCancel, string cancelText, bool show);
@@ -65,9 +65,9 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public Task<PromptResult> PromptAsync(string message, string title, string okText, string cancelText, string hint) {
+        public Task<PromptResult> PromptAsync(string message, string title, string okText, string cancelText, string placeholder, int textLines) {
             var tcs = new TaskCompletionSource<PromptResult>();
-            this.Prompt(message, tcs.SetResult, title, okText, cancelText, hint);
+            this.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, textLines);
             return tcs.Task;
         }
     }

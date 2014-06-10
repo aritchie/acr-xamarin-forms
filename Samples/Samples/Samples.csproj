@@ -97,6 +97,12 @@
     <Reference Include="Autofac">
       <HintPath>..\..\packages\Autofac.3.4.1\lib\portable-win+net40+sl50+wp8\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\..\packages\PCLStorage.0.9.6\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\..\packages\PCLStorage.0.9.6\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\packages\Xamarin.Forms.1.0.6197\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>

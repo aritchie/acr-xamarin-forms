@@ -2,17 +2,18 @@ using System;
 using System.Linq;
 using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
+using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidHUD;
 using Xamarin.Forms;
 
 
-[assembly: Dependency(typeof(DroidUserDialogService))]
+[assembly: Dependency(typeof(UserDialogService))]
 
 
 namespace Acr.XamForms.UserDialogs.Droid {
     
-    public class DroidUserDialogService : AbstractUserDialogService<DroidProgressDialog> {
+    public class UserDialogService : AbstractUserDialogService<ProgressDialog> {
 
         public override void Alert(string message, string title, string okText, Action onOk) {
             Droid.RequestMainThread(() => 
@@ -58,11 +59,16 @@ namespace Acr.XamForms.UserDialogs.Droid {
         }
 
 
-        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string hint) {
+        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string hint, int lines) {
             Droid.RequestMainThread(() => {
                 var txt = new EditText(Forms.Context) {
                     Hint = hint
                 };
+                if (lines > 1) { 
+                    txt.SetLines(lines);
+                    txt.SetSingleLine(false);
+                    txt.ImeOptions = ImeAction.Next;
+                }
 
                 new AlertDialog
                     .Builder(Forms.Context)
@@ -102,8 +108,8 @@ namespace Acr.XamForms.UserDialogs.Droid {
         }
 
 
-        protected override DroidProgressDialog CreateProgressDialogInstance() {
-            return new DroidProgressDialog();
+        protected override ProgressDialog CreateProgressDialogInstance() {
+            return new ProgressDialog();
         }
     }
 }

@@ -4,7 +4,7 @@ using BigTed;
 
 namespace Acr.XamForms.UserDialogs.iOS {
     
-    public class iOSProgressDialog : IProgressDialog {
+    public class ProgressDialog : IProgressDialog {
 
         #region IProgressDialog Members
 

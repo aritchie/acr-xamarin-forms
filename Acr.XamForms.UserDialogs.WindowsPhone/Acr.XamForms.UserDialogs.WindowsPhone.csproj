@@ -88,8 +88,8 @@
     <Compile Include="ActionSheetPopUp.cs" />
     <Compile Include="ProgressPopUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinPhoneProgressDialog.cs" />
-    <Compile Include="WinPhoneUserDialogService.cs" />
+    <Compile Include="ProgressDialog.cs" />
+    <Compile Include="UserDialogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -121,7 +121,6 @@
       <Name>Acr.XamForms.UserDialogs</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\Acr.XamForms.UserDialogs.Shared\Acr.XamForms.UserDialogs.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.XamForms.UserDialogs.Shared\Acr.XamForms.UserDialogs.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
