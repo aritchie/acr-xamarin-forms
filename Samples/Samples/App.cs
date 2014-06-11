@@ -41,8 +41,8 @@ namespace Samples {
 
 
         public static Page GetMainPage() {
-            //var page = new NavigationPage(new HomeView());
-            var page = new HomeView();
+            var page = new NavigationPage(new HomeView());
+            //var page = new HomeView();
             navigator = page.Navigation;
             return page;
         }
@@ -88,7 +88,7 @@ namespace Samples {
 
             page.BindingContext = viewModel;
             page.Appearing += async (sender, args1) => await viewModel.Start();
-            page.Disappearing += async (sender, args1) => {
+            page.Disappearing += (sender, args1) => {
                 var dispose = viewModel as IDisposable;
                 if (dispose != null)
                     dispose.Dispose();
@@ -105,7 +105,7 @@ namespace Samples {
 
 
         public static T Resolve<T>() where T : class {
-            return container.Resolve<T>();    
+            return container.Resolve<T>();
         }
     }
 }

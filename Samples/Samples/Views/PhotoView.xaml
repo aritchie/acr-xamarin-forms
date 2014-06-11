@@ -7,6 +7,6 @@
         <Button Text="Photo From Gallery" Command="{Binding FromGallery}" />
         <Button Text="Choose" Command="{Binding Choice}" />
         
-        <Image Source="{Binding ImagePage}" />
+        <Image Source="{Binding ImagePath}" />
     </StackLayout>
 </ContentPage>

@@ -5,17 +5,17 @@
     <StackLayout>
         <StackLayout Orientation="Horizontal">
             <Label Text="Internet Available" />
-            <Switch IsToggled="{Binding Network.IsConnected}" IsEnabled="False" />
+            <Switch IsToggled="{Binding Network.IsConnected, Mode=OneWay}" />
         </StackLayout>
         
         <StackLayout Orientation="Horizontal">
             <Label Text="WIFI" />
-            <Switch IsToggled="{Binding Network.IsWifi}" IsEnabled="False" />
+            <Switch IsToggled="{Binding Network.IsWifi, Mode=OneWay}" />
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Mobile" />
-            <Switch IsToggled="{Binding Network.IsMobile}" IsEnabled="False" />
+            <Switch IsToggled="{Binding Network.IsMobile, Mode=OneWay}" />
         </StackLayout>
         
         <Label Text="Host Test" />

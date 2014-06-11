@@ -39,8 +39,6 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="FileViewer.cs" />
-    <Compile Include="DeviceInfo.cs" />
-    <Compile Include="NetworkService.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="PhoneService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

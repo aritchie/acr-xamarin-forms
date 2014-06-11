@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 
 namespace Acr.XamForms.Mobile {
 
-    public interface INetworkService {
+    public interface INetworkService : INotifyPropertyChanged {
 
         bool IsConnected { get; }
         bool IsWifi { get; }

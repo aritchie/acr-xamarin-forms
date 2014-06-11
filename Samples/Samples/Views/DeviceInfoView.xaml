@@ -3,13 +3,44 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="Samples.Views.DeviceInfoView">
     <StackLayout>
-        <Label Text="{Binding Device.ScreenWidth}" />
-        <Label Text="{Binding Device.ScreenHeight}" />
-        <Label Text="{Binding Device.Manufacturer}" />
-        <Label Text="{Binding Device.Model}" />
-        <Label Text="{Binding Device.OperatingSystem}" />
-        <!--<Switch IsToggled="{Binding Device.IsFrontCameraAvailable}" IsEnabled="False">Front Camera</Switch>
-        <Switch IsToggled="{Binding Device.IsRearCameraAvailable}" IsEnabled="False">Primary/Rear Camera</Switch>
-        <Switch IsToggled="{Binding Device.IsSimulator}" IsEnabled="False">Simulator Detected</Switch>-->
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Screen Width:" />
+            <Label Text="{Binding Device.ScreenWidth}" />
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Screen Height:" />
+            <Label Text="{Binding Device.ScreenHeight}" />
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Manufacturer:" />
+            <Label Text="{Binding Device.Manufacturer}" />
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Model:" />
+            <Label Text="{Binding Device.Model}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="OS:" />
+            <Label Text="{Binding Device.OperatingSystem}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Front Camera Detected:" />
+            <Switch IsToggled="{Binding Device.IsFrontCameraAvailable, Mode=OneWay}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Rear Camera Detected:" />
+            <Switch IsToggled="{Binding Device.IsRearCameraAvailable, Mode=OneWay}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Simulator Detected:" />
+            <Switch IsToggled="{Binding Device.IsSimulator, Mode=OneWay}" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

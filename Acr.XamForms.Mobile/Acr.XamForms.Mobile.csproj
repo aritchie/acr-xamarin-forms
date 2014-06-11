@@ -37,8 +37,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AbstractDeviceInfo.cs" />
-    <Compile Include="AbstractNetworkService.cs" />
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="IFileViewer.cs" />
     <Compile Include="INetworkService.cs" />
