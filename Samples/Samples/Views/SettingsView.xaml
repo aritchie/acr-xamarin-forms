@@ -1,6 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       x:Class="Samples.Views.SettingsView">
-    TODO
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:acr="clr-namespace:Acr.XamForms.Converters"
+             x:Class="Samples.Views.SettingsView">
+    <ContentPage.Resources>
+        <acr:InverseBoolConverter x:Key="Not" />
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Button Command="{Binding Add}" Text="Add Item" />
+        <Button Command="{Binding Clear}" Text="Clear Settings" />
+
+        <ListView HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsVisible="{Binding NoData, Converter={StaticResource Not}}" ItemsSource="{Binding Settings}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Key}" />
+                                <Label Text="{Binding Value}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
 using Acr.XamForms.Mobile;
 using Acr.XamForms.UserDialogs;

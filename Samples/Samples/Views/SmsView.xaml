@@ -13,5 +13,7 @@
             <Label Text="Character Count" />
             <Label Text="{Binding Count}" />
         </StackLayout>
+        
+        <Button Text="Send Message" Command="{Binding Send}" />
     </StackLayout>
 </ContentPage>

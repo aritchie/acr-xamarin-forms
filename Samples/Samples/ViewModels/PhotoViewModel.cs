@@ -51,7 +51,9 @@ namespace Samples.ViewModels {
         private string imagePath;
         public string ImagePath {
             get { return this.imagePath; }
-            set { this.SetProperty(ref this.imagePath, value); }
+            set {
+                this.SetProperty(ref this.imagePath, value);
+            }
         }
 
 
