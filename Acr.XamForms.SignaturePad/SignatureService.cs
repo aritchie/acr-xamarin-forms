@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.SignaturePad {
 
-    public abstract class AbstractSignatureService : ISignatureService {
+    public class SignatureService : ISignatureService {
 
-        protected AbstractSignatureService() {
+        public SignatureService() {
             this.DefaultConfiguration = new SignaturePadConfiguration {
                 ImageType = ImageFormatType.Png,
                 BackgroundColor = Color.White,
@@ -27,11 +27,17 @@ namespace Acr.XamForms.SignaturePad {
         }
 
 
-        protected abstract void GetSignature(Action<SignatureResult> onResult, SignaturePadConfiguration cfg);
-        protected abstract void Load(IEnumerable<DrawPoint> points, SignaturePadConfiguration cfg);
+        private void GetSignature(Action<SignatureResult> onResult, SignaturePadConfiguration cfg) {
+            
+        }
 
 
-        protected virtual void EnsureConfiguration(ref SignaturePadConfiguration cfg) {
+        private void Load(IEnumerable<DrawPoint> points, SignaturePadConfiguration cfg) {
+            
+        }
+
+
+        private void EnsureConfiguration(ref SignaturePadConfiguration cfg) {
             if (cfg == null)
                 cfg = new SignaturePadConfiguration();
 

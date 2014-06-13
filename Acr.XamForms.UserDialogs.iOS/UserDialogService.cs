@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.UserDialogs.iOS {
     
-    public class UserDialogService : AbstractUserDialogService<ProgressDialog> {
+    public class UserDialogService : AbstractUserDialogService {
 
         public override void ActionSheet(ActionSheetOptions options) {
             this.Dispatch(() => {
@@ -77,7 +77,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-        protected override ProgressDialog CreateProgressDialogInstance() {
+        protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
         }
 

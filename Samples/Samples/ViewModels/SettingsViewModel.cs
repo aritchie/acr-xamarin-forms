@@ -11,11 +11,11 @@ using Xamarin.Forms;
 namespace Samples.ViewModels {
 
     public class SettingsViewModel : ViewModel {
-        private readonly ISettingsService settings;
+        private readonly ISettings settings;
         private readonly IUserDialogService dialogs;
 
 
-        public SettingsViewModel(ISettingsService settings, IUserDialogService dialogs) {
+        public SettingsViewModel(ISettings settings, IUserDialogService dialogs) {
             this.settings = settings;
             this.dialogs = dialogs;
         }

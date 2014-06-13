@@ -27,7 +27,7 @@ namespace Samples {
                 .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()
                 .RegisterXamDependency<IPhotoService>()
-                .RegisterXamDependency<ISettingsService>()
+                .RegisterXamDependency<ISettings>()
                 .RegisterXamDependency<ITextToSpeechService>()
                 .RegisterXamDependency<IUserDialogService>();
 

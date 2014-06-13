@@ -14,10 +14,7 @@ namespace Acr.XamForms.UserDialogs {
         public abstract void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string placeholder, int textLines);
         public abstract void Toast(string message, int timeoutSeconds, Action onClick);
         
-        public abstract IProgressDialog Progress(string title, Action onCancel, string cancelText, bool show);
-        public abstract IProgressDialog Loading(string title, Action onCancel, string cancelText, bool show);
-
-
+        
         private IProgressDialog loading;
         public virtual void ShowLoading(string title) {
             if (this.loading == null) {
@@ -70,16 +67,21 @@ namespace Acr.XamForms.UserDialogs {
             this.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, textLines);
             return tcs.Task;
         }
-    }
 
 
-    public abstract class AbstractUserDialogService<T> : AbstractUserDialogService where T : IProgressDialog {
+        public virtual IProgressDialog Progress(string title, Action onCancel, string cancelText, bool show) {
+            return this.CreateDialog(title, true, onCancel, cancelText, show);
+        }
 
-        protected abstract T CreateProgressDialogInstance();
 
 
-        protected virtual T CreateProgressDialog(string title, bool isdeterministic, Action onCancel, string cancelText, bool show) {
-            var dlg = this.CreateProgressDialogInstance();
+        public virtual IProgressDialog Loading(string title, Action onCancel, string cancelText, bool show) {
+            return this.CreateDialog(title, false, onCancel, cancelText, show);
+        }
+
+
+        protected virtual IProgressDialog CreateDialog(string title, bool isdeterministic, Action onCancel, string cancelText, bool show) {
+            var dlg = this.CreateDialogInstance();
             dlg.Title = title;
             dlg.IsDeterministic = isdeterministic;
 
@@ -89,17 +91,10 @@ namespace Acr.XamForms.UserDialogs {
             if (show) 
                 dlg.Show();
             
-            return dlg;                
+            return dlg;            
         }
 
 
-        public override IProgressDialog Progress(string title, Action onCancel, string cancelText, bool show) {
-            return this.CreateProgressDialog(title, true, onCancel, cancelText, show);
-        }
-
-
-        public override IProgressDialog Loading(string title, Action onCancel, string cancelText, bool show) {
-            return this.CreateProgressDialog(title, false, onCancel, cancelText, show);
-        }
+        protected abstract IProgressDialog CreateDialogInstance();
     }
 }

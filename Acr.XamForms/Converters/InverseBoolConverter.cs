@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.Converters {
     
-    public class NotBoolConverter : IValueConverter {
+    public class InverseBoolConverter : IValueConverter {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (targetType != typeof(bool))
@@ -13,6 +13,7 @@ namespace Acr.XamForms.Converters {
 
             return !(bool)value;
         }
+
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
             throw new NotSupportedException();

@@ -13,7 +13,7 @@ using Button = System.Windows.Controls.Button;
 
 namespace Acr.XamForms.UserDialogs.WindowsPhone {
     
-    public class UserDialogService : AbstractUserDialogService<ProgressDialog> {
+    public class UserDialogService : AbstractUserDialogService {
 
         public override void ActionSheet(ActionSheetOptions options) {
             this.Dispatch(() => {
@@ -123,7 +123,7 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
         }
 
 
-        protected override ProgressDialog CreateProgressDialogInstance() {
+        protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
         }
 

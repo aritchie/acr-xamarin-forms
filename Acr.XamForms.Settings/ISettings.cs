@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Acr.XamForms.Settings {
 
-    public interface ISettingsService {
+    public interface ISettings {
 
         IDictionary<string, string> All { get; } 
 

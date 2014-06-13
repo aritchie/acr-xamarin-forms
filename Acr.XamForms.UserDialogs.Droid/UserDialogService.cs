@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.UserDialogs.Droid {
     
-    public class UserDialogService : AbstractUserDialogService<ProgressDialog> {
+    public class UserDialogService : AbstractUserDialogService {
 
         public override void Alert(string message, string title, string okText, Action onOk) {
             Droid.RequestMainThread(() => 
@@ -108,7 +108,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
         }
 
 
-        protected override ProgressDialog CreateProgressDialogInstance() {
+        protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
         }
     }
