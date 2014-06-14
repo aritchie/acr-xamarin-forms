@@ -64,6 +64,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ISettings.cs" />
+    <Compile Include="ISettingsDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsExtensions.cs" />
   </ItemGroup>

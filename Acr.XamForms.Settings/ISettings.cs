@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-
 
 namespace Acr.XamForms.Settings {
 
     public interface ISettings {
 
-        IDictionary<string, string> All { get; } 
+        ISettingsDictionary All { get; } 
 
         string Get(string key, string defaultValue = null);
         void Set(string key, string value);

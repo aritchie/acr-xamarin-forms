@@ -14,6 +14,8 @@ namespace Samples.iOS {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             Forms.Init();
 
+            
+            //Forms.ViewInitialized += Forms_ViewInitialized;
             var startView = App.GetMainPage().CreateViewController();
             window = new UIWindow(UIScreen.MainScreen.Bounds) {
                 RootViewController = startView
@@ -22,5 +24,8 @@ namespace Samples.iOS {
 
             return true;
         }
+
+        //void Forms_ViewInitialized(object sender, ViewInitializedEventArgs e) {
+        //}
     }
 }

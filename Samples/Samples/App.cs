@@ -13,10 +13,16 @@ using Xamarin.Forms;
 namespace Samples {
 
     public static class App {
-        private static readonly IContainer container;
+        private static IContainer container;
         private static INavigation navigator;
+        private static bool init = false;
 
-        static App() {
+
+        public static void Init() {
+            if (init)
+                return;
+
+            init = true;
             var builder = new ContainerBuilder()
                 .RegisterViewModels()
                 .RegisterXamDependency<IBarCodeScanner>()
@@ -41,6 +47,7 @@ namespace Samples {
 
 
         public static Page GetMainPage() {
+            Init();
             var page = new NavigationPage(new HomeView());
             //var page = new HomeView();
             navigator = page.Navigation;

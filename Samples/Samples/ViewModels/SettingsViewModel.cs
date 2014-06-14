@@ -21,8 +21,8 @@ namespace Samples.ViewModels {
         }
 
 
-        public IDictionary<string, string> Settings {
-            get { return this.settings.All; }
+        public ISettings Settings {
+            get { return this.settings; }
         }
 
 
@@ -46,14 +46,20 @@ namespace Samples.ViewModels {
         } 
 
 
-        public ICommand Actions {
+        private ICommand addCommand;
+        public ICommand Add {
             get {
+                this.addCommand = this.addCommand ?? new Command(() => this.OnAdd());
+                return this.addCommand;
+            }
+        }
 
-                return new Command(() => this.dialogs.ActionSheet(x => x
-                    .SetTitle("Actions")
-                    .Add("Add Setting", () => this.OnAdd())
-                    .Add("Clear All", () => this.OnClear())
-                ));
+
+        private ICommand clearCommand;
+        public ICommand Clear {
+            get {
+                this.clearCommand = this.clearCommand ?? new Command(() => this.OnClear());
+                return this.clearCommand;
             }
         }
 

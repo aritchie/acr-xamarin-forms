@@ -103,7 +103,7 @@ namespace Acr.XamForms.Settings {
 
         #region ISettings Members
 
-        public IDictionary<string, string> All { get; private set; }
+        public ISettingsDictionary All { get; private set; }
 
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Acr.XamForms.Settings {
             var settings = prefs.ToDictionary(x => x.Key, x => x.Value.ToString());
 #endif
             if (this.All == null) {
-                 var observable = new ObservableDictionary<string, string>(settings);
+                 var observable = new SettingsDictionary(settings);
                 observable.CollectionChanged += this.OnCollectionChanged;
                 this.All = observable;
             }

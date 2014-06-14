@@ -14,6 +14,9 @@ namespace Samples.ViewModels {
 
 
         public PhotoViewModel(IUserDialogService dialogs, IPhotoService photos) {
+        //public PhotoViewModel() {
+            //this.dialogs = DependencyService.Get<IUserDialogService>();
+            //this.photos = DependencyService.Get<IPhotoService>();
             this.dialogs = dialogs;
             this.photos = photos;
 

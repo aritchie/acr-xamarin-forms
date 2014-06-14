@@ -16,8 +16,8 @@ namespace Acr.XamForms.SignaturePad.Views {
 		}
 
 
+
 		public void SetInternals(Func<ImageFormatType, Stream> getImage, Func<IEnumerable<DrawPoint>> getPoints, Func<bool> isBlank) {
-			
 		}
 
 		#region Properties

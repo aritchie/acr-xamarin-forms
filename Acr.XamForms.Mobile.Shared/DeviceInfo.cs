@@ -18,10 +18,25 @@ using Env = System.Environment;
 using DevEnv = Microsoft.Devices.Environment;
 #endif
 
+#if __ANDROID__
+namespace Acr.XamForms.Mobile.Droid {
+    
+    public class DeviceInfo : IDeviceInfo {
 
+#elif __IOS__
+namespace Acr.XamForms.Mobile.iOS {
+    
+    public class DeviceInfo : IDeviceInfo {
+
+#elif WINDOWS_PHONE
+namespace Acr.XamForms.Mobile.WindowsPhone {
+    
+    public class DeviceInfo : IDeviceInfo {
+#else
 namespace Acr.XamForms.Mobile {
     
     public class DeviceInfo : IDeviceInfo {
+#endif
 
 
         public int ScreenHeight { get; private set; }

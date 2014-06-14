@@ -67,9 +67,9 @@
     <Compile Include="DrawPoint.cs" />
     <Compile Include="ISignatureService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignatureService.cs" />
     <Compile Include="SignatureResult.cs" />
     <Compile Include="SignaturePadConfiguration.cs" />
+    <Compile Include="SignatureService.cs" />
     <Compile Include="Views\SignaturePadPage.xaml.cs">
       <DependentUpon>SignaturePadPage.xaml</DependentUpon>
     </Compile>

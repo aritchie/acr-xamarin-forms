@@ -56,9 +56,9 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
-    <CodesignKey>iPhone Developer: Richard Simm %2876SDQQNFBD%29</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchSdkVersion>7.1</MtouchSdkVersion>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchProfiling>False</MtouchProfiling>
     <MtouchExtraArgs />
     <MtouchFastDev>False</MtouchFastDev>
