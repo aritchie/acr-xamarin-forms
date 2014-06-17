@@ -3,7 +3,7 @@
     <metadata>
         <id>Acr.XamForms.Mobile</id>
         <version>1.0.0</version>
-        <title>Xamarin Forms Mobile Services</title>
+        <title>Mobile Services for Xamarin Forms</title>
         <description>Camera-Gallery Access, Geo-Location, E-Mail, Phone, and SMS for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -12,12 +12,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>
-            <group>
-                <dependency id="Xamarin.Forms" version="[1.0, 1.1)" />
-            </group>
-            <group targetFramework="MonoAndroid">
-                <dependency id="Xamarin.Android.Support.v4" version="[19, 19.1)" />
-            </group>
+            <dependency id="Xamarin.Forms" version="[1.0, 2.0)" />
         </dependencies>
         <releaseNotes>
 1.0
@@ -26,7 +21,7 @@ Initial Release
     </metadata>
     <files>
         <!-- PCL -->
-        <file src="..\bin\Release\Portable\Acr.XamForms.Mobile.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+sl50+wp8\Acr.XamForms.Mobile.dll" />
+        <file src="..\bin\Release\Portable\Acr.XamForms.Mobile.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.Mobile.dll" />
 
         <!-- droid -->
         <file src="..\bin\Release\Portable\Acr.XamForms.Mobile.dll" target="lib\MonoAndroid\Acr.XamForms.Mobile.dll" />

@@ -88,6 +88,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="FileViewer.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="PhoneService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

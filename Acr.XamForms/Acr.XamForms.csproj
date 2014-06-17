@@ -37,6 +37,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Collections\ObjectModel\IObservableDictionary.cs" />
     <Compile Include="Collections\ObjectModel\ObservableDictionary.cs" />
     <Compile Include="Converters\FileSizeConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />

@@ -39,8 +39,10 @@
     </Compile>
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="IFileViewer.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="INetworkService.cs" />
     <Compile Include="ITextToSpeechService.cs" />
+    <Compile Include="LoggerExtensions.cs" />
     <Compile Include="MailAddress.cs" />
     <Compile Include="MailAttachment.cs" />
     <Compile Include="MailExtensions.cs" />

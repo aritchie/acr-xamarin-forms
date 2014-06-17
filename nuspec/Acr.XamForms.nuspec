@@ -3,7 +3,7 @@
     <metadata>
         <id>Acr.XamForms</id>
         <version>1.0.0</version>
-        <title>Xamarin Forms Utilities</title>
+        <title>Acr.XamForms</title>
         <description>Base utilities library for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -12,7 +12,12 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>		
         <tags>xamarin</tags>
         <dependencies>
+            <dependency id="Xamarin.Forms" version="[1.0, 2.0)" />
         </dependencies>
+        <releaseNotes>
+1.0
+Initial Release
+        </releaseNotes>
     </metadata>
     <files>		
         <!-- PCL -->

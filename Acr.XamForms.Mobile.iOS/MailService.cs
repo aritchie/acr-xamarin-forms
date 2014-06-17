@@ -1,8 +1,10 @@
 using System;
+using MonoTouch.Foundation;
 
 
 namespace Acr.XamForms.Mobile.iOS {
     
+    [Preserve]
     public class MailService : IMailService {
 // TODO
         public void Send(string from, string to, string subject, string message) {

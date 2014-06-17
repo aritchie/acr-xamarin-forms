@@ -3,7 +3,7 @@
     <metadata>
         <id>Acr.XamForms.BarCodeScanner</id>
         <version>1.0.0</version>
-        <title>Xamarin Forms BarCode Scanner</title>
+        <title>BarCode Scanner for Xamarin Forms</title>
         <description>Barcode scanning for Xamarin Forms built on ZXing.Net.Mobile for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -13,16 +13,16 @@
         <tags>xamarin barcode android ios winphone</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.0, 1.1)" />
+                <dependency id="Xamarin.Forms" version="[1.0, 2.0)" />
             </group>
             <group targetFramework="MonoAndroid">
-                <dependency id="ZXing.Net.Mobile" version="1.4.2.1" />
+                <dependency id="ZXing.Net.Mobile" version="[1.4, 2.0)" />
             </group>
             <group targetFramework="MonoTouch">
-                <dependency id="ZXing.Net.Mobile" version="1.4.2.1" />
+                <dependency id="ZXing.Net.Mobile" version="[1.4, 2.0)" />
             </group>
             <group targetFramework="wp8">
-                <dependency id="ZXing.Net.Mobile" version="1.4.2.1" />
+                <dependency id="ZXing.Net.Mobile" version="[1.4, 2.0)" />
             </group>
         </dependencies>
         <releaseNotes>

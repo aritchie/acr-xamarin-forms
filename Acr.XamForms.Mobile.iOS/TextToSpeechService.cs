@@ -2,10 +2,12 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MonoTouch.AVFoundation;
+using MonoTouch.Foundation;
 
 
 namespace Acr.XamForms.Mobile.iOS {
     
+    [Preserve]
     public class TextToSpeechService : ITextToSpeechService {
 
         public bool IsSpeaking { get; private set; }

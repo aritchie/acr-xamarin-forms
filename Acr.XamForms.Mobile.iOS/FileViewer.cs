@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 
 namespace Acr.XamForms.Mobile.iOS {
     
+    [Preserve]
     public class FileViewer : IFileViewer {
 
         public bool Open(string fileName) {

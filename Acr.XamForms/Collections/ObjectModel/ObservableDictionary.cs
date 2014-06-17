@@ -7,7 +7,7 @@ using System.Collections.Specialized;
  
 namespace System.Collections.ObjectModel
 {
-  public class ObservableDictionary<TKey, TValue> : IDictionary<TKey, TValue>, INotifyCollectionChanged, INotifyPropertyChanged
+  public class ObservableDictionary<TKey, TValue> : IObservableDictionary<TKey, TValue>
   {
     private const string CountString = "Count";
     private const string IndexerName = "Item[]";
