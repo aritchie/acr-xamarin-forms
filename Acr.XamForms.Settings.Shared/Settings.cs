@@ -121,16 +121,14 @@ namespace Acr.XamForms.Settings {
 #elif WINDOWS_PHONE
             var settings = prefs.ToDictionary(x => x.Key, x => x.Value.ToString());
 #endif
-            if (this.All == null) {
-                 var observable = new SettingsDictionary(settings);
-                observable.CollectionChanged += this.OnCollectionChanged;
-                this.All = observable;
+            if (this.All != null) {
+                this.All.CollectionChanged -= this.OnCollectionChanged;
+                this.All = null;
             }
-            else {
-                this.All.Clear();
-                foreach (var set in settings)
-                    this.All.Add(set);
-            }
+
+            this.All = new SettingsDictionary(settings);
+            this.All.CollectionChanged += this.OnCollectionChanged;
+           
         }
 
 

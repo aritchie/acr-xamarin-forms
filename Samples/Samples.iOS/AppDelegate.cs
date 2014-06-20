@@ -14,8 +14,15 @@ namespace Samples.iOS {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             Forms.Init();
 
-            
+            //var assemblies = AppDomain
+            //    .CurrentDomain
+            //    .GetAssemblies()
+            //    .Where(x => x.FullName.StartsWith("Acr.XamForms"));
+
+            //foreach (var assembly in assemblies)
+            //    Console.WriteLine("ASSEMBLY: " + assembly.FullName);
             //Forms.ViewInitialized += Forms_ViewInitialized;
+
             var startView = App.GetMainPage().CreateViewController();
             window = new UIWindow(UIScreen.MainScreen.Bounds) {
                 RootViewController = startView
