@@ -1,4 +1,8 @@
 ﻿using System;
+using Acr.XamForms.BarCodeScanner;
+using Acr.XamForms.Mobile.iOS;
+using Acr.XamForms.Settings;
+using Acr.XamForms.UserDialogs.iOS;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
@@ -23,6 +27,10 @@ namespace Samples.iOS {
             //    Console.WriteLine("ASSEMBLY: " + assembly.FullName);
             //Forms.ViewInitialized += Forms_ViewInitialized;
 
+            new UserDialogService();
+            new Settings();
+            new BarCodeScanner();
+            new DeviceInfo();
             var startView = App.GetMainPage().CreateViewController();
             window = new UIWindow(UIScreen.MainScreen.Bounds) {
                 RootViewController = startView

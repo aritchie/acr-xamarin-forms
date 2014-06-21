@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Acr.XamForms.Settings;
@@ -21,10 +20,6 @@ using System.IO.IsolatedStorage;
 namespace Acr.XamForms.Settings {
     
     public class Settings : ISettings {
-
-        public Settings() {
-            this.Resync();
-        }
 
         #region Internals
 #if __ANDROID__
@@ -103,7 +98,16 @@ namespace Acr.XamForms.Settings {
 
         #region ISettings Members
 
-        public ISettingsDictionary All { get; private set; }
+        private ISettingsDictionary all;
+        public ISettingsDictionary All {
+            get {
+                if (this.all == null)
+                    this.Resync();
+
+                return this.all;
+            }
+            private set { this.all = value; }
+        }
 
 
         /// <summary>
