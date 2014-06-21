@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
-using Acr.XamForms.Settings;
+using Acr.XamForms.Mobile;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
 using System.Threading.Tasks;
@@ -32,12 +33,14 @@ namespace Samples.ViewModels {
                     .SetTitle("Item Actions")
                     .Add("Remove", async () => {
                         var r = await this.dialogs.ConfirmAsync("Are you sure you wish to remove " + setting.Key);
-                        if (r)
+                        if (r) { 
                             this.settings.Remove(setting.Key);
+                            this.NoData = !this.settings.All.Any();
+                        }
                     })
                     .Add("Edit", async () => {
                         var r = await this.dialogs.PromptAsync("Update setting " + setting.Key);
-                        if (r.Ok)
+                        if (r.Ok) 
                             this.settings.Set(setting.Key, r.Text);
                     })
                     .Add("Cancel")
@@ -64,6 +67,13 @@ namespace Samples.ViewModels {
         }
 
 
+        private bool noData;
+        public bool NoData {
+            get { return this.noData; }
+            private set { this.SetProperty(ref this.noData, value); }
+        }
+
+
         private async Task OnAdd() {
             var key = await this.dialogs.PromptAsync("Enter key");
             if (!key.Ok || String.IsNullOrWhiteSpace(key.Text)) 
@@ -74,13 +84,16 @@ namespace Samples.ViewModels {
                 return;
 
             this.settings.Set(key.Text, value.Text);
+            this.NoData = !this.settings.All.Any();
         }
 
 
         private async Task OnClear() {
             var r = await this.dialogs.ConfirmAsync("Are you sure you want to clear settings?");
-            if (r)
+            if (r) { 
                 this.settings.Clear();
+                this.NoData = false;
+            }
         }
     }
 }

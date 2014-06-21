@@ -18,6 +18,13 @@ namespace Samples.ViewModels {
         public ICommand Call { get; private set; }
 
 
+        private string displayName;
+        public string DisplayName {
+            get { return this.displayName; }
+            set { this.SetProperty(ref this.displayName, value); }
+        }
+
+
         private string phoneNumber;
         public string PhoneNumber {
             get { return this.phoneNumber; }

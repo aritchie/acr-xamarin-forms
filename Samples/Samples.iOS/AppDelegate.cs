@@ -1,7 +1,6 @@
 ﻿using System;
 using Acr.XamForms.BarCodeScanner;
 using Acr.XamForms.Mobile.iOS;
-using Acr.XamForms.Settings;
 using Acr.XamForms.UserDialogs.iOS;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -18,15 +17,7 @@ namespace Samples.iOS {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             Forms.Init();
 
-            //var assemblies = AppDomain
-            //    .CurrentDomain
-            //    .GetAssemblies()
-            //    .Where(x => x.FullName.StartsWith("Acr.XamForms"));
-
-            //foreach (var assembly in assemblies)
-            //    Console.WriteLine("ASSEMBLY: " + assembly.FullName);
-            //Forms.ViewInitialized += Forms_ViewInitialized;
-
+            // HACK: fix linker issues
             new UserDialogService();
             new Settings();
             new BarCodeScanner();

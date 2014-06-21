@@ -141,14 +141,6 @@
       <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
       <Name>Acr.XamForms.Mobile</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Settings.iOS\Acr.XamForms.Settings.iOS.csproj">
-      <Project>{0f210fae-78bb-4d1a-bcc8-ecdabb99ecc0}</Project>
-      <Name>Acr.XamForms.Settings.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Settings\Acr.XamForms.Settings.csproj">
-      <Project>{90ab40eb-c012-482c-8c61-fcf2ba56fb60}</Project>
-      <Name>Acr.XamForms.Settings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.SignaturePad.iOS\Acr.XamForms.SignaturePad.iOS.csproj">
       <Project>{b12d20aa-0edf-4903-b385-bb8090848532}</Project>
       <Name>Acr.XamForms.SignaturePad.iOS</Name>

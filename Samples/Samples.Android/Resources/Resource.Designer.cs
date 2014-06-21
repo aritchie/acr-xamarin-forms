@@ -75,8 +75,6 @@ namespace Samples.Droid
 			global::Acr.XamForms.BarCodeScanner.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.Mobile.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.Mobile.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
-			global::Acr.XamForms.Settings.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
-			global::Acr.XamForms.Settings.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.UserDialogs.Droid.Resource.Attribute.ahBarColor = global::Samples.Droid.Resource.Attribute.ahBarColor;

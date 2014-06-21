@@ -37,17 +37,22 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AbstractSettings.cs" />
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="IFileViewer.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="INetworkService.cs" />
+    <Compile Include="ISettings.cs" />
+    <Compile Include="ISettingsDictionary.cs" />
     <Compile Include="ITextToSpeechService.cs" />
     <Compile Include="LoggerExtensions.cs" />
     <Compile Include="MailAddress.cs" />
     <Compile Include="MailAttachment.cs" />
     <Compile Include="MailExtensions.cs" />
     <Compile Include="MailMessage.cs" />
+    <Compile Include="AbstractNetworkService.cs" />
     <Compile Include="NetworkStatusChangedEventArgs.cs" />
+    <Compile Include="ObservableDictionary.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="PositionErrorEventArgs.cs" />
     <Compile Include="PositionEventArgs.cs" />
@@ -57,8 +62,13 @@
     <Compile Include="IPhotoService.cs" />
     <Compile Include="PhotoResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsDictionary.cs" />
+    <Compile Include="SettingsExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.1.1.1.6206\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>

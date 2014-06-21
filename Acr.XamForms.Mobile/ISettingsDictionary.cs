@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 
 
-namespace Acr.XamForms.Settings {
+namespace Acr.XamForms.Mobile {
     
     public interface ISettingsDictionary : IDictionary<string, string>, INotifyCollectionChanged, INotifyPropertyChanged {}
 }

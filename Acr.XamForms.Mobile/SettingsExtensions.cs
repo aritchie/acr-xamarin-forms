@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 
-namespace Acr.XamForms.Settings {
+namespace Acr.XamForms.Mobile {
     
     public static class SettingsExtensions {
 

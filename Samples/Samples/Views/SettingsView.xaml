@@ -14,20 +14,22 @@
         <Button Command="{Binding Add}" Text="Add Item" />
         <Button Command="{Binding Clear}" Text="Clear Settings" />
         <Label Text="No Settings Found" IsVisible="{Binding NoData}" />
-        
-        <acrview:ListView IsVisible="{Binding NoData, Converter={StaticResource Not}}" ItemClickCommand="{Binding Select}" ItemsSource="{Binding Settings.All}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Key}" />
-                                <Label Text="{Binding Value}" />
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </acrview:ListView>
+
+        <StackLayout IsVisible="{Binding NoData, Converter={StaticResource Not}}">
+            <acrview:ListView ItemClickCommand="{Binding Select}" ItemsSource="{Binding Settings.All}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Key}" />
+                                    <Label Text="{Binding Value}" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </acrview:ListView>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

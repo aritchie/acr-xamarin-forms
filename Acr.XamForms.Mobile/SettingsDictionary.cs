@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 
-namespace Acr.XamForms.Settings {
+namespace Acr.XamForms.Mobile {
     
     internal class SettingsDictionary : ObservableDictionary<string, string>, ISettingsDictionary {
 

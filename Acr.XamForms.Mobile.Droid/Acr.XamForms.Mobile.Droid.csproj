@@ -71,9 +71,11 @@
     <Compile Include="Logger.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="NetworkConnectionBroadcastReceiver.cs" />
+    <Compile Include="NetworkService.cs" />
     <Compile Include="PhoneService.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="TextToSpeechService.cs" />
   </ItemGroup>
   <ItemGroup>

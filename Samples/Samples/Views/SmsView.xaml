@@ -9,10 +9,8 @@
         <Label Text="Message" />
         <Editor Text="{Binding Message}" />
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Character Count" />
-            <Label Text="{Binding Count}" />
-        </StackLayout>
+        <Label Text="Character Count" />
+        <Label Text="{Binding Count}" />
         
         <Button Text="Send Message" Command="{Binding Send}" />
     </StackLayout>

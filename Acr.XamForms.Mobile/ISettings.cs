@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Acr.XamForms.Settings {
+namespace Acr.XamForms.Mobile {
 
     public interface ISettings {
 

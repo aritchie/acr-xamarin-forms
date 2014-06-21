@@ -16,4 +16,5 @@ using Acr.XamForms.Mobile.WindowsPhone;
 [assembly: Dependency(typeof(NetworkService))]
 [assembly: Dependency(typeof(PhoneService))]
 [assembly: Dependency(typeof(PhotoService))]
+[assembly: Dependency(typeof(Settings))]
 [assembly: Dependency(typeof(TextToSpeechService))]

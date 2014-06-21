@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.Mobile</id>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
         <title>Mobile Services for Xamarin Forms</title>
         <description>Camera-Gallery Access, Geo-Location, E-Mail, Phone, and SMS for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -12,7 +12,8 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.0, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.1.1, 2.0)" />
+            <dependency id="Newtonsoft.Json" version="[6, 7)" />
         </dependencies>
         <releaseNotes>
 1.0

@@ -2,7 +2,6 @@
 using System.Reflection;
 using Acr.XamForms.BarCodeScanner;
 using Acr.XamForms.Mobile;
-using Acr.XamForms.Settings;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
 using Autofac;
