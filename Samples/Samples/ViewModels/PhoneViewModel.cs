@@ -10,9 +10,8 @@ namespace Samples.ViewModels {
     public class PhoneViewModel : ViewModel {
 
         public PhoneViewModel(IPhoneService phone) {
-            this.Call = new Command(() => phone.Call(String.Empty, this.PhoneNumber));
+            this.Call = new Command(() => phone.Call(this.DisplayName, this.PhoneNumber));
         }
-
 
 
         public ICommand Call { get; private set; }
@@ -28,7 +27,15 @@ namespace Samples.ViewModels {
         private string phoneNumber;
         public string PhoneNumber {
             get { return this.phoneNumber; }
-            set { this.SetProperty(ref this.phoneNumber, value); }
+            set {
+                if (value == null)
+                    return;
+
+                if (char.IsDigit(value, value.Length - 1) && value.Length <= 10)
+                    this.phoneNumber = value;
+
+                this.OnPropertyChanged();
+            }
         }
     }
 }

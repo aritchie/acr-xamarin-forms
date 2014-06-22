@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="Samples.Views.PhoneView">
-    <Label Text="Display Name:" />
-    <Entry Text="{Binding DisplayName}" />
+    <StackLayout>
+        <Label Text="Display Name:" />
+        <Entry Text="{Binding DisplayName}" />
     
-    <Label Text="Phone" />
-    <Entry Text="{Binding PhoneNumber}" />
+        <Label Text="Phone" />
+        <Entry Text="{Binding PhoneNumber}" />
     
-    <Button Text="Call" Command="{Binding Call}" />
+        <Button Text="Call" Command="{Binding Call}" />
+    </StackLayout>
 </ContentPage>

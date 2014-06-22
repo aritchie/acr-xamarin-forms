@@ -47,7 +47,6 @@ namespace Acr.XamForms.Mobile {
 
                 return this.all;
             }
-            private set { this.all = value; }
         }
 
 
@@ -57,13 +56,13 @@ namespace Acr.XamForms.Mobile {
         /// <param name="dictionary"></param>
         /// 
         public void Resync() {
-            if (this.All != null) {
-                this.All.CollectionChanged -= this.OnCollectionChanged;
-                this.All = null;
+            if (this.all != null) {
+                this.all.CollectionChanged -= this.OnCollectionChanged;
+                this.all = null;
             }
             var settings = this.GetNativeSettings();
-            this.All = new SettingsDictionary(settings);
-            this.All.CollectionChanged += this.OnCollectionChanged;
+            this.all = new SettingsDictionary(settings);
+            this.all.CollectionChanged += this.OnCollectionChanged;
            
         }
 

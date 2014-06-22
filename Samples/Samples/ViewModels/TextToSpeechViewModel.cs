@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Windows.Input;
 using Acr.XamForms.Mobile;
 using Acr.XamForms.UserDialogs;
@@ -10,30 +9,15 @@ using Xamarin.Forms;
 namespace Samples.ViewModels {
     
     public class TextToSpeechViewModel : ViewModel {
-        private CancellationTokenSource cancelSource;
-
 
         public TextToSpeechViewModel(ITextToSpeechService speech, IUserDialogService dialogs) {
-            this.Speak = new Command(async () => {
-        //            if (String.IsNullOrEmpty(this.Text)) 
-        //                this.dialogService.Alert("Please enter the text!");
-        //            else {
-        //                using (this.cancelSource = new CancellationTokenSource()) {
-        //                    using (this.dialogService.Loading("Speaking", () => this.cancelSource.Cancel(false))) { 
-        //                        await this.SpeechService.Speak(this.Text, cancelToken: this.cancelSource.Token);
-        //                    }
-        //                } 
-        //                this.cancelSource = null;
-        //            }                
+            this.Speak = new Command(() => {
+                if (String.IsNullOrEmpty(this.Text)) 
+                    dialogs.Alert("Please enter the text!");
+                else 
+                    speech.Speak(this.Text);
             });
-            this.Cancel = new Command(async () => {
-        //            if (this.cancelSource == null)
-        //                this.dialogService.Alert("Nothing to cancel");
-        //            else {
-        //                this.cancelSource.Cancel();
-        //                this.dialogService.Alert("Cancelled");
-        //            }                
-            });
+            this.Cancel = new Command(speech.Stop);
         }
 
 

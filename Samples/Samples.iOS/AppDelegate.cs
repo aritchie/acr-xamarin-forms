@@ -22,6 +22,7 @@ namespace Samples.iOS {
             new Settings();
             new BarCodeScanner();
             new DeviceInfo();
+            new Logger();
             var startView = App.GetMainPage().CreateViewController();
             window = new UIWindow(UIScreen.MainScreen.Bounds) {
                 RootViewController = startView

@@ -1,32 +1,38 @@
 ﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Windows.Phone.Speech.Synthesis;
 
 
 namespace Acr.XamForms.Mobile.WindowsPhone {
     
     public class TextToSpeechService : ITextToSpeechService {
+        private SpeechSynthesizer speech;
 
         public bool IsSpeaking { get; private set; }
 
 
-        public async Task Speak(string text, CancellationToken cancelToken) {
-            using (var synth = new SpeechSynthesizer()) {
-                cancelToken.Register(() => {
-                    if (this.IsSpeaking)
-                        synth.CancelAll();
-                });
-                //this.SetVoice(synth, options);
+        public async void Speak(string text) {
+            if (this.IsSpeaking)
+                return;
 
+
+            using (this.speech = new SpeechSynthesizer()) {
                 this.IsSpeaking = true;
                 try { 
                     // stop cancel exception
-                    await synth.SpeakTextAsync(text);
+                    await this.speech.SpeakTextAsync(text);
                 }
                 catch { }
                 this.IsSpeaking = false;
             }
+        }
+
+
+        public void Stop() {
+            if (!this.IsSpeaking && this.speech != null)
+                return;
+
+            this.speech.CancelAll();
+            this.IsSpeaking = false;
         }
     }
 }

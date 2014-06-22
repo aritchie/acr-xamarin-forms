@@ -8,45 +8,44 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.Mobile.Droid {
     
-    public class TextToSpeechService : ITextToSpeechService, TextToSpeech.IOnInitListener {
-        private TaskCompletionSource<object> tcs;
- 
+    public class TextToSpeechService : Java.Lang.Object, ITextToSpeechService, TextToSpeech.IOnInitListener {
+        private TextToSpeech speech;
+        private string speechText;
+
 
         public bool IsSpeaking { get; private set; }
 
 
-        public Task Speak(string text, CancellationToken cancelToken) {
-            this.tcs = new TaskCompletionSource<object>();
-
-            using (var tts = new TextToSpeech(Forms.Context, this)) {
-                cancelToken.Register(() => {
-                    this.IsSpeaking = false;
-                    tts.Stop();
-                    this.tcs.TrySetCanceled();
-                });
-                //tts.SetSpeechRate(opts.SpeechRate);
-                //tts.SetPitch(opts.VoicePitch);
-                this.IsSpeaking = true;
-                tts.Speak(text, QueueMode.Flush, new Dictionary<string, string>());
-            }
-            return this.tcs.Task;
-        }
-    
-
-        public void OnInit(OperationResult status) {
-           if (this.tcs == null)
+        public void Speak(string text) {
+            if (this.IsSpeaking)
                 return;
 
-            switch (status) {
-                case OperationResult.Error:
-                    this.tcs.TrySetException(new ArgumentException("Error starting TTS engine"));
-                    break;
+            this.IsSpeaking = true;
+            this.speechText = text;
+            if (this.speech != null) 
+                this.DoSpeech();
+            else 
+                this.speech = new TextToSpeech(Forms.Context, this);
+        }
 
-                case OperationResult.Success:
-                    this.tcs.TrySetResult(null);
-                    break;
-            }
+
+        public void Stop() {
+            if (!this.IsSpeaking)
+                return;
+
+            this.speech.Stop();
+        }
+
+
+        private void DoSpeech() {
+            this.speech.Speak(this.speechText, QueueMode.Flush, new Dictionary<string, string>());
             this.IsSpeaking = false;
+        }
+
+
+        public void OnInit(OperationResult status) {
+            if (status == OperationResult.Success)
+                this.DoSpeech();
         }
 
 

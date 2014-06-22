@@ -12,12 +12,8 @@ namespace Samples.ViewModels {
 
         public SmsViewModel(IPhoneService phone, IUserDialogService dialogs) {
             this.Send = new Command(() => {
-                if (this.Count > 140)
-                    dialogs.Alert("Text message is too big");
-                else {
-                    phone.Sms(this.PhoneNumber, this.Message);
-                    dialogs.Alert("Message sent");
-                }
+                phone.Sms(this.PhoneNumber, this.Message);
+                dialogs.Alert("Message sent");
             });
         }
 
@@ -28,23 +24,38 @@ namespace Samples.ViewModels {
         private int count;
         public int Count {
             get { return this.count; }
-            private set { this.SetProperty(ref this.count, value); }
+            set { this.SetProperty(ref this.count, value); }
         }
 
 
         private string phoneNumber;
         public string PhoneNumber {
             get { return this.phoneNumber; }
-            set { this.SetProperty(ref this.phoneNumber, value); }
+            set {
+                if (value == null)
+                    return;
+
+                if (char.IsDigit(value, value.Length - 1) && value.Length <= 10)
+                    this.phoneNumber = value;
+
+                this.OnPropertyChanged();
+            }
         }
 
 
-        private string message;
+        private string message = "";
         public string Message {
             get { return this.message; }
             set {
-                if (this.SetProperty(ref this.message, value))
-                    this.Count = this.message.Length;
+                if (value == null)
+                    return;
+
+                if (this.message.Length <= 140)
+                    this.message = value;
+
+                this.Count = this.message.Length;
+                this.OnPropertyChanged();
+                    
             }
         }
     }
