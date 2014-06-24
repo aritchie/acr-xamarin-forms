@@ -1,11 +1,13 @@
-﻿using System;
+﻿//using System;
 
 
-namespace Acr.XamForms.Mobile {
+//namespace Acr.XamForms.Mobile {
 
-    public interface IMailService {
+//    public interface IMailService {
 
-        void Send(string from, string to, string subject, string message);
-        void Send(MailMessage mail);
-    }
-}
+//        void Send(string to, string subject, string message, bool isHtml);
+//        void Send(MailMessage mail);
+
+//        bool SupportsAttachments { get; }
+//    }
+//}

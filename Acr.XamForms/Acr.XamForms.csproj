@@ -39,6 +39,7 @@
     </Compile>
     <Compile Include="Collections\ObjectModel\IObservableDictionary.cs" />
     <Compile Include="Collections\ObjectModel\ObservableDictionary.cs" />
+    <Compile Include="Collections\ObjectModel\ObservableList.cs" />
     <Compile Include="Converters\FileSizeConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\TimeAgoConverter.cs" />

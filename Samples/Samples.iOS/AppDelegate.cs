@@ -4,7 +4,6 @@ using Acr.XamForms.Mobile.iOS;
 using Acr.XamForms.UserDialogs.iOS;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Xamarin.Forms;
 
 
 namespace Samples.iOS {

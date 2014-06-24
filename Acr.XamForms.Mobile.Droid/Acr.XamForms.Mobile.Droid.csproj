@@ -69,7 +69,7 @@
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="FileViewer.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="MailService.cs" />
+    <None Include="MailService.cs" />
     <Compile Include="NetworkConnectionBroadcastReceiver.cs" />
     <Compile Include="NetworkService.cs" />
     <Compile Include="PhoneService.cs" />

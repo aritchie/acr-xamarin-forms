@@ -26,7 +26,7 @@ namespace Samples.Views {
                         this.Nav<SettingsViewModel>("Settings"),
                         this.Nav<PhoneViewModel>("Phone Call"),
                         this.Nav<SmsViewModel>("Send SMS"),
-                        this.Nav<MailViewModel>("Send E-Mail"),
+                        //this.Nav<MailViewModel>("Send E-Mail"),
                         this.Nav<LocationViewModel>("Location"),
                         this.Nav<PhotoViewModel>("Camera/Photo Gallery"),
                         this.Nav<TextToSpeechViewModel>("Text-to-Speech"),

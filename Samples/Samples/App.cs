@@ -28,6 +28,7 @@ namespace Samples {
                 .RegisterXamDependency<IDeviceInfo>()
                 .RegisterXamDependency<IFileViewer>()
                 .RegisterXamDependency<ILocationService>()
+                .RegisterXamDependency<ILogger>()
                 .RegisterXamDependency<IMailService>()
                 .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()

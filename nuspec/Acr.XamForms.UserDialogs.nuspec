@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>User Dialogs for Xamarin Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -13,7 +13,7 @@
         <tags>xamarin forms dialogs</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.0, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.1, 2.0)" />
             </group>
             <group targetFramework="wp8">
                 <dependency id="Coding4Fun.Toolkit.Controls" version="[2.0, 3.0)" />

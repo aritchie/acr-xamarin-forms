@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
+using Acr.XamForms.BarCodeScanner;
+using Acr.XamForms.Mobile.WindowsPhone;
+using Acr.XamForms.UserDialogs.WindowsPhone;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Samples.WinPhone.Resources;
 
+
 namespace Samples.WinPhone {
+
     public partial class App : Application {
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -20,6 +24,12 @@ namespace Samples.WinPhone {
         /// Constructor for the Application object.
         /// </summary>
         public App() {
+            // HACK: fix linker issues
+            new UserDialogService();
+            new Settings();
+            new BarCodeScanner();
+            new DeviceInfo();
+            new Logger();
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 

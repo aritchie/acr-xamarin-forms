@@ -12,7 +12,7 @@ using Acr.XamForms.Mobile.WindowsPhone;
 [assembly: Dependency(typeof(DeviceInfo))]
 [assembly: Dependency(typeof(FileViewer))]
 [assembly: Dependency(typeof(LocationService))]
-[assembly: Dependency(typeof(MailService))]
+//[assembly: Dependency(typeof(MailService))]
 [assembly: Dependency(typeof(NetworkService))]
 [assembly: Dependency(typeof(PhoneService))]
 [assembly: Dependency(typeof(PhotoService))]

@@ -1,17 +1,22 @@
 using System;
+using Acr.XamForms.Mobile.Droid;
 using Android.Util;
+using Xamarin.Forms;
 
+
+[assembly: Dependency(typeof(Logger))]
 
 namespace Acr.XamForms.Mobile.Droid {
     
-    public class Logger : ILogger {
+    public class Logger : AbstractLogger {
 
-        public void Trace(string tag, string message) {
+        protected override void NativeDebug(string tag, string message) {
             Log.Debug(tag, message);
         }
 
 
-        public void Error(string tag, string message, Exception ex) {
+        protected override void NativeError(string tag, string message) {
+            Log.Error(tag, message);
         }
     }
 }

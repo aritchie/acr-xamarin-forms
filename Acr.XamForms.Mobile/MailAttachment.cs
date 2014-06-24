@@ -1,11 +1,11 @@
-﻿using System;
+﻿//using System;
 
 
-namespace Acr.XamForms.Mobile {
+//namespace Acr.XamForms.Mobile {
     
-    public class MailAttachment {
+//    public class MailAttachment {
 
-        public string ContentType { get; set; }
-        public string FileName { get; set; } 
-    }
-}
+//        public string ContentType { get; set; }
+//        public string FileName { get; set; } 
+//    }
+//}
