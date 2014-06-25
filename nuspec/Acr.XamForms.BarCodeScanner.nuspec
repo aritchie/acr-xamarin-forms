@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.BarCodeScanner</id>
-        <version>1.0.1</version>
+        <version>1.0.0</version>
         <title>BarCode Scanner for Xamarin Forms</title>
         <description>Barcode scanning for Xamarin Forms built on ZXing.Net.Mobile for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -41,7 +41,8 @@ Initial Release
         <!-- ios -->
         <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.dll" />
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" />
-
+        <file src="Bootstrap\BarCodeScannerBootstrap.cs.pp" target="content\MonoTouch\Bootstrap\BarCodeScannerBootstrap.cs.pp" />
+        
         <!--winphone-->
         <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\wp8\Acr.XamForms.BarCodeScanner.dll" />
         <file src="..\bin\Release\WinPhone\Acr.XamForms.BarCodeScanner.WindowsPhone.dll" target="lib\wp8\Acr.XamForms.BarCodeScanner.WindowsPhone.dll" />
