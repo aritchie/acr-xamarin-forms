@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>1.0.1</version>
+        <version>1.0.0</version>
         <title>User Dialogs for Xamarin Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -37,6 +37,7 @@ Initial Release
         <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.dll" />
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" />
         <file src="..\bin\Release\MonoTouch\BTProgressHUD.dll" target="lib\MonoTouch\BTProgressHUD.dll" />
+        <file src="Bootstrap\UserDialogsBootstrap.cs.pp" target="content\MonoTouch\Bootstrap\UserDialogsBootstrap.cs.pp" />
 
         <!-- winphone -->
         <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\wp8\Acr.XamForms.UserDialogs.dll" />

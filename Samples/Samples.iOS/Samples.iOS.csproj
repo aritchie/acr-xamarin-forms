@@ -118,6 +118,10 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\UserDialogsBootstrap.cs" />
+    <Compile Include="Bootstrap\MobileBootstrap.cs" />
+    <Compile Include="Bootstrap\SignaturePadBootstrap.cs" />
+    <Compile Include="Bootstrap\BarCodeScannerBootstrap.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Info.plist" />
@@ -165,8 +169,7 @@
       <Name>Samples</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="PCLStorage">
       <HintPath>..\..\packages\PCLStorage.0.9.6\lib\monotouch\PCLStorage.dll</HintPath>

@@ -29,7 +29,7 @@ namespace Samples {
                 .RegisterXamDependency<IFileViewer>()
                 .RegisterXamDependency<ILocationService>()
                 .RegisterXamDependency<ILogger>()
-                .RegisterXamDependency<IMailService>()
+                //.RegisterXamDependency<IMailService>()
                 .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()
                 .RegisterXamDependency<IPhotoService>()

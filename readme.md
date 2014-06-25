@@ -1,20 +1,6 @@
 ACR Xamarin Forms
 =================
 
-##Camera & Gallery
-#Powered By
-Xamarin.Mobile
-
-##Location Services
-#Powered By
-Xamarin.Mobile
-
-##Email
-
-
-##Phone & SMS
-
-
 ##User Dialogs
 Allows for messagebox style dialogs
 
@@ -26,60 +12,31 @@ Allows for messagebox style dialogs
 * Progress
 * Toast
 
-#Powered By:
+[examples](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/UserDialogViewModel.cs)
+
 * Android - Progress/Loading uses AndHUD
 * iOS - Progress/Loading uses BTProgressHUD
 * WinPhone - All dialogs by Coding4Fun Toolkit  
 
 
-##Text-To-Speech
+##Camera & Gallery
+Camera and Photo Gallery access powered by Xamarin.Mobile
 
-
-##File Viewer
+[Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/PhotoViewModel.cs)
 
 
 ##Bar Code Scanner
-Powered by Redth's ZXing.Net.Mobile
+Allows for quick barcode scanning from a viewmodel command
 
-    new Command(async () => {
-        var scan = DependencyService.Get<IBarCodeScanner>();
-        var r = await scan.Read(flashlightText: "Turn on flashlight", cancelText: "Cancel");
-
-        Result = (r.Success 
-            ? String.Format("Barcode Result - Format: {0} - Code: {1}", r.Format, r.Code)
-            : "Cancelled barcode scan"
-        );
-    });
+[Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/BarCodeViewModel.cs)
 
 
-##Signature Pad
-Call for a signature pad dialog in 1 line of xplat code from a view model!
+##Location Services
+Geo-Locator services powered by Xamarin.Mobile
 
-    var signatureService = DepedencyService.Get<ISignatureService>();
-    
-    signatureService.RequestSignature(result => {
-        if (result.Cancelled)
-            return;
+[ViewModel Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/LocationViewModel.cs)
+[View-XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/LocationView.xaml)
 
-        // use the image stream to write to file or serialize the draw points
-        // result.Stream or result.Points
-    });
-
-
-    signatureService.LoadSignature(drawPoints);
-
-
-#Configuration
-
-    signatureService.DefaultConfiguration.ClearText = "Why clear?";
-
-    or pass overridden configuration to each method:
-
-    signatureService.RequestSignature(callback, new SignaturePadConfiguration {
-        SaveText = "Signed!",
-        CancelText = "No way!",
-        PromptText = "Right here"
-    });
 
 ##Network
 Detecting network state changes so that you can inform
@@ -88,10 +45,15 @@ the user when they were working in an offline state.
 * INetworkService subscribes to INotifyPropertyChanged and monitors the device network status
 * INetworkService.NetworkStatusChanged event for background processes to monitor
 
+[ViewModel Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/LocationViewModel.cs)
+[View-XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/LocationView.xaml)
+
 
 ##Settings
 A simple settings library that works differently than the traditional setting plugins out there.  Instead, my approach was to work
 with an observable dictionary.
+
+[Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/SettingsViewModel.cs)
 
 
 ##Device Info
@@ -101,3 +63,6 @@ Allows you to get the information of the device for auditing purposes
 * Operating System and Version
 * Front and rear facing cameras
 * Screen Resolution
+
+[ViewModel Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/DeviceInfoViewModel.cs)
+[View-XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/DeviceInfoView.xaml)

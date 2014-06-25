@@ -15,21 +15,23 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bar Code Scanner", "Bar Code Scanner", "{DD617AB3-E79F-44D8-9ED7-CE7DD06EA51A}"
 	ProjectSection(SolutionItems) = preProject
 		nuspec\Acr.XamForms.BarCodeScanner.nuspec = nuspec\Acr.XamForms.BarCodeScanner.nuspec
+		nuspec\Bootstrap\BarCodeScannerBootstrap.cs.pp = nuspec\Bootstrap\BarCodeScannerBootstrap.cs.pp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User Dialogs", "User Dialogs", "{402AAF82-296F-4C93-8662-F3BB5185AB91}"
 	ProjectSection(SolutionItems) = preProject
 		nuspec\Acr.XamForms.UserDialogs.nuspec = nuspec\Acr.XamForms.UserDialogs.nuspec
+		nuspec\Bootstrap\UserDialogsBootstrap.cs.pp = nuspec\Bootstrap\UserDialogsBootstrap.cs.pp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Samples", ".Samples", "{21CC8547-CA75-41BF-91AB-319DCE25B7E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.XamForms", "Acr.XamForms\Acr.XamForms.csproj", "{85E3C63B-A17E-46EF-87CE-9A8E58FEDE4D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Services", "Core Services", "{98DD5441-283D-4D48-AFD1-0522524F20C7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile Services", "Mobile Services", "{98DD5441-283D-4D48-AFD1-0522524F20C7}"
 	ProjectSection(SolutionItems) = preProject
 		nuspec\Acr.XamForms.Mobile.nuspec = nuspec\Acr.XamForms.Mobile.nuspec
-		nuspec\Acr.XamForms.nuspec = nuspec\Acr.XamForms.nuspec
+		nuspec\Bootstrap\MobileBootstrap.cs.pp = nuspec\Bootstrap\MobileBootstrap.cs.pp
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples", "Samples\Samples\Samples.csproj", "{CC18E151-5792-4DA5-ADE6-7CFBA16A593E}"
@@ -71,6 +73,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SignaturePad", "SignaturePad", "{24AF2444-83DE-4C55-AE1D-0F6CA6BC11B6}"
 	ProjectSection(SolutionItems) = preProject
 		nuspec\Acr.XamForms.SignaturePad.nuspec = nuspec\Acr.XamForms.SignaturePad.nuspec
+		nuspec\Bootstrap\SignaturePadBootstrap.cs.pp = nuspec\Bootstrap\SignaturePadBootstrap.cs.pp
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.XamForms.SignaturePad", "Acr.XamForms.SignaturePad\Acr.XamForms.SignaturePad.csproj", "{B2AF970D-D640-451C-95AF-92AF531B8C1E}"
@@ -80,6 +83,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.XamForms.SignaturePad.Droid", "Acr.XamForms.SignaturePad.Droid\Acr.XamForms.SignaturePad.Droid.csproj", "{1D5482F6-AA89-422C-9E34-88A8A1AD8AB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.XamForms.SignaturePad.WindowsPhone", "Acr.XamForms.SignaturePad.WindowsPhone\Acr.XamForms.SignaturePad.WindowsPhone.csproj", "{FB73D461-D197-42A2-8928-086333277E54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7AF68AE5-21E1-4618-BEF5-719BD52768F4}"
+	ProjectSection(SolutionItems) = preProject
+		nuspec\Acr.XamForms.nuspec = nuspec\Acr.XamForms.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -876,7 +884,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{85E3C63B-A17E-46EF-87CE-9A8E58FEDE4D} = {98DD5441-283D-4D48-AFD1-0522524F20C7}
+		{85E3C63B-A17E-46EF-87CE-9A8E58FEDE4D} = {7AF68AE5-21E1-4618-BEF5-719BD52768F4}
 		{CC18E151-5792-4DA5-ADE6-7CFBA16A593E} = {21CC8547-CA75-41BF-91AB-319DCE25B7E9}
 		{2142B859-21E9-484D-880A-26AD708569DB} = {21CC8547-CA75-41BF-91AB-319DCE25B7E9}
 		{3AC4ED82-3D1E-4767-8C17-39EF6337AA64} = {21CC8547-CA75-41BF-91AB-319DCE25B7E9}
