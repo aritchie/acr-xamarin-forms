@@ -9,6 +9,7 @@ namespace Samples.Views {
     public class HomeView : ContentPage {
 
         public HomeView() {
+            this.Title = "ACR Xamarin Forms";
             this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
             this.Content = new ScrollView {
                 //new Label {
@@ -40,7 +41,7 @@ namespace Samples.Views {
         private Button Nav<T>(string text) where T : IViewModel {
             return new Button {
                 Text = text,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
                 Command = new Command(() => App.NavigateTo<T>()),
                 Font = Font.SystemFontOfSize(NamedSize.Large)
             };     

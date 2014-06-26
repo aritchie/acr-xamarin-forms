@@ -12,7 +12,7 @@ namespace Acr.XamForms.Mobile {
 
         public LocationService() {
 #if __ANDROID__
-            this.locator = new Geolocator(Xamarin.Forms.Forms.Context);
+            this.locator = new Geolocator(Android.App.Application.Context);
 #else      
             this.locator = new Geolocator();
 #endif

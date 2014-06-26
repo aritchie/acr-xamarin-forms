@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using Android.App;
 using Android.Net;
 using Java.Net;
@@ -12,7 +11,7 @@ namespace Acr.XamForms.Mobile.Droid {
 
         public NetworkService() {
             NetworkConnectionBroadcastReceiver.OnChange = this.SetFromInfo;
-            var manager = (ConnectivityManager)Forms.Context.ApplicationContext.GetSystemService(Application.ConnectivityService);
+            var manager = (ConnectivityManager)Application.Context.GetSystemService(Application.ConnectivityService);
             this.SetFromInfo(manager.ActiveNetworkInfo);
         }
 

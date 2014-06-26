@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:acr="clr-namespace:Acr.XamForms.Converters;assembly=Acr.XamForms"
              xmlns:acrview="clr-namespace:Acr.XamForms.Views;assembly=Acr.XamForms"
-             x:Class="Samples.Views.SettingsView">
+             x:Class="Samples.Views.SettingsView"
+             Title="Settings">
     <ContentPage.Resources>
         <ResourceDictionary>
             <acr:InverseBoolConverter x:Key="Not" />

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:acr="clr-namespace:Acr.XamForms.Converters;assembly=Acr.XamForms"
-             x:Class="Samples.Views.SignatureListView">
+             x:Class="Samples.Views.SignatureListView"
+             Title="Signatures">
     <ContentPage.Resources>
         <acr:InverseBoolConverter x:Key="Not" />
         <acr:FileSizeConverter x:Key="FileSize" />

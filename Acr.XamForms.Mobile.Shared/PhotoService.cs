@@ -7,24 +7,45 @@ using Xamarin.Media;
 namespace Acr.XamForms.Mobile {
 
     public class PhotoService : IPhotoService {
+        private bool isLoaded;
+ 
 
-        public PhotoService() {
-            var picker = this.CreateMediaPicker();
-            this.IsCameraAvailable = picker.IsCameraAvailable && picker.PhotosSupported;
-            this.IsGalleryAvailable = picker.PhotosSupported;
-        }
 #if __IOS__ || WINDOWS_PHONE
         private MediaPicker CreateMediaPicker() {
             return new MediaPicker();
         }
 #elif __ANDROID__
         private MediaPicker CreateMediaPicker() {
-            return new MediaPicker(Xamarin.Forms.Forms.Context);
+            return new MediaPicker(Android.App.Application.Context);
         }
 #endif
 
-        public bool IsGalleryAvailable { get; protected set; }
-        public bool IsCameraAvailable { get; protected set; }
+        private void AssertLoad() {
+            if (this.isLoaded)
+                return;
+
+            var picker = this.CreateMediaPicker();
+            this.isCameraAvailable = picker.IsCameraAvailable && picker.PhotosSupported;
+            this.isGalleryAvailable = picker.PhotosSupported;
+        }
+
+
+        private bool isGalleryAvailable;
+        public bool IsGalleryAvailable {
+            get {
+                this.AssertLoad();
+                return this.isGalleryAvailable;
+            }
+        }
+
+
+        private bool isCameraAvailable;
+        public bool IsCameraAvailable {
+            get {
+                this.AssertLoad();
+                return this.isCameraAvailable;
+            }
+        }
 
 
         public async Task<PhotoResult> FromGallery() {
