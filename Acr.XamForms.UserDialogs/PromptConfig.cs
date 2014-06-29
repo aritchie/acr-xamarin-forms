@@ -20,5 +20,48 @@ namespace Acr.XamForms.UserDialogs {
             this.OkText = "OK";
             this.CancelText = "Cancel";
         }
+
+
+        //public static PromptConfig Create(string message, Action<PromptResult> onResult) {
+        //    return new PromptConfig {
+        //        Message = message,
+        //        OnResult = onResult
+        //    };
+        //}
+
+
+        public PromptConfig SetTitle(string title) {
+            this.Title = title;
+            return this;
+        }
+
+
+        public PromptConfig SetMessage(string message) {
+            this.Message = message;
+            return this;
+        }
+
+
+        public PromptConfig SetOkText(string text) {
+            this.OkText = text;
+            return this;
+        }
+
+
+        public PromptConfig SetCancelText(string cancelText) {
+            this.CancelText = cancelText;
+            return this;
+        }
+
+
+        public PromptConfig SetPlaceholder(string placeholder) {
+            this.Placeholder = placeholder;
+            return this;
+        }
+
+        public PromptConfig SetMultiline(bool multiline) {
+            this.IsMultiline = multiline;
+            return this;
+        }
     }
 }

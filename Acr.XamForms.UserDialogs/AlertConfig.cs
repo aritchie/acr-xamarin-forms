@@ -14,5 +14,35 @@ namespace Acr.XamForms.UserDialogs {
         public AlertConfig() {
             this.OkText = "OK";
         }
+
+
+        //public static AlertConfig Create(string message) {
+        //    return new AlertConfig {
+        //        Message = message
+        //    };
+        //}
+
+        public AlertConfig SetOkText(string text) {
+            this.OkText = text;
+            return this;
+        }
+
+
+        public AlertConfig SetTitle(string title) {
+            this.Title = title;
+            return this;
+        }
+
+
+        public AlertConfig SetMessage(string message) {
+            this.Message = message;
+            return this;
+        }
+
+
+        public AlertConfig SetCallback(Action onOk) {
+            this.OnOk = onOk;
+            return this;
+        }
     }
 }
