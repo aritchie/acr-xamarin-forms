@@ -4,14 +4,19 @@ using System.Collections.Generic;
 
 namespace Acr.XamForms.UserDialogs {
     
-    public class ActionSheetOptions {
+    public class ActionSheetConfig {
 
         public string Title { get; set; }
         //public SheetOption Cancel { get; set; }
-        public IList<ActionSheetOption> Options { get; set; } 
+        public IList<ActionSheetOption> Options { get; set; }
 
 
-        public ActionSheetOptions SetTitle(string title) {
+        public ActionSheetConfig() {
+            this.Options = new List<ActionSheetOption>();
+        }
+
+
+        public ActionSheetConfig SetTitle(string title) {
             this.Title = title;
             return this;
         }
@@ -23,7 +28,7 @@ namespace Acr.XamForms.UserDialogs {
         //}
 
 
-        public ActionSheetOptions Add(string text, Action action = null) {
+        public ActionSheetConfig Add(string text, Action action = null) {
             this.Options.Add(new ActionSheetOption(text, action));
             return this;
         }

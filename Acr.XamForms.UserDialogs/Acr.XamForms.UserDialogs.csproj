@@ -37,9 +37,18 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AbstractUserDialogService.cs" />
-    <Compile Include="ActionSheetOptions.cs" />
+    <Compile Include="ActionSheetConfig.cs" />
+    <Compile Include="AlertConfig.cs" />
+    <Compile Include="ConfirmConfig.cs" />
+    <Compile Include="DateTimePromptConfig.cs" />
+    <Compile Include="DateTimePromptResult.cs" />
+    <Compile Include="DurationConfig.cs" />
+    <Compile Include="DurationPromptResult.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="IUserDialogService.cs" />
     <Compile Include="IProgressDialog.cs" />
+    <Compile Include="ProgressConfig.cs" />
+    <Compile Include="PromptConfig.cs" />
     <Compile Include="PromptResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionSheetOption.cs" />

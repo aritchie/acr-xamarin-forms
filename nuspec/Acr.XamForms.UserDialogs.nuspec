@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
         <title>User Dialogs for Xamarin Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -20,6 +20,11 @@
             </group>
         </dependencies>
         <releaseNotes>
+2.0
+Create better method structure on main class
+NEW - Date/Time Dialog
+NEW - Duration Dialog
+
 1.0
 Initial Release
         </releaseNotes>

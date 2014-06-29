@@ -36,6 +36,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ActionSheetDatePicker.cs" />
     <Compile Include="ProgressDialog.cs" />
     <Compile Include="UserDialogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

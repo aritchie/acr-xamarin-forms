@@ -23,10 +23,11 @@ namespace Acr.XamForms.Mobile {
         private void AssertLoad() {
             if (this.isLoaded)
                 return;
-
+            
+            this.isLoaded = true;
             var picker = this.CreateMediaPicker();
             this.isCameraAvailable = picker.IsCameraAvailable && picker.PhotosSupported;
-            this.isGalleryAvailable = picker.PhotosSupported;
+            this.isGalleryAvailable = picker.PhotosSupported;            
         }
 
 

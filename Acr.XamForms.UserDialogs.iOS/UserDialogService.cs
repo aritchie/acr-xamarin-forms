@@ -12,35 +12,35 @@ namespace Acr.XamForms.UserDialogs.iOS {
     
     public class UserDialogService : AbstractUserDialogService {
 
-        public override void ActionSheet(ActionSheetOptions options) {
+        public override void ActionSheet(ActionSheetConfig config) {
             this.Dispatch(() => {
-                var action = new UIActionSheet(options.Title);
-                options.Options.ToList().ForEach(x => action.AddButton(x.Text));
+                var action = new UIActionSheet(config.Title);
+                config.Options.ToList().ForEach(x => action.AddButton(x.Text));
 
-                action.Clicked += (sender, btn) => options.Options[btn.ButtonIndex].Action();
+                action.Clicked += (sender, btn) => config.Options[btn.ButtonIndex].Action();
                 var view = UIApplication.SharedApplication.KeyWindow.RootViewController.View;
                 action.ShowInView(view);
             });
         }
 
 
-        public override void Alert(string message, string title, string okText, Action onOk) {
+        public override void Alert(AlertConfig config) {
             this.Dispatch(() => {
-                var dlg = new UIAlertView(title ?? String.Empty, message, null, null, okText);
-                if (onOk != null) 
-                    dlg.Clicked += (s, e) => onOk();
+                var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
+                if (config.OnOk != null) 
+                    dlg.Clicked += (s, e) => config.OnOk();
                 
                 dlg.Show();
             });
         }
 
 
-        public override void Confirm(string message, Action<bool> onConfirm, string title, string okText, string cancelText) {
+        public override void Confirm(ConfirmConfig config) {
             this.Dispatch(() => {
-                var dlg = new UIAlertView(title ?? String.Empty, message, null, cancelText, okText);
+                var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
                 dlg.Clicked += (s, e) => {
                     var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
-                    onConfirm(ok);
+                    config.OnConfirm(ok);
                 };
                 dlg.Show();
             });
@@ -57,20 +57,37 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string placeholder, int lines) {
+//        public override void PickDate(Action<DatePickerResult> callback, string title, DateTime? selectedDateTime, DateTime? minDate, DateTime? maxDate) {
+//            var sheet = new ActionSheetDatePicker(null) {
+//                Title = title
+//            };
+
+////actionSheetDatePicker.DatePicker.Mode = UIDatePickerMode.DateAndTime;
+////actionSheetDatePicker.DatePicker.MinimumDate = DateTime.Today.AddDays (-7);
+////actionSheetDatePicker.DatePicker.MaximumDate = DateTime.Today.AddDays (7);
+//            //sheet.DatePicker.SetDate();
+//            //sheet.DatePicker.TimeZone
+//            sheet.DatePicker.ValueChanged += (sender, args) => {
+                
+//            };
+//            sheet.Show();
+//        }
+
+
+        public override void Prompt(PromptConfig config) {
             this.Dispatch(() => {
                 var result = new PromptResult();
-                var dlg = new UIAlertView(title ?? String.Empty, message, null, cancelText, okText) {
+                var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
                     AlertViewStyle = UIAlertViewStyle.PlainTextInput
                 };
                 var txt = dlg.GetTextField(0);
-                txt.Placeholder = placeholder;
+                txt.Placeholder = config.Placeholder;
 
                 //UITextView = editable
                 dlg.Clicked += (s, e) => {
                     result.Ok = (dlg.CancelButtonIndex != e.ButtonIndex);
                     result.Text = txt.Text;
-                    promptResult(result);
+                    config.OnResult(result);
                 };
                 dlg.Show();
             });

@@ -15,23 +15,23 @@ namespace Acr.XamForms.UserDialogs.Droid {
     
     public class UserDialogService : AbstractUserDialogService {
 
-        public override void Alert(string message, string title, string okText, Action onOk) {
+        public override void Alert(AlertConfig config) {
             Droid.RequestMainThread(() => 
                 new AlertDialog
                     .Builder(Forms.Context)
-                    .SetMessage(message)
-                    .SetTitle(title)
-                    .SetPositiveButton(okText, (o, e) => {
-                        if (onOk != null) 
-                            onOk();
+                    .SetMessage(config.Message)
+                    .SetTitle(config.Title)
+                    .SetPositiveButton(config.OkText, (o, e) => {
+                        if (config.OnOk != null) 
+                            config.OnOk();
                     })
                     .Show()
             );
         }
 
 
-        public override void ActionSheet(ActionSheetOptions options) {
-            var array = options
+        public override void ActionSheet(ActionSheetConfig config) {
+            var array = config
                 .Options
                 .Select(x => x.Text)
                 .ToArray();
@@ -39,50 +39,61 @@ namespace Acr.XamForms.UserDialogs.Droid {
             Droid.RequestMainThread(() => 
                 new AlertDialog
                     .Builder(Forms.Context)
-                    .SetTitle(options.Title)
-                    .SetItems(array, (sender, args) => options.Options[args.Which].Action())
+                    .SetTitle(config.Title)
+                    .SetItems(array, (sender, args) => config.Options[args.Which].Action())
                     .Show()
             );
         }
 
 
-        public override void Confirm(string message, Action<bool> onConfirm, string title, string okText, string cancelText) {
+        public override void Confirm(ConfirmConfig config) {
             Droid.RequestMainThread(() => 
                 new AlertDialog
                     .Builder(Forms.Context)
-                    .SetMessage(message)
-                        .SetTitle(title)
-                        .SetPositiveButton(okText, (o, e) => onConfirm(true))
-                        .SetNegativeButton(cancelText, (o, e) => onConfirm(false))
-                        .Show()
+                    .SetMessage(config.Message)
+                    .SetTitle(config.Title)
+                    .SetPositiveButton(config.OkText, (o, e) => config.OnConfirm(true))
+                    .SetNegativeButton(config.CancelText, (o, e) => config.OnConfirm(false))
+                    .Show()
             );
         }
 
 
-        public override void Prompt(string message, Action<PromptResult> promptResult, string title, string okText, string cancelText, string hint, int lines) {
+        //public override void PickDate(Action<DatePickerResult> callback, string title, DateTime? selectedDateTime, DateTime? minDate, DateTime? maxDate) {
+        //    var picker = new DatePickerDialog(Forms.Context, (sender, args) => {
+        //        //callback(new DatePickerResult(ar));
+        //    }, 1900, 1, 1);
+        //    //picker.SetButton(DialogButtonType.Negative, (sender, args) => {
+        //    //    // TODO: cancel
+        //    //});
+        //    picker.Show();
+        //}
+
+
+        public override void Prompt(PromptConfig config) {
             Droid.RequestMainThread(() => {
                 var txt = new EditText(Forms.Context) {
-                    Hint = hint
+                    Hint = config.Placeholder
                 };
-                if (lines > 1) { 
-                    txt.SetLines(lines);
+                if (config.IsMultiline) { 
+                    txt.SetLines(3);
                     txt.SetSingleLine(false);
                     txt.ImeOptions = ImeAction.Next;
                 }
 
                 new AlertDialog
                     .Builder(Forms.Context)
-                    .SetMessage(message)
-                    .SetTitle(title)
+                    .SetMessage(config.Message)
+                    .SetTitle(config.Title)
                     .SetView(txt)
-                    .SetPositiveButton(okText, (o, e) =>
-                        promptResult(new PromptResult {
+                    .SetPositiveButton(config.OkText, (o, e) =>
+                        config.OnResult(new PromptResult {
                             Ok = true, 
                             Text = txt.Text
                         })
                     )
-                    .SetNegativeButton(cancelText, (o, e) => 
-                        promptResult(new PromptResult {
+                    .SetNegativeButton(config.CancelText, (o, e) => 
+                        config.OnResult(new PromptResult {
                             Ok = false, 
                             Text = txt.Text
                         })
