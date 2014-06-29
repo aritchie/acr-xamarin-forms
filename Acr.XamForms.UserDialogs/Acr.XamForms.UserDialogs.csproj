@@ -42,7 +42,7 @@
     <Compile Include="ConfirmConfig.cs" />
     <Compile Include="DateTimePromptConfig.cs" />
     <Compile Include="DateTimePromptResult.cs" />
-    <Compile Include="DurationConfig.cs" />
+    <Compile Include="DurationPromptConfig.cs" />
     <Compile Include="DurationPromptResult.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IUserDialogService.cs" />

@@ -38,7 +38,7 @@ namespace Samples.ViewModels {
                 }
             });
 
-            this.Choice = new Command(() => dialogs.ActionSheet(x => x
+            this.Choice = new Command(() => dialogs.ActionSheet(new ActionSheetConfig()
                 .Add("Camera", () => this.FromCamera.Execute(null))
                 .Add("Gallery", () => this.FromGallery.Execute(null))
                 .Add("Cancel")

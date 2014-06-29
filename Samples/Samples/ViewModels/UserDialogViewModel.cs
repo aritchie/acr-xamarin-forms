@@ -31,7 +31,7 @@ namespace Samples.ViewModels {
 
         public UserDialogViewModel(IUserDialogService dialogService) {
             this.ActionSheet = new Command(() => 
-                dialogService.ActionSheet(x => x
+                dialogService.ActionSheet(new ActionSheetConfig()
                     .SetTitle("Test Title")
                     .Add("Option 1", () => this.Result = "Option 1 Selected")
                     .Add("Option 2", () => this.Result = "Option 2 Selected")

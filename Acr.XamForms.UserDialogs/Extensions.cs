@@ -16,9 +16,10 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static Task AlertAsync(this IUserDialogService dialogs, Action<AlertConfig> action) {
+        public static Task AlertAsync(this IUserDialogService dialogs, AlertConfig config) {
             var tcs = new TaskCompletionSource<object>();
-            dialogs.Alert(action);
+            config.OnOk = () => tcs.SetResult(null);
+            dialogs.Alert(config);
             return tcs.Task;    
         }
 
@@ -30,10 +31,27 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static Task<bool> ConfirmAsync(this IUserDialogService dialogs, Action<ConfirmConfig> action) {
+        public static Task<bool> ConfirmAsync(this IUserDialogService dialogs, ConfirmConfig config) {
             var tcs = new TaskCompletionSource<bool>();
-            dialogs.Confirm(action);
+            config.OnConfirm = tcs.SetResult;
+            dialogs.Confirm(config);
             return tcs.Task;
+        }
+
+
+        public static Task<DateTimePromptResult> DateTimePromptAsync(this IUserDialogService dialogs, DateTimePromptConfig config) {
+            var tcs = new TaskCompletionSource<DateTimePromptResult>();
+            config.OnResult = tcs.SetResult;
+            dialogs.DateTimePrompt(config);
+            return tcs.Task;   
+        }
+
+
+        public static Task<DurationPromptResult> DurationPromptAsync(this IUserDialogService dialogs, DurationPromptConfig config) {
+            var tcs = new TaskCompletionSource<DurationPromptResult>();
+            config.OnResult = tcs.SetResult;
+            dialogs.DurationPrompt(config);
+            return tcs.Task;             
         }
 
 
@@ -44,52 +62,18 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, Action<PromptConfig> action) {
+        public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, PromptConfig config) {
             var tcs = new TaskCompletionSource<PromptResult>();
-            dialogs.Prompt(action);
+            config.OnResult = tcs.SetResult;
+            dialogs.Prompt(config);
             return tcs.Task;
         }
 
 
-        //void DateTimePrompt(DateTimePromptConfig config);
         //void DurationPrompt(DurationConfig config);
 
         #endregion
 
-        #region Fluent Helpers
-
-        public static void ActionSheet(this IUserDialogService dialogs, Action<ActionSheetConfig> action) {
-            var config = new ActionSheetConfig();
-            action(config);
-            dialogs.ActionSheet(config);
-        }
-
-
-        public static void Alert(this IUserDialogService dialogs, Action<AlertConfig> action) {
-            var config = new AlertConfig();
-            action(config);
-            dialogs.Alert(config);
-        }
-
-
-        public static void Confirm(this IUserDialogService dialogs, Action<ConfirmConfig> action) {
-            var config = new ConfirmConfig();
-            action(config);
-            dialogs.Confirm(config);
-        }
-
-
-        public static void Prompt(this IUserDialogService dialogs, Action<PromptConfig> action) {
-            var config = new PromptConfig();
-            action(config);
-            dialogs.Prompt(config);
-        }
-
-
-        //void DateTimePrompt(DateTimePromptConfig config);
-        //void DurationPrompt(DurationConfig config);
-
-        #endregion
 
         #region Legacy Methods
 

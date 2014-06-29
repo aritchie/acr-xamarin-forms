@@ -9,8 +9,8 @@ namespace Acr.XamForms.UserDialogs {
         
         void Confirm(ConfirmConfig config);
         void Prompt(PromptConfig config);
-        //void DateTimePrompt(DateTimePromptConfig config);
-        //void DurationPrompt(DurationConfig config);
+        void DateTimePrompt(DateTimePromptConfig config);
+        void DurationPrompt(DurationPromptConfig config);
         IProgressDialog Progress(ProgressConfig config);
 
         void ShowLoading(string title = "Loading");

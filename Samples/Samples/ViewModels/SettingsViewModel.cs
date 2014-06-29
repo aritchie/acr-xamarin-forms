@@ -29,7 +29,7 @@ namespace Samples.ViewModels {
 
         public Command<KeyValuePair<string, string>> Select {
             get {
-                return new Command<KeyValuePair<string, string>>(setting => this.dialogs.ActionSheet(x => x
+                return new Command<KeyValuePair<string, string>>(setting => this.dialogs.ActionSheet(new ActionSheetConfig()
                     .SetTitle("Item Actions")
                     .Add("Remove", async () => {
                         var r = await this.dialogs.ConfirmAsync("Are you sure you wish to remove " + setting.Key);
