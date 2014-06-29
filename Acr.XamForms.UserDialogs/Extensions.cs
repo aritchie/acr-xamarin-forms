@@ -55,9 +55,9 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", bool multiline = false) {
+        public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", PromptType type = PromptType.SingleLine) {
             var tcs = new TaskCompletionSource<PromptResult>();
-            dialogs.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, multiline);
+            dialogs.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, type);
             return tcs.Task;
         }
 
@@ -106,7 +106,7 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static void Prompt(this IUserDialogService dialogs, string message, Action<PromptResult> onResult, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = null, bool multiline = false) {
+        public static void Prompt(this IUserDialogService dialogs, string message, Action<PromptResult> onResult, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = null, PromptType type = PromptType.SingleLine) {
             dialogs.Prompt(new PromptConfig {
                 CancelText = cancelText,
                 Message = message,
@@ -114,7 +114,7 @@ namespace Acr.XamForms.UserDialogs {
                 OnResult = onResult,
                 Title = title,
                 Placeholder = placeholder,
-                IsMultiline = multiline
+                Type = type
             });
         }
 

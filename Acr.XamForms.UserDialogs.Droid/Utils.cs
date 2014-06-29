@@ -5,8 +5,8 @@ using Android.App;
 
 namespace Acr.XamForms.UserDialogs.Droid {
     
-    public static class Droid {
-
+    public static class Utils {
+        
         public static void RequestMainThread(Action action) {
             if (Application.SynchronizationContext == SynchronizationContext.Current)
                 action();

@@ -15,6 +15,6 @@ namespace Acr.XamForms.UserDialogs {
 
         void ShowLoading(string title = "Loading");
         void HideLoading();
-        void Toast(string message, int timeoutSeconds = 3, Action onClick = null);        
+        void Toast(string message, int timeoutSeconds = 3, Action onClick = null);
     }
 }

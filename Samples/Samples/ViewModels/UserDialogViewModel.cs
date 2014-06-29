@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,17 +11,14 @@ using Xamarin.Forms;
 namespace Samples.ViewModels {
 
     public class UserDialogViewModel : ViewModel {
+        private readonly IUserDialogService dialogService;
 
-        public ICommand Alert { get; private set; }
-        public ICommand ActionSheet { get; private set; }
-        public ICommand Confirm { get; private set; }
-        public ICommand Progress { get; private set; }
-        public ICommand ProgressNoCancel { get; private set; }
-        public ICommand Loading { get; private set; }
-        public ICommand LoadingNoCancel { get; private set; }
-        public ICommand Prompt { get; private set; }
-        public ICommand Toast { get; private set; }
 
+        public UserDialogViewModel(IUserDialogService dialogService) {
+            this.dialogService = dialogService;
+        }
+
+        #region Bindings
 
         private string result;
         public string Result {
@@ -29,87 +27,211 @@ namespace Samples.ViewModels {
         }
 
 
-        public UserDialogViewModel(IUserDialogService dialogService) {
-            this.ActionSheet = new Command(() => 
-                dialogService.ActionSheet(new ActionSheetConfig()
-                    .SetTitle("Test Title")
-                    .Add("Option 1", () => this.Result = "Option 1 Selected")
-                    .Add("Option 2", () => this.Result = "Option 2 Selected")
-                    .Add("Option 3", () => this.Result = "Option 3 Selected")
-                    .Add("Option 4", () => this.Result = "Option 4 Selected")
-                    .Add("Option 5", () => this.Result = "Option 5 Selected")
-                    .Add("Option 6", () => this.Result = "Option 6 Selected")
-                )
-            );
+        public ICommand Alert {
+            get {
+                return new Command(async () => {
+                    await dialogService.AlertAsync("Test alert", "Alert Title", "CHANGE ME!");
+                    this.Result = "Returned from alert!";
+                });
+            }
+        }
 
-            this.Alert = new Command(async () => {
-                await dialogService.AlertAsync("Test alert", "Alert Title", "CHANGE ME!");
-                this.Result = "Returned from alert!";
-            });
 
-            this.Confirm = new Command(async () => {
-                var r = await dialogService.ConfirmAsync("Pick a choice", "Pick Title", "Yes", "No");
-                var text = (r ? "Yes" : "No");
-                this.Result = "Confirmation Choice: " + text;
-            });
+        public ICommand ActionSheet {
+            get {
+                return new Command(() => 
+                    dialogService.ActionSheet(new ActionSheetConfig()
+                        .SetTitle("Test Title")
+                        .Add("Option 1", () => this.Result = "Option 1 Selected")
+                        .Add("Option 2", () => this.Result = "Option 2 Selected")
+                        .Add("Option 3", () => this.Result = "Option 3 Selected")
+                        .Add("Option 4", () => this.Result = "Option 4 Selected")
+                        .Add("Option 5", () => this.Result = "Option 5 Selected")
+                        .Add("Option 6", () => this.Result = "Option 6 Selected")
+                    )
+                );
+            }
+        }
 
-            this.Prompt = new Command(async () => {
-                var r = await dialogService.PromptAsync("Enter a value");
+        
+        public ICommand Confirm {
+            get {
+                return new Command(async () => {
+                    var r = await dialogService.ConfirmAsync("Pick a choice", "Pick Title", "Yes", "No");
+                    var text = (r ? "Yes" : "No");
+                    this.Result = "Confirmation Choice: " + text;
+                });
+            }
+        }
+
+
+        public ICommand Prompt {
+            get { return this.PromptCommand(PromptType.SingleLine); }
+        }
+
+
+        public ICommand PromptMultiline {
+            get { return this.PromptCommand(PromptType.MultiLine); }
+        }
+
+
+        public ICommand PromptSecure {
+            get { return this.PromptCommand(PromptType.Secure); }
+        }
+
+
+        public ICommand Progress {
+            get {
+                return new Command(async () => {
+                    var cancelled = false;
+
+                    using (var dlg = dialogService.Progress("Test Progress")) {
+                        dlg.SetCancel(() => cancelled = true);
+                        while (!cancelled && dlg.PercentComplete < 100) {
+                            await Task.Delay(TimeSpan.FromMilliseconds(500));
+                            dlg.PercentComplete += 2;
+                        }
+                    }
+                    this.Result = (cancelled ? "Progress Cancelled" : "Progress Complete");                    
+                });
+            }
+        }
+
+
+        public ICommand ProgressNoCancel {
+            get {
+                return new Command(async () => {
+                    using (var dlg = dialogService.Progress("Progress (No Cancel)")) {
+                        while (dlg.PercentComplete < 100) {
+                            await Task.Delay(TimeSpan.FromSeconds(1));
+                            dlg.PercentComplete += 20;
+                        }
+                    }                    
+                });
+            }
+        }
+
+
+        public ICommand Loading {
+            get {
+                return new Command(async () => {
+                    using (dialogService.Loading()) 
+                        await Task.Delay(TimeSpan.FromSeconds(3));
+                    
+                    this.Result = "Loading Complete";                    
+                });
+            }
+        }
+
+
+        public ICommand LoadingNoCancel {
+            get {
+                return new Command(async () => {
+                    var cancelSrc = new CancellationTokenSource();
+
+                    using (var dlg = dialogService.Loading("Test Progress")) {
+                        dlg.SetCancel(cancelSrc.Cancel);
+
+                        try { 
+                            await Task.Delay(TimeSpan.FromSeconds(5), cancelSrc.Token);
+                        }
+                        catch { }
+                    }
+                    this.Result = (cancelSrc.IsCancellationRequested ? "Loading Cancelled" : "Loading Complete");                    
+                });
+            }
+        }
+
+
+        public ICommand Toast {
+            get {
+                return new Command(() => {
+                    this.Result = "Toast Shown";
+                    dialogService.Toast("Test Toast", onClick: () => {
+                        this.Result = "Toast Pressed";
+                    });                    
+                });
+            }
+        }
+
+
+        public ICommand DatePrompt {
+            get {
+                return this.DateTimeCommand(
+                    DateTimeSelectionType.Date, 
+                    CultureInfo.CurrentCulture.DateTimeFormat.LongDatePattern, 
+                    "Date", 
+                    DateTime.Now.AddDays(-3), 
+                    DateTime.Now.AddDays(30)
+                );
+            }
+        }
+
+
+        public ICommand TimePrompt {
+            get {
+                return this.DateTimeCommand(
+                    DateTimeSelectionType.Time, 
+                    CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern, 
+                    "Time", 
+                    DateTime.Now.AddHours(-3), 
+                    DateTime.Now.AddHours(3)
+                );                    
+            }
+        }
+
+
+        public ICommand DateTimePrompt {
+            get {
+                return this.DateTimeCommand(
+                    DateTimeSelectionType.DateTime, 
+                    CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern, 
+                    "Date/Time",
+                    DateTime.Now.AddDays(-3), 
+                    DateTime.Now.AddDays(30)
+                );
+            }
+        }
+
+
+        public ICommand DurationPrompt {
+            get {
+                return new Command(async () => {
+                    this.dialogService.Alert("TODO");
+                });
+            }
+        }
+
+
+        #endregion
+
+        #region Internals
+
+        private ICommand PromptCommand(PromptType promptType) {
+            return new Command(async () => {
+                var r = await dialogService.PromptAsync(String.Format("Enter a {0} value", promptType.ToString().ToUpper()), type: promptType);
                 this.Result = (r.Ok
                     ? "OK " + r.Text
-                    : "Prompt Cancelled"
+                    : promptType + " Prompt Cancelled"
                 );
             });
+        }
 
-            this.Toast = new Command(() => {
-                this.Result = "Toast Shown";
-                dialogService.Toast("Test Toast", onClick: () => {
-                    this.Result = "Toast Pressed";
-                });
-            });
 
-            this.Progress = new Command(async () => {
-                var cancelled = false;
-
-                using (var dlg = dialogService.Progress("Test Progress")) {
-                    dlg.SetCancel(() => cancelled = true);
-                    while (!cancelled && dlg.PercentComplete < 100) {
-                        await Task.Delay(TimeSpan.FromMilliseconds(500));
-                        dlg.PercentComplete += 2;
-                    }
-                }
-                this.Result = (cancelled ? "Progress Cancelled" : "Progress Complete");
-            });
-
-            this.ProgressNoCancel = new Command(async () => {
-                using (var dlg = dialogService.Progress("Progress (No Cancel)")) {
-                    while (dlg.PercentComplete < 100) {
-                        await Task.Delay(TimeSpan.FromSeconds(1));
-                        dlg.PercentComplete += 20;
-                    }
-                }
-            });
-
-            this.Loading = new Command(async () => {
-                var cancelSrc = new CancellationTokenSource();
-
-                using (var dlg = dialogService.Loading("Test Progress")) {
-                    dlg.SetCancel(cancelSrc.Cancel);
-
-                    try { 
-                        await Task.Delay(TimeSpan.FromSeconds(5), cancelSrc.Token);
-                    }
-                    catch { }
-                }
-                this.Result = (cancelSrc.IsCancellationRequested ? "Loading Cancelled" : "Loading Complete");
-            });
-
-            this.LoadingNoCancel = new Command(async () => {
-                using (dialogService.Loading()) {
-                    await Task.Delay(TimeSpan.FromSeconds(3));
-                }
-                this.Result = "Loading Complete";
+        private ICommand DateTimeCommand(DateTimeSelectionType type, string resultFormat, string title, DateTime min, DateTime max) {
+            return new Command(async () => {
+                var result = await this.dialogService.DateTimePromptAsync(new DateTimePromptConfig()
+                    .SetRange(min, max)
+                    .SetTitle(title)
+                    .SetSelectionType(type)
+                );
+                    
+                this.Result = result.Success
+                    ? String.Format("{0:" + resultFormat + "}", result.SelectedDateTime)
+                    : title + " selection was cancelled";
             });
         }
+
+        #endregion
     }
 }

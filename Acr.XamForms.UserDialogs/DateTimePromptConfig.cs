@@ -3,7 +3,7 @@
 
 namespace Acr.XamForms.UserDialogs {
 
-    public enum DateSelectionType {
+    public enum DateTimeSelectionType {
         Date,
         Time,
         DateTime
@@ -19,14 +19,17 @@ namespace Acr.XamForms.UserDialogs {
 
         public DateTime? MinValue { get; set; }
         public DateTime? MaxValue { get; set; }
+        public DateTimeSelectionType SelectionType { get; set; }
 
         public Action<DateTimePromptResult> OnResult { get; set; }
         //public int MinuteIntervals { get; set; }
-        //public bool ShowSeconds { get; set; }
+        //24 display?
+        //public DateTime? Placeholder
 
         public DateTimePromptConfig() {
             this.OkText = "OK";
             this.CancelText = "Cancel";
+            this.SelectionType = DateTimeSelectionType.DateTime;
         }
 
 
@@ -57,6 +60,12 @@ namespace Acr.XamForms.UserDialogs {
 
         public DateTimePromptConfig SetCallback(Action<DateTimePromptResult> onResult) {
             this.OnResult = onResult;
+            return this;
+        }
+
+
+        public DateTimePromptConfig SetSelectionType(DateTimeSelectionType type) {
+            this.SelectionType = type;
             return this;
         }
     }

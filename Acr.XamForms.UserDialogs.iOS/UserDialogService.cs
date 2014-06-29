@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Acr.XamForms.UserDialogs.iOS;
 using BigTed;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
 
@@ -18,7 +19,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
                 config.Options.ToList().ForEach(x => action.AddButton(x.Text));
 
                 action.Clicked += (sender, btn) => config.Options[btn.ButtonIndex].Action();
-                var view = UIApplication.SharedApplication.KeyWindow.RootViewController.View;
+                var view = this.GetTopView();
                 action.ShowInView(view);
             });
         }
@@ -57,30 +58,56 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-//        public override void PickDate(Action<DatePickerResult> callback, string title, DateTime? selectedDateTime, DateTime? minDate, DateTime? maxDate) {
-//            var sheet = new ActionSheetDatePicker(null) {
-//                Title = title
-//            };
+        public override void DateTimePrompt(DateTimePromptConfig config) {
+            var sheet = new ActionSheetDatePicker(this.GetTopView()) {
+                Title = config.Title,
+                DoneText = "Done" // TODO
+            };
 
-////actionSheetDatePicker.DatePicker.Mode = UIDatePickerMode.DateAndTime;
-////actionSheetDatePicker.DatePicker.MinimumDate = DateTime.Today.AddDays (-7);
-////actionSheetDatePicker.DatePicker.MaximumDate = DateTime.Today.AddDays (7);
-//            //sheet.DatePicker.SetDate();
-//            //sheet.DatePicker.TimeZone
-//            sheet.DatePicker.ValueChanged += (sender, args) => {
+            switch (config.SelectionType) {
                 
-//            };
-//            sheet.Show();
-//        }
+                case DateTimeSelectionType.Date:
+                    sheet.DatePicker.Mode = UIDatePickerMode.Date;
+                    break;
+
+                case DateTimeSelectionType.Time:
+                    sheet.DatePicker.Mode = UIDatePickerMode.Time;
+                    break;
+
+                case DateTimeSelectionType.DateTime:
+                    sheet.DatePicker.Mode = UIDatePickerMode.DateAndTime;
+                    break;
+            }
+            
+            if (config.MinValue != null)
+                sheet.DatePicker.MinimumDate = config.MinValue.Value;
+
+            if (config.MaxValue != null)
+                sheet.DatePicker.MaximumDate = config.MaxValue.Value;
+
+            sheet.DateTimeSelected += (sender, args) => {
+                // TODO: stop adjusting date/time
+                config.OnResult(new DateTimePromptResult(sheet.DatePicker.Date));    
+            };
+            sheet.Show();
+            //sheet.DatePicker.MinuteInterval
+        }
 
 
         public override void Prompt(PromptConfig config) {
             this.Dispatch(() => {
                 var result = new PromptResult();
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
-                    AlertViewStyle = UIAlertViewStyle.PlainTextInput
+                    AlertViewStyle = config.Type == PromptType.Secure 
+                        ? UIAlertViewStyle.SecureTextInput 
+                        : UIAlertViewStyle.PlainTextInput
                 };
+                // TODO: multiline
+                //dlg.Add(new UITextView {
+                //    Editable = true
+                //});
                 var txt = dlg.GetTextField(0);
+                txt.SecureTextEntry = (config.Type == PromptType.Secure);
                 txt.Placeholder = config.Placeholder;
 
                 //UITextView = editable
@@ -96,6 +123,11 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
         protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
+        }
+
+
+        protected virtual UIView GetTopView() {
+            return UIApplication.SharedApplication.KeyWindow.RootViewController.View;
         }
 
 

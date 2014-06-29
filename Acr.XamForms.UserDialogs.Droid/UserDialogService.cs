@@ -1,12 +1,13 @@
 using System;
 using System.Linq;
+using System.Threading;
 using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
+using Android.Text;
 using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidHUD;
 using Xamarin.Forms;
-
 
 [assembly: Dependency(typeof(UserDialogService))]
 
@@ -16,7 +17,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
     public class UserDialogService : AbstractUserDialogService {
 
         public override void Alert(AlertConfig config) {
-            Droid.RequestMainThread(() => 
+            Utils.RequestMainThread(() => 
                 new AlertDialog
                     .Builder(Forms.Context)
                     .SetMessage(config.Message)
@@ -36,7 +37,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 .Select(x => x.Text)
                 .ToArray();
 
-            Droid.RequestMainThread(() => 
+            Utils.RequestMainThread(() => 
                 new AlertDialog
                     .Builder(Forms.Context)
                     .SetTitle(config.Title)
@@ -47,7 +48,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
 
 
         public override void Confirm(ConfirmConfig config) {
-            Droid.RequestMainThread(() => 
+            Utils.RequestMainThread(() => 
                 new AlertDialog
                     .Builder(Forms.Context)
                     .SetMessage(config.Message)
@@ -59,26 +60,39 @@ namespace Acr.XamForms.UserDialogs.Droid {
         }
 
 
-        //public override void PickDate(Action<DatePickerResult> callback, string title, DateTime? selectedDateTime, DateTime? minDate, DateTime? maxDate) {
-        //    var picker = new DatePickerDialog(Forms.Context, (sender, args) => {
-        //        //callback(new DatePickerResult(ar));
-        //    }, 1900, 1, 1);
+        public override void DateTimePrompt(DateTimePromptConfig config) {
+            var picker = new DatePickerDialog(Forms.Context, (sender, args) => {
+                config.OnResult(new DateTimePromptResult(args.Date));
+            }, 1900, 1, 1);
+            
+            picker.SetTitle(config.Title);
+            picker.Show();
+            //var time = new TimePickerDialog(Forms.Context, (sender, args) => {
+                
+            //}, 1, 1, false);
+
         //    //picker.SetButton(DialogButtonType.Negative, (sender, args) => {
         //    //    // TODO: cancel
         //    //});
-        //    picker.Show();
-        //}
+        }
 
 
         public override void Prompt(PromptConfig config) {
-            Droid.RequestMainThread(() => {
+            Utils.RequestMainThread(() => {
                 var txt = new EditText(Forms.Context) {
                     Hint = config.Placeholder
                 };
-                if (config.IsMultiline) { 
-                    txt.SetLines(3);
-                    txt.SetSingleLine(false);
-                    txt.ImeOptions = ImeAction.Next;
+                switch (config.Type) {
+
+                    case PromptType.Secure:
+                        txt.InputType = InputTypes.TextVariationPassword;
+                        break;
+
+                    case PromptType.MultiLine:
+                        txt.SetLines(3);
+                        txt.SetSingleLine(false);
+                        txt.ImeOptions = ImeAction.Next;
+                        break;
                 }
 
                 new AlertDialog
@@ -104,7 +118,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
 
 
         public override void Toast(string message, int timeoutSeconds, Action onClick) {
-            Droid.RequestMainThread(() => {
+            Utils.RequestMainThread(() => {
                 onClick = onClick ?? (() => {});
 
                 AndHUD.Shared.ShowToast(

@@ -3,18 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Samples.Views.UserDialogView"
              Title="User Dialogs">
-    <ScrollView>
-        <StackLayout>
-            <Label Text="{Binding Result}" />
-            <Button Text="Action Sheet" Command="{Binding ActionSheet}" />
-            <Button Text="Alert" Command="{Binding Alert}" />
-            <Button Text="Confirm" Command="{Binding Confirm}" />
-            <Button Text="Prompt" Command="{Binding Prompt}" />
-            <Button Text="Toast" Command="{Binding Toast}" />
-            <Button Text="Loading" Command="{Binding Loading}" />
-            <Button Text="Loading (No Cancel)" Command="{Binding LoadingNoCancel}" />
-            <Button Text="Progress" Command="{Binding Progress}" />
-            <Button Text="Progress (No Cancel)" Command="{Binding ProgressNoCancel}" />
-        </StackLayout>
-    </ScrollView>
+    <!--<StackLayout>
+        <Label Text="{Binding Result}" />-->
+    
+        <ScrollView>
+            <StackLayout>
+                <Label Text="{Binding Result}" />
+                <Button Text="Action Sheet" Command="{Binding ActionSheet}" />
+                <Button Text="Alert" Command="{Binding Alert}" />
+                <Button Text="Confirm" Command="{Binding Confirm}" />
+                <Button Text="Date Prompt" Command="{Binding DatePrompt}" />
+                <Button Text="Time Prompt" Command="{Binding TimePrompt}" />
+                <Button Text="Date/Time Prompt" Command="{Binding DateTimePrompt}" />
+                <Button Text="Duration Prompt" Command="{Binding DurationPrompt}" />
+                <Button Text="Prompt" Command="{Binding Prompt}" />
+                <Button Text="Prompt (Multi-Line)" Command="{Binding PromptMultiline}" />
+                <Button Text="Prompt (Secure)" Command="{Binding PromptSecure}" />
+                <Button Text="Toast" Command="{Binding Toast}" />
+                <Button Text="Loading" Command="{Binding Loading}" />
+                <Button Text="Loading (No Cancel)" Command="{Binding LoadingNoCancel}" />
+                <Button Text="Progress" Command="{Binding Progress}" />
+                <Button Text="Progress (No Cancel)" Command="{Binding ProgressNoCancel}" />
+            </StackLayout>
+        </ScrollView>
+    <!--</StackLayout>-->
 </ContentPage>
