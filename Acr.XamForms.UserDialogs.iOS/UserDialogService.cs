@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Acr.XamForms.UserDialogs.iOS;
 using BigTed;
-using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
 
@@ -61,7 +60,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
         public override void DateTimePrompt(DateTimePromptConfig config) {
             var sheet = new ActionSheetDatePicker(this.GetTopView()) {
                 Title = config.Title,
-                DoneText = "Done" // TODO
+                DoneText = config.OkText
             };
 
             switch (config.SelectionType) {
@@ -87,10 +86,24 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
             sheet.DateTimeSelected += (sender, args) => {
                 // TODO: stop adjusting date/time
-                config.OnResult(new DateTimePromptResult(sheet.DatePicker.Date));    
+                config.OnResult(new DateTimePromptResult(sheet.DatePicker.Date));
             };
             sheet.Show();
             //sheet.DatePicker.MinuteInterval
+        }
+
+
+        public override void DurationPrompt(DurationPromptConfig config) {
+            var sheet = new ActionSheetDatePicker(this.GetTopView()) {
+                Title = config.Title,
+                DoneText = config.OkText
+            };
+            sheet.DatePicker.Mode = UIDatePickerMode.CountDownTimer;
+
+            sheet.DateTimeSelected += (sender, args) => {
+                config.OnResult(new DurationPromptResult(null));
+            };
+            sheet.Show();
         }
 
 

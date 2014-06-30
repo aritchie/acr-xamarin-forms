@@ -4,6 +4,7 @@ using System.Threading;
 using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
 using Android.Text;
+using Android.Text.Method;
 using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidHUD;
@@ -61,19 +62,37 @@ namespace Acr.XamForms.UserDialogs.Droid {
 
 
         public override void DateTimePrompt(DateTimePromptConfig config) {
-            var picker = new DatePickerDialog(Forms.Context, (sender, args) => {
-                config.OnResult(new DateTimePromptResult(args.Date));
-            }, 1900, 1, 1);
-            
-            picker.SetTitle(config.Title);
-            picker.Show();
-            //var time = new TimePickerDialog(Forms.Context, (sender, args) => {
+            var date = DateTime.Now;
+            switch (config.SelectionType) {
                 
-            //}, 1, 1, false);
+                case DateTimeSelectionType.DateTime: // TODO
+                case DateTimeSelectionType.Date:
+                    var datePicker = new DatePickerDialog(Forms.Context, (sender, args) => {
+                        date = args.Date;
+                    }, 1900, 1, 1);
+                    //picker.CancelEvent
+                    datePicker.DismissEvent += (sender, args) => config.OnResult(new DateTimePromptResult(date));
+                    datePicker.SetTitle(config.Title);
+                    datePicker.Show();
+                    
+                    break;
 
-        //    //picker.SetButton(DialogButtonType.Negative, (sender, args) => {
-        //    //    // TODO: cancel
-        //    //});
+                case DateTimeSelectionType.Time:
+                    var timePicker = new TimePickerDialog(Forms.Context, (sender, args) => {
+                        date = new DateTime(
+                            date.Year,
+                            date.Month,
+                            date.Day,
+                            args.HourOfDay,
+                            args.Minute,
+                            0
+                        );
+                    }, 0, 0, false); // takes 24 hour arg
+                    timePicker.DismissEvent += (sender, args) => config.OnResult(new DateTimePromptResult(date));
+                    timePicker.SetTitle(config.Title);
+                    timePicker.Show();
+                    break;
+            }
         }
 
 
@@ -85,7 +104,8 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 switch (config.Type) {
 
                     case PromptType.Secure:
-                        txt.InputType = InputTypes.TextVariationPassword;
+                        //txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+                        txt.TransformationMethod = PasswordTransformationMethod.Instance;
                         break;
 
                     case PromptType.MultiLine:

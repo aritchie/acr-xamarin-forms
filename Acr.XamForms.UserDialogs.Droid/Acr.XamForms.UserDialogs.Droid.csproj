@@ -66,6 +66,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="DateTimePickerDialog.cs" />
+    <Compile Include="DurationPickerDialog.cs" />
     <Compile Include="ProgressDialog.cs" />
     <Compile Include="UserDialogService.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

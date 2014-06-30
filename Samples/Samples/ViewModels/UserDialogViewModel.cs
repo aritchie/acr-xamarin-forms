@@ -197,7 +197,13 @@ namespace Samples.ViewModels {
         public ICommand DurationPrompt {
             get {
                 return new Command(async () => {
-                    this.dialogService.Alert("TODO");
+                    var r = await dialogService.DurationPromptAsync(new DurationPromptConfig()
+                        .SetTitle("Duration")
+                        //.SetRange()
+                    );
+                    this.Result = r.Success
+                        ? "Duration: " + r.SelectedTimeSpan.Value
+                        : "Duration Prompt Cancelled";
                 });
             }
         }
@@ -220,14 +226,14 @@ namespace Samples.ViewModels {
 
         private ICommand DateTimeCommand(DateTimeSelectionType type, string resultFormat, string title, DateTime min, DateTime max) {
             return new Command(async () => {
-                var result = await this.dialogService.DateTimePromptAsync(new DateTimePromptConfig()
+                var r = await this.dialogService.DateTimePromptAsync(new DateTimePromptConfig()
                     .SetRange(min, max)
                     .SetTitle(title)
                     .SetSelectionType(type)
                 );
                     
-                this.Result = result.Success
-                    ? String.Format("{0:" + resultFormat + "}", result.SelectedDateTime)
+                this.Result = r.Success
+                    ? String.Format("{0:" + resultFormat + "}", r.SelectedDateTime)
                     : title + " selection was cancelled";
             });
         }
