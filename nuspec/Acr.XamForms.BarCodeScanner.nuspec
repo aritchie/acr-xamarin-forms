@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.BarCodeScanner</id>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
         <title>BarCode Scanner for Xamarin Forms</title>
         <description>Barcode scanning for Xamarin Forms built on ZXing.Net.Mobile for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
