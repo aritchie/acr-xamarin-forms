@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.App;
 using Android.Content;
 using Android.Preferences;
-using Xamarin.Forms;
 
 
 namespace Acr.XamForms.Mobile.Droid {
     
     public class Settings : AbstractSettings {
-        private static readonly ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Forms.Context.ApplicationContext);
+        private static readonly ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context.ApplicationContext);
 
 
         protected override IDictionary<string, string> GetNativeSettings() {

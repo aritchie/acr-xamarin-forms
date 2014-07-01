@@ -9,6 +9,7 @@ namespace Acr.XamForms.Mobile.WindowsPhone {
     public class Settings : AbstractSettings {
         private static readonly IsolatedStorageSettings prefs = IsolatedStorageSettings.ApplicationSettings;
 
+
         protected override IDictionary<string, string> GetNativeSettings() {
             return prefs.ToDictionary(x => x.Key, x => x.Value.ToString());
         }
@@ -28,6 +29,7 @@ namespace Acr.XamForms.Mobile.WindowsPhone {
 
             prefs.Save();
         }
+
 
         protected override void ClearNative() {
             prefs.Clear();

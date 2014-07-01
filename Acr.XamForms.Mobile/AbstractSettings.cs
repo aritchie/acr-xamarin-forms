@@ -63,7 +63,6 @@ namespace Acr.XamForms.Mobile {
             var settings = this.GetNativeSettings();
             this.all = new SettingsDictionary(settings);
             this.all.CollectionChanged += this.OnCollectionChanged;
-           
         }
 
 
