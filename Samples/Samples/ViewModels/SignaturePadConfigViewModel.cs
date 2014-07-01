@@ -133,7 +133,7 @@ namespace Samples.ViewModels {
             get { return this.bgColor; }
             set {
                 if (this.SetProperty(ref this.bgColor, value))
-                    this.signatureService.Configuration.BackgroundColor = value.Color;
+                    this.signatureService.Configuration.MainBackgroundColor = value.Color;
             }
         }
 

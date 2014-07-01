@@ -40,8 +40,8 @@ namespace Acr.XamForms.SignaturePad.iOS {
         public override void ViewDidLoad() {
             base.ViewDidLoad();
 
-            this.view.BackgroundColor = this.config.BackgroundColor.ToUIColor();
-            this.view.Signature.BackgroundColor = this.config.BackgroundColor.ToUIColor();
+            this.view.BackgroundColor = this.config.MainBackgroundColor.ToUIColor();
+            this.view.Signature.BackgroundColor = this.config.SignatureBackgroundColor.ToUIColor();
             this.view.Signature.Caption.TextColor = this.config.CaptionTextColor.ToUIColor();
             this.view.Signature.Caption.Text = this.config.CaptionText;
             this.view.Signature.ClearLabel.SetTitle(this.config.ClearText, UIControlState.Normal);

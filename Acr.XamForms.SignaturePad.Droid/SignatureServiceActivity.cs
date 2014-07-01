@@ -30,8 +30,8 @@ namespace Acr.XamForms.SignaturePad.Droid {
 
             var cfg = SignatureService.CurrentConfig;
 
-            rootView.SetBackgroundColor(cfg.BackgroundColor.ToAndroid());
-            this.signatureView.BackgroundColor = cfg.BackgroundColor.ToAndroid();
+            rootView.SetBackgroundColor(cfg.MainBackgroundColor.ToAndroid());
+            this.signatureView.BackgroundColor = cfg.SignatureBackgroundColor.ToAndroid();
             this.signatureView.Caption.Text = cfg.CaptionText;
             this.signatureView.Caption.SetTextColor(cfg.CaptionTextColor.ToAndroid());
             this.signatureView.ClearLabel.Text = cfg.ClearText;

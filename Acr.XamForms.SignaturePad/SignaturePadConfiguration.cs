@@ -17,7 +17,8 @@ namespace Acr.XamForms.SignaturePad {
         public string SaveText { get; set; }
         public string CancelText { get; set; }
 
-        public Color BackgroundColor { get; set; }
+        public Color MainBackgroundColor { get; set; }
+        public Color SignatureBackgroundColor { get; set; }
         public Color SignatureLineColor { get; set; }
         
         public string CaptionText { get; set; }
