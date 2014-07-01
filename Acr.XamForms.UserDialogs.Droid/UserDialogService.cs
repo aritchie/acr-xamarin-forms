@@ -1,9 +1,7 @@
 using System;
 using System.Linq;
-using System.Threading;
 using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
-using Android.Text;
 using Android.Text.Method;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -20,7 +18,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
         public override void Alert(AlertConfig config) {
             Utils.RequestMainThread(() => 
                 new AlertDialog
-                    .Builder(Forms.Context)
+                    .Builder(Utils.GetActivityContext())
                     .SetMessage(config.Message)
                     .SetTitle(config.Title)
                     .SetPositiveButton(config.OkText, (o, e) => {
@@ -40,7 +38,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
 
             Utils.RequestMainThread(() => 
                 new AlertDialog
-                    .Builder(Forms.Context)
+                    .Builder(Utils.GetActivityContext())
                     .SetTitle(config.Title)
                     .SetItems(array, (sender, args) => config.Options[args.Which].Action())
                     .Show()
@@ -51,7 +49,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
         public override void Confirm(ConfirmConfig config) {
             Utils.RequestMainThread(() => 
                 new AlertDialog
-                    .Builder(Forms.Context)
+                    .Builder(Utils.GetActivityContext())
                     .SetMessage(config.Message)
                     .SetTitle(config.Title)
                     .SetPositiveButton(config.OkText, (o, e) => config.OnConfirm(true))
@@ -67,7 +65,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 
                 case DateTimeSelectionType.DateTime: // TODO
                 case DateTimeSelectionType.Date:
-                    var datePicker = new DatePickerDialog(Forms.Context, (sender, args) => {
+                    var datePicker = new DatePickerDialog(Utils.GetActivityContext(), (sender, args) => {
                         date = args.Date;
                     }, 1900, 1, 1);
                     //picker.CancelEvent
@@ -78,7 +76,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
                     break;
 
                 case DateTimeSelectionType.Time:
-                    var timePicker = new TimePickerDialog(Forms.Context, (sender, args) => {
+                    var timePicker = new TimePickerDialog(Utils.GetActivityContext(), (sender, args) => {
                         date = new DateTime(
                             date.Year,
                             date.Month,
@@ -96,9 +94,15 @@ namespace Acr.XamForms.UserDialogs.Droid {
         }
 
 
+        public override void DurationPrompt(DurationPromptConfig config) {
+            // TODO
+            throw new NotImplementedException();
+        }
+
+
         public override void Prompt(PromptConfig config) {
             Utils.RequestMainThread(() => {
-                var txt = new EditText(Forms.Context) {
+                var txt = new EditText(Utils.GetActivityContext()) {
                     Hint = config.Placeholder
                 };
                 switch (config.Type) {
@@ -116,7 +120,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 }
 
                 new AlertDialog
-                    .Builder(Forms.Context)
+                    .Builder(Utils.GetActivityContext())
                     .SetMessage(config.Message)
                     .SetTitle(config.Title)
                     .SetView(txt)
@@ -142,7 +146,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 onClick = onClick ?? (() => {});
 
                 AndHUD.Shared.ShowToast(
-                    Forms.Context, 
+                    Utils.GetActivityContext(), 
                     message, 
                     MaskType.Clear,
                     TimeSpan.FromSeconds(timeoutSeconds),

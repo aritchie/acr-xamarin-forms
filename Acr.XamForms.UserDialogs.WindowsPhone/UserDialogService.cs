@@ -78,6 +78,7 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
 
         public override void Prompt(PromptConfig config) {
             // TODO: multiline text
+            // TODO: secure text
             this.Dispatch(() => {
                 var yes = false;
 
@@ -107,6 +108,18 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
                 });
                 input.Show();
             });
+        }
+
+
+        public override void DateTimePrompt(DateTimePromptConfig config) {
+            // TODO
+            throw new NotImplementedException();
+        }
+
+
+        public override void DurationPrompt(DurationPromptConfig config) {
+            // TODO
+            throw new NotImplementedException();
         }
 
 

@@ -66,7 +66,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
 
         public virtual void Hide() {
             this.IsShowing = false;
-            Utils.RequestMainThread(() => AndHUD.Shared.Dismiss(Forms.Context));
+            Utils.RequestMainThread(() => AndHUD.Shared.Dismiss(Utils.GetActivityContext()));
         }
 
         #endregion
@@ -99,7 +99,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 txt += "\n" + this.cancelText;
             
             Utils.RequestMainThread(() => AndHUD.Shared.Show(
-                Forms.Context, 
+                Utils.GetActivityContext(), 
                 txt,
                 p, 
                 MaskType.Black,

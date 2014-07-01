@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using Android.App;
+using Android.Content;
+using Xamarin.Forms;
 
 
 namespace Acr.XamForms.UserDialogs.Droid {
@@ -20,6 +22,11 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 action();
             }
             catch { }
+        }
+
+
+        public static Context GetActivityContext() {
+            return Forms.Context;
         }
     }
 }

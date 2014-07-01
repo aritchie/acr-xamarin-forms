@@ -8,16 +8,12 @@ namespace Acr.XamForms.UserDialogs {
         public abstract void Alert(AlertConfig config);
         public abstract void ActionSheet(ActionSheetConfig config);
         public abstract void Confirm(ConfirmConfig config);
-        //public abstract void DateTimePrompt(DateTimePromptConfig config);
-        //public abstract void DurationPrompt(DurationPromptConfig config);
+        public abstract void DateTimePrompt(DateTimePromptConfig config);
+        public abstract void DurationPrompt(DurationPromptConfig config);
         public abstract void Prompt(PromptConfig config);
         public abstract void Toast(string message, int timeoutSeconds = 3, Action onClick = null);
         protected abstract IProgressDialog CreateDialogInstance();
 
-
-        // TODO: temp
-        public virtual void DateTimePrompt(DateTimePromptConfig config) {}
-        public virtual void DurationPrompt(DurationPromptConfig config) {}
 
         private IProgressDialog loading;
         public virtual void ShowLoading(string title) {
