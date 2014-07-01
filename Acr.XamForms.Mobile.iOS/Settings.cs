@@ -8,18 +8,23 @@ namespace Acr.XamForms.Mobile.iOS {
     
     public class Settings : AbstractSettings {
         private static readonly NSUserDefaults prefs = NSUserDefaults.StandardUserDefaults;
+        public static readonly string[] ProtectedSettingsKeys = new [] {
+            ""    
+        };
 
 
         protected override IDictionary<string, string> GetNativeSettings() {
             return prefs
                 .AsDictionary()
+                .Where(x => this.CanTouch(x.Key.ToString()))
                 .ToDictionary(x => x.Key.ToString(), x => x.Value.ToString());
         }
 
 
         protected override void AddOrUpdateNative(IEnumerable<KeyValuePair<string, string>> saves) {
             foreach (var item in saves)
-                prefs.SetString(item.Key, item.Value);
+                if (this.CanTouch(item.Key))
+                    prefs.SetString(item.Key, item.Value);
 
             prefs.Synchronize();
         }
@@ -27,14 +32,25 @@ namespace Acr.XamForms.Mobile.iOS {
 
         protected override void RemoveNative(IEnumerable<KeyValuePair<string, string>> dels) {
             foreach (var item in dels)
-                prefs.RemoveObject(item.Key);
+                if (this.CanTouch(item.Key))
+                    prefs.RemoveObject(item.Key);
 
             prefs.Synchronize();
         }
 
+
         protected override void ClearNative() {
-            prefs.RemovePersistentDomain(NSBundle.MainBundle.BundleIdentifier);
+            foreach (var item in this.All)
+                if (this.CanTouch(item.Key))
+                    prefs.RemoveObject(item.Key);
+                    
+            //prefs.RemovePersistentDomain(NSBundle.MainBundle.BundleIdentifier);
             prefs.Synchronize();
+        }
+
+
+        protected virtual bool CanTouch(string settingsKey) {
+            return !ProtectedSettingsKeys.Any(x => x.Equals(settingsKey));
         }
     }
 }

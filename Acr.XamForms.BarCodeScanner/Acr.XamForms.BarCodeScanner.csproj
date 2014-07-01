@@ -39,7 +39,7 @@
     </Compile>
     <Compile Include="BarCodeFormat.cs" />
     <Compile Include="BarCodeResult.cs" />
-    <Compile Include="BarCodeScannerOptions.cs" />
+    <Compile Include="BarCodeScannerConfiguration.cs" />
     <Compile Include="IBarCodeScanner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

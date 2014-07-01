@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Acr.XamForms.SignaturePad;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(SignatureService))]
 
 namespace Acr.XamForms.SignaturePad {
 
-    public class SignatureService : ISignatureService {
+    public abstract class AbstractSignatureService : ISignatureService {
         public SignaturePadConfiguration Configuration { get; private set; }
 
-
-        public SignatureService() {
+        protected AbstractSignatureService() {
             this.Configuration = new SignaturePadConfiguration {
                 ImageType = ImageFormatType.Png,
-                BackgroundColor = Color.White,
+                BackgroundColor = Color.Gray,
                 CaptionTextColor = Color.Black,
                 ClearTextColor = Color.Black,
                 PromptTextColor = Color.White,
@@ -31,15 +28,8 @@ namespace Acr.XamForms.SignaturePad {
         }
 
 
-
-        public void LoadSignature(IEnumerable<DrawPoint> points) {
-            
-        }
-
-
-        public virtual void RequestSignature(Action<SignatureResult> onResult) {
-
-        }
+        public abstract void Request(Action<SignatureResult> onResult);
+        public abstract void Load(IEnumerable<DrawPoint> points);
     }
 }
 

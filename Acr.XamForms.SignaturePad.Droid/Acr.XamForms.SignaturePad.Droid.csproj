@@ -71,6 +71,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="SignatureService.cs" />
+    <Compile Include="SignatureServiceActivity.cs" />
     <Compile Include="SignaturePadRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <AndroidResource Include="Resources\Layout\SignaturePad.axml" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Forms.1.1.1.6206\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.1.1.6206\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

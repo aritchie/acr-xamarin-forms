@@ -64,7 +64,7 @@ namespace Samples.ViewModels {
 
 
         private void OnCreate() {
-            this.signatureService.RequestSignature(async result => {
+            this.signatureService.Request(async result => {
                 var fileName = String.Format(FILE_FORMAT, DateTime.Now);
 
                 using (var ms = new MemoryStream()) {

@@ -43,8 +43,11 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="SignatureServiceController.cs" />
+    <Compile Include="SignatureServiceView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignaturePadRenderer.cs" />
+    <Compile Include="SignatureService.cs" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="signature-pad">

@@ -14,26 +14,31 @@ namespace Acr.XamForms.BarCodeScanner {
 
     public class BarCodeScanner : IBarCodeScanner {
 
-        public BarCodeScannerOptions DefaultOptions { get; private set; }
+        public BarCodeScannerConfiguration Configuration { get; private set; }
 
 
         public BarCodeScanner() {
-            this.DefaultOptions = new BarCodeScannerOptions();
+            var def = ZXing.Mobile.MobileBarcodeScanningOptions.Default;
+
+            this.Configuration = new BarCodeScannerConfiguration {
+                AutoRotate = def.AutoRotate,
+                CharacterSet = def.CharacterSet,
+                DelayBetweenAnalyzingFrames = def.DelayBetweenAnalyzingFrames,
+                InitialDelayBeforeAnalyzingFrames = def.InitialDelayBeforeAnalyzingFrames,
+                PureBarcode = def.PureBarcode,
+                TryHarder = def.TryHarder,
+                TryInverted = def.TryInverted,
+                UseFrontCameraIfAvailable = def.UseFrontCameraIfAvailable
+            };
         }
 
 
-        public void Read(Action<BarCodeResult> onRead, Action<Exception> onError, BarCodeScannerOptions options) {
-            this.ReadAsync(options)
-                .ContinueWith(x => {
-                    if (x.Exception == null)
-                        onRead(x.Result);
-                    else if (onError != null)
-                        onError(x.Exception);
-                });
+        public void Read(Action<BarCodeResult> onRead) {
+            this.ReadAsync().ContinueWith(x => onRead(x.Result));
         }
 
 
-        public async Task<BarCodeResult> ReadAsync(BarCodeScannerOptions options) {
+        public async Task<BarCodeResult> ReadAsync() {
 #if __IOS__
             var scanner = new MobileBarcodeScanner { UseCustomOverlay = false };
 #elif ANDROID
@@ -41,21 +46,7 @@ namespace Acr.XamForms.BarCodeScanner {
 #elif WINDOWS_PHONE
             var scanner = new MobileBarcodeScanner(System.Windows.Deployment.Current.Dispatcher) { UseCustomOverlay = false };
 #endif
-            options = options ?? this.DefaultOptions;
-            if (!String.IsNullOrWhiteSpace(options.TopText)) 
-                scanner.TopText = options.TopText;
-            
-            if (!String.IsNullOrWhiteSpace(options.BottomText)) 
-                scanner.BottomText = options.BottomText;
-            
-            if (!String.IsNullOrWhiteSpace(options.FlashlightText)) 
-                scanner.FlashButtonText = options.FlashlightText;
-            
-            if (!String.IsNullOrWhiteSpace(options.CancelText)) 
-                scanner.CancelButtonText = options.CancelText;
-
-            var cfg = GetXingConfig(options);
-            var result = await scanner.Scan(cfg);
+            var result = await scanner.Scan(this.GetXingConfig());
             return (result == null || String.IsNullOrWhiteSpace(result.Text)
                 ? BarCodeResult.Fail
                 : new BarCodeResult(result.Text, FromXingFormat(result.BarcodeFormat))
@@ -68,25 +59,24 @@ namespace Acr.XamForms.BarCodeScanner {
         }
 
 
-        private static MobileBarcodeScanningOptions GetXingConfig(BarCodeScannerOptions opts) {
-            var def = ZXing.Mobile.MobileBarcodeScanningOptions.Default;
-
-            var config = new MobileBarcodeScanningOptions {
-                AutoRotate = def.AutoRotate,
-                CharacterSet = opts.CharacterSet ?? def.CharacterSet,
-                DelayBetweenAnalyzingFrames = opts.DelayBetweenAnalyzingFrames ?? def.DelayBetweenAnalyzingFrames,
-                InitialDelayBeforeAnalyzingFrames = (opts.InitialDelayBeforeAnalyzingFrames ?? def.InitialDelayBeforeAnalyzingFrames),
-                PureBarcode = opts.PureBarcode,
-                TryHarder = opts.TryHarder,
-                TryInverted = opts.TryInverted,
-                UseFrontCameraIfAvailable = opts.UseFrontCameraIfAvailable
+        private MobileBarcodeScanningOptions GetXingConfig() {
+            var opts = new MobileBarcodeScanningOptions {
+                AutoRotate = this.Configuration.AutoRotate,
+                CharacterSet = this.Configuration.CharacterSet,
+                DelayBetweenAnalyzingFrames = this.Configuration.DelayBetweenAnalyzingFrames,
+                InitialDelayBeforeAnalyzingFrames = this.Configuration.InitialDelayBeforeAnalyzingFrames,
+                PureBarcode = this.Configuration.PureBarcode,
+                TryHarder = this.Configuration.TryHarder,
+                TryInverted = this.Configuration.TryInverted,
+                UseFrontCameraIfAvailable = this.Configuration.UseFrontCameraIfAvailable
             };
-            if (opts.Formats != null && opts.Formats.Count > 0) {
-                config.PossibleFormats = opts.Formats
+
+            if (this.Configuration.Formats != null && this.Configuration.Formats.Count > 0) {
+                opts.PossibleFormats = this.Configuration.Formats
                     .Select(x => (BarcodeFormat)(int)x)
                     .ToList();
             }
-            return config;
+            return opts;
         }
     }
 }

@@ -26,6 +26,9 @@
             </group>
         </dependencies>
         <releaseNotes>
+1.1
+Simplifying API calls
+            
 1.0
 Initial Release
         </releaseNotes>

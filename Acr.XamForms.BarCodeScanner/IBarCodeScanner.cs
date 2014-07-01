@@ -6,9 +6,9 @@ namespace Acr.XamForms.BarCodeScanner {
 
     public interface IBarCodeScanner {
 
-        BarCodeScannerOptions DefaultOptions { get; }
+        BarCodeScannerConfiguration Configuration { get; }
         
-        void Read(Action<BarCodeResult> onRead, Action<Exception> onError = null, BarCodeScannerOptions options = null);
-        Task<BarCodeResult> ReadAsync(BarCodeScannerOptions options = null);
+        void Read(Action<BarCodeResult> onRead);
+        Task<BarCodeResult> ReadAsync();
     }
 }
