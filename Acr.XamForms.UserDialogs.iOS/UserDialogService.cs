@@ -13,19 +13,19 @@ namespace Acr.XamForms.UserDialogs.iOS {
     public class UserDialogService : AbstractUserDialogService {
 
         public override void ActionSheet(ActionSheetConfig config) {
-            this.Dispatch(() => {
+            Utils.Dispatch(() => {
                 var action = new UIActionSheet(config.Title);
                 config.Options.ToList().ForEach(x => action.AddButton(x.Text));
 
                 action.Clicked += (sender, btn) => config.Options[btn.ButtonIndex].Action();
-                var view = this.GetTopView();
+                var view = Utils.GetTopView();
                 action.ShowInView(view);
             });
         }
 
 
         public override void Alert(AlertConfig config) {
-            this.Dispatch(() => {
+            Utils.Dispatch(() => {
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
                 if (config.OnOk != null) 
                     dlg.Clicked += (s, e) => config.OnOk();
@@ -36,7 +36,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
 
         public override void Confirm(ConfirmConfig config) {
-            this.Dispatch(() => {
+            Utils.Dispatch(() => {
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
                 dlg.Clicked += (s, e) => {
                     var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
@@ -49,7 +49,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
         public override void Toast(string message, int timeoutSeconds, Action onClick) {
             // TODO: no click callback in showtoast at the moment
-            this.Dispatch(() => {
+            Utils.Dispatch(() => {
                 var ms = timeoutSeconds * 1000;
                 BTProgressHUD.ShowToast(message, false, ms);
             });
@@ -58,7 +58,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
 
         public override void DateTimePrompt(DateTimePromptConfig config) {
-            var sheet = new ActionSheetDatePicker(this.GetTopView()) {
+            var sheet = new ActionSheetDatePicker(Utils.GetTopView()) {
                 Title = config.Title,
                 DoneText = config.OkText
             };
@@ -94,21 +94,19 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
 
         public override void DurationPrompt(DurationPromptConfig config) {
-            var sheet = new ActionSheetDatePicker(this.GetTopView()) {
+            var sheet = new ActionSheetDatePicker(Utils.GetTopView()) {
                 Title = config.Title,
                 DoneText = config.OkText
             };
             sheet.DatePicker.Mode = UIDatePickerMode.CountDownTimer;
 
-            sheet.DateTimeSelected += (sender, args) => {
-                config.OnResult(new DurationPromptResult(null));
-            };
+            sheet.DateTimeSelected += (sender, args) => config.OnResult(new DurationPromptResult(args.TimeOfDay));
             sheet.Show();
         }
 
 
         public override void Prompt(PromptConfig config) {
-            this.Dispatch(() => {
+            Utils.Dispatch(() => {
                 var result = new PromptResult();
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
                     AlertViewStyle = config.Type == PromptType.Secure 
@@ -136,16 +134,6 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
         protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
-        }
-
-
-        protected virtual UIView GetTopView() {
-            return UIApplication.SharedApplication.KeyWindow.RootViewController.View;
-        }
-
-
-        protected virtual void Dispatch(Action action) {
-            UIApplication.SharedApplication.InvokeOnMainThread(() => action());
         }
     }
 }

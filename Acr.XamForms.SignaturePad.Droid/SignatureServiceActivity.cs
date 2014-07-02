@@ -45,17 +45,17 @@ namespace Acr.XamForms.SignaturePad.Droid {
             this.btnSave.Text = cfg.SaveText;
             this.btnCancel.Text = cfg.CancelText;
 
-            if (SignatureService.CurrentPoints != null) {
-                this.btnSave.Visibility = ViewStates.Gone;
-                this.btnCancel.Visibility = ViewStates.Gone;
-//                this.signatureView.Enabled = false;
-                this.signatureView.LoadPoints(
-                    SignatureService
-                        .CurrentPoints
-                        .Select(x => new PointF { X = x.X, Y = x.Y })
-                        .ToArray()
-                );
-            }
+//            if (SignatureService.CurrentPoints != null) {
+//                this.btnSave.Visibility = ViewStates.Gone;
+//                this.btnCancel.Visibility = ViewStates.Gone;
+////                this.signatureView.Enabled = false;
+//                this.signatureView.LoadPoints(
+//                    SignatureService
+//                        .CurrentPoints
+//                        .Select(x => new PointF { X = x.X, Y = x.Y })
+//                        .ToArray()
+//                );
+//            }
         }
 
 

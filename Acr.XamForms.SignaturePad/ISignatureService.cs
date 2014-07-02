@@ -9,6 +9,6 @@ namespace Acr.XamForms.SignaturePad {
         SignaturePadConfiguration Configuration { get; }
 
         void Request(Action<SignatureResult> onAction);
-        void Load(IEnumerable<DrawPoint> points);
+        //void Load(IEnumerable<DrawPoint> points);
     }
 }

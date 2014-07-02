@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 
@@ -30,7 +29,7 @@ namespace Acr.XamForms.SignaturePad {
 
 
         public abstract void Request(Action<SignatureResult> onResult);
-        public abstract void Load(IEnumerable<DrawPoint> points);
+        //public abstract void Load(IEnumerable<DrawPoint> points);
     }
 }
 

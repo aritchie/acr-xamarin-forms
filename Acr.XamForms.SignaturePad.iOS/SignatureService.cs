@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Acr.XamForms.SignaturePad.iOS;
 using Xamarin.Forms;
 
@@ -16,14 +15,15 @@ namespace Acr.XamForms.SignaturePad.iOS {
         }
 
 
-        public override void Load(IEnumerable<DrawPoint> points) {
-            var controller = new SignatureServiceController(this.Configuration, points);
-            this.Show(controller);
-        }
+        //public override void Load(IEnumerable<DrawPoint> points) {
+        //    var controller = new SignatureServiceController(this.Configuration, points);
+        //    this.Show(controller);
+        //}
 
 
         private void Show(SignatureServiceController controller) {
-            // TODO:
+            var vc = Utils.GetTopViewController();
+            vc.PresentViewController(controller, true, null);
         }
     }
 }

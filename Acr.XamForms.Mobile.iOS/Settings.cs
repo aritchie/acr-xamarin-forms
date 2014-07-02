@@ -9,7 +9,16 @@ namespace Acr.XamForms.Mobile.iOS {
     public class Settings : AbstractSettings {
         private static readonly NSUserDefaults prefs = NSUserDefaults.StandardUserDefaults;
         public static readonly string[] ProtectedSettingsKeys = new [] {
-            ""    
+            "WebKitKerningAndLigaturesEnabledByDefault",
+            "AppleLanguages",
+            "monodevelop-port",
+            "AppleITunesStoreItemKinds",
+            "AppleLocale",
+            "connection-mode",
+            "AppleKeyboards",
+            "NSLanguages",
+            "UIDisableLegacyTextView",
+            "NSInterfaceStyle"
         };
 
 
@@ -50,7 +59,7 @@ namespace Acr.XamForms.Mobile.iOS {
 
 
         protected virtual bool CanTouch(string settingsKey) {
-            return !ProtectedSettingsKeys.Any(x => x.Equals(settingsKey));
+            return !ProtectedSettingsKeys.Any(x => x.Equals(settingsKey, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }

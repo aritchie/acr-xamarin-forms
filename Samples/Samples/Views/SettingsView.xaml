@@ -22,9 +22,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout>
                                     <Label Text="{Binding Key}" />
-                                    <Label Text="{Binding Value}" />
+                                    <!--<Label Text="{Binding Value}" />-->
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
