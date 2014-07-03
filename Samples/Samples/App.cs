@@ -2,6 +2,8 @@
 using System.Reflection;
 using Acr.XamForms.BarCodeScanner;
 using Acr.XamForms.Mobile;
+using Acr.XamForms.Mobile.IO;
+using Acr.XamForms.SignaturePad;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
 using Autofac;
@@ -29,13 +31,15 @@ namespace Samples {
                 .RegisterXamDependency<IFileViewer>()
                 .RegisterXamDependency<ILocationService>()
                 .RegisterXamDependency<ILogger>()
+                .RegisterXamDependency<IFileSystem>()
                 //.RegisterXamDependency<IMailService>()
                 .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()
                 .RegisterXamDependency<IPhotoService>()
                 .RegisterXamDependency<ISettings>()
                 .RegisterXamDependency<ITextToSpeechService>()
-                .RegisterXamDependency<IUserDialogService>();
+                .RegisterXamDependency<IUserDialogService>()
+                .RegisterXamDependency<ISignatureService>();
 
             builder
                 .Register(x => navigator)
@@ -67,6 +71,15 @@ namespace Samples {
                 )
                 .InstancePerDependency();
             
+            builder
+                .RegisterAssemblyTypes(ass)
+                .Where(x => 
+                    x.GetTypeInfo().IsClass &&
+                    !x.GetTypeInfo().IsAbstract &&
+                    x.Namespace.Equals("samples.views", StringComparison.CurrentCultureIgnoreCase)
+                )
+                .InstancePerDependency();
+
             return builder;
         }
 
@@ -89,12 +102,20 @@ namespace Samples {
             if (viewType == null)
                 throw new ArgumentException(viewName + " type not exist");
 
-            var page = Activator.CreateInstance(viewType) as ContentPage;
+            var page = container.Resolve(viewType) as ContentPage;
+            //var page = Activator.CreateInstance(viewType) as ContentPage;
             if (page == null)
                 throw new ArgumentException(viewName + " does not inherit from contentpage");
 
             page.BindingContext = viewModel;
-            page.Appearing += async (sender, args1) => await viewModel.Start();
+            page.Appearing += async (sender, args1) => {
+                try {
+                    await viewModel.Start();
+                }
+                catch (Exception ex) {
+                    DependencyService.Get<ILogger>().Error("VIEWMODEL START", ex);
+                }
+            };
             page.Disappearing += (sender, args1) => {
                 var dispose = viewModel as IDisposable;
                 if (dispose != null)

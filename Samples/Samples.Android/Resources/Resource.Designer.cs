@@ -63,8 +63,6 @@ namespace Samples.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::Samples.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::Samples.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Samples.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
-			global::PCLStorage.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
-			global::PCLStorage.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::ZXing.Mobile.Resource.Id.contentFrame = global::Samples.Droid.Resource.Id.contentFrame;
 			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::Samples.Droid.Resource.Layout.zxingscanneractivitylayout;
 			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::Samples.Droid.Resource.Layout.zxingscannerfragmentlayout;

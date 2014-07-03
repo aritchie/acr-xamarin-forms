@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.XamForms;
 using Acr.XamForms.Mobile;
+using Acr.XamForms.Mobile.IO;
 using Acr.XamForms.SignaturePad;
 using Acr.XamForms.ViewModels;
-using PCLStorage;
 using Samples.Models;
 using Xamarin.Forms;
 
@@ -20,35 +20,38 @@ namespace Samples.ViewModels {
         private const string FILE_FORMAT = "{0:dd-MM-yyyy_hh-mm-ss_tt}.jpg";
         private readonly ISignatureService signatureService;
         private readonly IFileViewer fileViewer;
+        private readonly IFileSystem fileSystem;
 
 
-        public SignatureListViewModel(ISignatureService signatureService, IFileViewer fileViewer) {
+        public SignatureListViewModel(ISignatureService signatureService, IFileSystem fileSystem, IFileViewer fileViewer) {
             this.signatureService = signatureService;
+            this.fileSystem = fileSystem;
             this.fileViewer = fileViewer;
 
             this.Configure = new Command(() => App.NavigateTo<SignaturePadConfigViewModel>());
             this.Create = new Command(this.OnCreate);
             this.Delete = new Command<Signature>(x => this.OnDelete(x));
             this.View = new Command<Signature>(this.OnView);
-            this.List = new ObservableCollection<Signature>();
+            this.List = new ObservableList<Signature>();
         }
 
 
         public override async Task Start() {
-            var files = await FileSystem.Current.LocalStorage.GetFilesAsync();
-
-            files
+            var signatures = this.fileSystem
+                .Local
+                .Files
                 .Select(x => new Signature {
-                    FileName = Path.GetFileName(x.Name),
-                    FilePath = x.Path,
-                    FileSize = Int32.MaxValue // TODO: PCLStorage sucks IMO!  No filesize, everything async where it doesn't need to be!  BLAH!
+                    FileName = x.Name,
+                    FilePath = x.FullName,
+                    FileSize = x.Length
                 })
-                .ToList()
-                .ForEach(this.List.Add);
+                .ToList();
+
+            this.List.AddRange(signatures);
         }
 
 
-        public ObservableCollection<Signature> List { get; private set; }
+        public ObservableList<Signature> List { get; private set; }
 
         private bool noData;
         public bool NoData {
@@ -70,15 +73,17 @@ namespace Samples.ViewModels {
                 using (var ms = new MemoryStream()) {
                     result.Stream.CopyTo(ms);
                     var bytes = ms.ToArray();
-                    var file = await FileSystem.Current.LocalStorage.CreateFileAsync(fileName, CreationCollisionOption.FailIfExists);
-                    using (var fs = await file.OpenAsync(FileAccess.ReadAndWrite))
-                        fs.Write(bytes, 0, bytes.Length);
+                    // TODO
+                    //var file = this.fileSystem.Local.CreateFile(fileName, true);
+                    //using (var fs = file.OpenWrite())
+                    //    fs.Write(bytes, 0, bytes.Length);
+
+                    //this.List.Add(new Signature {
+                    //    FilePath = file.FullName,
+                    //    FileName = file.Name,
+                    //    FileSize = file.Length
+                    //});
                 }
-                this.List.Add(new Signature {
-                    FilePath = fileName,
-                    FileName = fileName,
-                    FileSize = Int32.MaxValue // TODO: PCLStorage sucks IMO!  No filesize, everything async where it doesn't need to be!  BLAH!
-                });
                 this.NoData = !this.List.Any();
             }); 
         }
@@ -90,8 +95,10 @@ namespace Samples.ViewModels {
 
 
         private async Task OnDelete(Signature signature) {
-            var file = await FileSystem.Current.LocalStorage.GetFileAsync(signature.FilePath);
-            await file.DeleteAsync();
+            var file = this.fileSystem.GetFile(signature.FilePath);
+            if (file.Exists)
+                file.Delete();
+
             this.List.Remove(signature);
             this.NoData = !this.List.Any();
         }

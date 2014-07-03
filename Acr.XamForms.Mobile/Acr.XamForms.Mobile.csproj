@@ -41,9 +41,12 @@
     <Compile Include="AbstractMailService.cs" />
     <Compile Include="AbstractSettings.cs" />
     <Compile Include="IDeviceInfo.cs" />
+    <Compile Include="IO\IDirectory.cs" />
+    <Compile Include="IO\IFile.cs" />
     <Compile Include="IFileViewer.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="INetworkService.cs" />
+    <Compile Include="IO\IFileSystem.cs" />
     <Compile Include="ISettings.cs" />
     <Compile Include="ISettingsDictionary.cs" />
     <Compile Include="ITextToSpeechService.cs" />

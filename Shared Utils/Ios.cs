@@ -9,36 +9,24 @@ namespace Acr.XamForms {
     public static class Utils {
 
         public static UIView GetTopView() {
-            return UIApplication.SharedApplication.KeyWindow.RootViewController.View;
-            //return UIApplication.SharedApplication.Windows.Last().Subviews.Last();
+            return UIApplication.SharedApplication.KeyWindow.Subviews.Last();
         }
 
 
         public static UIViewController GetTopViewController() {
-            var top = UIApplication.SharedApplication.KeyWindow.RootViewController;
-            while (top.PresentedViewController != null)
-                top = top.PresentedViewController;
+            var root = UIApplication.SharedApplication.KeyWindow.RootViewController;
+            var tabs = root as UITabBarController;
+            if (tabs != null)
+                return tabs.SelectedViewController;
 
-            return top;
- /*
-- (UIViewController*)topViewController {
-    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-}
+            var nav = root as UINavigationController;
+            if (nav != null)
+                return nav.VisibleViewController;
 
-- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
-    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
-        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
-    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController* navigationController = (UINavigationController*)rootViewController;
-        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
-    } else if (rootViewController.presentedViewController) {
-        UIViewController* presentedViewController = rootViewController.presentedViewController;
-        return [self topViewControllerWithRootViewController:presentedViewController];
-    } else {
-        return rootViewController;
-    }
-}*/           
+            if (root.PresentedViewController != null)
+                return root.PresentedViewController;
+
+            return root;        
         }
 
 

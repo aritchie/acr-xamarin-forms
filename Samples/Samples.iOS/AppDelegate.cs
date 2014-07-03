@@ -22,8 +22,5 @@ namespace Samples.iOS {
 
             return true;
         }
-
-        //void Forms_ViewInitialized(object sender, ViewInitializedEventArgs e) {
-        //}
     }
 }

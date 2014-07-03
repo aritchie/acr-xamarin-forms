@@ -7,7 +7,7 @@ namespace Samples.iOS.Bootstrap
     {
         public SignaturePadBootstrap() 
         {
-            new SignaturePadRenderer();
+            new SignatureService();
         }
     }
 }

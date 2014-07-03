@@ -4,8 +4,8 @@
         <id>Acr.XamForms.Mobile</id>
         <version>1.1.0</version>
         <title>Mobile Services for Xamarin Forms</title>
-        <!--<description>XPlat Camera-Gallery Access, Geo-Location, Settings, E-Mail, Network Detection, Phone, SMS, File Opener, and Logging for Xamarin Forms</description>-->
-        <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, SMS, File Opener, and Logging for Xamarin Forms</description>
+        <!--<description>XPlat Camera-Gallery Access, Geo-Location, Settings, E-Mail, Network Detection, Phone, File System Management, SSMS, File Opener, and Logging for Xamarin Forms</description>-->
+        <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, File System Management, SMS, File Opener, and Logging for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
@@ -17,6 +17,10 @@
             <dependency id="Newtonsoft.Json" version="[6, 7)" />
         </dependencies>
         <releaseNotes>
+1.2
+File system manager - why? because another open source library drove me nuts and I needed something more powerful and less async
+
+
 1.1
 Lazy load a few properties so that they can be used in viewmodel injection before xamarin forms has initialized its Forms.Context on droid
 iOS module will no longer clear or remove system settings

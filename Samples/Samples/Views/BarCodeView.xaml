@@ -10,24 +10,24 @@
         <ScrollView>
             <StackLayout>
                 <Label Text="Top Text" />
-                <Entry Text="{Binding Scanner.DefaultOptions.TopText, Mode=TwoWay}" />
+                <Entry Text="{Binding Scanner.Configuration.TopText, Mode=TwoWay}" />
 
                 <Label Text="Bottom Text" />
-                <Entry Text="{Binding Scanner.DefaultOptions.BottomText, Mode=TwoWay}" />
+                <Entry Text="{Binding Scanner.Configuration.BottomText, Mode=TwoWay}" />
 
                 <Label Text="Cancel Text" />
-                <Entry Text="{Binding Scanner.DefaultOptions.CancelText, Mode=TwoWay}" />
+                <Entry Text="{Binding Scanner.Configuration.CancelText, Mode=TwoWay}" />
 
                 <Label Text="Flashlight Text" />
-                <Entry Text="{Binding Scanner.DefaultOptions.FlashlightText, Mode=TwoWay}" />
+                <Entry Text="{Binding Scanner.Configuration.FlashlightText, Mode=TwoWay}" />
 
                 <!--<StackLayout Orientation="Horizontal">
                     <Label Text="Auto Rotate" />
-                    <Switch IsToggled="{Binding Scanner.DefaultOptions.AutoRotate, Mode=TwoWay, TargetNullValue=False}" />
+                    <Switch IsToggled="{Binding Scanner.Configuration.AutoRotate, Mode=TwoWay, TargetNullValue=False}" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Use Front Camera" />
-                    <Switch IsToggled="{Binding Scanner.DefaultOptions.UseFrontCameraIfAvailable, Mode=TwoWay, TargetNullValue=False}" />
+                    <Switch IsToggled="{Binding Scanner.Configuration.UseFrontCameraIfAvailable, Mode=TwoWay, TargetNullValue=False}" />
                 </StackLayout>-->
                 <!--<Label Text="Format" />-->
                 <!--<Picker ItemsSource="{Binding Formats}" />-->
