@@ -45,9 +45,8 @@ the user when they were working in an offline state.
 * INetworkService subscribes to INotifyPropertyChanged and monitors the device network status
 * INetworkService.NetworkStatusChanged event for background processes to monitor
 
-[ViewModel Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/LocationViewModel.cs)
-[View-XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/LocationView.xaml)
-
+[ViewModel Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/NetworkViewModel.cs)
+[View-XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/NetworkView.xaml)
 
 ##Settings
 A simple settings library that works differently than the traditional setting plugins out there.  Instead, my approach was to work
