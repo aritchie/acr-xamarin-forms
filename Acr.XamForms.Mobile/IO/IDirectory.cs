@@ -18,7 +18,7 @@ namespace Acr.XamForms.Mobile.IO {
         DateTime LastWriteTime { get; }
 
         void Create();
-        //IFile CreateFile(string name, bool overwriteIfExists);
+        IFile CreateFile(string name);
         void MoveTo(string path);
         IDirectory CreateSubdirectory(string name);
         void Delete(bool recursive = false);

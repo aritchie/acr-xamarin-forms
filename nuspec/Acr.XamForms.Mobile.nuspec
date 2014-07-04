@@ -20,7 +20,6 @@
 1.2
 File system manager - why? because another open source library drove me nuts and I needed something more powerful and less async
 
-
 1.1
 Lazy load a few properties so that they can be used in viewmodel injection before xamarin forms has initialized its Forms.Context on droid
 iOS module will no longer clear or remove system settings

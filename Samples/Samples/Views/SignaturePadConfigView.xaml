@@ -18,17 +18,17 @@
                 <Label Text="Caption Text:" />
                 <Entry Text="{Binding CaptionText}" />
             
-                <Label Text="Background Color:" />
+                <!--<Label Text="Background Color:" />-->
                 <!--<MvxSpinner
                     local:MvxBind="ItemsSource Colors; SelectedItem BgColor"
                     local:MvxItemTemplate="@layout/spinnercolordefinition"
                     local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
-                <Label Text="Signature Line Color:" />
+                <!--<Label Text="Signature Line Color:" />-->
                 <!--<MvxSpinner
                     local:MvxBind="ItemsSource Colors; SelectedItem SignatureLineColor"
                     local:MvxItemTemplate="@layout/spinnercolordefinition"
                     local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
-                <Label Text="Stroke Color:" />
+                <!--<Label Text="Stroke Color:" />-->
                 <!--<MvxSpinner
                     local:MvxBind="ItemsSource Colors; SelectedItem StrokeColor"
                     local:MvxItemTemplate="@layout/spinnercolordefinition"

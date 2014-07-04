@@ -75,11 +75,10 @@ namespace Acr.XamForms.Mobile.IO {
         }
 
 
-        //public IFile CreateFile(string name, bool overwriteIfExists) {
-        //    var fileName = Path.Combine(this.FullName, name);
-        //    var file = new FileInfo(path);
-        //    System.IO.File.Create
-        //}
+        public IFile CreateFile(string fileName) {
+            var path = Path.Combine(this.FullName, fileName);
+            return new File(new FileInfo(path));
+        }
 
 
         public IDirectory CreateSubdirectory(string path) {

@@ -7,6 +7,7 @@ using Acr.XamForms.SignaturePad;
 using Acr.XamForms.SignaturePad.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Color = Xamarin.Forms.Color;
 using NativeView = SignaturePad.SignaturePadView;
 
 [assembly: ExportRenderer(typeof(SignaturePadView), typeof(SignaturePadRenderer))]
@@ -19,67 +20,94 @@ namespace Acr.XamForms.SignaturePad.Droid {
         protected override void OnElementChanged(ElementChangedEventArgs<SignaturePadView> e) {
             base.OnElementChanged(e);
 
-            if (e.OldElement != null)
+            if (e.OldElement != null || this.Element == null)
                 return;
-                
-            this.SetNativeControl(new NativeView(Forms.Context));
+
+            var view = new NativeView(Forms.Context);
+            var el = e.NewElement;
+            
+            if (!String.IsNullOrWhiteSpace(el.CaptionText))
+                view.Caption.Text = el.CaptionText;
+
+            if (el.CaptionTextColor != Color.Default)
+                view.Caption.SetTextColor(el.CaptionTextColor.ToAndroid());
+
+            if (!String.IsNullOrWhiteSpace(el.ClearText))
+                view.ClearLabel.Text = el.ClearText;
+
+            if (el.ClearTextColor != Color.Default)
+                view.ClearLabel.SetTextColor(el.ClearTextColor.ToAndroid());
+
+            if (!String.IsNullOrWhiteSpace(el.PromptText))
+                view.SignaturePrompt.Text = el.PromptText;
+
+            if (el.PromptTextColor != Color.Default)
+                view.SignaturePrompt.SetTextColor(el.PromptTextColor.ToAndroid());
+
+            if (el.SignatureLineColor != Color.Default)
+                view.SignatureLineColor = el.SignatureLineColor.ToAndroid();
+
+            if (el.StrokeColor != Color.Default)
+                view.StrokeColor = el.StrokeColor.ToAndroid();
+
+            if (el.StrokeWidth > 0)
+                view.StrokeWidth = el.StrokeWidth;
+            
             this.Element.SetInternals(
-                imgFormat => {
-                    using (var image = this.Control.GetImage()) {
-                        var stream = new MemoryStream();
-                        var format = imgFormat == ImageFormatType.Png
-                            ? Android.Graphics.Bitmap.CompressFormat.Png
-                            : Android.Graphics.Bitmap.CompressFormat.Jpeg;
-                        image.Compress(format, 100, stream); // TODO: quality control
-                        return stream; // TODO: careful
-                    }
-                }, 
-                () => this.Control.Points.Select(x => new DrawPoint(x.X, x.Y)), 
-                x => this.Control.LoadPoints(x.Select(y => new PointF(y.X, y.Y)).ToArray()),
-                () => this.Control.IsBlank
+                this.GetImageStream,
+                () => view.Points.Select(x => new DrawPoint(x.X, x.Y)), 
+                x => view.LoadPoints(x.Select(y => new PointF(y.X, y.Y)).ToArray()),
+                () => view.IsBlank
             );
+
+            this.SetNativeControl(view);
         }
 
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
+            
+            if (this.Element == null || this.Control == null)
+                return;
 
-            switch (e.PropertyName) {
-                case "CaptionText":
-                    this.Control.Caption.Text = this.Element.CaptionText;
-                    break;
+            var el = this.Element;
+            if (e.PropertyName == SignaturePadView.CaptionTextProperty.PropertyName)
+                this.Control.Caption.Text = el.CaptionText;
 
-                case "CaptionTextColor":
-                    this.Control.Caption.SetTextColor(this.Element.CaptionTextColor.ToAndroid());
-                    break;
+            else if (e.PropertyName == SignaturePadView.CaptionTextColorProperty.PropertyName)
+                this.Control.Caption.SetTextColor(el.CaptionTextColor.ToAndroid());
 
-                case "ClearText":
-                    this.Control.ClearLabel.Text = this.Element.ClearText;
-                    break;
+            else if (e.PropertyName == SignaturePadView.ClearTextProperty.PropertyName)
+                this.Control.ClearLabel.Text = el.ClearText;
 
-                case "ClearTextColor":
-                    this.Control.ClearLabel.SetTextColor(this.Element.ClearTextColor.ToAndroid());
-                    break;
+            else if (e.PropertyName == SignaturePadView.ClearTextColorProperty.PropertyName)
+                this.Control.ClearLabel.SetTextColor(el.ClearTextColor.ToAndroid());
 
-                case "PromptText":
-                    this.Control.SignaturePrompt.Text = this.Element.PromptText;
-                    break;
+            else if (e.PropertyName == SignaturePadView.PromptTextProperty.PropertyName)
+                this.Control.SignaturePrompt.Text = el.PromptText;
 
-                case "PromptTextColor":
-                    this.Control.SignaturePrompt.SetTextColor(this.Element.PromptTextColor.ToAndroid());
-                    break;
+            else if (e.PropertyName == SignaturePadView.PromptTextColorProperty.PropertyName)
+                this.Control.SignaturePrompt.SetTextColor(el.PromptTextColor.ToAndroid());
 
-                case "SignatureLineColor":
-                    this.Control.SignatureLineColor = this.Element.SignatureLineColor.ToAndroid();
-                    break;
+            else if (e.PropertyName == SignaturePadView.SignatureLineColorProperty.PropertyName)
+                this.Control.SignatureLineColor = el.SignatureLineColor.ToAndroid();
 
-                case "StrokeColor":
-                    this.Control.StrokeColor = this.Element.StrokeColor.ToAndroid();
-                    break;
+            else if (e.PropertyName == SignaturePadView.StrokeColorProperty.PropertyName)
+                this.Control.StrokeColor = el.StrokeColor.ToAndroid();
 
-                case "StrokeWidth":
-                    this.Control.StrokeWidth = this.Element.StrokeWidth;
-                    break;
+            else if (e.PropertyName == SignaturePadView.StrokeWidthProperty.PropertyName)
+                this.Control.StrokeWidth = el.StrokeWidth;
+        }
+
+
+        private Stream GetImageStream(ImageFormatType imgFormat) {
+            using (var image = this.Control.GetImage()) { 
+                var stream = new MemoryStream();
+                var format = imgFormat == ImageFormatType.Png
+                    ? Android.Graphics.Bitmap.CompressFormat.Png
+                    : Android.Graphics.Bitmap.CompressFormat.Jpeg;
+                image.Compress(format, 100, stream); // TODO: quality control
+                return stream; // TODO: careful
             }
         }
     }
