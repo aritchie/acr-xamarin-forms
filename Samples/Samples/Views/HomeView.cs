@@ -31,7 +31,13 @@ namespace Samples.Views {
                         this.Nav<LocationViewModel>("Location"),
                         this.Nav<PhotoViewModel>("Camera/Photo Gallery"),
                         this.Nav<TextToSpeechViewModel>("Text-to-Speech"),
-                        this.Nav<SignatureListViewModel>("Signature Pad")
+                        this.Nav<SignatureListViewModel>("Signature Pad"),
+                        new Button {
+                            Text = "XAML Signature Pad",
+                            HorizontalOptions = LayoutOptions.FillAndExpand,
+                            Command = new Command(async () => await this.Navigation.PushAsync(new SignatureXamlView())),
+                            Font = Font.SystemFontOfSize(NamedSize.Large)
+                        }
                     }
                 }
             };

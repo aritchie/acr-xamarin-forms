@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.BarCodeScanner</id>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
         <title>BarCode Scanner for Xamarin Forms</title>
         <description>Barcode scanning for Xamarin Forms built on ZXing.Net.Mobile for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -16,16 +16,19 @@
                 <dependency id="Xamarin.Forms" version="[1.1, 2.0)" />
             </group>
             <group targetFramework="MonoAndroid">
-                <dependency id="ZXing.Net.Mobile" version="[1.4, 2.0)" />
+                <dependency id="ZXing.Net.Mobile" version="[1.4.5, 2.0)" />
             </group>
             <group targetFramework="MonoTouch">
-                <dependency id="ZXing.Net.Mobile" version="[1.4, 2.0)" />
+                <dependency id="ZXing.Net.Mobile" version="[1.4.5, 2.0)" />
             </group>
             <group targetFramework="wp8">
-                <dependency id="ZXing.Net.Mobile" version="[1.4, 2.0)" />
+                <dependency id="ZXing.Net.Mobile" version="[1.4.5, 2.0)" />
             </group>
         </dependencies>
         <releaseNotes>
+1.1.1
+Update to ZXing.Net.Mobile
+
 1.1
 Simplifying API calls
             

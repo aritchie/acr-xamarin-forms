@@ -10,7 +10,7 @@ namespace Acr.XamForms.SignaturePad {
         protected AbstractSignatureService() {
             this.Configuration = new SignaturePadConfiguration {
                 ImageType = ImageFormatType.Png,
-                MainBackgroundColor = Color.Gray,
+                MainBackgroundColor = Color.FromHex("#696969"),
                 CaptionTextColor = Color.Black,
                 ClearTextColor = Color.Black,
                 PromptTextColor = Color.White,

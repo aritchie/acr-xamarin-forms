@@ -1,9 +1,10 @@
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using Acr.XamForms.SignaturePad;
 using Acr.XamForms.SignaturePad.Droid;
-using Acr.XamForms.SignaturePad.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using NativeView = SignaturePad.SignaturePadView;
@@ -34,6 +35,7 @@ namespace Acr.XamForms.SignaturePad.Droid {
                     }
                 }, 
                 () => this.Control.Points.Select(x => new DrawPoint(x.X, x.Y)), 
+                x => this.Control.LoadPoints(x.Select(y => new PointF(y.X, y.Y)).ToArray()),
                 () => this.Control.IsBlank
             );
         }

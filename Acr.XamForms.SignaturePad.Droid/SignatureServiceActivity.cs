@@ -1,20 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Drawing;
 using Android.App;
 using Android.OS;
 using Android.Widget;
-using Android.Views;
-using SignaturePad;
 using Xamarin.Forms.Platform.Android;
+using NativeView = global::SignaturePad.SignaturePadView;
 
 
 namespace Acr.XamForms.SignaturePad.Droid {
 
     [Activity]
     public class SignatureServiceActivity : Activity {
-        private SignaturePadView signatureView;
+        private NativeView signatureView;
         private Button btnSave;
         private Button btnCancel;
 
@@ -24,7 +22,7 @@ namespace Acr.XamForms.SignaturePad.Droid {
             this.SetContentView(Resource.Layout.SignaturePad);
 
             var rootView = this.FindViewById<RelativeLayout>(Resource.Id.rootView);
-            this.signatureView = this.FindViewById<SignaturePadView>(Resource.Id.signatureView);
+            this.signatureView = this.FindViewById<NativeView>(Resource.Id.signatureView);
             this.btnSave = this.FindViewById<Button>(Resource.Id.btnSave);
             this.btnCancel = this.FindViewById<Button>(Resource.Id.btnCancel);
 

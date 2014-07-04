@@ -56,10 +56,13 @@
       <HintPath>..\packages\Xamarin.Forms.1.1.1.6206\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="zxing.monotouch">
-      <HintPath>..\packages\ZXing.Net.Mobile.1.4.2.1\lib\MonoTouch\zxing.monotouch.dll</HintPath>
+      <HintPath>..\packages\ZXing.Net.Mobile.1.4.5\lib\MonoTouch\zxing.monotouch.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ZXing.Net.Mobile">
-      <HintPath>..\packages\ZXing.Net.Mobile.1.4.2.1\lib\MonoTouch\ZXing.Net.Mobile.dll</HintPath>
+    <Reference Include="ZXing.Net.Mobile, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ZXing.Net.Mobile.1.4.5\lib\MonoTouch\ZXing.Net.Mobile.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

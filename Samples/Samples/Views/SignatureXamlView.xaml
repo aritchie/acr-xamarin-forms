@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:acr="clr-namespace:Acr.XamForms.SignaturePad;assembly=Acr.XamForms.SignaturePad"
+			 x:Class="Samples.Views.SignatureXamlView"
+             Title="XAML Signature Pad">
+    <StackLayout>
+	    <acr:SignaturePadView
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            
+            CaptionText="Caption This"
+            CaptionTextColor="Black"
+            ClearText="Clear Me!"
+            ClearTextColor="Red"
+            PromptText="Prompt Here"
+            PromptTextColor="Red"
+            SignatureLineColor="Aqua"
+            StrokeColor="Black"
+            StrokeWidth="2"
+        />
+    </StackLayout>
+</ContentPage>

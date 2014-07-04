@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Drawing;
 using MonoTouch.UIKit;
-using SignaturePad;
+using NativeView = global::SignaturePad.SignaturePadView;
 
 
 namespace Acr.XamForms.SignaturePad.iOS {
 
     public class SignatureServiceView : UIView {
 
-        public SignaturePadView Signature { get; set; }
+        public NativeView Signature { get; set; }
         public UIButton SaveButton { get; private set; }
         public UIButton CancelButton { get; private set; }
 
@@ -19,7 +19,7 @@ namespace Acr.XamForms.SignaturePad.iOS {
             this.CancelButton = UIButton.FromType(UIButtonType.RoundedRect);
             this.Frame = UIScreen.MainScreen.ApplicationFrame;
 
-            this.Signature = new SignaturePadView();
+            this.Signature = new NativeView();
             this.TranslatesAutoresizingMaskIntoConstraints = false;
 
             this.AddSubview(this.Signature);

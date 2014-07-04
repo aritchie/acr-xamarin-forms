@@ -70,10 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignatureResult.cs" />
     <Compile Include="SignaturePadConfiguration.cs" />
-    <Compile Include="Views\SignaturePadPage.xaml.cs">
-      <DependentUpon>SignaturePadPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SignaturePadView.cs" />
+    <Compile Include="SignaturePadView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -86,12 +83,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\SignaturePadPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

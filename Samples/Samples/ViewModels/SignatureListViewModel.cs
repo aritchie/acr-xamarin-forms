@@ -73,7 +73,6 @@ namespace Samples.ViewModels {
                 using (var ms = new MemoryStream()) {
                     result.Stream.CopyTo(ms);
                     var bytes = ms.ToArray();
-                    // TODO
                     //var file = this.fileSystem.Local.CreateFile(fileName, true);
                     //using (var fs = file.OpenWrite())
                     //    fs.Write(bytes, 0, bytes.Length);
