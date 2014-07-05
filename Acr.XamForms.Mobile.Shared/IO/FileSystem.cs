@@ -12,18 +12,18 @@ namespace Acr.XamForms.Mobile.IO {
 
         public FileSystem() {
 #if WINDOWS_PHONE
-            // TODO: this.Local = new Directory(System.Windows.Forms.Application.LocalUserAppDataPath);
+            this.AppData = new Directory(Windows.Storage.ApplicationData.Current.LocalFolder.Path);
 #elif __IOS__
             var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var localAppData = Path.Combine(documents, "..", "Library");
-            this.Local = new Directory(localAppData);
+            this.AppData = new Directory(localAppData);
 #elif __ANDROID__
-            Local = new Directory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            this.AppData = new Directory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 #endif
         }
 
-        public IDirectory Local { get; private set; }
-        public IDirectory Roaming { get; private set; }
+        public IDirectory AppData { get; private set; }
+        //public IDirectory Roaming { get; private set; }
 
 
         public IDirectory GetDirectory(string path) {

@@ -32,18 +32,15 @@ namespace Samples.ViewModels {
 
             this.Configure = new Command(() => App.NavigateTo<SignaturePadConfigViewModel>());
             this.Create = new Command(this.OnCreate);
-            this.Delete = new Command<Signature>(x => this.OnDelete(x));
-            this.View = new Command<Signature>(this.OnView);
             this.List = new ObservableList<Signature>();
         }
 
 
         public override async Task Start() {  
-            if (this.List.Count > 0)
-                return;
+            this.List.Clear();
 
             var signatures = this.fileSystem
-                .Local
+                .AppData
                 .Files
                 .Select(x => new Signature {
                     FileName = x.Name,
@@ -68,31 +65,29 @@ namespace Samples.ViewModels {
 
         public ICommand Configure { get; private set; }
         public ICommand Create { get; private set; }
-        public Command<Signature> View { get; private set; }
-        public Command<Signature> Delete { get; private set; }
 
 
         private void OnCreate() {
-            this.signatureService.Request(async result => {
+            this.signatureService.Request(result => {
                 if (result.Cancelled)
                     this.dialogs.Alert("Cancelled Signature");
 
                 else { 
                     var fileName = String.Format(FILE_FORMAT, DateTime.Now);
+                    IFile file = null;
                     using (var ms = new MemoryStream()) {
                         result.Stream.CopyTo(ms);
                         var bytes = ms.ToArray();
-                        var file = this.fileSystem.Local.CreateFile(fileName);
-                        using (var fs = file.OpenWrite())
+                        file = this.fileSystem.AppData.CreateFile(fileName);
+                        using (var fs = file.OpenWrite()) {
                             fs.Write(bytes, 0, bytes.Length);
-
-                        this.List.Add(new Signature {
-                            FilePath = file.FullName,
-                            FileName = file.Name,
-                            FileSize = file.Length
-                        });
-                        this.dialogs.Alert(String.Format("Draw Points: {0}", result.Points.Count()));
                     }
+                    this.List.Add(new Signature {
+                        FilePath = file.FullName,
+                        FileName = file.Name,
+                        FileSize = file.Length
+                    });
+                    this.dialogs.Alert(String.Format("Draw Points: {0}", result.Points.Count()));
                     this.NoData = !this.List.Any();
                 }
             }); 
@@ -113,7 +108,8 @@ namespace Samples.ViewModels {
                             if (!r)
                                 return;
 
-                            this.fileSystem.GetFile(s.FilePath).Delete();
+                            var file = this.fileSystem.GetFile(s.FilePath);
+                            file.Delete();
                             this.List.Remove(s);
                             this.NoData = !this.List.Any();
                         })
@@ -122,21 +118,6 @@ namespace Samples.ViewModels {
                 );
                 return this.selectCmd;
             }
-        }
-
-
-        private void OnView(Signature signature) {
-            this.fileViewer.Open(signature.FilePath);
-        }
-
-
-        private async Task OnDelete(Signature signature) {
-            var file = this.fileSystem.GetFile(signature.FilePath);
-            if (file.Exists)
-                file.Delete();
-
-            this.List.Remove(signature);
-            this.NoData = !this.List.Any();
         }
     }
 }
