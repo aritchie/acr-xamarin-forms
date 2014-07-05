@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.XamForms;
 using Acr.XamForms.Mobile;
 using Acr.XamForms.Mobile.IO;
 using Acr.XamForms.SignaturePad;
@@ -78,21 +77,24 @@ namespace Samples.ViewModels {
                 if (result.Cancelled)
                     this.dialogs.Alert("Cancelled Signature");
 
-                var fileName = String.Format(FILE_FORMAT, DateTime.Now);
-                using (var ms = new MemoryStream()) {
-                    result.Stream.CopyTo(ms);
-                    var bytes = ms.ToArray();
-                    var file = this.fileSystem.Local.CreateFile(fileName);
-                    using (var fs = file.OpenWrite())
-                        fs.Write(bytes, 0, bytes.Length);
+                else { 
+                    var fileName = String.Format(FILE_FORMAT, DateTime.Now);
+                    using (var ms = new MemoryStream()) {
+                        result.Stream.CopyTo(ms);
+                        var bytes = ms.ToArray();
+                        var file = this.fileSystem.Local.CreateFile(fileName);
+                        using (var fs = file.OpenWrite())
+                            fs.Write(bytes, 0, bytes.Length);
 
-                    this.List.Add(new Signature {
-                        FilePath = file.FullName,
-                        FileName = file.Name,
-                        FileSize = file.Length
-                    });
+                        this.List.Add(new Signature {
+                            FilePath = file.FullName,
+                            FileName = file.Name,
+                            FileSize = file.Length
+                        });
+                        this.dialogs.Alert(String.Format("Draw Points: {0}", result.Points.Count()));
+                    }
+                    this.NoData = !this.List.Any();
                 }
-                this.NoData = !this.List.Any();
             }); 
         }
 
@@ -102,7 +104,10 @@ namespace Samples.ViewModels {
             get {
                 this.selectCmd = this.selectCmd ?? new Command<Signature>(s => 
                     this.dialogs.ActionSheet(new ActionSheetConfig()
-                        .Add("View", () => this.fileViewer.Open(s.FilePath))
+                        .Add("View", () => {
+                            if (!this.fileViewer.Open(s.FilePath))
+                                this.dialogs.Alert(String.Format("Could not open file {0}", s.FileName));
+                        })
                         .Add("Delete", async () => {
                             var r = await this.dialogs.ConfirmAsync(String.Format("Are you sure you want to delete {0}", s.FileName));
                             if (!r)

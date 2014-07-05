@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using Acr.XamForms.SignaturePad;
 using Acr.XamForms.SignaturePad.iOS;
+using MonoTouch.UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using NativeView = SignaturePad.SignaturePadView;
@@ -31,10 +32,10 @@ namespace Acr.XamForms.SignaturePad.iOS {
                 view.Caption.TextColor = el.CaptionTextColor.ToUIColor();
 
             if (!String.IsNullOrWhiteSpace(el.ClearText))
-                view.ClearLabel.TitleLabel.Text = el.ClearText;
+                view.ClearLabel.SetTitle(el.ClearText, UIControlState.Normal);
 
             if (el.ClearTextColor != Color.Default)
-                view.ClearLabel.TitleLabel.TextColor = el.ClearTextColor.ToUIColor();
+                view.ClearLabel.SetTitleColor(el.ClearTextColor.ToUIColor(), UIControlState.Normal);
 
             if (!String.IsNullOrWhiteSpace(el.PromptText))
                 view.SignaturePrompt.Text = el.PromptText;
@@ -78,10 +79,10 @@ namespace Acr.XamForms.SignaturePad.iOS {
                 this.Control.Caption.TextColor = el.CaptionTextColor.ToUIColor();
 
             else if (e.PropertyName == SignaturePadView.ClearTextProperty.PropertyName)
-                this.Control.ClearLabel.TitleLabel.Text = el.ClearText;
+                this.Control.ClearLabel.SetTitle(el.ClearText, UIControlState.Normal);
 
             else if (e.PropertyName == SignaturePadView.ClearTextColorProperty.PropertyName)
-                this.Control.ClearLabel.TitleLabel.TextColor = el.ClearTextColor.ToUIColor();
+                this.Control.ClearLabel.SetTitleColor(el.ClearTextColor.ToUIColor(), UIControlState.Normal);
 
             else if (e.PropertyName == SignaturePadView.PromptTextProperty.PropertyName)
                 this.Control.SignaturePrompt.Text = el.PromptText;

@@ -46,8 +46,10 @@ namespace Acr.XamForms.Mobile.Droid {
         private static string GetMimeType(string fileName) {
             var ext = Path.GetExtension(fileName);
             var mime = "";
-            if (ext != null) 
+            if (ext != null) { 
+                ext = ext.TrimStart('.');
                 mime = MimeTypeMap.Singleton.GetMimeTypeFromExtension(ext);
+            }
 
             return mime;
         }

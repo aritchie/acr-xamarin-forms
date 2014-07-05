@@ -8,13 +8,22 @@ namespace Acr.XamForms {
     
     public static class Utils {
 
+        public static UIWindow GetTopWindow() {
+            return 
+                UIApplication.SharedApplication.KeyWindow
+                ?? UIApplication.SharedApplication.Windows.Last()
+                ?? UIApplication.SharedApplication.Delegate.Window;
+        }
+
+
         public static UIView GetTopView() {
-            return UIApplication.SharedApplication.KeyWindow.Subviews.Last();
+            return GetTopWindow().Subviews.First();
+            //return GetTopWindow().Subviews.Last();
         }
 
 
         public static UIViewController GetTopViewController() {
-            var root = UIApplication.SharedApplication.KeyWindow.RootViewController;
+            var root = GetTopWindow().RootViewController;
             var tabs = root as UITabBarController;
             if (tabs != null)
                 return tabs.SelectedViewController;
@@ -26,7 +35,7 @@ namespace Acr.XamForms {
             if (root.PresentedViewController != null)
                 return root.PresentedViewController;
 
-            return root;        
+            return root;
         }
 
 

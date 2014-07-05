@@ -1,6 +1,5 @@
 using System;
 using Acr.XamForms.SignaturePad.Droid;
-using Android.App;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(SignatureService))]
@@ -19,7 +18,7 @@ namespace Acr.XamForms.SignaturePad.Droid {
             //CurrentPoints = null;
             CurrentConfig = this.Configuration;
             OnResult = onResult;
-            Application.Context.StartActivity(typeof(SignatureServiceActivity));
+            Forms.Context.StartActivity(typeof(SignatureServiceActivity));
         }
 
 
