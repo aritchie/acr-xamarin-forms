@@ -19,6 +19,14 @@ Allows for messagebox style dialogs
 * WinPhone - All dialogs by Coding4Fun Toolkit  
 
 
+##Signature Pad
+Control provided by [Xamarin Signature Pad](https://github.com/xamarin/SignaturePad).  This library provides a way to call for a dialog from a view model or
+it can be used within your XAML views.
+
+[XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/SignatureXamlView.xaml)
+[ViewModel Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/SignatureListViewModel.cs)
+
+
 ##Camera & Gallery
 Camera and Photo Gallery access powered by Xamarin.Mobile
 
@@ -47,6 +55,7 @@ the user when they were working in an offline state.
 
 [ViewModel Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/NetworkViewModel.cs)
 [View-XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/NetworkView.xaml)
+
 
 ##Settings
 A simple settings library that works differently than the traditional setting plugins out there.  Instead, my approach was to work
