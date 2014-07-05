@@ -32,7 +32,7 @@ Initial Release
         <file src="..\bin\Release\Portable\Acr.XamForms.SignaturePad.dll" target="lib\MonoTouch\Acr.XamForms.SignaturePad.dll" />
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.SignaturePad.iOS.dll" target="lib\MonoTouch\Acr.XamForms.SignaturePad.iOS.dll" />
         <file src="..\bin\Release\MonoTouch\SignaturePad.iOS.dll" target="lib\MonoTouch\SignaturePad.iOS.dll" />
-        <file src="Bootstrap\MobileBootstrap.cs.pp" target="content\MonoTouch\Bootstrap\SignaturePadBootstrap.cs.pp" />
+        <file src="Bootstrap\SignaturePadBootstrap.cs.pp" target="content\MonoTouch\Bootstrap\SignaturePadBootstrap.cs.pp" />
         
         <!--winphone-->
         <!--TODO: manually build winphone library-->
