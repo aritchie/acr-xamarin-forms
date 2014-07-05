@@ -2,7 +2,7 @@ ACR Xamarin Forms
 =================
 
 ##User Dialogs
-Allows for messagebox style dialogs
+Allows for messagebox style dialogs to be called from your view model commands
 
 * Action Sheet (multiple choice menu)
 * Alert
@@ -14,13 +14,13 @@ Allows for messagebox style dialogs
 
 [examples](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/UserDialogViewModel.cs)
 
-* Android - Progress/Loading uses AndHUD
-* iOS - Progress/Loading uses BTProgressHUD
-* WinPhone - All dialogs by Coding4Fun Toolkit  
+* Android - Progress/Loading uses Redth's [AndHUD](https://github.com/Redth/AndHUD)
+* iOS - Progress/Loading uses Nic Wise's [BTProgressHUD](https://github.com/nicwise/BTProgressHUD)
+* WinPhone - All dialogs by [Coding4Fun Toolkit](http://coding4fun.codeplex.com/) 
 
 
 ##Signature Pad
-Control provided by [Xamarin Signature Pad](https://github.com/xamarin/SignaturePad).  This library provides a way to call for a dialog from a view model or
+Control provided by [Xamarin Signature Pad](https://github.com/xamarin/SignaturePad).  This library provides a way to call for a dialog from a view model command or
 it can be used within your XAML views.
 
 [XAML Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/Views/SignatureXamlView.xaml)
@@ -28,13 +28,13 @@ it can be used within your XAML views.
 
 
 ##Camera & Gallery
-Camera and Photo Gallery access powered by Xamarin.Mobile
+Camera and Photo Gallery access powered by [Xamarin.Mobile](https://github.com/xamarin/Xamarin.Mobile)
 
 [Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/PhotoViewModel.cs)
 
 
 ##Bar Code Scanner
-Allows for quick barcode scanning from a viewmodel command
+Powered by Redth's awesome [ZXing.Net.Mobile](https://github.com/Redth/ZXing.Net.Mobile).  This library provides a way to call for a barcode dialog from your view model command
 
 [Example](https://github.com/aritchie/acr-xamarin-forms/blob/master/Samples/Samples/ViewModels/BarCodeViewModel.cs)
 
