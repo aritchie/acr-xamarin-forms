@@ -3,13 +3,6 @@
 
 namespace Acr.XamForms.UserDialogs {
 
-    public enum PromptType {
-        SingleLine,
-        MultiLine,
-        Secure
-    }
-
-
     public class PromptConfig {
 
         public string Title { get; set; }
@@ -20,13 +13,12 @@ namespace Acr.XamForms.UserDialogs {
         public string OkText { get; set; }
         public string CancelText { get; set; }
         public string Placeholder { get; set; }
-        public PromptType Type { get; set; }
+        public bool IsSecure { get; set; }
 
 
         public PromptConfig() {
             this.OkText = "OK";
             this.CancelText = "Cancel";
-            this.Type = PromptType.SingleLine;
         }
 
 
@@ -67,8 +59,8 @@ namespace Acr.XamForms.UserDialogs {
             return this;
         }
 
-        public PromptConfig SetType(PromptType type) {
-            this.Type = type;
+        public PromptConfig SetSecure(bool isSecure) {
+            this.IsSecure = isSecure;
             return this;
         }
     }

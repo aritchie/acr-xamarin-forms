@@ -8,10 +8,10 @@
             <TableRoot>
                 <TableSection>
                     <TextCell Text="Refresh" Command="{Binding Refresh}" />
-                    <TextCell Text="Latitude" Detail="{Binding Position.Latitude}"  />
-                    <TextCell Text="Longitude" Detail="{Binding Position.Longitude}" />
-                    <TextCell Text="Altitude" Detail="{Binding Position.Altitude}" />
-                    <TextCell Text="Heading" Detail="{Binding Position.Heading}" />
+                    <TextCell Text="Latitude" Detail="{Binding Latitude}"  />
+                    <TextCell Text="Longitude" Detail="{Binding Longitude}" />
+                    <TextCell Text="Altitude" Detail="{Binding Altitude}" />
+                    <TextCell Text="Heading" Detail="{Binding Heading}" />
                 </TableSection>
             </TableRoot>
         </TableView.Root>

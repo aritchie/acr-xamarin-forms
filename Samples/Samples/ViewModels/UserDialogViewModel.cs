@@ -66,17 +66,12 @@ namespace Samples.ViewModels {
 
 
         public ICommand Prompt {
-            get { return this.PromptCommand(PromptType.SingleLine); }
-        }
-
-
-        public ICommand PromptMultiline {
-            get { return this.PromptCommand(PromptType.MultiLine); }
+            get { return this.PromptCommand(false); }
         }
 
 
         public ICommand PromptSecure {
-            get { return this.PromptCommand(PromptType.Secure); }
+            get { return this.PromptCommand(true); }
         }
 
 
@@ -213,12 +208,13 @@ namespace Samples.ViewModels {
 
         #region Internals
 
-        private ICommand PromptCommand(PromptType promptType) {
+        private ICommand PromptCommand(bool secure) {
             return new Command(async () => {
-                var r = await dialogService.PromptAsync(String.Format("Enter a {0} value", promptType.ToString().ToUpper()), type: promptType);
+                var type = (secure ? "secure text" : "text");
+                var r = await dialogService.PromptAsync(String.Format("Enter a {0} value", type.ToUpper()), secure: secure);
                 this.Result = (r.Ok
                     ? "OK " + r.Text
-                    : promptType + " Prompt Cancelled"
+                    : secure + " Prompt Cancelled"
                 );
             });
         }

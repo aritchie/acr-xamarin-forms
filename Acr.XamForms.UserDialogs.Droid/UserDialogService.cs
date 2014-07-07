@@ -105,19 +105,9 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 var txt = new EditText(Utils.GetActivityContext()) {
                     Hint = config.Placeholder
                 };
-                switch (config.Type) {
-
-                    case PromptType.Secure:
-                        //txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-                        txt.TransformationMethod = PasswordTransformationMethod.Instance;
-                        break;
-
-                    case PromptType.MultiLine:
-                        txt.SetLines(3);
-                        txt.SetSingleLine(false);
-                        txt.ImeOptions = ImeAction.Next;
-                        break;
-                }
+                if (config.IsSecure)
+                    //txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+                    txt.TransformationMethod = PasswordTransformationMethod.Instance;
 
                 new AlertDialog
                     .Builder(Utils.GetActivityContext())

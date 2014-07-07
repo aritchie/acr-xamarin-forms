@@ -40,6 +40,7 @@
     <Compile Include="Collections\ObjectModel\IObservableDictionary.cs" />
     <Compile Include="Collections\ObjectModel\ObservableDictionary.cs" />
     <Compile Include="Collections\ObjectModel\ObservableList.cs" />
+    <Compile Include="Converters\BlobToImageSourceConverter.cs" />
     <Compile Include="Converters\EllipsisConverter.cs" />
     <Compile Include="Converters\FileSizeConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
@@ -47,6 +48,10 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="MarkupExtensions\TranslateMarkupExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IMessageBus.cs" />
+    <Compile Include="Services\Impl\MessageBusImpl.cs" />
+    <Compile Include="Services\Impl\WeakSubscription.cs" />
+    <Compile Include="Services\MessageSubscriptionToken.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\ListView.cs" />

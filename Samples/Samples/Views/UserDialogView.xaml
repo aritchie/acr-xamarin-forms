@@ -17,7 +17,6 @@
                 <Button Text="Date/Time Prompt" Command="{Binding DateTimePrompt}" />
                 <Button Text="Duration Prompt" Command="{Binding DurationPrompt}" />
                 <Button Text="Prompt" Command="{Binding Prompt}" />
-                <Button Text="Prompt (Multi-Line)" Command="{Binding PromptMultiline}" />
                 <Button Text="Prompt (Secure)" Command="{Binding PromptSecure}" />
                 <Button Text="Toast" Command="{Binding Toast}" />
                 <Button Text="Loading" Command="{Binding Loading}" />

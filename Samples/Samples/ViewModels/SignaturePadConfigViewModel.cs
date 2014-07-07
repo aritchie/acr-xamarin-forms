@@ -1,49 +1,64 @@
 ﻿using System;
+using System.Windows.Input;
 using Acr.XamForms.SignaturePad;
+using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
+using Xamarin.Forms;
 
 
 namespace Samples.ViewModels {
 
-    //public class ColorDefinition {
-    //    public string Name { get; set; }
-    //    public Color Color { get; set; }
-    //}
-
-
     public class SignaturePadConfigViewModel : ViewModel {
         private readonly ISignatureService signatureService;
+        private readonly IUserDialogService dialogs;
 
 
-        public SignaturePadConfigViewModel(ISignatureService signatureService) {
+        public SignaturePadConfigViewModel(ISignatureService signatureService, IUserDialogService dialogs) {
             this.signatureService = signatureService;
-            //this.Colors = typeof(Color)
-            //    .GetTypeInfo()
-            //    .DeclaredFields
-            //    .Select(x => new ColorDefinition {
-            //        Name = x.Name,
-            //        Color = (Color)x.GetValue(null)
-            //    })
-            //    .ToList();
+            this.dialogs = dialogs;
 
             var cfg = this.signatureService.Configuration;
             this.saveText = cfg.SaveText;
             this.cancelText = cfg.CancelText;
             this.promptText = cfg.PromptText;
             this.captionText = cfg.CaptionText;
-
-            
-            //this.bgColor = this.GetColorDefinition(cfg.BackgroundColor);
-            //this.promptTextColor = this.GetColorDefinition(cfg.PromptTextColor);
-            //this.captionTextColor = this.GetColorDefinition(cfg.CaptionTextColor);
-            //this.signatureLineColor = this.GetColorDefinition(cfg.SignatureLineColor);
-            //this.strokeColor = this.GetColorDefinition(cfg.StrokeColor);
         }
 
 
+        private void SetTheme(string theme) {
+            var c = this.signatureService.Configuration;
+
+            switch (theme.ToLower()) {
+                case "black":
+                    c.SignatureBackgroundColor = Color.Black;
+                    c.ClearTextColor = Color.White;
+                    c.PromptTextColor = Color.White;
+                    c.SignatureLineColor = Color.White;
+                    c.StrokeColor = Color.White;
+                    break;
+
+                case "white":
+                    c.SignatureBackgroundColor = Color.White;
+                    c.ClearTextColor = Color.Black;
+                    c.PromptTextColor = Color.Black;
+                    c.SignatureLineColor = Color.Black;
+                    c.StrokeColor = Color.Black;
+                    break;
+            }
+        }
+
         #region Binding Properties
 
-        //public IList<ColorDefinition> Colors { get; private set; }
+        private ICommand changeThemeCmd;
+        public ICommand ChangeTheme {
+            get {
+                this.changeThemeCmd = this.changeThemeCmd ?? new Command(() => this.dialogs.ActionSheet(new ActionSheetConfig()
+                    .Add("Black", () => SetTheme("Black"))
+                    .Add("White", () => SetTheme("White"))
+                ));
+                return this.changeThemeCmd;
+            }
+        }
 
 
         private string cancelText;
@@ -94,55 +109,6 @@ namespace Samples.ViewModels {
                     this.signatureService.Configuration.StrokeWidth = value;
             }
         }
-
-        //public Color signatureLineColor;
-        //public Color SignatureLineColor {
-        //    get { return this.signatureLineColor; }
-        //    set {
-        //        if (this.SetProperty(ref this.signatureLineColor, value))
-        //            this.signatureService.Configuration.SignatureLineColor = value.Color;
-        //    }
-        //}
-
-
-        //private ColorDefinition strokeColor;
-        //public ColorDefinition StrokeColor {
-        //    get { return this.strokeColor; }
-        //    set {
-        //        if (this.SetProperty(ref this.strokeColor, value))
-        //            this.signatureService.Configuration.StrokeColor = value.Color;
-        //    }
-        //}
-
-
-        //private ColorDefinition captionTextColor;
-        //public ColorDefinition CaptionTextColor {
-        //    get { return this.captionTextColor; }
-        //    set {
-        //        if (this.SetProperty(ref this.captionTextColor, value))
-        //            this.signatureService.Configuration.CaptionTextColor = value.Color;
-        //    }
-        //}
-
-
-        //private ColorDefinition bgColor;
-        //public ColorDefinition BgColor {
-        //    get { return this.bgColor; }
-        //    set {
-        //        if (this.SetProperty(ref this.bgColor, value))
-        //            this.signatureService.Configuration.MainBackgroundColor = value.Color;
-        //    }
-        //}
-
-
-        //private ColorDefinition promptTextColor;
-        //public ColorDefinition PromptTextColor {
-        //    get { return this.promptTextColor; }
-        //    set {
-        //        if (this.SetProperty(ref this.promptTextColor, value))
-        //            this.signatureService.Configuration.PromptTextColor = value.Color;
-        //    }
-        //}
 
         #endregion
     }

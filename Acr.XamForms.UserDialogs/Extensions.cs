@@ -55,9 +55,9 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", PromptType type = PromptType.SingleLine) {
+        public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", bool secure = false) {
             var tcs = new TaskCompletionSource<PromptResult>();
-            dialogs.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, type);
+            dialogs.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, secure);
             return tcs.Task;
         }
 
@@ -106,7 +106,7 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static void Prompt(this IUserDialogService dialogs, string message, Action<PromptResult> onResult, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = null, PromptType type = PromptType.SingleLine) {
+        public static void Prompt(this IUserDialogService dialogs, string message, Action<PromptResult> onResult, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = null, bool secure = false) {
             dialogs.Prompt(new PromptConfig {
                 CancelText = cancelText,
                 Message = message,
@@ -114,7 +114,7 @@ namespace Acr.XamForms.UserDialogs {
                 OnResult = onResult,
                 Title = title,
                 Placeholder = placeholder,
-                Type = type
+                IsSecure = secure
             });
         }
 

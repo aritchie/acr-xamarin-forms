@@ -3,39 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Samples.Views.SignaturePadConfigView"
              Title="Signature Pad Configuration">
-    <StackLayout>
-        <ScrollView>
-            <StackLayout>
-                <Label Text="Save Button Text:" />
-                <Entry Text="{Binding SaveText}" />
+    <ScrollView>
+        <StackLayout>
+            <Button Text="Change Theme" Command="{Binding ChangeTheme}" />
             
-                <Label Text="Cancel Button Text:" />
-                <Entry Text="{Binding CancelText}" />
+            <Label Text="Save Button Text:" />
+            <Entry Text="{Binding SaveText}" />
             
-                <Label Text="Prompt Text:" />
-                <Entry Text="{Binding PromptText}" />
+            <Label Text="Cancel Button Text:" />
+            <Entry Text="{Binding CancelText}" />
             
-                <Label Text="Caption Text:" />
-                <Entry Text="{Binding CaptionText}" />
+            <Label Text="Prompt Text:" />
+            <Entry Text="{Binding PromptText}" />
             
-                <!--<Label Text="Background Color:" />-->
-                <!--<MvxSpinner
-                    local:MvxBind="ItemsSource Colors; SelectedItem BgColor"
-                    local:MvxItemTemplate="@layout/spinnercolordefinition"
-                    local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
-                <!--<Label Text="Signature Line Color:" />-->
-                <!--<MvxSpinner
-                    local:MvxBind="ItemsSource Colors; SelectedItem SignatureLineColor"
-                    local:MvxItemTemplate="@layout/spinnercolordefinition"
-                    local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
-                <!--<Label Text="Stroke Color:" />-->
-                <!--<MvxSpinner
-                    local:MvxBind="ItemsSource Colors; SelectedItem StrokeColor"
-                    local:MvxItemTemplate="@layout/spinnercolordefinition"
-                    local:MvxDropDownItemTemplate="@layout/spinnercolordefinition"
+            <Label Text="Caption Text:" />
+            <Entry Text="{Binding CaptionText}" />
+            
+            <!--<Label Text="Background Color:" />-->
+            <!--<MvxSpinner
+                local:MvxBind="ItemsSource Colors; SelectedItem BgColor"
+                local:MvxItemTemplate="@layout/spinnercolordefinition"
+                local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
+            <!--<Label Text="Signature Line Color:" />-->
+            <!--<MvxSpinner
+                local:MvxBind="ItemsSource Colors; SelectedItem SignatureLineColor"
+                local:MvxItemTemplate="@layout/spinnercolordefinition"
+                local:MvxDropDownItemTemplate="@layout/spinnercolordefinition" />-->
+            <!--<Label Text="Stroke Color:" />-->
+            <!--<MvxSpinner
+                local:MvxBind="ItemsSource Colors; SelectedItem StrokeColor"
+                local:MvxItemTemplate="@layout/spinnercolordefinition"
+                local:MvxDropDownItemTemplate="@layout/spinnercolordefinition"
                 
-                     />-->
-            </StackLayout>
-        </ScrollView>
-    </StackLayout>
+                    />-->
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

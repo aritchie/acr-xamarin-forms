@@ -77,16 +77,16 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
 
 
         public override void Prompt(PromptConfig config) {
-            // TODO: multiline text
-            // TODO: secure text
             this.Dispatch(() => {
                 var yes = false;
 
+                // TODO: secure input - passwordbox
                 var input = new InputPrompt {
                     Title = config.Title,
                     Message = config.Message,
-                    IsCancelVisible = true,
+                    IsCancelVisible = true
                 };
+
                 input.ActionPopUpButtons.Clear();
 
                 var btnYes = new Button { Content = config.OkText };

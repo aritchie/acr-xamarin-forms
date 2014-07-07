@@ -13,7 +13,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
     public class UserDialogService : AbstractUserDialogService {
 
         public override void ActionSheet(ActionSheetConfig config) {
-            Utils.Dispatch(() => {
+            Device.BeginInvokeOnMainThread(() => {
                 var action = new UIActionSheet(config.Title);
                 config.Options.ToList().ForEach(x => action.AddButton(x.Text));
 
@@ -25,7 +25,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
 
         public override void Alert(AlertConfig config) {
-            Utils.Dispatch(() => {
+            Device.BeginInvokeOnMainThread(() => {
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
                 if (config.OnOk != null) 
                     dlg.Clicked += (s, e) => config.OnOk();
@@ -36,7 +36,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
 
         public override void Confirm(ConfirmConfig config) {
-            Utils.Dispatch(() => {
+            Device.BeginInvokeOnMainThread(() => {
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
                 dlg.Clicked += (s, e) => {
                     var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
@@ -49,7 +49,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
         public override void Toast(string message, int timeoutSeconds, Action onClick) {
             // TODO: no click callback in showtoast at the moment
-            Utils.Dispatch(() => {
+            Device.BeginInvokeOnMainThread(() => {
                 var ms = timeoutSeconds * 1000;
                 BTProgressHUD.ShowToast(message, false, ms);
             });
@@ -58,7 +58,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
 
         public override void DateTimePrompt(DateTimePromptConfig config) {
-            var sheet = new ActionSheetDatePicker(Utils.GetTopView()) {
+            var sheet = new ActionSheetDatePicker {
                 Title = config.Title,
                 DoneText = config.OkText
             };
@@ -88,37 +88,37 @@ namespace Acr.XamForms.UserDialogs.iOS {
                 // TODO: stop adjusting date/time
                 config.OnResult(new DateTimePromptResult(sheet.DatePicker.Date));
             };
-            sheet.Show();
+
+            var top = Utils.GetTopView();
+            sheet.Show(top);
             //sheet.DatePicker.MinuteInterval
         }
 
 
         public override void DurationPrompt(DurationPromptConfig config) {
-            var sheet = new ActionSheetDatePicker(Utils.GetTopView()) {
+            var sheet = new ActionSheetDatePicker {
                 Title = config.Title,
                 DoneText = config.OkText
             };
             sheet.DatePicker.Mode = UIDatePickerMode.CountDownTimer;
 
             sheet.DateTimeSelected += (sender, args) => config.OnResult(new DurationPromptResult(args.TimeOfDay));
-            sheet.Show();
+
+            var top = Utils.GetTopView();
+            sheet.Show(top);
         }
 
 
         public override void Prompt(PromptConfig config) {
-            Utils.Dispatch(() => {
+            Device.BeginInvokeOnMainThread(() => {
                 var result = new PromptResult();
                 var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
-                    AlertViewStyle = config.Type == PromptType.Secure 
+                    AlertViewStyle = config.IsSecure
                         ? UIAlertViewStyle.SecureTextInput 
                         : UIAlertViewStyle.PlainTextInput
                 };
-                // TODO: multiline
-                //dlg.Add(new UITextView {
-                //    Editable = true
-                //});
                 var txt = dlg.GetTextField(0);
-                txt.SecureTextEntry = (config.Type == PromptType.Secure);
+                txt.SecureTextEntry = config.IsSecure;
                 txt.Placeholder = config.Placeholder;
 
                 //UITextView = editable

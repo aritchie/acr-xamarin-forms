@@ -9,16 +9,24 @@ namespace Acr.XamForms {
     public static class Utils {
 
         public static UIWindow GetTopWindow() {
-            return 
-                UIApplication.SharedApplication.KeyWindow
-                ?? UIApplication.SharedApplication.Windows.Last()
-                ?? UIApplication.SharedApplication.Delegate.Window;
+            return UIApplication
+                .SharedApplication
+                .Windows
+                .Reverse()
+                .FirstOrDefault(x => 
+                    x.WindowLevel == UIWindowLevel.Normal && 
+                    !x.Hidden
+                );
+
+            //return 
+            //    UIApplication.SharedApplication.KeyWindow
+            //    ?? UIApplication.SharedApplication.Windows.Last()
+            //    ?? UIApplication.SharedApplication.Delegate.Window;
         }
 
 
         public static UIView GetTopView() {
-            return GetTopWindow().Subviews.First();
-            //return GetTopWindow().Subviews.Last();
+            return GetTopWindow().Subviews.Last();
         }
 
 
@@ -36,11 +44,6 @@ namespace Acr.XamForms {
                 return root.PresentedViewController;
 
             return root;
-        }
-
-
-        public static void Dispatch(Action action) {
-            UIApplication.SharedApplication.InvokeOnMainThread(() => action());
         }
     }
 }

@@ -79,7 +79,7 @@ namespace Samples.ViewModels {
                         result.Stream.CopyTo(ms);
                         var bytes = ms.ToArray();
                         file = this.fileSystem.AppData.CreateFile(fileName);
-                        using (var fs = file.OpenWrite()) {
+                        using (var fs = file.OpenWrite()) 
                             fs.Write(bytes, 0, bytes.Length);
                     }
                     this.List.Add(new Signature {
