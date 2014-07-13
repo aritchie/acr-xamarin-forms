@@ -7,6 +7,7 @@ namespace Acr.XamForms.Infrastructure {
     
     public interface IViewModelResolver {
 
-        ContentPage Resolve<TViewModel>(object args = null) where TViewModel : IViewModel;
+        IViewModel ResolveViewModel(Type viewModelType, object args = null);
+        ContentPage ResolvePage(Type viewModelType, object args = null);
     }
 }

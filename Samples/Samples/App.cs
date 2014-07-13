@@ -79,17 +79,13 @@ namespace Samples {
             builder.Register(x => DependencyService.Get<T>()).SingleInstance();
             return builder;
         }
- 
-
-        public static ContentPage ResolveView<T>(object args = null) where T : IViewModel {
-            return container
-                .Resolve<IViewModelResolver>()
-                .Resolve<T>();
-        }
 
 
         public static void NavigateTo<T>(object args = null) where T : IViewModel {
-            var page = ResolveView<T>(args);
+            var page = container
+                .Resolve<IViewModelResolver>()
+                .ResolvePage(typeof(T), args);
+
             navigator.PushAsync(page);
         }
 

@@ -16,47 +16,50 @@ namespace Acr.XamForms.Infrastructure {
         }
 
 
-        protected virtual IViewModel ResolveViewModel<T>(object args) where T : IViewModel {
-            var viewModel = this.resolveViewModel(typeof(T));
+        #region IViewModelResolver Members
+
+        public virtual IViewModel ResolveViewModel(Type viewModelType, object args = null) {
+            var viewModel = this.resolveViewModel(viewModelType);
             if (viewModel == null)
-                throw new ArgumentException("Invalid viewmodel type - " + typeof(T));
+                throw new ArgumentException("Invalid viewmodel type - " + viewModelType);
             
             viewModel.Init(args);
-            return viewModel;
+            return viewModel;            
         }
 
 
-        protected virtual ContentPage CreatePage(Type pageType) {
+        public virtual ContentPage ResolvePage(Type viewModelType, object args = null) {
+            var pageType = this.FindPageForViewModel(viewModelType);
             var page = this.resolvePage(pageType);
-            if (page == null)
-                throw new ArgumentException(pageType + " does not inherit from contentpage");
-            
+            var viewModel = this.ResolveViewModel(viewModelType, args);
+            this.Bind(page, viewModel);
             return page;
         }
 
+        #endregion
 
-        protected virtual ContentPage ResolvePage<T>() where T : IViewModel {
-            var pageTypeName = typeof(T)
+        #region Internals
+
+        protected virtual void Bind(ContentPage page, IViewModel viewModel) {
+            page.BindingContext = viewModel;
+
+            page.Appearing += (sender, args1) => viewModel.OnAppearing();
+            page.Disappearing += (sender, args1) => viewModel.OnDisappearing();            
+        }
+
+
+        protected virtual Type FindPageForViewModel(Type viewModelType) {
+            var pageTypeName = viewModelType
                 .AssemblyQualifiedName
                 .Replace("ViewModel", "View");
-         
+
             var pageType = Type.GetType(pageTypeName);
             if (pageType == null)
                 throw new ArgumentException(pageTypeName + " type not exist");
 
-            return this.CreatePage(pageType);
+            return pageType;
         }
 
-
-        public virtual ContentPage Resolve<TViewModel>(object args = null) where TViewModel : IViewModel {
-            var page = this.ResolvePage<TViewModel>();
-            var viewModel = this.ResolveViewModel<TViewModel>(args);
-            page.BindingContext = viewModel;
-
-            page.Appearing += (sender, args1) => viewModel.OnAppearing();
-            page.Disappearing += (sender, args1) => viewModel.OnDisappearing();
-            
-            return page;
-        }
+        #endregion
     }
 }
