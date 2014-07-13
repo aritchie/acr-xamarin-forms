@@ -68,8 +68,10 @@
     </Compile>
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="FileViewer.cs" />
+    <None Include="TODO\AudioService.cs" />
+    <None Include="TODO\ImageService.cs" />
     <Compile Include="Logger.cs" />
-    <None Include="MailService.cs" />
+    <None Include="TODO\MailService.cs" />
     <Compile Include="NetworkConnectionBroadcastReceiver.cs" />
     <Compile Include="NetworkService.cs" />
     <Compile Include="PhoneService.cs" />

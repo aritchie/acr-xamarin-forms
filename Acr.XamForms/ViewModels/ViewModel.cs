@@ -9,6 +9,7 @@ namespace Acr.XamForms.ViewModels {
     public abstract class ViewModel : IViewModel {
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public bool IsVisible { get; private set; }
 
 
         protected virtual bool SetProperty<T>(ref T property, T value, [CallerMemberName] string propertyName = null){
@@ -27,18 +28,17 @@ namespace Acr.XamForms.ViewModels {
         }
 
 
-        //protected virtual void NavigateTo() {
-        //    var nav = DependencyService.Get<INavigation>();
-
-        //}
-
-
         public void Init(object args) {
         }
 
 
-        public virtual Task Start() {
-            return Task.FromResult(0);
+        public virtual void OnAppearing() {
+            this.IsVisible = true;
+        }
+
+
+        public void OnDisappearing() {
+            this.IsVisible = false;
         }
     }
 }

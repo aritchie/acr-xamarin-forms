@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Acr.XamForms.BarCodeScanner;
+using Acr.XamForms.Infrastructure;
 using Acr.XamForms.Mobile;
 using Acr.XamForms.Mobile.IO;
 using Acr.XamForms.SignaturePad;
@@ -42,8 +43,8 @@ namespace Samples {
                 .RegisterXamDependency<ISignatureService>();
 
             builder
-                .Register(x => navigator)
-                .As<INavigation>()
+                .Register(x => new ViewModelResolver(vt => container.Resolve(vt) as IViewModel))
+                .As<IViewModelResolver>()
                 .SingleInstance();
 
             container = builder.Build();
@@ -53,7 +54,6 @@ namespace Samples {
         public static Page GetMainPage() {
             Init();
             var page = new NavigationPage(new HomeView());
-            //var page = new HomeView();
             navigator = page.Navigation;
             return page;
         }
@@ -70,15 +70,6 @@ namespace Samples {
                     x.Name.EndsWith("ViewModel")
                 )
                 .InstancePerDependency();
-            
-            builder
-                .RegisterAssemblyTypes(ass)
-                .Where(x => 
-                    x.GetTypeInfo().IsClass &&
-                    !x.GetTypeInfo().IsAbstract &&
-                    x.Namespace.Equals("samples.views", StringComparison.CurrentCultureIgnoreCase)
-                )
-                .InstancePerDependency();
 
             return builder;
         }
@@ -91,38 +82,9 @@ namespace Samples {
  
 
         public static ContentPage ResolveView<T>(object args = null) where T : IViewModel {
-            var viewName = typeof(T)
-                .AssemblyQualifiedName
-                .Replace("ViewModel", "View");
-
-            var viewModel = container.Resolve<T>();
-            viewModel.Init(args);
-
-            var viewType = Type.GetType(viewName);
-            if (viewType == null)
-                throw new ArgumentException(viewName + " type not exist");
-
-            var page = container.Resolve(viewType) as ContentPage;
-            //var page = Activator.CreateInstance(viewType) as ContentPage;
-            if (page == null)
-                throw new ArgumentException(viewName + " does not inherit from contentpage");
-
-            page.BindingContext = viewModel;
-            page.Appearing += async (sender, args1) => {
-                try {
-                    await viewModel.Start();
-                }
-                catch (Exception ex) {
-                    DependencyService.Get<ILogger>().Error("VIEWMODEL START", ex);
-                }
-            };
-            page.Disappearing += (sender, args1) => {
-                var dispose = viewModel as IDisposable;
-                if (dispose != null)
-                    dispose.Dispose();
-            };
-            
-            return page;
+            return container
+                .Resolve<IViewModelResolver>()
+                .Resolve<T>();
         }
 
 

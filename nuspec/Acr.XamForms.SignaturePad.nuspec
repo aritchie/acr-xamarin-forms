@@ -27,6 +27,7 @@ Initial Release
         <file src="..\bin\Release\Portable\Acr.XamForms.SignaturePad.dll" target="lib\MonoAndroid\Acr.XamForms.SignaturePad.dll" />
         <file src="..\bin\Release\MonoAndroid\Acr.XamForms.SignaturePad.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.SignaturePad.Droid.dll" />
         <file src="..\bin\Release\MonoAndroid\SignaturePad.Android.dll" target="lib\MonoAndroid\SignaturePad.Android.dll" />
+        <file src="Bootstrap\SignaturePadBootstrap.cs.pp" target="content\MonoAndroid\Bootstrap\SignaturePadBootstrap.cs.pp" />
         
         <!-- touch -->
         <file src="..\bin\Release\Portable\Acr.XamForms.SignaturePad.dll" target="lib\MonoTouch\Acr.XamForms.SignaturePad.dll" />

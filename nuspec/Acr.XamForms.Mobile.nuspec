@@ -36,6 +36,7 @@ Initial Release
         <file src="..\bin\Release\Portable\Acr.XamForms.Mobile.dll" target="lib\MonoAndroid\Acr.XamForms.Mobile.dll" />
         <file src="..\bin\Release\MonoAndroid\Acr.XamForms.Mobile.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.Mobile.Droid.dll" />
         <file src="..\bin\Release\MonoAndroid\Xamarin.Mobile.dll" target="lib\MonoAndroid\Xamarin.Mobile.dll" />
+        <file src="Bootstrap\MobileBootstrap.cs.pp" target="content\MonoAndroid\Bootstrap\MobileBootstrap.cs.pp" />
         
         <!-- touch -->
         <file src="..\bin\Release\Portable\Acr.XamForms.Mobile.dll" target="lib\MonoTouch\Acr.XamForms.Mobile.dll" />

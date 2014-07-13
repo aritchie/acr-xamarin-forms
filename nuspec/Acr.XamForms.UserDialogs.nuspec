@@ -13,7 +13,7 @@
         <tags>xamarin forms dialogs</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.1, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.1.1, 2.0)" />
             </group>
             <group targetFramework="wp8">
                 <dependency id="Coding4Fun.Toolkit.Controls" version="[2.0, 3.0)" />
@@ -24,7 +24,7 @@
 Create better method structure on main class
 NEW - Date/Time Dialog
 NEW - Duration Dialog
-NEW - secure and multi-line prompts
+NEW - Secure text prompt
 
 1.0
 Initial Release
@@ -38,7 +38,8 @@ Initial Release
         <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\MonoAndroid\Acr.XamForms.UserDialogs.dll" />
         <file src="..\bin\Release\MonoAndroid\Acr.XamForms.UserDialogs.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.UserDialogs.Droid.dll" />
         <file src="..\bin\Release\MonoAndroid\AndHUD.dll" target="lib\MonoAndroid\AndHUD.dll" />
-
+        <file src="Bootstrap\UserDialogsBootstrap.cs.pp" target="content\MonoAndroid\Bootstrap\UserDialogsBootstrap.cs.pp" />
+        
         <!-- ios -->
         <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.dll" />
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" />

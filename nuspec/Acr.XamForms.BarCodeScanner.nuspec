@@ -43,7 +43,8 @@ Initial Release
         <!-- droid -->
         <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoAndroid\Acr.XamForms.BarCodeScanner.dll" />
         <file src="..\bin\Release\MonoAndroid\Acr.XamForms.BarCodeScanner.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.BarCodeScanner.Droid.dll" />
-
+        <file src="Bootstrap\BarCodeScannerBootstrap.cs.pp" target="content\MonoAndroid\Bootstrap\BarCodeScannerBootstrap.cs.pp" />
+        
         <!-- ios -->
         <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.dll" />
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" />

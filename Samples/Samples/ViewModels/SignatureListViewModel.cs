@@ -36,7 +36,7 @@ namespace Samples.ViewModels {
         }
 
 
-        public override async Task Start() {  
+        public override void OnAppearing() {  
             this.List.Clear();
 
             var signatures = this.fileSystem

@@ -40,7 +40,10 @@
     <Compile Include="AbstractLogger.cs" />
     <Compile Include="AbstractMailService.cs" />
     <Compile Include="AbstractSettings.cs" />
+    <Compile Include="TODO\IAudioService.cs" />
     <Compile Include="IDeviceInfo.cs" />
+    <None Include="TODO\IImage.cs" />
+    <None Include="TODO\IImageService.cs" />
     <Compile Include="IO\IDirectory.cs" />
     <Compile Include="IO\IFile.cs" />
     <Compile Include="IFileViewer.cs" />
@@ -50,10 +53,10 @@
     <Compile Include="ISettings.cs" />
     <Compile Include="ISettingsDictionary.cs" />
     <Compile Include="ITextToSpeechService.cs" />
-    <None Include="MailAddress.cs" />
-    <None Include="MailAttachment.cs" />
-    <None Include="MailExtensions.cs" />
-    <None Include="MailMessage.cs" />
+    <None Include="TODO\MailAddress.cs" />
+    <None Include="TODO\MailAttachment.cs" />
+    <None Include="TODO\MailExtensions.cs" />
+    <None Include="TODO\MailMessage.cs" />
     <Compile Include="AbstractNetworkService.cs" />
     <Compile Include="NetworkStatusChangedEventArgs.cs" />
     <Compile Include="ObservableDictionary.cs" />
@@ -61,7 +64,7 @@
     <Compile Include="PositionErrorEventArgs.cs" />
     <Compile Include="PositionEventArgs.cs" />
     <Compile Include="ILocationService.cs" />
-    <Compile Include="IMailService.cs" />
+    <None Include="TODO\IMailService.cs" />
     <Compile Include="IPhoneService.cs" />
     <Compile Include="IPhotoService.cs" />
     <Compile Include="PhotoResult.cs" />

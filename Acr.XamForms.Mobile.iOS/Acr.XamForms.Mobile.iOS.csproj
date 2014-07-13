@@ -38,8 +38,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <None Include="TODO\AudioService.cs" />
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="FileViewer.cs" />
+    <None Include="TODO\ImageService.cs" />
     <Compile Include="Logger.cs" />
     <None Include="MailService.cs" />
     <Compile Include="NetworkService.cs" />

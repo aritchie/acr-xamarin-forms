@@ -100,6 +100,7 @@ Global
 		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{07658008-eb02-4c74-b798-0b8ed2beca6d}*SharedItemsImports = 4
 		Shared Utils\Shared Utils.projitems*{b12d20aa-0edf-4903-b385-bb8090848532}*SharedItemsImports = 4
 		Acr.XamForms.BarCodeScanner.Shared\Acr.XamForms.BarCodeScanner.Shared.projitems*{6646e5ee-5534-4274-b99f-39ca222b23ef}*SharedItemsImports = 13
+		Shared Utils\Shared Utils.projitems*{f68a14ab-0965-4582-9399-f22f5c4ceb15}*SharedItemsImports = 4
 		Acr.XamForms.BarCodeScanner.Shared\Acr.XamForms.BarCodeScanner.Shared.projitems*{dc51e5ac-4dfb-449e-95e3-a471c0ebb53c}*SharedItemsImports = 4
 		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{d7098843-29d9-4aa9-9b11-c2d938e1ae89}*SharedItemsImports = 4
 		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{a2908b9c-d5d0-4715-851d-3eb81ab2e452}*SharedItemsImports = 4
@@ -229,9 +230,9 @@ Global
 		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
-		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhone
-		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|Mixed Platforms.Build.0 = Debug|iPhone
-		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|Mixed Platforms.Deploy.0 = Debug|iPhone
+		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhoneSimulator
+		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|Mixed Platforms.Build.0 = Debug|iPhoneSimulator
+		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|Mixed Platforms.Deploy.0 = Debug|iPhoneSimulator
 		{2142B859-21E9-484D-880A-26AD708569DB}.Debug|x86.ActiveCfg = Debug|iPhone
 		{2142B859-21E9-484D-880A-26AD708569DB}.Release|Any CPU.ActiveCfg = Release|iPhone
 		{2142B859-21E9-484D-880A-26AD708569DB}.Release|ARM.ActiveCfg = Release|iPhone

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
+using Android.Content;
 using Android.Text.Method;
 using Android.Views.InputMethods;
 using Android.Widget;

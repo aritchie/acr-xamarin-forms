@@ -9,6 +9,7 @@
     <Import_RootNamespace>Shared Utils</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Droid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ios.cs" />
   </ItemGroup>
 </Project>

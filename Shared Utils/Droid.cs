@@ -1,3 +1,4 @@
+﻿#if __ANDROID__
 using System;
 using System.Threading;
 using Android.App;
@@ -5,7 +6,7 @@ using Android.Content;
 using Xamarin.Forms;
 
 
-namespace Acr.XamForms.UserDialogs.Droid {
+namespace Acr.XamForms {
     
     public static class Utils {
         
@@ -30,3 +31,4 @@ namespace Acr.XamForms.UserDialogs.Droid {
         }
     }
 }
+#endif
