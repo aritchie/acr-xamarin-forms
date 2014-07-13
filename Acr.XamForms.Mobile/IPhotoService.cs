@@ -10,5 +10,7 @@ namespace Acr.XamForms.Mobile {
         bool IsGalleryAvailable { get; }
         Task<PhotoResult> FromGallery();
         Task<PhotoResult> FromCamera();
+
+        // TODO: video services
     }
 }

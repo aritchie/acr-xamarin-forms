@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms</id>
-        <version>1.1</version>
+        <version>1.1.1</version>
         <title>Acr.XamForms</title>
         <description>ACR utilities for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -12,7 +12,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>		
         <tags>xamarin</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.1.1, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.2.1, 2.0)" />
         </dependencies>
         <releaseNotes>
 1.1

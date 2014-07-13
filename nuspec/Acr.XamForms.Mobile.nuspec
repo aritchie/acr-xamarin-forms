@@ -4,7 +4,6 @@
         <id>Acr.XamForms.Mobile</id>
         <version>1.2.1</version>
         <title>Mobile Services for Xamarin Forms</title>
-        <!--<description>XPlat Camera-Gallery Access, Geo-Location, Settings, E-Mail, Network Detection, Phone, File System Management, SSMS, File Opener, and Logging for Xamarin Forms</description>-->
         <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, File System Management, SMS, File Opener, and Logging for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -13,10 +12,17 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.1.1, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.2.1, 2.0)" />
             <dependency id="Newtonsoft.Json" version="[6, 7)" />
         </dependencies>
         <releaseNotes>
+1.3
+Imaging services to compress, rotate, and convert formats
+Audio service to play and record audio
+Video play service
+Mail service to launch mail app
+
+
 1.2
 File system manager - why? because another open source library drove me nuts and I needed something more powerful and less async
 
@@ -36,7 +42,6 @@ Initial Release
         <file src="..\bin\Release\Portable\Acr.XamForms.Mobile.dll" target="lib\MonoAndroid\Acr.XamForms.Mobile.dll" />
         <file src="..\bin\Release\MonoAndroid\Acr.XamForms.Mobile.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.Mobile.Droid.dll" />
         <file src="..\bin\Release\MonoAndroid\Xamarin.Mobile.dll" target="lib\MonoAndroid\Xamarin.Mobile.dll" />
-        <file src="Bootstrap\MobileBootstrap.cs.pp" target="content\MonoAndroid\Bootstrap\MobileBootstrap.cs.pp" />
         
         <!-- touch -->
         <file src="..\bin\Release\Portable\Acr.XamForms.Mobile.dll" target="lib\MonoTouch\Acr.XamForms.Mobile.dll" />
