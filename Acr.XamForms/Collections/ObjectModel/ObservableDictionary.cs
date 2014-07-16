@@ -226,7 +226,8 @@ namespace System.Collections.ObjectModel
  
     protected virtual void OnPropertyChanged(string propertyName)
     {
-      if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      //if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(string.IsNullOrEmpty(propertyName) ? "" : "Item[" + propertyName + "]"));
     }
  
     private void OnCollectionChanged()

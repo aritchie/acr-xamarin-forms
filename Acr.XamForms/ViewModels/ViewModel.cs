@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 
 namespace Acr.XamForms.ViewModels {
@@ -10,6 +9,7 @@ namespace Acr.XamForms.ViewModels {
 
         public event PropertyChangedEventHandler PropertyChanged;
         public bool IsVisible { get; private set; }
+        private bool started = false;
 
 
         protected virtual bool SetProperty<T>(ref T property, T value, [CallerMemberName] string propertyName = null){
@@ -28,12 +28,20 @@ namespace Acr.XamForms.ViewModels {
         }
 
 
-        public void Init(object args) {
+        public virtual void Init(object args) {
+        }
+
+
+        protected virtual void OnStart() {
         }
 
 
         public virtual void OnAppearing() {
             this.IsVisible = true;
+            if (!this.started) {
+                this.OnStart();
+                this.started = true;
+            }
         }
 
 
