@@ -150,58 +150,58 @@ namespace Samples.ViewModels {
         }
 
 
-        public ICommand DatePrompt {
-            get {
-                return this.DateTimeCommand(
-                    DateTimeSelectionType.Date, 
-                    CultureInfo.CurrentCulture.DateTimeFormat.LongDatePattern, 
-                    "Date", 
-                    DateTime.Now.AddDays(-3), 
-                    DateTime.Now.AddDays(30)
-                );
-            }
-        }
+        //public ICommand DatePrompt {
+        //    get {
+        //        return this.DateTimeCommand(
+        //            DateTimeSelectionType.Date, 
+        //            CultureInfo.CurrentCulture.DateTimeFormat.LongDatePattern, 
+        //            "Date", 
+        //            DateTime.Now.AddDays(-3), 
+        //            DateTime.Now.AddDays(30)
+        //        );
+        //    }
+        //}
 
 
-        public ICommand TimePrompt {
-            get {
-                return this.DateTimeCommand(
-                    DateTimeSelectionType.Time, 
-                    CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern, 
-                    "Time", 
-                    DateTime.Now.AddHours(-3), 
-                    DateTime.Now.AddHours(3)
-                );                    
-            }
-        }
+        //public ICommand TimePrompt {
+        //    get {
+        //        return this.DateTimeCommand(
+        //            DateTimeSelectionType.Time, 
+        //            CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern, 
+        //            "Time", 
+        //            DateTime.Now.AddHours(-3), 
+        //            DateTime.Now.AddHours(3)
+        //        );
+        //    }
+        //}
 
 
-        public ICommand DateTimePrompt {
-            get {
-                return this.DateTimeCommand(
-                    DateTimeSelectionType.DateTime, 
-                    CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern, 
-                    "Date/Time",
-                    DateTime.Now.AddDays(-3), 
-                    DateTime.Now.AddDays(30)
-                );
-            }
-        }
+        //public ICommand DateTimePrompt {
+        //    get {
+        //        return this.DateTimeCommand(
+        //            DateTimeSelectionType.DateTime, 
+        //            CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern, 
+        //            "Date/Time",
+        //            DateTime.Now.AddDays(-3), 
+        //            DateTime.Now.AddDays(30)
+        //        );
+        //    }
+        //}
 
 
-        public ICommand DurationPrompt {
-            get {
-                return new Command(async () => {
-                    var r = await dialogService.DurationPromptAsync(new DurationPromptConfig()
-                        .SetTitle("Duration")
-                        //.SetRange()
-                    );
-                    this.Result = r.Success
-                        ? "Duration: " + r.SelectedTimeSpan.Value
-                        : "Duration Prompt Cancelled";
-                });
-            }
-        }
+        //public ICommand DurationPrompt {
+        //    get {
+        //        return new Command(async () => {
+        //            var r = await dialogService.DurationPromptAsync(new DurationPromptConfig()
+        //                .SetTitle("Duration")
+        //                //.SetRange()
+        //            );
+        //            this.Result = r.Success
+        //                ? "Duration: " + r.SelectedTimeSpan.Value
+        //                : "Duration Prompt Cancelled";
+        //        });
+        //    }
+        //}
 
 
         #endregion
@@ -220,19 +220,19 @@ namespace Samples.ViewModels {
         }
 
 
-        private ICommand DateTimeCommand(DateTimeSelectionType type, string resultFormat, string title, DateTime min, DateTime max) {
-            return new Command(async () => {
-                var r = await this.dialogService.DateTimePromptAsync(new DateTimePromptConfig()
-                    .SetRange(min, max)
-                    .SetTitle(title)
-                    .SetSelectionType(type)
-                );
+        //private ICommand DateTimeCommand(DateTimeSelectionType type, string resultFormat, string title, DateTime min, DateTime max) {
+        //    return new Command(async () => {
+        //        var r = await this.dialogService.DateTimePromptAsync(new DateTimePromptConfig()
+        //            .SetRange(min, max)
+        //            .SetTitle(title)
+        //            .SetSelectionType(type)
+        //        );
                     
-                this.Result = r.Success
-                    ? String.Format("{0:" + resultFormat + "}", r.SelectedDateTime)
-                    : title + " selection was cancelled";
-            });
-        }
+        //        this.Result = r.Success
+        //            ? String.Format("{0:" + resultFormat + "}", r.SelectedDateTime)
+        //            : title + " selection was cancelled";
+        //    });
+        //}
 
         #endregion
     }

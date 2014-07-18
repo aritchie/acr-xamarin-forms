@@ -12,7 +12,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>		
         <tags>xamarin</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.1, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
         </dependencies>
         <releaseNotes>
 1.1

@@ -39,20 +39,20 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        public static Task<DateTimePromptResult> DateTimePromptAsync(this IUserDialogService dialogs, DateTimePromptConfig config) {
-            var tcs = new TaskCompletionSource<DateTimePromptResult>();
-            config.OnResult = tcs.SetResult;
-            dialogs.DateTimePrompt(config);
-            return tcs.Task;   
-        }
+        //public static Task<DateTimePromptResult> DateTimePromptAsync(this IUserDialogService dialogs, DateTimePromptConfig config) {
+        //    var tcs = new TaskCompletionSource<DateTimePromptResult>();
+        //    config.OnResult = tcs.SetResult;
+        //    dialogs.DateTimePrompt(config);
+        //    return tcs.Task;
+        //}
 
 
-        public static Task<DurationPromptResult> DurationPromptAsync(this IUserDialogService dialogs, DurationPromptConfig config) {
-            var tcs = new TaskCompletionSource<DurationPromptResult>();
-            config.OnResult = tcs.SetResult;
-            dialogs.DurationPrompt(config);
-            return tcs.Task;             
-        }
+        //public static Task<DurationPromptResult> DurationPromptAsync(this IUserDialogService dialogs, DurationPromptConfig config) {
+        //    var tcs = new TaskCompletionSource<DurationPromptResult>();
+        //    config.OnResult = tcs.SetResult;
+        //    dialogs.DurationPrompt(config);
+        //    return tcs.Task;
+        //}
 
 
         public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", bool secure = false) {
@@ -69,8 +69,6 @@ namespace Acr.XamForms.UserDialogs {
             return tcs.Task;
         }
 
-
-        //void DurationPrompt(DurationConfig config);
 
         #endregion
 

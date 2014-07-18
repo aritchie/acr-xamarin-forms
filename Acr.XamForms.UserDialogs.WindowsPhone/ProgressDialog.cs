@@ -72,7 +72,7 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
                 return;
 
             this.IsShowing = false;
-            this.Dispatch(this.progress.Hide);
+            this.Dispatch(this.progress.Dismiss);
         }
 
 

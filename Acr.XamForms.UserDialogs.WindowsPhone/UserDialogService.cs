@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using Acr.XamForms.UserDialogs.WindowsPhone;
-using Coding4Fun.Toolkit.Controls;
-using Xamarin.Forms;
-using Button = System.Windows.Controls.Button;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 
-[assembly: Dependency(typeof(UserDialogService))]
+[assembly: Xamarin.Forms.Dependency(typeof(UserDialogService))]
 
 
 namespace Acr.XamForms.UserDialogs.WindowsPhone {
@@ -17,123 +18,123 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
     public class UserDialogService : AbstractUserDialogService {
 
         public override void ActionSheet(ActionSheetConfig config) {
-            this.Dispatch(() => {
-                var alert = new ActionSheetPopUp { Title = config.Title };
-                alert.ActionPopUpButtons.Clear();
-                config.Options.ToList().ForEach(x => alert.AddButton(x.Text, x.Action));
-                alert.Show();
-            });
+            var sheet = new CustomMessageBox {
+                Caption = config.Title,
+                IsLeftButtonEnabled = false,
+                IsRightButtonEnabled = false
+            };
+            var list = new ListBox {
+                FontSize = 36,
+                Margin = new System.Windows.Thickness(12.0),
+                SelectionMode = SelectionMode.Single,
+                ItemsSource = config.Options
+                    .Select(x => new TextBlock {
+                        Text = x.Text,
+                        Margin = new System.Windows.Thickness(0.0, 12.0, 0.0, 12.0),
+                        DataContext = x
+                    })
+            };
+            list.SelectionChanged += (sender, args) => sheet.Dismiss();
+            sheet.Content = list;
+            sheet.Dismissed += (sender, args) => {
+                var txt = (TextBlock)list.SelectedValue;
+                var action = (ActionSheetOption)txt.DataContext;
+                if (action.Action != null)
+                    action.Action();
+            };
+            this.Dispatch(sheet.Show);
         }
 
 
         public override void Alert(AlertConfig config) {
             this.Dispatch(() => {
-                var alert = new MessagePrompt {
-                    Title = config.Title,
-                    Message = config.Message
+                var alert = new CustomMessageBox {
+                    Caption = config.Title,
+                    Message = config.Message,
+                    LeftButtonContent = config.OkText,
+                    IsRightButtonEnabled = false
                 };
-                var btn = new Button { Content = config.OkText };
-                btn.Click += (sender, args) => alert.Hide();
+                if (config.OnOk != null)
+                    alert.Dismissed += (sender, args) => config.OnOk();
 
-                if (config.OnOk != null)  
-                    alert.Completed += (sender, args) => config.OnOk();
-                
-                alert.ActionPopUpButtons.Clear();
-                alert.ActionPopUpButtons.Add(btn);
                 alert.Show();
             });
         }
-
+ 
 
         public override void Confirm(ConfirmConfig config) {
-            this.Dispatch(() => {
-                var alert = new MessagePrompt {
-                    Title = config.Title,
-                    Message = config.Message
-                };
-                var btnYes = new Button { Content = config.OkText };
-                btnYes.Click += (sender, args) => {
-                    alert.Hide();
-                    config.OnConfirm(true);
-                };
-
-                var btnNo = new Button { Content = config.CancelText };
-                btnNo.Click += (sender, args) => {
-                    alert.Hide();
-                    config.OnConfirm(false);
-                };
-
-                alert.ActionPopUpButtons.Clear();
-                alert.ActionPopUpButtons.Add(btnYes);
-                alert.ActionPopUpButtons.Add(btnNo);
-                alert.Show();
-            });
+            var confirm = new CustomMessageBox {
+                Caption = config.Title,
+                Message = config.Message,
+                LeftButtonContent = config.OkText,
+                RightButtonContent = config.CancelText
+            };
+            confirm.Dismissed += (sender, args) => config.OnConfirm(args.Result == CustomMessageBoxResult.LeftButton);
+            this.Dispatch(confirm.Show);
         }
-
-
-        //public override void PickDate(Action<DatePickerResult> callback, string title, DateTime? selectedDateTime, DateTime? minDate, DateTime? maxDate) {
-        //    var picker = new DatePickerPage();
-        //}
 
 
         public override void Prompt(PromptConfig config) {
-            this.Dispatch(() => {
-                var yes = false;
+            var prompt = new CustomMessageBox {
+                Caption = config.Title,
+                Message = config.Message,
+                LeftButtonContent = config.OkText,
+                RightButtonContent = config.CancelText
+            };
 
-                // TODO: secure input - passwordbox
-                var input = new InputPrompt {
-                    Title = config.Title,
-                    Message = config.Message,
-                    IsCancelVisible = true
-                };
+            var password = new PasswordBox();
+            var txt = new PhoneTextBox { Hint = config.Placeholder };
+            if (config.IsSecure)
+                prompt.Content = password;
+            else 
+                prompt.Content = txt;
 
-                input.ActionPopUpButtons.Clear();
-
-                var btnYes = new Button { Content = config.OkText };
-                btnYes.Click += (sender, args) => {
-                    yes = true;
-                    input.Hide();
-                };
-
-                var btnNo = new Button { Content = config.CancelText };
-                btnNo.Click += (sender, args) => input.Hide();
-
-                input.ActionPopUpButtons.Clear();
-                input.ActionPopUpButtons.Add(btnYes);
-                input.ActionPopUpButtons.Add(btnNo);
-            
-                input.Completed += (sender, args) => config.OnResult(new PromptResult {
-                    Ok = yes,
-                    Text = input.Value
-                });
-                input.Show();
+            prompt.Dismissed += (sender, args) => config.OnResult(new PromptResult {
+                Ok = args.Result == CustomMessageBoxResult.LeftButton,
+                Text = config.IsSecure
+                    ? password.Password
+                    : txt.Text.Trim()
             });
-        }
-
-
-        public override void DateTimePrompt(DateTimePromptConfig config) {
-            // TODO
-            throw new NotImplementedException();
-        }
-
-
-        public override void DurationPrompt(DurationPromptConfig config) {
-            // TODO
-            throw new NotImplementedException();
+            this.Dispatch(prompt.Show);
         }
 
 
         public override void Toast(string message, int timeoutSeconds, Action onClick) {
-            this.Dispatch(() => {
-                var toast = new ToastPrompt {
-                    Message = message,
-                    MillisecondsUntilHidden = timeoutSeconds * 1000
+            var resources = Application.Current.Resources;
+
+            var tb = new TextBlock {
+                Foreground = (Brush)resources["PhoneForegroundBrush"],
+                FontSize = (double)resources["PhoneFontSizeMedium"],
+                Margin = new Thickness(24, 32, 24, 12),
+                Text = message
+            };
+            var wrapper = new StackPanel {
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                Background = (Brush)resources["PhoneAccentBrush"],
+            };
+            wrapper.Children.Add(tb);
+
+            var popup = new Popup {
+                Child = wrapper
+            };
+            if (onClick != null) { 
+                tb.Tap += (sender, args) => {
+                    SystemTray.BackgroundColor = (Color)resources["PhoneBackgroundColor"];
+                    popup.IsOpen = false;
+                    onClick();
                 };
-                if (onClick != null) {
-                    toast.Tap += (sender, args) => onClick();
-                }
-                toast.Show();
+            }
+
+            this.Dispatch(() => {
+                SystemTray.BackgroundColor = (Color)resources["PhoneAccentColor"];
+                popup.IsOpen = true;
             });
+            Task.Delay(TimeSpan.FromSeconds(timeoutSeconds))
+                .ContinueWith(x => this.Dispatch(() => {
+                    SystemTray.BackgroundColor = (Color)resources["PhoneBackgroundColor"];
+                    popup.IsOpen = false;
+                }));
+
         }
 
 
@@ -144,19 +145,6 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
 
         protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
-        }
-
-
-        protected virtual Popup CreatePopup(UserControl control) {
-            var size = Application.Current.RootVisual.RenderSize;
-
-            return new Popup {
-                VerticalOffset = (size.Width - control.ActualWidth) / 2,
-                HorizontalOffset = (size.Height - control.ActualHeight) / 2,
-                Width = size.Width,
-                Height = size.Height,
-                Child = control
-            };
         }
     }
 }

@@ -13,7 +13,7 @@
         <tags>xamarin barcode android ios winphone</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.2.1, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
             </group>
             <group targetFramework="MonoAndroid">
                 <dependency id="ZXing.Net.Mobile" version="[1.4.5, 2.0)" />

@@ -31,11 +31,27 @@ namespace Samples.Views {
                         this.Nav<LocationViewModel>("Location"),
                         this.Nav<PhotoViewModel>("Camera/Photo Gallery"),
                         this.Nav<TextToSpeechViewModel>("Text-to-Speech"),
-                        this.Nav<SignatureListViewModel>("Signature Pad"),
+                        new Button {
+                            Text = "Signature Pad Service",
+                            HorizontalOptions = LayoutOptions.FillAndExpand,
+                            Command = new Command(async () => {
+                                if (Device.OS == TargetPlatform.WinPhone)
+                                    await this.DisplayAlert("Not Support", "Windows Phone does not currently support the signature pad", "");
+                                else
+                                    App.NavigateTo<SignatureListViewModel>();
+                            }),
+                            Font = Font.SystemFontOfSize(NamedSize.Large)
+                        },
+
                         new Button {
                             Text = "XAML Signature Pad",
                             HorizontalOptions = LayoutOptions.FillAndExpand,
-                            Command = new Command(async () => await this.Navigation.PushAsync(new SignatureXamlView())),
+                            Command = new Command(async () => {
+                                if (Device.OS == TargetPlatform.WinPhone)
+                                    await this.DisplayAlert("Not Support", "Windows Phone does not currently support the signature pad", "");
+                                else
+                                    await this.Navigation.PushAsync(new SignatureXamlView());
+                            }),
                             Font = Font.SystemFontOfSize(NamedSize.Large)
                         }
                     }

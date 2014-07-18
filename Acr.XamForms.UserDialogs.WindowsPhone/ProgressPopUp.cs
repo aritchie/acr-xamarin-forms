@@ -1,23 +1,35 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Coding4Fun.Toolkit.Controls;
+using Microsoft.Phone.Controls;
 
 
 namespace Acr.XamForms.UserDialogs.WindowsPhone {
     
-    public class ProgressPopUp : MessagePrompt {
+    public class ProgressPopUp : CustomMessageBox {
 
+        private readonly Button cancelButton = new Button();
         private readonly TextBlock percentText = new TextBlock {
-            HorizontalAlignment = HorizontalAlignment.Center
-        };
-        private readonly Button cancelButton = new Button {
-            Visibility = Visibility.Collapsed,
-            HorizontalAlignment = HorizontalAlignment.Center
+            Visibility = Visibility.Collapsed
         };
         private readonly ProgressBar progressBar = new ProgressBar {
             HorizontalAlignment = HorizontalAlignment.Stretch
         };
+
+
+        public ProgressPopUp() {
+            this.IsRightButtonEnabled = false;
+            this.IsLeftButtonEnabled = false;
+            this.RightButtonContent = this.cancelButton;
+            
+            var stack = new StackPanel {
+                Orientation = Orientation.Vertical,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+            stack.Children.Add(this.progressBar);
+            stack.Children.Add(this.percentText);
+            this.Content = stack;
+        }
 
 
         public bool IsIndeterminate {
@@ -51,26 +63,10 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
 
 
         public void SetCancel(Action action, string cancelText) {
-            this.cancelButton.Click += (sender, args) => action();
+            this.cancelButton.Click += (sender, args) => this.Dismiss();
+            this.Dismissed += (sender, args) => action();
             this.cancelButton.Content = cancelText;
-            this.cancelButton.Visibility = Visibility.Visible;
-        }
-
-
-        public override void OnApplyTemplate() {
-            base.OnApplyTemplate();
-            this.ActionButtonArea.Children.Clear();
-            
-            var stackPanel = new StackPanel {
-                Orientation = Orientation.Vertical,
-                Margin = new Thickness(),
-                HorizontalAlignment = HorizontalAlignment.Stretch
-            };
-            stackPanel.Children.Add(this.progressBar);
-            stackPanel.Children.Add(this.percentText);
-            stackPanel.Children.Add(this.cancelButton);
-
-            this.ActionButtonArea.Children.Add(stackPanel);
+            this.IsRightButtonEnabled = true;
         }
     }
 }

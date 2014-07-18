@@ -12,15 +12,12 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.1, 2.0)" />
-            <dependency id="Newtonsoft.Json" version="[6, 7)" />
+            <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
+            <dependency id="Newtonsoft.Json" version="[6.0.3, 7)" />
         </dependencies>
         <releaseNotes>
-1.3
-Imaging services to compress, rotate, and convert formats
-Audio service to play and record audio
-Video play service
-Mail service to launch mail app
+1.2.1
+Update to Xamarin.Forms 1.2.1.6229
 
 
 1.2

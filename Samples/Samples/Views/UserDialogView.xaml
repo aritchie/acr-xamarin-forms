@@ -12,10 +12,10 @@
                 <Button Text="Action Sheet" Command="{Binding ActionSheet}" />
                 <Button Text="Alert" Command="{Binding Alert}" />
                 <Button Text="Confirm" Command="{Binding Confirm}" />
-                <Button Text="Date Prompt" Command="{Binding DatePrompt}" />
+                <!--<Button Text="Date Prompt" Command="{Binding DatePrompt}" />
                 <Button Text="Time Prompt" Command="{Binding TimePrompt}" />
                 <Button Text="Date/Time Prompt" Command="{Binding DateTimePrompt}" />
-                <Button Text="Duration Prompt" Command="{Binding DurationPrompt}" />
+                <Button Text="Duration Prompt" Command="{Binding DurationPrompt}" />-->
                 <Button Text="Prompt" Command="{Binding Prompt}" />
                 <Button Text="Prompt (Secure)" Command="{Binding PromptSecure}" />
                 <Button Text="Toast" Command="{Binding Toast}" />
