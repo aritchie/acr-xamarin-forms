@@ -8,20 +8,20 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
     
     public class ProgressPopUp : CustomMessageBox {
 
-        private readonly Button cancelButton = new Button();
         private readonly TextBlock percentText = new TextBlock {
-            Visibility = Visibility.Collapsed
+            Visibility = Visibility.Collapsed,
+            Margin = new Thickness(0, 10, 0, 0)
         };
         private readonly ProgressBar progressBar = new ProgressBar {
-            HorizontalAlignment = HorizontalAlignment.Stretch
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            Margin = new Thickness(0, 10, 0, 0)
         };
 
 
         public ProgressPopUp() {
             this.IsRightButtonEnabled = false;
             this.IsLeftButtonEnabled = false;
-            this.RightButtonContent = this.cancelButton;
-            
+
             var stack = new StackPanel {
                 Orientation = Orientation.Vertical,
                 HorizontalAlignment = HorizontalAlignment.Stretch
@@ -45,8 +45,8 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
 
 
         public string LoadingText {
-            get { return this.Title; }
-            set { this.Title = value; }
+            get { return this.Caption; }
+            set { this.Caption = value; }
         }
 
 
@@ -63,9 +63,11 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
 
 
         public void SetCancel(Action action, string cancelText) {
-            this.cancelButton.Click += (sender, args) => this.Dismiss();
-            this.Dismissed += (sender, args) => action();
-            this.cancelButton.Content = cancelText;
+            this.Dismissed += (sender, args) => {
+                if (args.Result == CustomMessageBoxResult.RightButton)
+                    action();
+            };
+            this.RightButtonContent = cancelText;
             this.IsRightButtonEnabled = true;
         }
     }

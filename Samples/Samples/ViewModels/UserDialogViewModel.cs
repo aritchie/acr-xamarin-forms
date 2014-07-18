@@ -107,24 +107,24 @@ namespace Samples.ViewModels {
         }
 
 
-        public ICommand Loading {
+        public ICommand LoadingNoCancel {
             get {
                 return new Command(async () => {
-                    using (dialogService.Loading()) 
+                    using (dialogService.Loading("Loading (No Cancel)")) 
                         await Task.Delay(TimeSpan.FromSeconds(3));
                     
-                    this.Result = "Loading Complete";                    
+                    this.Result = "Loading Complete";
                 });
             }
         }
 
 
-        public ICommand LoadingNoCancel {
+        public ICommand Loading {
             get {
                 return new Command(async () => {
                     var cancelSrc = new CancellationTokenSource();
 
-                    using (var dlg = dialogService.Loading("Test Progress")) {
+                    using (var dlg = dialogService.Loading("Loading")) {
                         dlg.SetCancel(cancelSrc.Cancel);
 
                         try { 

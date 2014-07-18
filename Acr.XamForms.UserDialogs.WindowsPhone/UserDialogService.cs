@@ -9,7 +9,6 @@ using Acr.XamForms.UserDialogs.WindowsPhone;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-
 [assembly: Xamarin.Forms.Dependency(typeof(UserDialogService))]
 
 
@@ -25,12 +24,12 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
             };
             var list = new ListBox {
                 FontSize = 36,
-                Margin = new System.Windows.Thickness(12.0),
+                Margin = new Thickness(12.0),
                 SelectionMode = SelectionMode.Single,
                 ItemsSource = config.Options
                     .Select(x => new TextBlock {
                         Text = x.Text,
-                        Margin = new System.Windows.Thickness(0.0, 12.0, 0.0, 12.0),
+                        Margin = new Thickness(0.0, 12.0, 0.0, 12.0),
                         DataContext = x
                     })
             };
@@ -106,16 +105,19 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
                 Foreground = (Brush)resources["PhoneForegroundBrush"],
                 FontSize = (double)resources["PhoneFontSizeMedium"],
                 Margin = new Thickness(24, 32, 24, 12),
+                HorizontalAlignment = HorizontalAlignment.Center,
                 Text = message
             };
             var wrapper = new StackPanel {
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 Background = (Brush)resources["PhoneAccentBrush"],
+                Width = Application.Current.Host.Content.ActualWidth
             };
             wrapper.Children.Add(tb);
 
             var popup = new Popup {
-                Child = wrapper
+                Child = wrapper,
+                HorizontalAlignment = HorizontalAlignment.Stretch
             };
             if (onClick != null) { 
                 tb.Tap += (sender, args) => {
