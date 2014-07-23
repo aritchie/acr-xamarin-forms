@@ -12,10 +12,13 @@ namespace Acr.XamForms.Converters {
         
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (targetType != typeof(long))
+            if (value == null)
                 return 0;
 
-            var fileSize = (long)value;
+            if (!(value is long) && !(value is int))
+                throw new ArgumentException("Invalid data type - " + value.GetType());
+
+            var fileSize = System.Convert.ToInt64(value);
             var pow = Math.Floor((fileSize > 0 ? Math.Log(fileSize) : 0) / Math.Log(1024));
             pow = Math.Min(pow, suffixes.Count - 1);
             var result = fileSize / Math.Pow(1024, pow);

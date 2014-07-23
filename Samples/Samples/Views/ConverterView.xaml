@@ -7,6 +7,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <acr:EllipsisConverter x:Key="Ellipsis" />
             <acr:TimeAgoConverter x:Key="TimeAgo" />
             <acr:PhoneNumberConverter x:Key="Phone" />
             <acr:CreditCardConverter x:Key="CC" />
@@ -18,25 +19,25 @@
         <ScrollView>
             <StackLayout>
                 <Label Text="Ellipsis:" />
-                <Label Text="{Binding LongText, Converter=Ellipsis}" />
+                <Label Text="{Binding LongText, Converter={StaticResource Ellipsis}}" />
         
                 <Label Text="Time-Ago Examples:" />
-                <Label Text="{Binding Now}" />
-                <Label Text="{Binding HoursAgo, Converter=TimeAgo}" />
-                <Label Text="{Binding DaysAgo, Converter=TimeAgo}" />
-                <Label Text="{Binding WeeksAgo, Converter=TimeAgo}" />
+                <Label Text="{Binding Now, Converter={StaticResource TimeAgo}}" />
+                <Label Text="{Binding HoursAgo, Converter={StaticResource TimeAgo}}" />
+                <Label Text="{Binding DaysAgo, Converter={StaticResource TimeAgo}}" />
+                <Label Text="{Binding WeeksAgo, Converter={StaticResource TimeAgo}}" />
         
                 <Label Text="Phone #:" />
-                <Entry Text="{Binding Phone, Converter=Phone}" />
+                <Entry Text="{Binding PhoneNumber, Converter={StaticResource Phone}}" />
                 
                 <Label Text="Credit Card #:" />
-                <Entry Text="{Binding CreditCardNumber, Converter=CC}" />
+                <Entry Text="{Binding CreditCardNumber, Converter={StaticResource CC}}" />
                 
                 <Label Text="File Size Examples:" />
-                <Label Text="{Binding Bytes, Converter=FileSize}" />
-                <Label Text="{Binding KB, Converter=FileSize}" />
-                <Label Text="{Binding MB, Converter=FileSize}" />
-                <Label Text="{Binding GB, Converter=FileSize}" />            
+                <Label Text="{Binding Bytes, Converter={StaticResource FileSize}}" />
+                <Label Text="{Binding KB, Converter={StaticResource FileSize}}" />
+                <Label Text="{Binding MB, Converter={StaticResource FileSize}}" />
+                <Label Text="{Binding GB, Converter={StaticResource FileSize}}" />        
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -19,6 +19,12 @@ namespace Samples.ViewModels {
             set { this.SetProperty(ref this.creditCardNumber, value); }
         }
 
+
+        public string LongText {
+            get { return new string('*', 100);}
+        }
+
+
         // FILE SIZE
         public long Bytes {
             get { return 1; }
@@ -36,7 +42,7 @@ namespace Samples.ViewModels {
 
 
         public long GB {
-            get { return MB * 102; }
+            get { return MB * 1024; }
         }
 
 

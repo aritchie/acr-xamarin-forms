@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using Xamarin.Forms;
 
 
@@ -25,10 +26,10 @@ namespace Acr.XamForms.Converters {
 
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (targetType != typeof(DateTime))
-                throw new ArgumentException("Expected DateTime");
+            DateTime when;
+            if (!this.TryGetDateTime(value, out when))
+                return String.Empty;
 
-            var when = (DateTime)value;
             var difference = (DateTime.UtcNow - when).TotalSeconds;
             var format = TimeAgo.Days;
             var time = 0;
@@ -52,8 +53,30 @@ namespace Acr.XamForms.Converters {
                 format = TimeAgo.Days;
                 time = (int)(difference / (3600 * 24));
             }
-
+            // TODO: future dates
+            // TODO: weeks, months, years
             return this.GetString(format, time);
+        }
+
+
+        protected virtual bool TryGetDateTime(object value, out DateTime date) {
+            date = DateTime.MinValue;
+
+            if (value == null)
+                return true;
+
+            if (value is DateTime) {
+                date = (DateTime)value;
+
+                return true;
+            }
+
+            if (value is DateTimeOffset) {
+                var offset = (DateTimeOffset)value;
+                date = offset.UtcDateTime;
+                return true;
+            }
+            throw new InvalidDataException("Invalid data type - " + value.GetType());
         }
 
 

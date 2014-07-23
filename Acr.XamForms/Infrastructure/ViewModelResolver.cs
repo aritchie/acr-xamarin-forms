@@ -24,7 +24,7 @@ namespace Acr.XamForms.Infrastructure {
                 throw new ArgumentException("Invalid viewmodel type - " + viewModelType);
             
             viewModel.Init(args);
-            return viewModel;            
+            return viewModel;
         }
 
 
