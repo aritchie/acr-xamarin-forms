@@ -39,6 +39,7 @@
     <Compile Include="Models\Signature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BarCodeViewModel.cs" />
+    <Compile Include="ViewModels\ConverterViewModel.cs" />
     <Compile Include="ViewModels\SignaturePadConfigViewModel.cs" />
     <Compile Include="ViewModels\DeviceInfoViewModel.cs" />
     <Compile Include="ViewModels\SignatureListViewModel.cs" />
@@ -53,6 +54,9 @@
     <Compile Include="ViewModels\UserDialogViewModel.cs" />
     <Compile Include="Views\BarCodeView.xaml.cs">
       <DependentUpon>BarCodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConverterView.xaml.cs">
+      <DependentUpon>ConverterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DeviceInfoView.xaml.cs">
       <DependentUpon>DeviceInfoView.xaml</DependentUpon>
@@ -212,6 +216,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SignatureXamlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ConverterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

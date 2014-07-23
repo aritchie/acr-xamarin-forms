@@ -45,7 +45,7 @@ namespace Acr.XamForms.ViewModels {
         }
 
 
-        public void OnDisappearing() {
+        public virtual void OnDisappearing() {
             this.IsVisible = false;
         }
     }

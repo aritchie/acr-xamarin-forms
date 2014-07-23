@@ -12,13 +12,7 @@ namespace Samples.Views {
             this.Title = "ACR Xamarin Forms";
             this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
             this.Content = new ScrollView {
-                //new Label {
-                //    Text = "Home",
-                //    Font = Font.BoldSystemFontOfSize(40),
-                //    HorizontalOptions = LayoutOptions.Center
-                //},
                 Content = new StackLayout {
-                    //HorizontalOptions = LayoutOptions.CenterAndExpand,
                     Children = {
                         this.Nav<BarCodeViewModel>("BarCode Scanning"),
                         this.Nav<UserDialogViewModel>("User Dialogs"),
@@ -27,7 +21,10 @@ namespace Samples.Views {
                         this.Nav<SettingsViewModel>("Settings"),
                         this.Nav<PhoneViewModel>("Phone Call"),
                         this.Nav<SmsViewModel>("Send SMS"),
+                        this.Nav<ConverterViewModel>("Converters"),
                         //this.Nav<MailViewModel>("Send E-Mail"),
+                        //this.Nav<AudioViewModel>("Audio Player/Recorder"),
+                        //this.Nav<VideoViewModel>("Video Player/Recorder"),
                         this.Nav<LocationViewModel>("Location"),
                         this.Nav<PhotoViewModel>("Camera/Photo Gallery"),
                         this.Nav<TextToSpeechViewModel>("Text-to-Speech"),
