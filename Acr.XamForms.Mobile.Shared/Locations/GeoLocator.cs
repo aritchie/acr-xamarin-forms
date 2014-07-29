@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using Xamarin.Geolocation;
 
 
-namespace Acr.XamForms.Mobile {
+namespace Acr.XamForms.Mobile.Locations {
     
-    public class LocationService : ILocationService {
+    public class GeoLocator : IGeoLocator {
         private readonly Geolocator locator;
 
 
-        public LocationService() {
+        public GeoLocator() {
 #if __ANDROID__
             this.locator = new Geolocator(Android.App.Application.Context);
 #else      
@@ -34,10 +34,9 @@ namespace Acr.XamForms.Mobile {
 
         private void OnPositionError(object sender, Xamarin.Geolocation.PositionErrorEventArgs e) {
             if (this.PositionError != null) {
-                var error = (e.Error == GeolocationError.Unauthorized
+                var error = e.Error == GeolocationError.Unauthorized
                     ? GeoLocationError.Unauthorized
-                    : GeoLocationError.PositionUnavailable
-                );
+                    : GeoLocationError.PositionUnavailable;
                 this.PositionError(this, new PositionErrorEventArgs(error));
             }
         }
@@ -58,7 +57,7 @@ namespace Acr.XamForms.Mobile {
 
         #endregion
 
-        #region ILocationService Members
+        #region IGeoLocator Members
 
         public double DesiredAccuracy {
             get { return this.locator.DesiredAccuracy; }
@@ -91,7 +90,7 @@ namespace Acr.XamForms.Mobile {
         }
 
 
-        public async Task<Position> GetPositionAsync(int timeout = 30, bool includeHeading = false, CancellationToken cancelToken = default(CancellationToken)) {
+        public async Task<Position> GetPositionAsync(int timeout, bool includeHeading, CancellationToken cancelToken) {
             var pos = await this.locator.GetPositionAsync(timeout, cancelToken, includeHeading);
             return ToFormsPosition(pos);
         }

@@ -4,6 +4,8 @@ using Acr.XamForms.BarCodeScanner;
 using Acr.XamForms.Infrastructure;
 using Acr.XamForms.Mobile;
 using Acr.XamForms.Mobile.IO;
+using Acr.XamForms.Mobile.Locations;
+using Acr.XamForms.Mobile.Media;
 using Acr.XamForms.SignaturePad;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
@@ -30,13 +32,13 @@ namespace Samples {
                 .RegisterXamDependency<IBarCodeScanner>()
                 .RegisterXamDependency<IDeviceInfo>()
                 .RegisterXamDependency<IFileViewer>()
-                .RegisterXamDependency<ILocationService>()
+                .RegisterXamDependency<IGeoLocator>()
                 .RegisterXamDependency<ILogger>()
                 .RegisterXamDependency<IFileSystem>()
                 //.RegisterXamDependency<IMailService>()
                 .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()
-                .RegisterXamDependency<IPhotoService>()
+                .RegisterXamDependency<IMediaPicker>()
                 .RegisterXamDependency<ISettings>()
                 .RegisterXamDependency<ITextToSpeechService>()
                 .RegisterXamDependency<IUserDialogService>()

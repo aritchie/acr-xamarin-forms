@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Acr.XamForms.Mobile {
+namespace Acr.XamForms.Mobile.Locations {
     
-    public interface ILocationService {
+    public interface IGeoLocator {
 
         double DesiredAccuracy { get; set; }
         bool IsListening { get; }
@@ -20,15 +20,3 @@ namespace Acr.XamForms.Mobile {
         event EventHandler<PositionErrorEventArgs> PositionError; 
     }
 }
-/*
-using Xamarin.Geolocation;
-// ...
-
-var locator = new Geolocator { DesiredAccuracy = 50 };
-//            new Geolocator (this) { ... }; on Android
-
-Position position = await locator.GetPositionAsync (timeout: 10000);
-
-Console.WriteLine ("Position Status: {0}", position.Timestamp);
-Console.WriteLine ("Position Latitude: {0}", position.Latitude);
-Console.WriteLine ("Position Longitude: {0}", position.Longitude);*/

@@ -1,45 +1,36 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Acr.XamForms.Mobile;
-using Acr.XamForms.UserDialogs;
+using Acr.XamForms.Mobile.Locations;
 using Acr.XamForms.ViewModels;
-using Xamarin.Forms;
 
 
 namespace Samples.ViewModels {
     
     public class LocationViewModel : ViewModel {
-        private readonly ILocationService location;
-        private readonly IUserDialogService dialogs;
-        private readonly ILogger log;
-        private bool isRefreshing;
+        private readonly IGeoLocator location;
 
 
-        public LocationViewModel(ILocationService location, IUserDialogService dialogs, ILogger log) {
+        public LocationViewModel(IGeoLocator location) {
             this.location = location;
-            this.dialogs = dialogs;
-            this.log = log;
         }
 
 
-        private async Task RefreshPosition() {
-            try { 
-                this.isRefreshing = true;
-                //this.location.StartListening();
-                var pos = await this.location.GetPositionAsync();
-                this.Latitude = pos.Latitude;
-                this.Longitude = pos.Longitude;
-                this.Altitude = pos.Altitude;
-                this.Heading = pos.Heading;
-            }
-            catch (Exception ex) {
-                this.log.Error("ERROR", ex);
-                this.dialogs.Alert("There was an error retrieving your position");
-            }
-            finally {
-                this.isRefreshing = false;
-            }
+        public override void OnAppearing() {
+            this.location.PositionChanged += this.OnPositionChanged;
+            this.location.StartListening(1, 10, true);
+        }
+
+
+        public override void OnDisappearing() {
+            this.location.PositionChanged -= this.OnPositionChanged;
+            this.location.StopListening();
+        }
+
+
+        private void OnPositionChanged(object sender, PositionEventArgs e) {
+            this.Latitude = e.Position.Latitude;
+            this.Longitude = e.Position.Longitude;
+            this.Altitude = e.Position.Altitude;
+            this.Heading = e.Position.Heading;
         }
 
         
@@ -68,15 +59,6 @@ namespace Samples.ViewModels {
         public double Heading {
             get { return this.heading; }
             private set { this.SetProperty(ref this.heading, value); }
-        }
-
-
-        private ICommand refreshCommand;
-        public ICommand Refresh {
-            get {
-                this.refreshCommand = this.refreshCommand = new Command(() => this.RefreshPosition(), () => this.isRefreshing);
-                return this.refreshCommand;
-            }
         }
     }
 }

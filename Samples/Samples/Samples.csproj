@@ -52,6 +52,7 @@
     <Compile Include="ViewModels\SmsViewModel.cs" />
     <Compile Include="ViewModels\TextToSpeechViewModel.cs" />
     <Compile Include="ViewModels\UserDialogViewModel.cs" />
+    <Compile Include="ViewModels\VideoViewModel.cs" />
     <Compile Include="Views\BarCodeView.xaml.cs">
       <DependentUpon>BarCodeView.xaml</DependentUpon>
     </Compile>

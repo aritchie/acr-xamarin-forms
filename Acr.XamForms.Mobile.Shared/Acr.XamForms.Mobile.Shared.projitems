@@ -13,7 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\Directory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\File.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\FileSystem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LocationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PhotoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Locations\GeoLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Media\MediaFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Media\MediaPicker.cs" />
   </ItemGroup>
 </Project>

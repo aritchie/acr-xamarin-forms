@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Acr.XamForms.Mobile;
+using Acr.XamForms.Mobile.Media;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
 using Xamarin.Forms;
@@ -10,30 +11,27 @@ namespace Samples.ViewModels {
     
     public class PhotoViewModel : ViewModel {
         private readonly IUserDialogService dialogs;
-        private readonly IPhotoService photos;
+        private readonly IMediaPicker picker;
 
 
-        public PhotoViewModel(IUserDialogService dialogs, IPhotoService photos) {
-        //public PhotoViewModel() {
-            //this.dialogs = DependencyService.Get<IUserDialogService>();
-            //this.photos = DependencyService.Get<IPhotoService>();
+        public PhotoViewModel(IUserDialogService dialogs, IMediaPicker picker) {
             this.dialogs = dialogs;
-            this.photos = photos;
+            this.picker = picker;
 
             this.FromCamera = new Command(async () => {
-                if (!photos.IsCameraAvailable)
+                if (!picker.IsCameraAvailable)
                     dialogs.Alert("Camera is not available");
                 else { 
-                    var result = await photos.FromCamera();
+                    var result = await picker.TakePhoto();
                     this.OnPhotoReceived(result);
                 }
             });
 
             this.FromGallery = new Command(async () => {
-                if (!photos.IsGalleryAvailable)
+                if (!picker.IsPhotoGalleryAvailable)
                     dialogs.Alert("Photo Gallery is unavailable");
                 else { 
-                    var result = await photos.FromGallery();
+                    var result = await picker.PickPhoto();
                     this.OnPhotoReceived(result);
                 }
             });
@@ -51,20 +49,21 @@ namespace Samples.ViewModels {
         public ICommand FromCamera { get; private set; }
 
 
-        private string imagePath;
-        public string ImagePath {
-            get { return this.imagePath; }
-            set {
-                this.SetProperty(ref this.imagePath, value);
+        private ImageSource photoSource;
+        public ImageSource Photo {
+            get { return this.photoSource; }
+            private set {
+                this.photoSource = value;
+                this.OnPropertyChanged();
             }
         }
 
 
-        private void OnPhotoReceived(PhotoResult result) {
-            if (result.IsCancelled)
+        private void OnPhotoReceived(IMediaFile file) {
+            if (file == null)
                 this.dialogs.Alert("Photo Cancelled");
             else 
-                this.ImagePath = result.Path;
+                this.Photo = ImageSource.FromFile(file.Path);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Acr.XamForms.Mobile {
+namespace Acr.XamForms.Mobile.Locations {
 
     public enum GeoLocationError {
         PositionUnavailable,
