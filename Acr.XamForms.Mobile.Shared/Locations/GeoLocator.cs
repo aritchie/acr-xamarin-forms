@@ -20,8 +20,6 @@ namespace Acr.XamForms.Mobile.Locations {
             this.locator.PositionError += this.OnPositionError;
         }
 
-
-
         #region Internals
 
         private void OnPositionChanged(object sender, Xamarin.Geolocation.PositionEventArgs e) {
@@ -91,7 +89,15 @@ namespace Acr.XamForms.Mobile.Locations {
 
 
         public async Task<Position> GetPositionAsync(int timeout, bool includeHeading, CancellationToken cancelToken) {
+            var turnBackOff = false;
+            if (!this.IsListening) {
+                turnBackOff = true;
+                this.StartListening(1, 10);
+            }
             var pos = await this.locator.GetPositionAsync(timeout, cancelToken, includeHeading);
+            if (turnBackOff)
+                this.StopListening();
+
             return ToFormsPosition(pos);
         }
 
