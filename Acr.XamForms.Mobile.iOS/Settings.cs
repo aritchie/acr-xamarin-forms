@@ -49,9 +49,10 @@ namespace Acr.XamForms.Mobile.iOS {
 
 
         protected override void ClearNative() {
-            foreach (var item in this.All)
-                if (this.CanTouch(item.Key))
-                    prefs.RemoveObject(item.Key);
+            var dict = prefs.AsDictionary();
+            foreach (var item in dict)
+                if (this.CanTouch(item.Key.ToString()))
+                    prefs.RemoveObject(item.Key.ToString());
                     
             //prefs.RemovePersistentDomain(NSBundle.MainBundle.BundleIdentifier);
             prefs.Synchronize();
