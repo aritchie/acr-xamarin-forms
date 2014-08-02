@@ -40,6 +40,7 @@
     <Compile Include="AbstractLogger.cs" />
     <Compile Include="AbstractMailService.cs" />
     <Compile Include="AbstractSettings.cs" />
+    <Compile Include="IO\Extensions.cs" />
     <Compile Include="Media\CameraDevice.cs" />
     <Compile Include="Media\AbstractOptions.cs" />
     <Compile Include="Media\IMediaFile.cs" />
@@ -64,7 +65,10 @@
     <None Include="TODO\MailMessage.cs" />
     <Compile Include="AbstractNetworkService.cs" />
     <Compile Include="NetworkStatusChangedEventArgs.cs" />
-    <Compile Include="ObservableDictionary.cs" />
+    <Compile Include="ObservableDictionary.cs">
+      <SubType>
+      </SubType>
+    </Compile>
     <Compile Include="Locations\Position.cs" />
     <Compile Include="Locations\PositionErrorEventArgs.cs" />
     <Compile Include="Locations\PositionEventArgs.cs" />
