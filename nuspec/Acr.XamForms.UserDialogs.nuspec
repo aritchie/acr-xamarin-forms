@@ -13,10 +13,10 @@
         <tags>xamarin forms dialogs</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.2.1.6243, 2.0)" />
             </group>
             <group targetFramework="wp8">
-                <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.2.1.6243, 2.0)" />
                 <dependency id="WPtoolkit" version="[4.2013.08.16, 5.0)" />
             </group>
         </dependencies>
