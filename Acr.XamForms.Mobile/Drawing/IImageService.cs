@@ -2,7 +2,7 @@
 using System.IO;
 
 
-namespace Acr.XamForms.Mobile {
+namespace Acr.XamForms.Mobile.Drawing {
 
     public interface IImageService {
 

@@ -38,7 +38,6 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AbstractLogger.cs" />
-    <Compile Include="TODO\AbstractMailService.cs" />
     <Compile Include="AbstractSettings.cs" />
     <Compile Include="IO\Extensions.cs" />
     <Compile Include="Media\CameraDevice.cs" />
@@ -47,10 +46,7 @@
     <Compile Include="Media\CameraOptions.cs" />
     <Compile Include="Media\VideoOptions.cs" />
     <Compile Include="Net\NetworkStatus.cs" />
-    <Compile Include="TODO\IAudioService.cs" />
     <Compile Include="IDeviceInfo.cs" />
-    <None Include="TODO\IImage.cs" />
-    <None Include="TODO\IImageService.cs" />
     <Compile Include="IO\IDirectory.cs" />
     <Compile Include="IO\IFile.cs" />
     <Compile Include="IFileViewer.cs" />
@@ -60,10 +56,6 @@
     <Compile Include="ISettings.cs" />
     <Compile Include="ISettingsDictionary.cs" />
     <Compile Include="ITextToSpeechService.cs" />
-    <None Include="TODO\MailAddress.cs" />
-    <None Include="TODO\MailAttachment.cs" />
-    <None Include="TODO\MailExtensions.cs" />
-    <None Include="TODO\MailMessage.cs" />
     <Compile Include="Net\AbstractNetworkService.cs" />
     <Compile Include="Net\NetworkStatusChangedEventArgs.cs" />
     <Compile Include="ObservableDictionary.cs">
@@ -74,7 +66,6 @@
     <Compile Include="Locations\PositionErrorEventArgs.cs" />
     <Compile Include="Locations\PositionEventArgs.cs" />
     <Compile Include="Locations\IGeoLocator.cs" />
-    <None Include="TODO\IMailService.cs" />
     <Compile Include="IPhoneService.cs" />
     <Compile Include="Media\IMediaPicker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

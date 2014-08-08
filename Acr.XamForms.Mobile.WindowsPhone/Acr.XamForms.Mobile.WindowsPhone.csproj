@@ -90,7 +90,6 @@
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="FileViewer.cs" />
     <Compile Include="Logger.cs" />
-    <None Include="TODO\MailService.cs" />
     <Compile Include="Net\NetworkService.cs" />
     <Compile Include="PhoneService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Acr.XamForms.Mobile {
+namespace Acr.XamForms.Mobile.Media {
 
     public class SoundSource {
         // TODO: properties - length, name
