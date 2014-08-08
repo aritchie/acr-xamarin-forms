@@ -24,12 +24,7 @@ namespace Samples.WinPhone {
         /// Constructor for the Application object.
         /// </summary>
         public App() {
-            // HACK: fix linker issues
-            new UserDialogService();
-            new Settings();
-            new BarCodeScanner();
-            new DeviceInfo();
-            new Logger();
+
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 

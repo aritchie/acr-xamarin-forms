@@ -19,14 +19,7 @@
         <acrview:ListView IsVisible="{Binding NoData, Converter={StaticResource Not}}" ItemClickCommand="{Binding Select}" ItemsSource="{Binding Settings.All}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout>
-                                <Label Text="{Binding Key}" />
-                                <!--<Label Text="{Binding Value}" />-->
-                            </StackLayout>
-                        </ViewCell.View>
-                    </ViewCell>
+                    <TextCell Text="{Binding Key}" Detail="{Binding Value}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </acrview:ListView>

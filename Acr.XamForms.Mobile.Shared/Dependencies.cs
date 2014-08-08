@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using Acr.XamForms.Mobile;
 using Acr.XamForms.Mobile.Locations;
 using Acr.XamForms.Mobile.Media;
 #if __ANDROID__
@@ -15,7 +14,7 @@ using Acr.XamForms.Mobile.WindowsPhone;
 [assembly: Dependency(typeof(FileViewer))]
 [assembly: Dependency(typeof(GeoLocator))]
 //[assembly: Dependency(typeof(MailService))]
-[assembly: Dependency(typeof(NetworkService))]
+//[assembly: Dependency(typeof(NetworkService))]
 [assembly: Dependency(typeof(PhoneService))]
 [assembly: Dependency(typeof(MediaPicker))]
 [assembly: Dependency(typeof(Settings))]

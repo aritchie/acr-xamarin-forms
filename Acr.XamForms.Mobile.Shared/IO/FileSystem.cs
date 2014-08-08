@@ -12,18 +12,30 @@ namespace Acr.XamForms.Mobile.IO {
 
         public FileSystem() {
 #if WINDOWS_PHONE
-            this.AppData = new Directory(Windows.Storage.ApplicationData.Current.LocalFolder.Path);
+            var path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            this.AppData = new Directory(path);
+            this.Cache = new Directory(Path.Combine(path, "Cache"));
+            this.Public = new Directory(Path.Combine(path, "Public"));
+            this.Temp = new Directory(Path.Combine(path, "Temp"));
 #elif __IOS__
             var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var localAppData = Path.Combine(documents, "..", "Library");
-            this.AppData = new Directory(localAppData);
-#elif __ANDROID__
+            var library = Path.Combine(documents, "..", "Library");
+            this.AppData = new Directory(library);
+            this.Cache = new Directory(Path.Combine (library, "Caches"));
+            this.Temp = new Directory(Path.Combine(documents, "..", "tmp"));
+            this.Public = new Directory(documents);
+#elif __ANDROID__            
             this.AppData = new Directory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            this.Cache = new Directory(Android.App.Application.Context.CacheDir.AbsolutePath);
+            this.Temp = new Directory(Android.App.Application.Context.CacheDir.AbsolutePath);
+            this.Public = new Directory(Android.App.Application.Context.GetExternalFilesDir(null).AbsolutePath);
 #endif
         }
 
         public IDirectory AppData { get; private set; }
-        //public IDirectory Roaming { get; private set; }
+        public IDirectory Cache { get; private set; }
+        public IDirectory Public { get; private set; }
+        public IDirectory Temp { get; private set; }
 
 
         public IDirectory GetDirectory(string path) {

@@ -13,7 +13,6 @@ namespace Samples.iOS {
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             Forms.Init();
-
             var startView = App.GetMainPage().CreateViewController();
             window = new UIWindow(UIScreen.MainScreen.Bounds) {
                 RootViewController = startView

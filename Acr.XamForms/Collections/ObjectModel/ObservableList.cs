@@ -8,14 +8,23 @@ namespace System.Collections.ObjectModel {
     public class ObservableList<T> : ObservableCollection<T> {
 
         public ObservableList() { }
-        public ObservableList(IEnumerable<T> en) : base(en) { } 
+        public ObservableList(IEnumerable<T> items) : base(items) { } 
 
 
-        public void AddRange(IEnumerable<T> en) {
-            foreach (var item in en)
+        public virtual void AddRange(IEnumerable<T> items) {
+            foreach (var item in items)
                 this.Items.Add(item);
 
-            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, en));
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, items));
+        }
+
+
+        public virtual void Repopulate(IEnumerable<T> items) {
+            this.Clear();
+            foreach (var item in items)
+                this.Items.Add(item);
+
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
     }
 }

@@ -17,12 +17,13 @@ namespace Acr.XamForms.Mobile.IO {
         DateTime LastAccessTime { get; }
         DateTime LastWriteTime { get; }
 
-        void Create();
-        IFile CreateFile(string name);
+        void Create();        
         void MoveTo(string path);
-        IDirectory CreateSubdirectory(string name);
         void Delete(bool recursive = false);
 
+        bool FileExists(string fileName);
+        IFile CreateFile(string name);
+        IDirectory CreateSubdirectory(string name);
         IEnumerable<IDirectory> Directories { get; } 
         IEnumerable<IFile> Files { get; }
     }

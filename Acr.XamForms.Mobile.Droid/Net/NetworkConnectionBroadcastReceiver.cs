@@ -4,7 +4,7 @@ using Android.Content;
 using Android.Net;
 
 
-namespace Acr.XamForms.Mobile.Droid {
+namespace Acr.XamForms.Mobile.Droid.Net {
 
     [BroadcastReceiver(Enabled = true, Label = "Network Status Receiver")]
     [IntentFilter(new string[] { "android.net.conn.CONNECTIVITY_CHANGE" })] 

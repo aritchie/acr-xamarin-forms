@@ -86,6 +86,7 @@ namespace Acr.XamForms.Mobile {
 
 
         public virtual void Clear() {
+
             this.All.Clear();
         }
 

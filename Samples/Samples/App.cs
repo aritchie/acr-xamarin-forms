@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Acr.XamForms.Autofac;
 using Acr.XamForms.BarCodeScanner;
 using Acr.XamForms.Infrastructure;
 using Acr.XamForms.Mobile;
@@ -17,18 +18,17 @@ using Xamarin.Forms;
 namespace Samples {
 
     public static class App {
-        private static IContainer container;
+        //private static IContainer container;
+        public static IContainer Container { get; private set; }
         private static INavigation navigator;
-        private static bool init = false;
 
 
         public static void Init() {
-            if (init)
+            if (Container != null)
                 return;
 
-            init = true;
-            var builder = new ContainerBuilder()
-                .RegisterViewModels()
+            Container = new ContainerBuilder()
+                .RegisterMvvmComponents(typeof(App).GetTypeInfo().Assembly)
                 .RegisterXamDependency<IBarCodeScanner>()
                 .RegisterXamDependency<IDeviceInfo>()
                 .RegisterXamDependency<IFileViewer>()
@@ -36,20 +36,14 @@ namespace Samples {
                 .RegisterXamDependency<ILogger>()
                 .RegisterXamDependency<IFileSystem>()
                 //.RegisterXamDependency<IMailService>()
-                .RegisterXamDependency<INetworkService>()
+                //.RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()
                 .RegisterXamDependency<IMediaPicker>()
                 .RegisterXamDependency<ISettings>()
                 .RegisterXamDependency<ITextToSpeechService>()
                 .RegisterXamDependency<IUserDialogService>()
-                .RegisterXamDependency<ISignatureService>();
-
-            builder
-                .Register(x => new ViewModelResolver(vt => container.Resolve(vt) as IViewModel))
-                .As<IViewModelResolver>()
-                .SingleInstance();
-
-            container = builder.Build();
+                .RegisterXamDependency<ISignatureService>()
+                .Build();
         }
 
 
@@ -61,39 +55,12 @@ namespace Samples {
         }
 
 
-        private static ContainerBuilder RegisterViewModels(this ContainerBuilder builder) {
-            var ass = Assembly.Load(new AssemblyName("Samples"));
-
-            builder
-                .RegisterAssemblyTypes(ass)
-                .Where(x => 
-                    x.GetTypeInfo().IsClass &&
-                    !x.GetTypeInfo().IsAbstract &&
-                    x.Name.EndsWith("ViewModel")
-                )
-                .InstancePerDependency();
-
-            return builder;
-        }
-
-
-        private static ContainerBuilder RegisterXamDependency<T>(this ContainerBuilder builder) where T : class {
-            builder.Register(x => DependencyService.Get<T>()).SingleInstance();
-            return builder;
-        }
-
-
         public static void NavigateTo<T>(object args = null) where T : IViewModel {
-            var page = container
-                .Resolve<IViewModelResolver>()
-                .ResolvePage(typeof(T), args);
+            var page = Container
+                .Resolve<IPageLocator>()
+                .ResolvePageAndViewModel(typeof(T), args);
 
             navigator.PushAsync(page);
-        }
-
-
-        public static T Resolve<T>() where T : class {
-            return container.Resolve<T>();
         }
     }
 }
