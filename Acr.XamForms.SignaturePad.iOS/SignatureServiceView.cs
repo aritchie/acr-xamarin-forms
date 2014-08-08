@@ -29,39 +29,32 @@ namespace Acr.XamForms.SignaturePad.iOS {
 
 
         public override void LayoutSubviews() {
-//            if (new Version(MonoTouch.Constants.Version) >= new Version (7, 0)) {
-                var frame = this.Frame;
-                var sbframe = UIApplication.SharedApplication.StatusBarFrame;
-                var portrait = UIApplication.SharedApplication.StatusBarOrientation.HasFlag(UIDeviceOrientation.Portrait);
+            var frame = this.Frame;
+            var sbframe = UIApplication.SharedApplication.StatusBarFrame;
+            var portrait = UIApplication.SharedApplication.StatusBarOrientation.HasFlag(UIDeviceOrientation.Portrait);
 
-                var width = portrait
-                    ? frame.Size.Width
-                    : frame.Size.Width - sbframe.Width;
+            var width = portrait
+                ? frame.Size.Width
+                : frame.Size.Width - sbframe.Width;
 
-                var height = portrait
-                    ? frame.Size.Height - sbframe.Height 
-                    : frame.Size.Height;
+            var height = portrait
+                ? frame.Size.Height - sbframe.Height 
+                : frame.Size.Height;
 
-                var x = portrait
-                    ? 0
-                    : frame.Location.X + sbframe.Width;
+            var x = portrait
+                ? 0
+                : frame.Location.X + sbframe.Width;
 
-                var y = portrait
-                    ? frame.Location.Y + sbframe.Height
-                    : 0;
+            var y = portrait
+                ? frame.Location.Y + sbframe.Height
+                : 0;
 
-                this.Frame = new RectangleF(x, y, width, height);
-//            }
+            this.Frame = new RectangleF(x, y, width, height);
 
-            ///Using different layouts for the iPhone and iPad, so setup device specific requirements here.
-//            if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
-                this.Signature.Frame = new RectangleF (10, 10, Bounds.Width - 20, Bounds.Height - 60);
-//            else 
-//                this.Signature.Frame = new RectangleF (84, 84, Bounds.Width - 168, Bounds.Width / 2);
-//
+            this.Signature.Frame = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone
+                ? new RectangleF (10, 10, Bounds.Width - 20, Bounds.Height - 60)
+                : new RectangleF (84, 84, Bounds.Width - 168, Bounds.Width / 2);
 
-            //Button locations are based on the Frame, so must have their own frames set after the view's
-            //Frame has been set.
             this.SaveButton.Frame = new RectangleF(10, this.Bounds.Height - 40, 120, 37);
             this.CancelButton.Frame = new RectangleF(this.Bounds.Width - 130, this.Bounds.Height - 40, 120, 37);
         }

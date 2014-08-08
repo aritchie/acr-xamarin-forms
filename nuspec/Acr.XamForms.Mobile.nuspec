@@ -12,10 +12,16 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
-            <dependency id="Newtonsoft.Json" version="[6.0.3, 7)" />
+            <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
+            <dependency id="Newtonsoft.Json" version="[6.0.4, 7)" />
         </dependencies>
         <releaseNotes>
+1.4
+Networking service has a new definition and namespace
+Added an easier way to create files in a directory
+Updated dependencies
+
+
 1.3
 Several bugfixes
 BREAKING: IPhotoService is now IMediaService and now matches Xamarin.Mobile API

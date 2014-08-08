@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>Acr.XamForms</id>
-        <version>1.2.0</version>
-        <title>Acr.XamForms</title>
-        <description>View model lifecycle, view model/view resolution, utility converters, and more</description>
+        <id>Acr.XamForms.Autofac</id>
+        <version>1.0.0</version>
+        <title>Acr.XamForms.Autoface</title>
+        <description>Autofac Helpers for Acr.Xamarin.Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
@@ -13,22 +13,15 @@
         <tags>xamarin</tags>
         <dependencies>
             <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
+			<dependency id="Autofac" version="3.5.0" />
         </dependencies>
         <releaseNotes>
-1.2
-Bugfixes and some new converters
-
-1.1
-New view model resolution
-More converters
-Adding lifecycle events
-
 1.0
 Initial Release
         </releaseNotes>
     </metadata>
     <files>		
         <!-- PCL -->
-        <file src="..\bin\Release\Portable\Acr.XamForms.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.dll" />
+        <file src="..\bin\Release\Portable\Acr.XamForms.Autofac.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.Autofac.dll" />
     </files>
 </package>
