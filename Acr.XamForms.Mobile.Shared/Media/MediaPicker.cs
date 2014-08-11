@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Media;
 using XamCamDevice = Xamarin.Media.CameraDevice;
 using XamVideoQuality = Xamarin.Media.VideoQuality;
 using XamMediaPicker = Xamarin.Media.MediaPicker;
+
 
 namespace Acr.XamForms.Mobile.Media {
 
@@ -15,7 +17,7 @@ namespace Acr.XamForms.Mobile.Media {
 #if __IOS__ || WINDOWS_PHONE
             this.picker = new XamMediaPicker();
 #else
-            this.picker = new XamMediaPicker(Android.App.Application.Context);
+            this.picker = new XamMediaPicker(Forms.Context);
 #endif            
         }
 
@@ -81,6 +83,30 @@ namespace Acr.XamForms.Mobile.Media {
             }
         }
 
+
+//protected override void OnCreate (Bundle bundle)
+//{
+//    var picker = new MediaPicker (this);
+//    if (!picker.IsCameraAvailable)
+//        Console.WriteLine ("No camera!");
+//    else {
+//        var intent = picker.GetTakePhotoUI (new StoreCameraMediaOptions {
+//            Name = "test.jpg",
+//            Directory = "MediaPickerSample"
+//        });
+//        StartActivityForResult (intent, 1);
+//    }
+//}
+
+//protected override async void OnActivityResult (int requestCode, Result resultCode, Intent data)
+//{
+//    // User canceled
+//    if (resultCode == Result.Canceled)
+//        return;
+
+//    MediaFile file = await data.GetMediaFileExtraAsync (this);
+//    Console.WriteLine (file.Path);
+//}
 
         public async Task<IMediaFile> TakeVideo(VideoOptions options) {
             if (!this.IsCameraAvailable)
