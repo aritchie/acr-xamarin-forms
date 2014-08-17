@@ -25,8 +25,6 @@ namespace Samples.ViewModels {
         }
 
 
-
-
         private static void ValidateName(string name, string nameType, IList<string> errors) {
             if (name.IsEmpty())
                 errors.Add(String.Format("{0} name is required", nameType));

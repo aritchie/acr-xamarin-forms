@@ -45,7 +45,6 @@
     <Compile Include="Media\IMediaFile.cs" />
     <Compile Include="Media\CameraOptions.cs" />
     <Compile Include="Media\VideoOptions.cs" />
-    <Compile Include="Net\NetworkStatus.cs" />
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="IO\IDirectory.cs" />
     <Compile Include="IO\IFile.cs" />
@@ -57,7 +56,6 @@
     <Compile Include="ISettingsDictionary.cs" />
     <Compile Include="ITextToSpeechService.cs" />
     <Compile Include="Net\AbstractNetworkService.cs" />
-    <Compile Include="Net\NetworkStatusChangedEventArgs.cs" />
     <Compile Include="ObservableDictionary.cs">
       <SubType>
       </SubType>

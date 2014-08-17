@@ -4,44 +4,28 @@
              x:Class="Samples.Views.DeviceInfoView"
              Title="Device Information">
     <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Screen Width:" />
-            <Label Text="{Binding Device.ScreenWidth}" />
-        </StackLayout>
-        
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Screen Height:" />
-            <Label Text="{Binding Device.ScreenHeight}" />
-        </StackLayout>
-        
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Manufacturer:" />
-            <Label Text="{Binding Device.Manufacturer}" />
-        </StackLayout>
-        
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Model:" />
-            <Label Text="{Binding Device.Model}" />
-        </StackLayout>
+        <TableView>
+            <TableView.Root>
+                <TableRoot>
+                    
+                    <TableSection Title="Device">
+                        <TextCell Text="Device ID" Detail="{Binding Device.DeviceId}" />
+                        <TextCell Text="Operating System" Detail="{Binding Device.OperatingSystem}" />
+                        <TextCell Text="{Binding Device.Manufacturer}" Detail="{Binding Device.Model}" />
+                        <TextCell Text="Simulator" Detail="{Binding Device.IsSimulator}" />
+                    </TableSection>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="OS:" />
-            <Label Text="{Binding Device.OperatingSystem}" />
-        </StackLayout>
+                    <TableSection Title="Display">
+                        <TextCell Text="Width" Detail="{Binding Device.ScreenWidth}" />
+                        <TextCell Text="Height" Detail="{Binding Device.ScreenHeight}" />
+                    </TableSection>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Front Camera Detected:" />
-            <Switch IsToggled="{Binding Device.IsFrontCameraAvailable, Mode=OneWay}" />
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Rear Camera Detected:" />
-            <Switch IsToggled="{Binding Device.IsRearCameraAvailable, Mode=OneWay}" />
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Simulator Detected:" />
-            <Switch IsToggled="{Binding Device.IsSimulator, Mode=OneWay}" />
-        </StackLayout>
+                    <TableSection Title="Camera">
+                        <TextCell Text="Front Camera" Detail="{Binding Device.IsFrontCameraAvailable, Mode=OneWay}" />
+                        <TextCell Text="Rear Camera" Detail="{Binding Device.IsRearCameraAvailable, Mode=OneWay}" />
+                    </TableSection>
+                </TableRoot>
+            </TableView.Root>
+        </TableView>
     </StackLayout>
 </ContentPage>

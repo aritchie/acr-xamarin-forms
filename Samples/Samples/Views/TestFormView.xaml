@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-					   x:Class="Samples.Views.TestFormView">
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="Samples.Views.TestFormView">
     <StackLayout>
         <Label Text="First Name:" />
         <Entry BindingContext="{Binding FirstName}" Text="{Binding Value}" />
-        <ListView BindingContext="{Binding FirstName}" IsVisible="{Binding IsValid}" ItemsSource="{Binding Errors}">
+        <ListView BindingContext="{Binding FirstName}" IsVisible="{Binding IsInvalid}" ItemsSource="{Binding Errors}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding}" />

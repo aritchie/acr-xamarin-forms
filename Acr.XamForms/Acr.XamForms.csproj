@@ -50,7 +50,6 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Infrastructure\IPageLocator.cs" />
     <Compile Include="Infrastructure\PageLocator.cs" />
-    <Compile Include="MarkupExtensions\TranslateMarkupExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AbstractNpcObject.cs" />
     <Compile Include="ViewModels\FormViewModel.cs" />

@@ -4,23 +4,25 @@
              x:Class="Samples.Views.NetworkView"
              Title="Network Detection">
     <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Internet Available" />
-            <Switch IsToggled="{Binding Network.IsConnected, Mode=OneWay}" />
-        </StackLayout>
-        
-        <StackLayout Orientation="Horizontal">
-            <Label Text="WIFI" />
-            <Switch IsToggled="{Binding Network.IsWifi, Mode=OneWay}" />
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Mobile" />
-            <Switch IsToggled="{Binding Network.IsMobile, Mode=OneWay}" />
-        </StackLayout>
-        
-        <Label Text="Host Test" />
-        <Entry Text="{Binding Host, Mode=TwoWay}" />
-        <Button Text="Ping Text" Command="{Binding Ping}" />
+        <TableView Intent="Form">
+            <TableView.Root>
+                <TableRoot>
+                    <TableSection Title="Status">
+                        <SwitchCell Text="Connected" On="{Binding Network.IsConnected, Mode=OneWay}" />
+                        <SwitchCell Text="Internet Available" On="{Binding Network.IsInternetAvailable, Mode=OneWay}" />
+                        <SwitchCell Text="WiFi" On="{Binding Network.IsWifi, Mode=OneWay}" />
+                        <SwitchCell Text="Data Carrier" On="{Binding Network.IsMobile, Mode=OneWay}" />
+                    </TableSection>
+                    <TableSection Title="Reachability Test">
+                        <EntryCell Label="Host" Text="{Binding Host}" />
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Button Text="Check" Command="{Binding Check}" />
+                            </ViewCell.View>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView.Root>
+        </TableView>
     </StackLayout>
 </ContentPage>

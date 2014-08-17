@@ -17,7 +17,7 @@ namespace Samples.Views {
                         this.Nav<BarCodeViewModel>("BarCode Scanning"),
                         this.Nav<UserDialogViewModel>("User Dialogs"),
                         this.Nav<DeviceInfoViewModel>("Device Information"),
-                        //this.Nav<NetworkViewModel>("Network"),
+                        this.Nav<NetworkViewModel>("Network"),
                         this.Nav<SettingsViewModel>("Settings"),
                         this.Nav<PhoneViewModel>("Phone Call"),
                         this.Nav<SmsViewModel>("Send SMS"),

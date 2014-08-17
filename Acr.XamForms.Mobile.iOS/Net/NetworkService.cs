@@ -1,37 +1,50 @@
-//using System;
-//using System.Threading.Tasks;
-//using Acr.XamForms.Mobile.Net;
+using System;
+using System.Threading.Tasks;
+using Acr.XamForms.Mobile.iOS.Net;
+using Acr.XamForms.Mobile.Net;
+using Xamarin.Forms;
 
 
-//namespace Acr.XamForms.Mobile.iOS.Net {
+[assembly: Dependency(typeof(NetworkService))]
+
+
+namespace Acr.XamForms.Mobile.iOS.Net {
     
-//    public class NetworkService : AbstractNetworkService {
+    public class NetworkService : AbstractNetworkService {
 
-//        public NetworkService() {
-//            this.SetInfo();
-//            Reachability.ReachabilityChanged += (s, e) => this.SetInfo();
-//        }
-
-
-//        public override Task<bool> IsHostReachable(string host) {
-//            return Task<bool>.Run(() => Reachability.IsHostReachable(host));
-//        }
+        public NetworkService() {
+            this.SetInfo();
+            Reachability.ReachabilityChanged += (s, e) => this.SetInfo();
+        }
 
 
-//        private void SetInfo() {
-//            switch (Reachability.InternetConnectionStatus()) {
-//                case NetworkStatus.NotReachable:
-//                    this.SetStatus(false, false, false);
-//                    break;
+        public override Task<bool> IsHostReachable(string host) {
+            return Task<bool>.Run(() => Reachability.IsHostReachable(host));
+        }
 
-//                case NetworkStatus.ReachableViaCarrierDataNetwork:
-//                    this.SetStatus(true, false, true);
-//                    break;
 
-//                case NetworkStatus.ReachableViaWiFiNetwork:
-//                    this.SetStatus(true, true, false);
-//                    break;
-//            }
-//        }
-//    }
-//}
+        private void SetInfo() {
+            var state = Reachability.InternetConnectionStatus();
+            switch (state) {
+                case NetworkStatus.NotReachable:
+                    this.IsConnected = false;
+                    break;
+
+                case NetworkStatus.ReachableViaCarrierDataNetwork:
+                    this.IsConnected = true;
+                    this.IsWifi = false;
+                    this.IsMobile = true;
+                    this.IsRoaming = false;
+                    break;
+
+                case NetworkStatus.ReachableViaWiFiNetwork:
+                    this.IsConnected = true;
+                    this.IsWifi = true;
+                    this.IsMobile = false;
+                    this.IsRoaming = false;
+                    break;
+            }
+            this.PostUpdateStates();
+        }
+    }
+}

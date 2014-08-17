@@ -7,6 +7,7 @@ using Acr.XamForms.Mobile;
 using Acr.XamForms.Mobile.IO;
 using Acr.XamForms.Mobile.Locations;
 using Acr.XamForms.Mobile.Media;
+using Acr.XamForms.Mobile.Net;
 using Acr.XamForms.SignaturePad;
 using Acr.XamForms.UserDialogs;
 using Acr.XamForms.ViewModels;
@@ -36,7 +37,7 @@ namespace Samples {
                 .RegisterXamDependency<ILogger>()
                 .RegisterXamDependency<IFileSystem>()
                 //.RegisterXamDependency<IMailService>()
-                //.RegisterXamDependency<INetworkService>()
+                .RegisterXamDependency<INetworkService>()
                 .RegisterXamDependency<IPhoneService>()
                 .RegisterXamDependency<IMediaPicker>()
                 .RegisterXamDependency<ISettings>()

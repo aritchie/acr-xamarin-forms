@@ -1,36 +1,43 @@
-//using System;
-//using System.Threading.Tasks;
-//using Acr.XamForms.Mobile.Net;
-//using Microsoft.Phone.Net.NetworkInformation;
+using System;
+using System.Net;
+using System.Threading.Tasks;
+using Acr.XamForms.Mobile.Net;
+using Acr.XamForms.Mobile.WindowsPhone.Net;
+using Microsoft.Phone.Net.NetworkInformation;
+using Xamarin.Forms;
+
+[assembly: Dependency(typeof(NetworkService))]
 
 
-
-//namespace Acr.XamForms.Mobile.WindowsPhone.Net {
+namespace Acr.XamForms.Mobile.WindowsPhone.Net {
     
-//    public class NetworkService : AbstractNetworkService {
+    public class NetworkService : AbstractNetworkService {
 
-//        public NetworkService() {
-//            DeviceNetworkInformation.NetworkAvailabilityChanged += this.OnNetworkAvailabilityChanged;
-//            this.SetStatus(
-//                DeviceNetworkInformation.IsNetworkAvailable,
-//                DeviceNetworkInformation.IsWiFiEnabled,
-//                DeviceNetworkInformation.IsCellularDataEnabled
-//            );
-//        }
+        public NetworkService() {
+            this.UpdateStatus();
+            DeviceNetworkInformation.NetworkAvailabilityChanged += this.OnNetworkAvailabilityChanged;
+        }
 
 
-//        private void OnNetworkAvailabilityChanged(object sender, NetworkNotificationEventArgs e) {
-//            this.SetStatus(
-//                DeviceNetworkInformation.IsNetworkAvailable,
-//                DeviceNetworkInformation.IsWiFiEnabled,
-//                DeviceNetworkInformation.IsCellularDataEnabled
-//            );
-//        }
+        private void OnNetworkAvailabilityChanged(object sender, NetworkNotificationEventArgs e) {
+            this.UpdateStatus();
+        }
 
 
-//        public override Task<bool> IsHostReachable(string host) {
-//            // TODO
-//            return null;
-//        }
-//    }
-//}
+        public override Task<bool> IsHostReachable(string host) {
+            var tcs = new TaskCompletionSource<bool>();
+            DeviceNetworkInformation.ResolveHostNameAsync(new DnsEndPoint(host, 80), x => tcs.SetResult(x.HostName != null), null);
+            return tcs.Task;
+        }
+
+
+        private void UpdateStatus() {
+            this.IsConnected = DeviceNetworkInformation.IsNetworkAvailable;
+            this.IsRoaming = DeviceNetworkInformation.IsCellularDataRoamingEnabled;
+            this.IsMobile = DeviceNetworkInformation.IsCellularDataEnabled;
+            this.IsWifi = DeviceNetworkInformation.IsWiFiEnabled;
+
+            this.PostUpdateStates();
+        }
+    }
+}

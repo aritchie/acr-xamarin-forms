@@ -14,8 +14,8 @@ namespace Acr.XamForms.Views {
 
         #region Properties
         
-        public static BindableProperty SelectedItemProperty = BindableProperty.Create<Picker, object>(x => x.SelectedItem, null, BindingMode.TwoWay, propertyChanged: Picker.OnSelectedItemChanged);
-        public static BindableProperty ItemsSourceProperty = BindableProperty.Create<Picker, IEnumerable>(o => o.ItemsSource, null, propertyChanged: Picker.OnItemsSourceChanged);
+        public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create<Picker, object>(x => x.SelectedItem, null, BindingMode.TwoWay, propertyChanged: Picker.OnSelectedItemChanged);
+        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create<Picker, IEnumerable>(o => o.ItemsSource, null, propertyChanged: Picker.OnItemsSourceChanged);
 
 
         public IEnumerable ItemsSource {
