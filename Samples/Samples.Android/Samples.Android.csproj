@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3AC4ED82-3D1E-4767-8C17-39EF6337AA64}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -16,14 +14,12 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidUseLatestPlatformSdk />
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <JavaMaximumHeapSize />
     <JavaOptions />
-    <AndroidUseLatestPlatformSdk />
     <NuGetPackageImportStamp>db211204</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,11 +30,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidLinkSkip />
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -48,7 +43,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AndHUD">
@@ -60,29 +54,23 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Xamarin.Android.Support.v4.20.0.0.3\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform.Android, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
     <Reference Include="zxing.monoandroid">
       <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.6\lib\MonoAndroid\zxing.monoandroid.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="ZXing.Net.Mobile">
       <HintPath>..\..\packages\ZXing.Net.Mobile.1.4.6\lib\MonoAndroid\ZXing.Net.Mobile.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v4.20.0.0.3\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.Android">
+      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -105,43 +93,44 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Acr.XamForms.BarCodeScanner.Droid\Acr.XamForms.BarCodeScanner.Droid.csproj">
-      <Project>{0ef6c543-9a82-4a29-a251-4d0a900232dd}</Project>
+      <Project>{0EF6C543-9A82-4A29-A251-4D0A900232DD}</Project>
       <Name>Acr.XamForms.BarCodeScanner.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.BarCodeScanner\Acr.XamForms.BarCodeScanner.csproj">
-      <Project>{1ed7e825-98ed-4740-8dd7-96e4aa3f1128}</Project>
+      <Project>{1ED7E825-98ED-4740-8DD7-96E4AA3F1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile.Droid\Acr.XamForms.Mobile.Droid.csproj">
-      <Project>{07658008-eb02-4c74-b798-0b8ed2beca6d}</Project>
+      <Project>{07658008-EB02-4C74-B798-0B8ED2BECA6D}</Project>
       <Name>Acr.XamForms.Mobile.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
-      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
       <Name>Acr.XamForms.Mobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.SignaturePad.Droid\Acr.XamForms.SignaturePad.Droid.csproj">
-      <Project>{1d5482f6-aa89-422c-9e34-88a8a1ad8ab6}</Project>
+      <Project>{1D5482F6-AA89-422C-9E34-88A8A1AD8AB6}</Project>
       <Name>Acr.XamForms.SignaturePad.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.SignaturePad\Acr.XamForms.SignaturePad.csproj">
-      <Project>{b2af970d-d640-451c-95af-92af531b8c1e}</Project>
+      <Project>{B2AF970D-D640-451C-95AF-92AF531B8C1E}</Project>
       <Name>Acr.XamForms.SignaturePad</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.UserDialogs.Droid\Acr.XamForms.UserDialogs.Droid.csproj">
-      <Project>{f68a14ab-0965-4582-9399-f22f5c4ceb15}</Project>
+      <Project>{F68A14AB-0965-4582-9399-F22F5C4CEB15}</Project>
       <Name>Acr.XamForms.UserDialogs.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.UserDialogs\Acr.XamForms.UserDialogs.csproj">
-      <Project>{fb69b463-0dd5-49d2-afed-6e3a31eb37a1}</Project>
+      <Project>{FB69B463-0DD5-49D2-AFED-6E3A31EB37A1}</Project>
       <Name>Acr.XamForms.UserDialogs</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms\Acr.XamForms.csproj">
-      <Project>{85e3c63b-a17e-46ef-87ce-9a8e58fede4d}</Project>
+      <Project>{85E3C63B-A17E-46EF-87CE-9A8E58FEDE4D}</Project>
       <Name>Acr.XamForms</Name>
     </ProjectReference>
     <ProjectReference Include="..\Samples\Samples.csproj">
       <Name>Samples</Name>
+      <Project>{CC18E151-5792-4DA5-ADE6-7CFBA16A593E}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -149,8 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="AndHUD">
-      <Visible>False</Visible>
       <Version>1.3.1</Version>
+      <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

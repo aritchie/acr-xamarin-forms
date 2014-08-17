@@ -5,34 +5,26 @@
              Title="Barcode Scanning">
 
     <StackLayout>
-        <Button Command="{Binding Scan}" Text="Scan Bar Code" />
+        
+        <TableView Intent="Form">
+            <TableView.Root>
+                <TableRoot>
+                	<TableSection>
+                		<ViewCell>
+                			<ViewCell.View>
+                				<Button Command="{Binding Scan}" Text="Scan Bar Code" />
+                			</ViewCell.View>
+                		</ViewCell>
+                	</TableSection>
+					<TableSection Title="Settings">
+						<EntryCell Label="Top Text" Text="{Binding Scanner.Configuration.TopText}" />
+						<EntryCell Label="Bottom Text" Text="{Binding Scanner.Configuration.BottomText}" />
+						<EntryCell Label="Cancel Text" Text="{Binding Scanner.Configuration.CancelText}" />
+						<EntryCell Label="Flashlight Text" Text="{Binding Scanner.Configuration.FlashlightText}" />
+					</TableSection>
+                </TableRoot>
+            </TableView.Root>
+		</TableView>
 
-        <ScrollView>
-            <StackLayout>
-                <Label Text="Top Text" />
-                <Entry Text="{Binding Scanner.Configuration.TopText, Mode=TwoWay}" />
-
-                <Label Text="Bottom Text" />
-                <Entry Text="{Binding Scanner.Configuration.BottomText, Mode=TwoWay}" />
-
-                <Label Text="Cancel Text" />
-                <Entry Text="{Binding Scanner.Configuration.CancelText, Mode=TwoWay}" />
-
-                <Label Text="Flashlight Text" />
-                <Entry Text="{Binding Scanner.Configuration.FlashlightText, Mode=TwoWay}" />
-
-                <!--<StackLayout Orientation="Horizontal">
-                    <Label Text="Auto Rotate" />
-                    <Switch IsToggled="{Binding Scanner.Configuration.AutoRotate, Mode=TwoWay, TargetNullValue=False}" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Use Front Camera" />
-                    <Switch IsToggled="{Binding Scanner.Configuration.UseFrontCameraIfAvailable, Mode=TwoWay, TargetNullValue=False}" />
-                </StackLayout>-->
-                <!--<Label Text="Format" />-->
-                <!--<Picker ItemsSource="{Binding Formats}" />-->
-                <!--<Picker ItemsSource="{Binding Formats}" SelectedItem="{Binding SelectedFormat}" />-->
-            </StackLayout>
-        </ScrollView>
     </StackLayout>
 </ContentPage>

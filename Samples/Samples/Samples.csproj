@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
@@ -110,7 +110,6 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
@@ -127,27 +126,27 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Acr.XamForms.Autofac\Acr.XamForms.Autofac.csproj">
-      <Project>{fb85dc60-75e7-4df0-8f85-a138ebb14862}</Project>
+      <Project>{FB85DC60-75E7-4DF0-8F85-A138EBB14862}</Project>
       <Name>Acr.XamForms.Autofac</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.BarCodeScanner\Acr.XamForms.BarCodeScanner.csproj">
-      <Project>{1ed7e825-98ed-4740-8dd7-96e4aa3f1128}</Project>
+      <Project>{1ED7E825-98ED-4740-8DD7-96E4AA3F1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
-      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
       <Name>Acr.XamForms.Mobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.SignaturePad\Acr.XamForms.SignaturePad.csproj">
-      <Project>{b2af970d-d640-451c-95af-92af531b8c1e}</Project>
+      <Project>{B2AF970D-D640-451C-95AF-92AF531B8C1E}</Project>
       <Name>Acr.XamForms.SignaturePad</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.UserDialogs\Acr.XamForms.UserDialogs.csproj">
-      <Project>{fb69b463-0dd5-49d2-afed-6e3a31eb37a1}</Project>
+      <Project>{FB69B463-0DD5-49D2-AFED-6E3A31EB37A1}</Project>
       <Name>Acr.XamForms.UserDialogs</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms\Acr.XamForms.csproj">
-      <Project>{85e3c63b-a17e-46ef-87ce-9a8e58fede4d}</Project>
+      <Project>{85E3C63B-A17E-46EF-87CE-9A8E58FEDE4D}</Project>
       <Name>Acr.XamForms</Name>
     </ProjectReference>
   </ItemGroup>

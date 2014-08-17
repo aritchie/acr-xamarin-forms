@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.Mobile</id>
-        <version>1.3</version>
+        <version>1.4</version>
         <title>Mobile Services for Xamarin Forms</title>
         <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, File System Management, SMS, File Opener, and Logging for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -17,7 +17,10 @@
         </dependencies>
         <releaseNotes>
 1.4
-Networking service has a new definition and namespace
+FIX: Network detection exception with android wifi only
+FIX: Camera context on android
+Networking service has better internet detection and new namespace
+Categorization of system directories in file system plugin
 Added an easier way to create files in a directory
 Updated dependencies
 
