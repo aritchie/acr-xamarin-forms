@@ -29,11 +29,8 @@ namespace Samples.ViewModels {
             if (name.IsEmpty())
                 errors.Add(String.Format("{0} name is required", nameType));
 
-            else if (name.Length > 20)
+            else if (name.Length > 10)
                 errors.Add(String.Format("Your {0} name is too long", nameType));
-
-            if (!Regex.IsMatch("^[a-zA-Z_]*$", name))
-                errors.Add(String.Format("{0} name contains invalid characters", nameType));
         }
     }
 }

@@ -11,12 +11,13 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Add" Command="{Binding Add}" />
+        <ToolbarItem Name="Clear" Command="{Binding Clear}" />
+    </ContentPage.ToolbarItems>
+    
     <StackLayout>
-        <Button Command="{Binding Add}" Text="Add Item" />
-        <Button Command="{Binding Clear}" Text="Clear Settings" />
-        <Label Text="No Settings Found" IsVisible="{Binding NoData}" />
-
-        <acrview:ListView IsVisible="{Binding NoData, Converter={StaticResource Not}}" ItemClickCommand="{Binding Select}" ItemsSource="{Binding Settings.All}">
+        <acrview:ListView ItemClickCommand="{Binding Select}" ItemsSource="{Binding Settings.All}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Key}" Detail="{Binding Value}" />

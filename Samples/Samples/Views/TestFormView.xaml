@@ -2,26 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="Samples.Views.TestFormView">
-    <StackLayout>
-        <Label Text="First Name:" />
-        <Entry BindingContext="{Binding FirstName}" Text="{Binding Value}" />
-        <ListView BindingContext="{Binding FirstName}" IsVisible="{Binding IsInvalid}" ItemsSource="{Binding Errors}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <ScrollView>
+        <StackLayout>
+            <Label Text="First Name:" />
+            <Entry BindingContext="{Binding FirstName}" Text="{Binding Value}" />
+            <Label BindingContext="{Binding FirstName}" Text="{Binding ErrorMessage}" IsVisible="{Binding IsInvalid}" TextColor="Red" />
         
-        <Label Text="Last Name:" />
-        <Entry BindingContext="{Binding LastName}" Text="{Binding Value}" />
+            <Label Text="Last Name:" />
+            <Entry BindingContext="{Binding LastName}" Text="{Binding Value}" />
+            <Label BindingContext="{Binding LastName}" Text="{Binding ErrorMessage}" IsVisible="{Binding IsInvalid}" TextColor="Red" />
         
-        <Label Text="E-Mail:" />
-        <Entry BindingContext="{Binding Email}" Text="{Binding Value}" />
+            <Label Text="E-Mail:" />
+            <Entry BindingContext="{Binding Email}" Text="{Binding Value}" />
+            <Label BindingContext="{Binding Email}" Text="{Binding ErrorMessage}" IsVisible="{Binding IsInvalid}" TextColor="Red" />
         
+            <Button Text="Save" Command="{Binding Save}" />
         
-        <Button Text="Save" Command="{Binding Save}" />
-        
-        <Label BindingContext="{Binding FirstName}" Text="{Binding Value, StringFormat='Test Property Binding - {0}'}" />
-    </StackLayout>
+            <Label BindingContext="{Binding FirstName}" Text="{Binding Value, StringFormat='Test Property Binding - {0}'}" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

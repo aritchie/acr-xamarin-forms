@@ -12,7 +12,7 @@ namespace Acr.XamForms.Autofac.Infrastructure {
 
 
         public AutofacPageLocator(ILifetimeScope container) {
-            this.container = container;    
+            this.container = container;
         }
 
 

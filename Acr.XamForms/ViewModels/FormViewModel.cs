@@ -7,8 +7,16 @@ namespace Acr.XamForms.ViewModels {
     
     public abstract class FormViewModel : ViewModel {
 
+        private bool isValid;
+        public bool IsValid {
+            get { return this.isValid; }
+            set { this.SetProperty(ref this.isValid, value); }
+        }
+
+
         protected virtual void Validate() {
-            var propIsValid = this.GetType()
+            this.IsValid = this
+                .GetType()
                 .GetTypeInfo()
                 .DeclaredProperties
                 .Where(x => x
@@ -22,9 +30,7 @@ namespace Acr.XamForms.ViewModels {
                     x.Validate();
                     return x.IsValid;
                 })
-                .Any(x => x);
-
-            // TODO: validate model now
+                .All(x => x);
         }
     }
 }

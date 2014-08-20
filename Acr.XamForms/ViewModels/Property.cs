@@ -18,6 +18,7 @@ namespace Acr.XamForms.ViewModels {
 
 
         public ObservableList<string> Errors { get; private set; }
+        public string ErrorMessage { get; private set; }
         public bool HasBeenBound { get; private set; }
         public bool IsValid { get; private set; }
         public bool IsInvalid { get { return !this.IsValid; }} // useful for xaml
@@ -66,6 +67,8 @@ namespace Acr.XamForms.ViewModels {
                 this.Errors.AddRange(errors);
 
             this.IsValid = !this.Errors.Any();
+            this.ErrorMessage = String.Concat(this.Errors);
+            this.OnPropertyChanged("ErrorMessage");
             this.OnPropertyChanged("IsValid");
             this.OnPropertyChanged("IsInvalid");
         }
