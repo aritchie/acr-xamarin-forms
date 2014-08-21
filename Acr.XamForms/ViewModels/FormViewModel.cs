@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 
@@ -6,6 +7,11 @@ using System.Reflection;
 namespace Acr.XamForms.ViewModels {
     
     public abstract class FormViewModel : ViewModel {
+
+        protected FormViewModel() {
+            this.AllPropertyErrors = new ObservableList<string>();
+        }
+
 
         private bool isValid;
         public bool IsValid {
@@ -27,10 +33,13 @@ namespace Acr.XamForms.ViewModels {
                 )
                 .Cast<IProperty>()
                 .Select(x => {
-                    x.Validate();
+                    this.AllPropertyErrors.AddRange(x.Validate());
                     return x.IsValid;
                 })
                 .All(x => x);
         }
+
+
+        public ObservableList<string> AllPropertyErrors { get; private set; } 
     }
 }

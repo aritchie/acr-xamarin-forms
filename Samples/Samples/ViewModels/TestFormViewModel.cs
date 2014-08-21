@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Acr.XamForms;
 using Acr.XamForms.ViewModels;
@@ -20,7 +19,15 @@ namespace Samples.ViewModels {
             this.FirstName = new Property<string>((x, errors) => ValidateName(x, "First", errors));
             this.LastName = new Property<string>((x, errors) => ValidateName(x, "Last", errors));
             this.Email = new Property<string>((x, errors) => {
-                
+                if (x.IsEmpty())
+                    errors.Add("Email is required");
+                else if (x.Length > 0 && x.Length < 6)
+                    errors.Add("Too Short");
+                else if (x.Length > 20)
+                    errors.Add("Too Long");
+
+                if (!x.Contains("@"))
+                    errors.Add("Invalid Address");
             });
         }
 

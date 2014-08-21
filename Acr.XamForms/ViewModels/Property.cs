@@ -67,7 +67,7 @@ namespace Acr.XamForms.ViewModels {
                 this.Errors.AddRange(errors);
 
             this.IsValid = !this.Errors.Any();
-            this.ErrorMessage = String.Concat(this.Errors);
+            this.ErrorMessage = String.Join(Environment.NewLine, this.Errors);
             this.OnPropertyChanged("ErrorMessage");
             this.OnPropertyChanged("IsValid");
             this.OnPropertyChanged("IsInvalid");
