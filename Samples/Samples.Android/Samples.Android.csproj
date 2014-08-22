@@ -100,6 +100,10 @@
       <Project>{1ED7E825-98ED-4740-8DD7-96E4AA3F1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Controls.Android\Acr.XamForms.Controls.Android.csproj">
+      <Project>{207cdd9e-a944-423a-a2fd-3f5446fffac7}</Project>
+      <Name>Acr.XamForms.Controls.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile.Droid\Acr.XamForms.Mobile.Droid.csproj">
       <Project>{07658008-EB02-4C74-B798-0B8ED2BECA6D}</Project>
       <Name>Acr.XamForms.Mobile.Droid</Name>

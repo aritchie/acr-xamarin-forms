@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.Autofac</id>
-        <version>1.0.1</version>
-        <title>Acr.XamForms.Autoface</title>
+        <version>1.0.0</version>
+        <title>Acr.XamForms.Autofac</title>
         <description>Autofac Helpers for Acr.Xamarin.Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>

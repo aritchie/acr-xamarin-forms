@@ -133,6 +133,10 @@
       <Project>{1ED7E825-98ED-4740-8DD7-96E4AA3F1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Controls\Acr.XamForms.Controls.csproj">
+      <Project>{35fddc55-cc73-4aee-bdd5-710a03404613}</Project>
+      <Name>Acr.XamForms.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
       <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
       <Name>Acr.XamForms.Mobile</Name>

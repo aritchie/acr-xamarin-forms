@@ -40,6 +40,8 @@
     </Compile>
     <Compile Include="ExtendedEntryCell.cs" />
     <Compile Include="LinearListView.cs" />
+    <Compile Include="ListView.cs" />
+    <Compile Include="Picker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
