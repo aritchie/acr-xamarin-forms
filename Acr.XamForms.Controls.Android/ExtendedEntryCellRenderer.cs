@@ -1,11 +1,15 @@
 using System;
 using System.ComponentModel;
+using Acr.XamForms.Controls;
+using Acr.XamForms.Controls.Android;
 using Android.Content;
 using Android.Text;
 using Android.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using View = Android.Views.View;
+
+[assembly: ExportRenderer(typeof(ExtendedEntryCell), typeof(ExtendedEntryCellRenderer))]
 
 
 namespace Acr.XamForms.Controls.Android {

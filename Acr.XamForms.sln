@@ -120,8 +120,8 @@ Global
 		Shared Utils\Shared Utils.projitems*{f68a14ab-0965-4582-9399-f22f5c4ceb15}*SharedItemsImports = 4
 		Acr.XamForms.BarCodeScanner.Shared\Acr.XamForms.BarCodeScanner.Shared.projitems*{dc51e5ac-4dfb-449e-95e3-a471c0ebb53c}*SharedItemsImports = 4
 		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{d7098843-29d9-4aa9-9b11-c2d938e1ae89}*SharedItemsImports = 4
-		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{a2908b9c-d5d0-4715-851d-3eb81ab2e452}*SharedItemsImports = 4
 		Shared Utils\Shared Utils.projitems*{a2908b9c-d5d0-4715-851d-3eb81ab2e452}*SharedItemsImports = 4
+		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{a2908b9c-d5d0-4715-851d-3eb81ab2e452}*SharedItemsImports = 4
 		Shared Utils\Shared Utils.projitems*{4e641fa5-48d3-44c3-8ebf-6161fbfb784b}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,11 +13,18 @@ namespace Samples.ViewModels {
         public Property<string> FirstName { get; private set; }
         public Property<string> LastName { get; private set; }
         public Property<string> Email { get; private set; }
+        public Property<string> Password { get; private set; } 
 
 
         public TestFormViewModel() {
             this.FirstName = new Property<string>((x, errors) => ValidateName(x, "First", errors));
             this.LastName = new Property<string>((x, errors) => ValidateName(x, "Last", errors));
+            this.Password = new Property<string>((x, errors) => {
+                if (x.IsEmpty())
+                    errors.Add("Password is required");
+                else if (x.Length < 5)
+                    errors.Add("Password is too short");
+            });
             this.Email = new Property<string>((x, errors) => {
                 if (x.IsEmpty())
                     errors.Add("Email is required");

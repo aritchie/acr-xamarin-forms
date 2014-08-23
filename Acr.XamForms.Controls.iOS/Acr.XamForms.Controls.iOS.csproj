@@ -39,6 +39,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ExtendedEntryCellRenderer.cs" />
+    <Compile Include="ExtendedTextCellRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -99,6 +99,7 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\ControlsBootstrap.cs" />
     <Compile Include="Bootstrap\UserDialogsBootstrap.cs" />
     <Compile Include="Bootstrap\MobileBootstrap.cs" />
     <Compile Include="Bootstrap\SignaturePadBootstrap.cs" />

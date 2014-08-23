@@ -1,24 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       x:Class="Samples.Views.TestFormView">
-    <ScrollView>
-        <StackLayout>
-            <Label Text="First Name:" />
-            <Entry BindingContext="{Binding FirstName}" Text="{Binding Value}" />
-            <Label BindingContext="{Binding FirstName}" Text="{Binding ErrorMessage}" IsVisible="{Binding IsInvalid}" TextColor="Red" />
-        
-            <Label Text="Last Name:" />
-            <Entry BindingContext="{Binding LastName}" Text="{Binding Value}" />
-            <Label BindingContext="{Binding LastName}" Text="{Binding ErrorMessage}" IsVisible="{Binding IsInvalid}" TextColor="Red" />
-        
-            <Label Text="E-Mail:" />
-            <Entry BindingContext="{Binding Email}" Text="{Binding Value}" />
-            <Label BindingContext="{Binding Email}" Text="{Binding ErrorMessage}" IsVisible="{Binding IsInvalid}" TextColor="Red" />
-        
-            <Button Text="Save" Command="{Binding Save}" />
-        
-            <Label BindingContext="{Binding FirstName}" Text="{Binding Value, StringFormat='Test Property Binding - {0}'}" />
-        </StackLayout>
-    </ScrollView>
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:acr="clr-namespace:Acr.XamForms.Controls;assembly=Acr.XamForms.Controls"
+             x:Class="Samples.Views.TestFormView">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Save" Command="{Binding Save}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <TableView Intent="Form">
+                <TableView.Root>
+                    <TableSection Title="Your Info">
+                        <acr:ExtendedEntryCell Label="First Name" Placeholder="first name" BindingContext="{Binding FirstName}" Text="{Binding Value}" />
+                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding FirstName}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+
+                        <acr:ExtendedEntryCell Label="Last Name" Placeholder="last name" BindingContext="{Binding LastName}" Text="{Binding Value}" />
+                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding LastName}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+
+                        <acr:ExtendedEntryCell Label="E-Mail" Placeholder="address" BindingContext="{Binding Email}" Text="{Binding Value}" />
+                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding Email}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+
+                        <acr:ExtendedEntryCell Label="Password" Placeholder="password" BindingContext="{Binding Password}" IsPassword="true" Text="{Binding Value}" />
+                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding Password}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+
+                        <acr:ExtendedTextCell TextColor="Blue" BindingContext="{Binding FirstName}" Text="{Binding Value, StringFormat='Test Property Binding - {0}'}" />
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

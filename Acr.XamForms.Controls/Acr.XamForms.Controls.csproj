@@ -39,6 +39,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ExtendedEntryCell.cs" />
+    <Compile Include="ExtendedTextCell.cs" />
     <Compile Include="LinearListView.cs" />
     <Compile Include="ListView.cs" />
     <Compile Include="Picker.cs" />

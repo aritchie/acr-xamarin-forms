@@ -4,17 +4,10 @@ using Xamarin.Forms;
 
 namespace Acr.XamForms.Controls {
     
-    public class ExtendedEntryCell : EntryCell {
-        public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create<ExtendedEntryCell, bool>(x => x.IsPassword, false);
+    public class ExtendedTextCell : TextCell {
         public static readonly BindableProperty IsVisibleProperty = BindableProperty.Create<ExtendedEntryCell, bool>(x => x.IsVisible, false);
         public static readonly BindableProperty IsSeparatorVisibleProperty = BindableProperty.Create<ExtendedEntryCell, bool>(x => x.IsSeparatorVisible, false);
         public static readonly BindableProperty SeparatorColorProperty = BindableProperty.Create<ExtendedEntryCell, Color>(x => x.SeperatorColor, Color.Default);
-
-
-        public bool IsPassword {
-            get { return (bool)this.GetValue(IsPasswordProperty); }
-            set { this.SetValue(IsPasswordProperty, value); }
-        }
 
 
         public bool IsVisible {
@@ -33,5 +26,6 @@ namespace Acr.XamForms.Controls {
             get { return (Color)this.GetValue(SeparatorColorProperty); }
             set { this.SetValue(SeparatorColorProperty, value); }
         }
+
     }
 }

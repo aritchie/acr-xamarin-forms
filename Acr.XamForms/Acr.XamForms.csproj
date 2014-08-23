@@ -57,9 +57,6 @@
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\Property.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="Views\StackListView.cs" />
-    <Compile Include="Views\ListView.cs" />
-    <Compile Include="Views\Picker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
