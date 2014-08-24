@@ -8,7 +8,7 @@ namespace Samples.iOS.Bootstrap
         public ControlsBootstrap() 
         {
             new ListView();
-            new Acr.XamForms.Controls.iOS.ExtendedEntryCellRenderer();
+            new Acr.XamForms.Controls.iOS.EntryCellRenderer();
         }
     }
 }

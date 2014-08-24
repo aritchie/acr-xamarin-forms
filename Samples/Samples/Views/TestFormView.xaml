@@ -13,19 +13,19 @@
             <TableView Intent="Form">
                 <TableView.Root>
                     <TableSection Title="Your Info">
-                        <acr:ExtendedEntryCell Label="First Name" Placeholder="first name" BindingContext="{Binding FirstName}" Text="{Binding Value}" />
-                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding FirstName}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+                        <acr:EntryCell Label="First Name" Placeholder="first name" BindingContext="{Binding FirstName}" Text="{Binding Value}" />
+                        <acr:TextCell TextColor="Red" BindingContext="{Binding FirstName}" IsVisible="{Binding IsInvalid}" Text="{Binding ErrorMessage}" />
 
-                        <acr:ExtendedEntryCell Label="Last Name" Placeholder="last name" BindingContext="{Binding LastName}" Text="{Binding Value}" />
-                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding LastName}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+                        <acr:EntryCell Label="Last Name" Placeholder="last name" BindingContext="{Binding LastName}" Text="{Binding Value}" />
+                        <acr:TextCell TextColor="Red" BindingContext="{Binding LastName}" IsVisible="{Binding IsInvalid}" Text="{Binding ErrorMessage}" />
 
-                        <acr:ExtendedEntryCell Label="E-Mail" Placeholder="address" BindingContext="{Binding Email}" Text="{Binding Value}" />
-                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding Email}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+                        <acr:EntryCell Label="E-Mail" Placeholder="address" BindingContext="{Binding Email}" Text="{Binding Value}" />
+                        <acr:TextCell TextColor="Red" BindingContext="{Binding Email}" IsVisible="{Binding IsInvalid}" Text="{Binding ErrorMessage}" />
 
-                        <acr:ExtendedEntryCell Label="Password" Placeholder="password" BindingContext="{Binding Password}" IsPassword="true" Text="{Binding Value}" />
-                        <acr:ExtendedTextCell TextColor="Red" BindingContext="{Binding Password}" IsVisible="{Binding IsInvalid}" Detail="{Binding ErrorMessage}" />
+                        <acr:EntryCell Label="Password" Placeholder="password" BindingContext="{Binding Password}" IsPassword="true" Text="{Binding Value}" />
+                        <acr:TextCell TextColor="Red" BindingContext="{Binding Password}" IsVisible="{Binding IsInvalid}" Text="{Binding ErrorMessage}" />
 
-                        <acr:ExtendedTextCell TextColor="Blue" BindingContext="{Binding FirstName}" Text="{Binding Value, StringFormat='Test Property Binding - {0}'}" />
+                        <acr:TextCell TextColor="Blue" BindingContext="{Binding FirstName}" Text="{Binding Value, StringFormat='Test Property Binding - {0}'}" />
                     </TableSection>
                 </TableView.Root>
             </TableView>
