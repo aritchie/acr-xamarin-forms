@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.SignaturePad</id>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <title>Signature Pad for Xamarin.Forms</title>
         <description>Signature Pad view renderer and service dialog for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -12,11 +12,11 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin forms signaturepad</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
         </dependencies>
         <releaseNotes>
 1.0.1
-Update to Xamarin 1.2.1.6229
+Update to Xamarin 1.2.2.6243
 
 1.0
 Initial Release

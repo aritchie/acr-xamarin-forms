@@ -29,13 +29,16 @@
             </group>
         </dependencies>
         <releaseNotes>
+1.1.3
+Update Xamarin.Forms reference to deal with ReflectionOnlyAssemblyResolve
+
 1.1.1
 Update to ZXing.Net.Mobile
 Fix minor nuspec issue
 
 1.1
 Simplifying API calls
-            
+
 1.0
 Initial Release
         </releaseNotes>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>2.0.0</version>
+        <version>2.0.1</version>
         <title>User Dialogs for Xamarin Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -13,14 +13,17 @@
         <tags>xamarin forms dialogs</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
             </group>
             <group targetFramework="wp8">
-                <dependency id="Xamarin.Forms" version="[1.2.1.6229, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
                 <dependency id="WPtoolkit" version="[4.2013.08.16, 5.0)" />
             </group>
         </dependencies>
         <releaseNotes>
+2.0.1
+Updating to latest stable Xamarin.Forms release 
+
 2.0
 Create better method structure on main class
 WP dialogs are now driven by WP Toolkit
