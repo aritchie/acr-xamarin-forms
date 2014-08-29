@@ -44,16 +44,13 @@
     <Compile Include="ViewModels\DeviceInfoViewModel.cs" />
     <Compile Include="ViewModels\SignatureListViewModel.cs" />
     <Compile Include="ViewModels\LocationViewModel.cs" />
-    <Compile Include="ViewModels\MailViewModel.cs" />
     <Compile Include="ViewModels\NetworkViewModel.cs" />
     <Compile Include="ViewModels\PhoneViewModel.cs" />
     <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SmsViewModel.cs" />
-    <Compile Include="ViewModels\TestFormViewModel.cs" />
     <Compile Include="ViewModels\TextToSpeechViewModel.cs" />
     <Compile Include="ViewModels\UserDialogViewModel.cs" />
-    <Compile Include="ViewModels\VideoViewModel.cs" />
     <Compile Include="Views\BarCodeView.xaml.cs">
       <DependentUpon>BarCodeView.xaml</DependentUpon>
     </Compile>
@@ -64,11 +61,9 @@
       <DependentUpon>DeviceInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.cs" />
+    <Compile Include="Views\ListView.cs" />
     <Compile Include="Views\LocationView.xaml.cs">
       <DependentUpon>LocationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MailView.xaml.cs">
-      <DependentUpon>MailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NetworkView.xaml.cs">
       <DependentUpon>NetworkView.xaml</DependentUpon>
@@ -93,9 +88,6 @@
     </Compile>
     <Compile Include="Views\SmsView.xaml.cs">
       <DependentUpon>SmsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TestFormView.xaml.cs">
-      <DependentUpon>TestFormView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TextToSpeechView.xaml.cs">
       <DependentUpon>TextToSpeechView.xaml</DependentUpon>
@@ -132,10 +124,6 @@
     <ProjectReference Include="..\..\Acr.XamForms.BarCodeScanner\Acr.XamForms.BarCodeScanner.csproj">
       <Project>{1ED7E825-98ED-4740-8DD7-96E4AA3F1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Controls\Acr.XamForms.Controls.csproj">
-      <Project>{35fddc55-cc73-4aee-bdd5-710a03404613}</Project>
-      <Name>Acr.XamForms.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
       <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
@@ -191,12 +179,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MailView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\LocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,12 +216,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ConverterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\TestFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

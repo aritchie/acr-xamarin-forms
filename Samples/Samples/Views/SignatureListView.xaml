@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:acr="clr-namespace:Acr.XamForms.Converters;assembly=Acr.XamForms"
-             xmlns:acrview="clr-namespace:Acr.XamForms.Controls;assembly=Acr.XamForms.Controls"
+             xmlns:local="clr-namespace:Samples.Views;assembly=Samples"
              x:Class="Samples.Views.SignatureListView"
              Title="Signature Pad">
     
@@ -18,7 +18,7 @@
         <Button Text="Configuration" Command="{Binding Configure}" />
         <Label Text="No Signatures Found" IsVisible="{Binding NoData}" />
 
-        <acrview:ListView IsVisible="{Binding NoData, Converter={StaticResource Not}}" ItemClickCommand="{Binding Select}" ItemsSource="{Binding List}">
+        <local:ListView IsVisible="{Binding NoData, Converter={StaticResource Not}}" ItemClickCommand="{Binding Select}" ItemsSource="{Binding List}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -32,6 +32,6 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </acrview:ListView>
+        </local:ListView>
     </StackLayout>
 </ContentPage>

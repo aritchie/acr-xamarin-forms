@@ -31,8 +31,6 @@ namespace Samples.Droid
 			global::Acr.XamForms.BarCodeScanner.Droid.Resource.Layout.zxingscannerfragmentlayout = global::Samples.Droid.Resource.Layout.zxingscannerfragmentlayout;
 			global::Acr.XamForms.BarCodeScanner.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.BarCodeScanner.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
-			global::Acr.XamForms.Controls.Android.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
-			global::Acr.XamForms.Controls.Android.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.Mobile.Droid.Resource.String.ApplicationName = global::Samples.Droid.Resource.String.ApplicationName;
 			global::Acr.XamForms.Mobile.Droid.Resource.String.Hello = global::Samples.Droid.Resource.String.Hello;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.btnCancel = global::Samples.Droid.Resource.Id.btnCancel;

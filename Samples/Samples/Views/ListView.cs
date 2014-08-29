@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 
-namespace Acr.XamForms.Controls {
+namespace Samples.Views {
 
     public class ListView : Xamarin.Forms.ListView {
     
