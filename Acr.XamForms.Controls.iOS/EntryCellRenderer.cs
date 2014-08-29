@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -16,6 +17,7 @@ namespace Acr.XamForms.Controls.iOS {
         private UITableView tableView;
         private UITableViewCell tableViewCell;
         private UITextField textField;
+        private NSIndexPath index;
 
 
         public override UITableViewCell GetCell(Cell item, UITableView tv) {
@@ -26,7 +28,8 @@ namespace Acr.XamForms.Controls.iOS {
 
             this.cell.PropertyChanged += this.OnCellPropertyChanged;
             this.textField.SecureTextEntry = this.cell.IsPassword;
-            this.tableViewCell.Hidden = !this.cell.IsVisible;
+            this.index = this.tableView.IndexPathForCell(this.tableViewCell);
+            this.SetVisible();
 
             return this.tableViewCell;
         }
@@ -39,10 +42,20 @@ namespace Acr.XamForms.Controls.iOS {
                     break;
 
                 case "IsVisible":
-                    this.tableViewCell.Hidden = !this.cell.IsVisible;
-                    this.tableView.ReloadData();
+                    this.SetVisible();
                     break;
             }
+        }
+
+
+        private void SetVisible() {
+            if (this.cell.IsVisible) 
+                this.tableView.InsertRows(new [] { this.index }, UITableViewRowAnimation.Fade);
+            else 
+                this.tableView.DeleteRows(new [] { this.index }, UITableViewRowAnimation.Fade);
+
+            this.tableViewCell.Hidden = !this.cell.IsVisible;
+            
         }
     }
 }

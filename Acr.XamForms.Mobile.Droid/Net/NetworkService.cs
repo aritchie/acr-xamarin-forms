@@ -7,6 +7,7 @@ using Android.Net;
 using Java.Net;
 using Xamarin.Forms;
 
+
 [assembly: Dependency(typeof(NetworkService))]
 
 
@@ -22,6 +23,13 @@ namespace Acr.XamForms.Mobile.Droid.Net {
 
 
         private void SetFromInfo(NetworkInfo network) {
+            //var active = NetworkInterface
+            //    .GetAllNetworkInterfaces()
+            //    .FirstOrDefault(x => 
+            //        x.NetworkInterfaceType == NetworkInterfaceType.Ethernet || 
+            //        x.NetworkInterfaceType == NetworkInterfaceType.Wireless80211
+            //    );
+
             if (network == null || !network.IsConnected)
                 this.IsConnected = false;
             else {
