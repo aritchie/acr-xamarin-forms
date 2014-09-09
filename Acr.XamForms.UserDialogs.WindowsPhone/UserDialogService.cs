@@ -34,11 +34,16 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
                     })
             };
             list.SelectionChanged += (sender, args) => sheet.Dismiss();
-            sheet.Content = list;
+            sheet.Content = new ScrollViewer {
+                Content = list  
+            };
             sheet.Dismissed += (sender, args) => {
-                var txt = (TextBlock)list.SelectedValue;
-                var action = (ActionSheetOption)txt.DataContext;
-                if (action.Action != null)
+                var txt = list.SelectedValue as TextBlock;
+                if (txt == null)
+                    return;
+
+                var action = txt.DataContext as ActionSheetOption;
+                if (action != null && action.Action != null)
                     action.Action();
             };
             this.Dispatch(sheet.Show);

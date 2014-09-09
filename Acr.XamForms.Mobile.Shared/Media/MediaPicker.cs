@@ -16,7 +16,7 @@ namespace Acr.XamForms.Mobile.Media {
         public MediaPicker() {
 #if __IOS__ || WINDOWS_PHONE
             this.picker = new XamMediaPicker();
-#else
+#elif __ANDROID__
             this.picker = new XamMediaPicker(Forms.Context);
 #endif            
         }

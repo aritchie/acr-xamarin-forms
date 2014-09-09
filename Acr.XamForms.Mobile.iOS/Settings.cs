@@ -33,7 +33,7 @@ namespace Acr.XamForms.Mobile.iOS {
         protected override void AddOrUpdateNative(IEnumerable<KeyValuePair<string, string>> saves) {
             foreach (var item in saves)
                 if (this.CanTouch(item.Key))
-                    prefs.SetString(item.Key, item.Value);
+                    prefs.SetString(item.Value, item.Key);
 
             prefs.Synchronize();
         }
