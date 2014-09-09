@@ -16,6 +16,9 @@
             <dependency id="Newtonsoft.Json" version="[6.0.4, 7)" />
         </dependencies>
         <releaseNotes>
+1.4.1
+FIX: settings issue with iOS
+
 1.4
 FIX: Network detection exception with android wifi only
 FIX: Camera context on android

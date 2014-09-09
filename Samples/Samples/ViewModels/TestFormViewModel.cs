@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
-using Acr.XamForms;
 using Acr.XamForms.ViewModels;
 
 
@@ -17,34 +15,42 @@ namespace Samples.ViewModels {
 
 
         public TestFormViewModel() {
-            this.FirstName = new Property<string>((x, errors) => ValidateName(x, "First", errors));
-            this.LastName = new Property<string>((x, errors) => ValidateName(x, "Last", errors));
-            this.Password = new Property<string>((x, errors) => {
-                if (x.IsEmpty())
-                    errors.Add("Password is required");
-                else if (x.Length < 5)
-                    errors.Add("Password is too short");
-            });
-            this.Email = new Property<string>((x, errors) => {
-                if (x.IsEmpty())
-                    errors.Add("Email is required");
-                else if (x.Length > 0 && x.Length < 6)
-                    errors.Add("Too Short");
-                else if (x.Length > 20)
-                    errors.Add("Too Long");
+            // TODO: need ability to mask or shut down bad input OR allow it and throw validation on it
+            this.FirstName = new Property<string>();
+            this.LastName = new Property<string>();
+            this.Password = new Property<string>();
+            this.Email = new Property<string>();
+            //    .ToObservable(x => x.Value)
+            //    .Throttle
+            //        //if (x.IsEmpty())
+            //        //    errors.Add("Password is required");
+            //        //else if (x.Length < 5)
+            //        //    errors.Add("Password is too short");
+            //    });
+            //this.Password = new Property<string>((x, errors) => {
 
-                if (!x.Contains("@"))
-                    errors.Add("Invalid Address");
-            });
+            //});
+            //this.Email = new Property<string>((x, errors) => {
+            //    if (x.IsEmpty())
+            //        errors.Add("Email is required");
+            //    else if (x.Length > 0 && x.Length < 6)
+            //        errors.Add("Too Short");
+            //    else if (x.Length > 20)
+            //        errors.Add("Too Long");
+
+            //    if (!x.Contains("@"))
+            //        errors.Add("Invalid Address");
+            //});
         }
 
 
-        private static void ValidateName(string name, string nameType, IList<string> errors) {
-            if (name.IsEmpty())
-                errors.Add(String.Format("{0} name is required", nameType));
 
-            else if (name.Length > 10)
-                errors.Add(String.Format("Your {0} name is too long", nameType));
-        }
+        //private static void ValidateName(string name, string nameType, IList<string> errors) {
+        //    if (name.IsEmpty())
+        //        errors.Add(String.Format("{0} name is required", nameType));
+
+        //    else if (name.Length > 10)
+        //        errors.Add(String.Format("Your {0} name is too long", nameType));
+        //}
     }
 }

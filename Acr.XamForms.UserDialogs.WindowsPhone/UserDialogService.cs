@@ -34,7 +34,9 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
                     })
             };
             list.SelectionChanged += (sender, args) => sheet.Dismiss();
-            sheet.Content = list;
+            sheet.Content = new ScrollViewer {
+                Content = list  
+            };
             sheet.Dismissed += (sender, args) => {
                 var txt = list.SelectedValue as TextBlock;
                 if (txt == null)

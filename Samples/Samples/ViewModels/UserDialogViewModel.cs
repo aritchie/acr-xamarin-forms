@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -39,17 +38,14 @@ namespace Samples.ViewModels {
 
         public ICommand ActionSheet {
             get {
-                return new Command(() => 
-                    dialogService.ActionSheet(new ActionSheetConfig()
-                        .SetTitle("Test Title")
-                        .Add("Option 1", () => this.Result = "Option 1 Selected")
-                        .Add("Option 2", () => this.Result = "Option 2 Selected")
-                        .Add("Option 3", () => this.Result = "Option 3 Selected")
-                        .Add("Option 4", () => this.Result = "Option 4 Selected")
-                        .Add("Option 5", () => this.Result = "Option 5 Selected")
-                        .Add("Option 6", () => this.Result = "Option 6 Selected")
-                    )
-                );
+                return new Command(() => {
+                    var cfg = new ActionSheetConfig().SetTitle("Test Title");
+                    for (var i = 0; i < 10; i++) {
+                        var display = (i + 1);
+                        cfg.Add("Option " + display, () => String.Format("Option {0} Selected", display));
+                    }
+                    this.dialogService.ActionSheet(cfg);
+                });
             }
         }
 
@@ -149,6 +145,23 @@ namespace Samples.ViewModels {
             }
         }
 
+
+        private string customText;
+        public string CustomText {
+            get { return this.customText; }
+            set { this.SetProperty(ref this.customText, value); }
+        }
+
+
+        public ICommand SingletonShowHide {
+            get {
+                return new Command(async () => {
+                    this.dialogService.ShowLoading(this.CustomText);
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    this.dialogService.HideLoading();
+                });
+            }
+        }
 
         //public ICommand DatePrompt {
         //    get {

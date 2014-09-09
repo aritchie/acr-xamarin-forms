@@ -1,76 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+using System.Reactive.Subjects;
 
 
 namespace Acr.XamForms.ViewModels {
     
-    public class Property<T> : AbstractNpcObject, IProperty {
-        private readonly Action<T, IList<string>> onValidate;
-
-
-        public Property(Action<T, IList<string>> onValidate) {
-            this.Errors = new ObservableList<string>();
-            this.onValidate = onValidate;
-            this.IsValid = true;
-        } 
-
-
-        public ObservableList<string> Errors { get; private set; }
-        public string ErrorMessage { get; private set; }
-        public bool HasBeenBound { get; private set; }
-        public bool IsValid { get; private set; }
-        public bool IsInvalid { get { return !this.IsValid; }} // useful for xaml
-        public T OriginalValue { get; private set; }
+    public class Property<T> : AbstractNpcObject, IProperty<T> {
+        private readonly ISubject<IProperty<T>> subject = new Subject<IProperty<T>>(); 
+        private bool hasBeenBound;
 
 
         private T value;
         public T Value {
             get { return this.value; }
-            set { this.SetProperty(ref this.value, value); }
-        }
-
-
-        public virtual bool IsDirty() {
-            return !this.Value.Equals(this.OriginalValue); 
-        }
-
-
-        public virtual IEnumerable<string> Validate() {
-            var list = new List<string>();
-            this.onValidate(this.Value, list);
-            return list;
-        }
-
-
-        protected override void OnPropertyChanged(string propertyName = null) {
-            base.OnPropertyChanged(propertyName);
-            if (propertyName != "Value")
-                return;
-
-            // TODO: should throttle validation
-            if (this.HasBeenBound) 
-                this.RunValidation();
-            else {
-                this.HasBeenBound = true;
-                this.OriginalValue = value;
+            set {
+                this.SetProperty(ref this.value, value);
+                if (this.hasBeenBound) 
+                    this.subject.OnNext(this);
+                else {
+                    this.hasBeenBound = true;
+                    this.OriginalValue = value;
+                }
             }
         }
 
 
-        protected void RunValidation() {
-            this.Errors.Clear();
+        public T OriginalValue { get; private set; }
 
-            var errors = this.Validate();
-            if (errors != null && errors.Any()) 
-                this.Errors.AddRange(errors);
 
-            this.IsValid = !this.Errors.Any();
-            this.ErrorMessage = String.Join(Environment.NewLine, this.Errors);
-            this.OnPropertyChanged("ErrorMessage");
-            this.OnPropertyChanged("IsValid");
-            this.OnPropertyChanged("IsInvalid");
+        private string errorMessage;
+        public string ErrorMessage {
+            get { return this.errorMessage; }
+            set { this.SetProperty(ref this.errorMessage, value); }
+        }
+
+
+        public virtual bool IsDirty {
+            get { return !Object.Equals(this.Value, this.OriginalValue); }
+        }
+
+
+        public virtual void Reset() {
+            this.Value = this.OriginalValue;
+        }
+
+
+        public IDisposable Subscribe(IObserver<IProperty<T>> observer) {
+            return this.subject.Subscribe(observer);
         }
     }
 }

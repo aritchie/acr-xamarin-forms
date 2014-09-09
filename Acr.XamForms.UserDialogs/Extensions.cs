@@ -7,6 +7,12 @@ namespace Acr.XamForms.UserDialogs {
     
     public static class Extensions {
 
+        public static ActionSheetConfig AddIf(this ActionSheetConfig cfg, bool condition, string text, Action action) {
+            if (condition)
+                cfg.Add(text, action);
+            return cfg;
+        }
+
         #region Async Helpers
 
         public static Task AlertAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK") {
@@ -71,7 +77,6 @@ namespace Acr.XamForms.UserDialogs {
 
 
         #endregion
-
 
         #region Legacy Methods
 
@@ -139,6 +144,5 @@ namespace Acr.XamForms.UserDialogs {
         }
 
         #endregion
-
     }
 }

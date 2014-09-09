@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 
 namespace Acr.XamForms.ViewModels {
     
-    public interface IProperty {
-        ObservableList<string> Errors { get; }
+    public interface IProperty<T> : INotifyPropertyChanged, IObservable<IProperty<T>> {
 
-        IEnumerable<string> Validate();
-        bool IsValid { get; }
+        T Value { get; set; }
+        T OriginalValue { get; }
+        string ErrorMessage { get; set; }
+        bool IsDirty { get; }
+        void Reset();
     }
 }

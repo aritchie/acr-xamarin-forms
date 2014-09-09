@@ -23,6 +23,10 @@
                 <Button Text="Loading (No Cancel)" Command="{Binding LoadingNoCancel}" />
                 <Button Text="Progress" Command="{Binding Progress}" />
                 <Button Text="Progress (No Cancel)" Command="{Binding ProgressNoCancel}" />
+                
+                <Label Text="Custom Text" />
+                <Entry Text="{Binding CustomText}" />
+                <Button Text="Show/Hide With Custom Text" Command="{Binding SingletonShowHide}" />
             </StackLayout>
         </ScrollView>
     <!--</StackLayout>-->
