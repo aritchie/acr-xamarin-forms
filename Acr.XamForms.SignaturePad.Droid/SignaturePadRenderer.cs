@@ -46,6 +46,9 @@ namespace Acr.XamForms.SignaturePad.Droid {
 
             if (el.SignatureLineColor != Color.Default)
                 view.SignatureLineColor = el.SignatureLineColor.ToAndroid();
+                
+            if (el.BackgroundColor != Color.Default)
+                view.BackgroundColor = el.BackgroundColor.ToAndroid();
 
             if (el.StrokeColor != Color.Default)
                 view.StrokeColor = el.StrokeColor.ToAndroid();

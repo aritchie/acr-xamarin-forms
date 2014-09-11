@@ -76,6 +76,7 @@ namespace Samples.ViewModels {
                     var fileName = String.Format(FILE_FORMAT, DateTime.Now);
                     IFile file = null;
                     using (var ms = new MemoryStream()) {
+                        result.Stream.Position = 0;
                         result.Stream.CopyTo(ms);
                         var bytes = ms.ToArray();
                         file = this.fileSystem.AppData.CreateFile(fileName);
