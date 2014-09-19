@@ -41,7 +41,7 @@ namespace Acr.XamForms.BarCodeScanner {
         public async Task<BarCodeResult> ReadAsync() {
 #if __IOS__
             var scanner = new MobileBarcodeScanner { UseCustomOverlay = false };
-#elif ANDROID
+#elif __ANDROID__
             var scanner = new MobileBarcodeScanner(Forms.Context) { UseCustomOverlay = false };
 #elif WINDOWS_PHONE
             var scanner = new MobileBarcodeScanner(System.Windows.Deployment.Current.Dispatcher) { UseCustomOverlay = false };

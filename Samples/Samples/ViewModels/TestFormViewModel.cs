@@ -20,6 +20,8 @@ namespace Samples.ViewModels {
             this.LastName = new Property<string>();
             this.Password = new Property<string>();
             this.Email = new Property<string>();
+            this.LastName.Subscribe(x => {
+            });
             //    .ToObservable(x => x.Value)
             //    .Throttle
             //        //if (x.IsEmpty())

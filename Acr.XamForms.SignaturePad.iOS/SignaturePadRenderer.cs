@@ -25,6 +25,9 @@ namespace Acr.XamForms.SignaturePad.iOS {
             var view = new NativeView();
             var el = e.NewElement;
             
+            if (el.BackgroundColor != Color.Default)
+                view.BackgroundColor = el.BackgroundColor.ToUIColor();
+
             if (!String.IsNullOrWhiteSpace(el.CaptionText))
                 view.Caption.Text = el.CaptionText;
 
@@ -51,7 +54,7 @@ namespace Acr.XamForms.SignaturePad.iOS {
 
             if (el.StrokeWidth > 0)
                 view.StrokeWidth = el.StrokeWidth;
-            
+
             this.Element.SetInternals(
                 imgFormat => imgFormat == ImageFormatType.Jpg
                         ? view.GetImage().AsJPEG().AsStream()
@@ -72,7 +75,10 @@ namespace Acr.XamForms.SignaturePad.iOS {
                 return;
 
             var el = this.Element;
-            if (e.PropertyName == SignaturePadView.CaptionTextProperty.PropertyName)
+            if (e.PropertyName == SignaturePadView.BackgroundColorProperty.PropertyName)
+                this.Control.BackgroundColor = el.BackgroundColor.ToUIColor();
+
+            else if (e.PropertyName == SignaturePadView.CaptionTextProperty.PropertyName)
                 this.Control.Caption.Text = el.CaptionText;
 
             else if (e.PropertyName == SignaturePadView.CaptionTextColorProperty.PropertyName)
