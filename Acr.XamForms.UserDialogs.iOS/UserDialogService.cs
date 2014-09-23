@@ -14,35 +14,71 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
         public override void ActionSheet(ActionSheetConfig config) {
             Device.BeginInvokeOnMainThread(() => {
-                var action = new UIActionSheet(config.Title);
-                config.Options.ToList().ForEach(x => action.AddButton(x.Text));
 
-                action.Clicked += (sender, btn) => config.Options[btn.ButtonIndex].Action();
-                var view = Utils.GetTopView();
-                action.ShowInView(view);
+                if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
+                    var action = UIAlertController.Create(config.Title ?? String.Empty, String.Empty, UIAlertControllerStyle.ActionSheet);
+                    config.Options.ToList().ForEach(x => UIAlertAction.Create(x.Text, UIAlertActionStyle.Default, _ => {
+                        if (x.Action != null)
+                            x.Action();
+                    }));
+                    Present(action);
+                }
+                else {
+                    var view = Utils.GetTopView();
+
+                    var action = new UIActionSheet(config.Title);
+                    config.Options.ToList().ForEach(x => action.AddButton(x.Text));
+
+                    action.Clicked += (sender, btn) => config.Options[btn.ButtonIndex].Action();
+                    action.ShowInView(view);
+                }
             });
         }
 
 
         public override void Alert(AlertConfig config) {
             Device.BeginInvokeOnMainThread(() => {
-                var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
-                if (config.OnOk != null) 
-                    dlg.Clicked += (s, e) => config.OnOk();
-                
-                dlg.Show();
+                if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
+                    var dlg = new UIAlertController {
+                        Title = config.Title ?? String.Empty,
+                        Message = config.Message
+                    };
+                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => {
+                        if (config.OnOk != null)
+                            config.OnOk();
+                    }));
+                    Present(dlg);
+                }
+                else {
+                    var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
+                    if (config.OnOk != null) 
+                        dlg.Clicked += (s, e) => config.OnOk();
+
+                    dlg.Show();
+                }
             });
         }
 
 
         public override void Confirm(ConfirmConfig config) {
             Device.BeginInvokeOnMainThread(() => {
-                var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
-                dlg.Clicked += (s, e) => {
-                    var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
-                    config.OnConfirm(ok);
-                };
-                dlg.Show();
+                if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
+                    var dlg = new UIAlertController {
+                        Title = config.Title ?? String.Empty,
+                        Message = config.Message
+                    };
+                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => config.OnConfirm(true)));
+                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => config.OnConfirm(false)));
+                    Present(dlg);
+                }
+                else {
+                    var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
+                    dlg.Clicked += (s, e) => {
+                        var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
+                        config.OnConfirm(ok);
+                    };
+                    dlg.Show();
+                }
             });
         }
 
@@ -53,10 +89,66 @@ namespace Acr.XamForms.UserDialogs.iOS {
                 var ms = timeoutSeconds * 1000;
                 BTProgressHUD.ShowToast(message, false, ms);
             });
-            
         }
 
 
+        public override void Prompt(PromptConfig config) {
+            Device.BeginInvokeOnMainThread(() => {
+                var result = new PromptResult();
+
+                if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
+                    var dlg = new UIAlertController {
+                        Title = config.Title ?? String.Empty,
+                        Message = config.Message
+                    };
+
+                    UITextField txt = null;
+                    dlg.AddTextField(x => {
+                        x.SecureTextEntry = config.IsSecure;
+                        x.Placeholder = config.Placeholder;
+                        txt = x;
+                    });
+                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => {
+                        result.Ok = true;
+                        result.Text = txt.Text.Trim();
+                        config.OnResult(result);
+                    }));
+                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => {
+                        result.Ok = false;
+                        result.Text = txt.Text.Trim();
+                        config.OnResult(result);
+                    }));
+                    Present(dlg);
+                }
+                else {
+                    var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
+                        AlertViewStyle = config.IsSecure
+                            ? UIAlertViewStyle.SecureTextInput 
+                            : UIAlertViewStyle.PlainTextInput
+                    };
+                    var txt = dlg.GetTextField(0);
+                    txt.SecureTextEntry = config.IsSecure;
+                    txt.Placeholder = config.Placeholder;
+
+                    dlg.Clicked += (s, e) => {
+                        result.Ok = (dlg.CancelButtonIndex != e.ButtonIndex);
+                        result.Text = txt.Text.Trim();
+                        config.OnResult(result);
+                    };
+                    dlg.Show();
+                }
+            });
+        }
+
+
+        protected override IProgressDialog CreateDialogInstance() {
+            return new ProgressDialog();
+        }
+
+
+        private void Present(UIAlertController controller) {
+            Utils.GetTopViewController().PresentViewController(controller, true, () => {});
+        }
         //public override void DateTimePrompt(DateTimePromptConfig config) {
         //    var sheet = new ActionSheetDatePicker {
         //        Title = config.Title,
@@ -64,7 +156,6 @@ namespace Acr.XamForms.UserDialogs.iOS {
         //    };
 
         //    switch (config.SelectionType) {
-                
         //        case DateTimeSelectionType.Date:
         //            sheet.DatePicker.Mode = UIDatePickerMode.Date;
         //            break;
@@ -77,7 +168,6 @@ namespace Acr.XamForms.UserDialogs.iOS {
         //            sheet.DatePicker.Mode = UIDatePickerMode.DateAndTime;
         //            break;
         //    }
-            
         //    if (config.MinValue != null)
         //        sheet.DatePicker.MinimumDate = config.MinValue.Value;
 
@@ -107,33 +197,5 @@ namespace Acr.XamForms.UserDialogs.iOS {
         //    var top = Utils.GetTopView();
         //    sheet.Show(top);
         //}
-
-
-        public override void Prompt(PromptConfig config) {
-            Device.BeginInvokeOnMainThread(() => {
-                var result = new PromptResult();
-                var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText) {
-                    AlertViewStyle = config.IsSecure
-                        ? UIAlertViewStyle.SecureTextInput 
-                        : UIAlertViewStyle.PlainTextInput
-                };
-                var txt = dlg.GetTextField(0);
-                txt.SecureTextEntry = config.IsSecure;
-                txt.Placeholder = config.Placeholder;
-
-                //UITextView = editable
-                dlg.Clicked += (s, e) => {
-                    result.Ok = (dlg.CancelButtonIndex != e.ButtonIndex);
-                    result.Text = txt.Text;
-                    config.OnResult(result);
-                };
-                dlg.Show();
-            });
-        }
-
-
-        protected override IProgressDialog CreateDialogInstance() {
-            return new ProgressDialog();
-        }
     }
 }

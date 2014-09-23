@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using Acr.XamForms.Autofac.Infrastructure;
@@ -15,7 +14,7 @@ namespace Acr.XamForms.Autofac {
 
 
         public static ContainerBuilder RegisterMvvmComponents(this ContainerBuilder builder, params Assembly[] assemblies) {
-             builder
+            builder
                 .RegisterType<AutofacPageLocator>()
                 .As<IPageLocator>()
                 .SingleInstance(); 

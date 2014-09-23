@@ -37,6 +37,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AbstractUserDialogService.cs" />
+    <Compile Include="ActionSheetButtonType.cs" />
     <Compile Include="ActionSheetConfig.cs" />
     <Compile Include="AlertConfig.cs" />
     <Compile Include="ConfirmConfig.cs" />
