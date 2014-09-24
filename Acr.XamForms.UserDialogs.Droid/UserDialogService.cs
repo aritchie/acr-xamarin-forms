@@ -64,7 +64,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
         //public override void DateTimePrompt(DateTimePromptConfig config) {
         //    var date = DateTime.Now;
         //    switch (config.SelectionType) {
-                
+
         //        case DateTimeSelectionType.DateTime: // TODO
         //        case DateTimeSelectionType.Date:
         //            var datePicker = new DatePickerDialog(Utils.GetActivityContext(), (sender, args) => {
@@ -74,7 +74,6 @@ namespace Acr.XamForms.UserDialogs.Droid {
         //            datePicker.DismissEvent += (sender, args) => config.OnResult(new DateTimePromptResult(date));
         //            datePicker.SetTitle(config.Title);
         //            datePicker.Show();
-                    
         //            break;
 
         //        case DateTimeSelectionType.Time:
@@ -112,7 +111,9 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 Hint = config.PasswordPlaceholder,
                 TransformationMethod = PasswordTransformationMethod.Instance
             };
-            var layout = new LinearLayout(context);
+            var layout = new LinearLayout(context) {
+                Orientation = Orientation.Vertical
+            };
             layout.AddView(txtUser, ViewGroup.LayoutParams.MatchParent);
             layout.AddView(txtPass, ViewGroup.LayoutParams.MatchParent);
 
