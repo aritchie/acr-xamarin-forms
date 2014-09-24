@@ -61,6 +61,22 @@ namespace Acr.XamForms.UserDialogs {
         //}
 
 
+        public static Task<LoginResult> LoginAsync(this IUserDialogService dialogs, string title = "Login", string message = null) {
+            return dialogs.LoginAsync(new LoginConfig {
+                Title = title,
+                Message = message
+            });
+        }
+
+
+        public static Task<LoginResult> LoginAsync(this IUserDialogService dialogs, LoginConfig config) {
+            var tcs = new TaskCompletionSource<LoginResult>();
+            config.OnResult = tcs.SetResult;
+            dialogs.Login(config);
+            return tcs.Task;
+        }
+
+
         public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", bool secure = false) {
             var tcs = new TaskCompletionSource<PromptResult>();
             dialogs.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, secure);

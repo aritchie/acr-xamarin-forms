@@ -49,7 +49,7 @@ namespace Samples.ViewModels {
             }
         }
 
-        
+
         public ICommand Confirm {
             get {
                 return new Command(async () => {
@@ -60,6 +60,20 @@ namespace Samples.ViewModels {
             }
         }
 
+
+        public ICommand Login {
+            get {
+                return new Command(async () => {
+                    var r = await dialogService.LoginAsync();
+                    this.Result = String.Format(
+                        "Login {0} - User Name: {1} - Password: {2}",
+                        r.Ok ? "Success" : "Cancelled",
+                        r.LoginText,
+                        r.Password
+                    );
+                });
+            }
+        }
 
         public ICommand Prompt {
             get { return this.PromptCommand(false); }

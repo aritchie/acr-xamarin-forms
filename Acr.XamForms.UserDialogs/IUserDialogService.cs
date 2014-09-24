@@ -6,8 +6,8 @@ namespace Acr.XamForms.UserDialogs {
 
         void Alert(AlertConfig config);
         void ActionSheet(ActionSheetConfig config);
-        
         void Confirm(ConfirmConfig config);
+        void Login(LoginConfig config);
         void Prompt(PromptConfig config);
         //void DateTimePrompt(DateTimePromptConfig config);
         //void DurationPrompt(DurationPromptConfig config);

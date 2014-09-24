@@ -16,12 +16,14 @@ namespace Acr.XamForms.UserDialogs.iOS {
             Device.BeginInvokeOnMainThread(() => {
 
                 if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
-                    var action = UIAlertController.Create(config.Title ?? String.Empty, String.Empty, UIAlertControllerStyle.ActionSheet);
-                    config.Options.ToList().ForEach(x => UIAlertAction.Create(x.Text, UIAlertActionStyle.Default, _ => {
-                        if (x.Action != null)
-                            x.Action();
-                    }));
-                    Present(action);
+                    var sheet = UIAlertController.Create(config.Title ?? String.Empty, String.Empty, UIAlertControllerStyle.ActionSheet);
+                    config.Options.ToList().ForEach(x => 
+                        sheet.AddAction(UIAlertAction.Create(x.Text, UIAlertActionStyle.Default, y => {
+                            if (x.Action != null)
+                                x.Action();
+                        }))
+                    );
+                    Present(sheet);
                 }
                 else {
                     var view = Utils.GetTopView();
@@ -39,15 +41,12 @@ namespace Acr.XamForms.UserDialogs.iOS {
         public override void Alert(AlertConfig config) {
             Device.BeginInvokeOnMainThread(() => {
                 if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
-                    var dlg = new UIAlertController {
-                        Title = config.Title ?? String.Empty,
-                        Message = config.Message
-                    };
-                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => {
+                    var alert = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, x => {
                         if (config.OnOk != null)
                             config.OnOk();
                     }));
-                    Present(dlg);
+                    Present(alert);
                 }
                 else {
                     var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, null, config.OkText);
@@ -63,12 +62,9 @@ namespace Acr.XamForms.UserDialogs.iOS {
         public override void Confirm(ConfirmConfig config) {
             Device.BeginInvokeOnMainThread(() => {
                 if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
-                    var dlg = new UIAlertController {
-                        Title = config.Title ?? String.Empty,
-                        Message = config.Message
-                    };
+                    var dlg = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
                     dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => config.OnConfirm(true)));
-                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => config.OnConfirm(false)));
+                    dlg.AddAction(UIAlertAction.Create(config.CancelText, UIAlertActionStyle.Default, x => config.OnConfirm(false)));
                     Present(dlg);
                 }
                 else {
@@ -76,6 +72,46 @@ namespace Acr.XamForms.UserDialogs.iOS {
                     dlg.Clicked += (s, e) => {
                         var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
                         config.OnConfirm(ok);
+                    };
+                    dlg.Show();
+                }
+            });
+        }
+
+
+        public override void Login(LoginConfig config) {
+            UITextField txtUser;
+            UITextField txtPass;
+
+            Device.BeginInvokeOnMainThread(() => {
+
+                if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
+                    var dlg = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
+                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => {}));
+                    dlg.AddAction(UIAlertAction.Create(config.CancelText, UIAlertActionStyle.Default, x => {}));
+                    dlg.AddTextField(x => {
+                        txtUser = x;
+                        x.Placeholder = config.LoginPlaceholder;
+                        x.Text = config.LoginValue ?? String.Empty;
+                    });
+                    dlg.AddTextField(x => {
+                        txtPass = x;
+                        x.Placeholder = config.PasswordPlaceholder;
+                    });
+                    Present(dlg);
+                }
+                else {
+                    var dlg = new UIAlertView { AlertViewStyle = UIAlertViewStyle.LoginAndPasswordInput };
+                    txtUser = dlg.GetTextField(0);
+                    txtPass = dlg.GetTextField(1);
+
+                    txtUser.Placeholder = config.LoginPlaceholder;
+                    txtUser.Text = config.LoginValue ?? String.Empty;
+                    txtPass.Placeholder = config.PasswordPlaceholder;
+
+                    dlg.Clicked += (s, e) => {
+                        var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
+                        config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, ok));
                     };
                     dlg.Show();
                 }
@@ -97,27 +133,24 @@ namespace Acr.XamForms.UserDialogs.iOS {
                 var result = new PromptResult();
 
                 if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
-                    var dlg = new UIAlertController {
-                        Title = config.Title ?? String.Empty,
-                        Message = config.Message
-                    };
-
+                    var dlg = UIAlertController.Create(config.Title ?? String.Empty, config.Message, UIAlertControllerStyle.Alert);
                     UITextField txt = null;
-                    dlg.AddTextField(x => {
-                        x.SecureTextEntry = config.IsSecure;
-                        x.Placeholder = config.Placeholder;
-                        txt = x;
-                    });
+
                     dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => {
                         result.Ok = true;
                         result.Text = txt.Text.Trim();
                         config.OnResult(result);
                     }));
-                    dlg.AddAction(UIAlertAction.Create(config.OkText, UIAlertActionStyle.Default, x => {
+                    dlg.AddAction(UIAlertAction.Create(config.CancelText, UIAlertActionStyle.Default, x => {
                         result.Ok = false;
                         result.Text = txt.Text.Trim();
                         config.OnResult(result);
                     }));
+                    dlg.AddTextField(x => {
+                        x.SecureTextEntry = config.IsSecure;
+                        x.Placeholder = config.Placeholder ?? String.Empty;
+                        txt = x;
+                    });
                     Present(dlg);
                 }
                 else {
@@ -146,8 +179,12 @@ namespace Acr.XamForms.UserDialogs.iOS {
         }
 
 
-        private void Present(UIAlertController controller) {
-            Utils.GetTopViewController().PresentViewController(controller, true, () => {});
+        private static void Present(UIAlertController controller) {
+            Device.BeginInvokeOnMainThread(() => 
+                Utils
+                    .GetTopViewController()
+                    .PresentViewController(controller, true, () => {})
+            );
         }
         //public override void DateTimePrompt(DateTimePromptConfig config) {
         //    var sheet = new ActionSheetDatePicker {

@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>2.0.2</version>
+        <version>2.1.0</version>
         <title>User Dialogs for Xamarin Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
-        <description>Alert, Confirm, Prompt, Toast, Action Sheet, Loading, and Progress Dialogs calls for Xamarin Forms</description>
+        <description>Alert, Confirm, Prompt, Toast, Action Sheet, Login, Loading, and Progress Dialogs calls for Xamarin Forms</description>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
         <projectUrl>https://github.com/aritchie/acr-xamarin-forms</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -21,6 +21,10 @@
             </group>
         </dependencies>
         <releaseNotes>
+2.1.0
+* NEW * Login Dialog on all platforms
+iOS8 now uses UIAlertController
+
 2.0.2
 Fix null reference with action sheet and back button on WP8
 Fix scrolling issue with action sheet in WP8

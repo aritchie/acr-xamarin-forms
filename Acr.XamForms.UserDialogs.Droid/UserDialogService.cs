@@ -4,6 +4,7 @@ using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
 using Android.Content;
 using Android.Text.Method;
+using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidHUD;
@@ -101,13 +102,43 @@ namespace Acr.XamForms.UserDialogs.Droid {
         //}
 
 
+        public override void Login(LoginConfig config) {
+            var context = Utils.GetActivityContext();
+            var txtUser = new EditText(context) {
+                Hint = config.LoginPlaceholder,
+                Text = config.LoginValue ?? String.Empty
+            };
+            var txtPass = new EditText(context) {
+                Hint = config.PasswordPlaceholder,
+                TransformationMethod = PasswordTransformationMethod.Instance
+            };
+            var layout = new LinearLayout(context);
+            layout.AddView(txtUser, ViewGroup.LayoutParams.MatchParent);
+            layout.AddView(txtPass, ViewGroup.LayoutParams.MatchParent);
+
+            Utils.RequestMainThread(() => 
+                new AlertDialog
+                    .Builder(Utils.GetActivityContext())
+                    .SetTitle(config.Title)
+                    .SetMessage(config.Message)
+                    .SetView(layout)
+                    .SetPositiveButton(config.OkText, (o, e) =>
+                        config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, true))
+                    )
+                    .SetNegativeButton(config.CancelText, (o, e) =>
+                        config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, false))
+                    )
+                    .Show()
+            );
+        }
+
+
         public override void Prompt(PromptConfig config) {
             Utils.RequestMainThread(() => {
                 var txt = new EditText(Utils.GetActivityContext()) {
                     Hint = config.Placeholder
                 };
                 if (config.IsSecure)
-                    //txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
                     txt.TransformationMethod = PasswordTransformationMethod.Instance;
 
                 new AlertDialog
