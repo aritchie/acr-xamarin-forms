@@ -23,7 +23,7 @@ namespace Acr.XamForms.Mobile.IO {
             this.Public = new Directory(Path.Combine(path, "Public"));
             this.Temp = new Directory(Path.Combine(path, "Temp"));
 #elif __IOS__
-            var documents = UIApplication.SharedApplication.CheckVersion(8, 0)
+            var documents = UIDevice.CurrentDevice.CheckVersion(8, 0)
                 ? NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path
                 : Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
