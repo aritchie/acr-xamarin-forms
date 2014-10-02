@@ -12,10 +12,14 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.2.3.6257, 2.0)" />
             <dependency id="Newtonsoft.Json" version="[6.0.4, 7)" />
         </dependencies>
         <releaseNotes>
+1.5
+Update to Xamarin.Mobile 0.74
+Fixes for new iOS8 file structure
+
 1.4.1
 FIX: settings issue with iOS
 

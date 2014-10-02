@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms</id>
-        <version>1.3.0</version>
+        <version>1.3.0-beta</version>
         <title>Acr.XamForms</title>
         <description>View model lifecycle, view model/view resolution, utility converters, and more</description>
         <authors>Allan Ritchie</authors>
@@ -12,11 +12,12 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>		
         <tags>xamarin</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.2.3.6257, 2.0)" />
+            <dependency id="Rx-Main" version="[2.2.5, 3.0)" />
         </dependencies>
         <releaseNotes>
 1.3
-New validation property and form view model
+New property child viewmodel with observables
 
 1.2
 Bugfixes and some new converters

@@ -12,7 +12,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <tags>xamarin android ios winphone</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
+            <dependency id="Xamarin.Forms" version="[1.2.3.6257, 2.0)" />
         </dependencies>
         <releaseNotes>
 1.0
@@ -26,7 +26,7 @@ Initial Release
         <!-- droid -->
         <file src="..\bin\Release\Portable\Acr.XamForms.Controls.dll" target="lib\MonoAndroid\Acr.XamForms.Controls.dll" />
         <file src="..\bin\Release\MonoAndroid\Acr.XamForms.Controls.Android.dll" target="lib\MonoAndroid\Acr.XamForms.Controls.Android.dll" />
-        
+
         <!-- touch -->
         <file src="..\bin\Release\Portable\Acr.XamForms.Controls.dll" target="lib\MonoTouch\Acr.XamForms.Controls.dll" />
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.Controls.iOS.dll" target="lib\MonoTouch\Acr.XamForms.Controls.iOS.dll" />

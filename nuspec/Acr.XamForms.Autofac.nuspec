@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.Autofac</id>
-        <version>1.0.0</version>
+        <version>1.0.0-beta</version>
         <title>Acr.XamForms.Autofac</title>
         <description>Autofac Helpers for Acr.Xamarin.Forms</description>
         <authors>Allan Ritchie</authors>
@@ -12,15 +12,15 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>		
         <tags>xamarin</tags>
         <dependencies>
-            <dependency id="Xamarin.Forms" version="[1.2.2.6243, 2.0)" />
-			<dependency id="Autofac" version="3.5.0" />
+            <dependency id="Xamarin.Forms" version="[1.2.3.6257, 2.0)" />
+			<dependency id="Autofac" version="[3.5.0, 4.0)" />
         </dependencies>
         <releaseNotes>
 1.0
 Initial Release
         </releaseNotes>
     </metadata>
-    <files>		
+    <files>
         <!-- PCL -->
         <file src="..\bin\Release\Portable\Acr.XamForms.Autofac.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.Autofac.dll" />
     </files>
