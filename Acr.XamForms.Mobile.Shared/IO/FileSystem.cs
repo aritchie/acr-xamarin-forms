@@ -3,6 +3,7 @@ using System.IO;
 using Acr.XamForms.Mobile.IO;
 using Xamarin.Forms;
 #if __IOS__
+using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 #endif
 
@@ -23,7 +24,7 @@ namespace Acr.XamForms.Mobile.IO {
             this.Temp = new Directory(Path.Combine(path, "Temp"));
 #elif __IOS__
             var documents = UIApplication.SharedApplication.CheckVersion(8, 0)
-                ? NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0]
+                ? NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)[0].Path
                 : Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             var library = Path.Combine(documents, "..", "Library");
