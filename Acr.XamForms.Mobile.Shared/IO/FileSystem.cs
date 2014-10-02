@@ -2,6 +2,10 @@
 using System.IO;
 using Acr.XamForms.Mobile.IO;
 using Xamarin.Forms;
+#if __IOS__
+using MonoTouch.Foundation;
+#endif
+
 
 [assembly: Dependency(typeof(FileSystem))]
 
