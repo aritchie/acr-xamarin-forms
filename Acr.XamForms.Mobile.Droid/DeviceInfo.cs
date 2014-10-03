@@ -1,4 +1,5 @@
 using System;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
@@ -7,9 +8,8 @@ using Xamarin.Forms;
 using B = Android.OS.Build;
 
 
-        
 namespace Acr.XamForms.Mobile.Droid {
-    
+
     public class DeviceInfo : IDeviceInfo {
 
         private readonly Lazy<string> deviceId;
@@ -18,6 +18,9 @@ namespace Acr.XamForms.Mobile.Droid {
 
 
         public DeviceInfo() {
+            this.appVersion = new Lazy<string>(() => 
+                Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, 0).VersionName
+            );
             this.screenHeight = new Lazy<int>(() => {
                 var d = Resources.System.DisplayMetrics;
                 return (int)(d.HeightPixels / d.Density);
@@ -28,7 +31,7 @@ namespace Acr.XamForms.Mobile.Droid {
             });
             this.deviceId = new Lazy<string>(() => {
                 var tel = (TelephonyManager)Forms.Context.ApplicationContext.GetSystemService(Context.TelephonyService);
-                return tel.DeviceId;   
+                return tel.DeviceId;
             });
 
         }

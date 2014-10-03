@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.Mobile</id>
-        <version>1.4</version>
+        <version>1.5</version>
         <title>Mobile Services for Xamarin Forms</title>
         <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, File System Management, SMS, File Opener, and Logging for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -19,6 +19,7 @@
 1.5
 Update to Xamarin.Mobile 0.74
 Fixes for new iOS8 file structure
+Adding AppVersion property to Device Info
 
 1.4.1
 FIX: settings issue with iOS

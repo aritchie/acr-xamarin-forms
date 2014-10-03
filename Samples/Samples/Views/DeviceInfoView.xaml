@@ -7,12 +7,12 @@
         <TableView>
             <TableView.Root>
                 <TableRoot>
-                    
                     <TableSection Title="Device">
                         <TextCell Text="Device ID" Detail="{Binding Device.DeviceId}" />
                         <TextCell Text="Operating System" Detail="{Binding Device.OperatingSystem}" />
                         <TextCell Text="{Binding Device.Manufacturer}" Detail="{Binding Device.Model}" />
                         <TextCell Text="Simulator" Detail="{Binding Device.IsSimulator}" />
+                        <TextCell Text="App Version" Detail="{Binding Device.AppVersion}" />
                     </TableSection>
 
                     <TableSection Title="Display">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Windows.ApplicationModel;
 using Microsoft.Devices;
 using Microsoft.Phone.Info;
 using Env = System.Environment;
@@ -44,6 +45,11 @@ namespace Acr.XamForms.Mobile.WindowsPhone {
             var getMethod = instance.GetType().GetProperty("ScaleFactor").GetGetMethod();
             var value = (int)getMethod.Invoke(instance, null);
             return value;
+        }
+
+
+        public string AppVersion {
+            get { return Package.Current.Id.Version.ToString(); }
         }
 
 

@@ -7,6 +7,7 @@ namespace Acr.XamForms.Mobile {
 
         int ScreenHeight { get; }
         int ScreenWidth { get; }
+        string AppVersion { get; }
         string DeviceId { get; }
         string Manufacturer { get; }
         string Model { get; }

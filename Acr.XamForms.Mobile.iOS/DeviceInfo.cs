@@ -1,4 +1,5 @@
 using System;
+using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 
@@ -6,6 +7,11 @@ using MonoTouch.UIKit;
 namespace Acr.XamForms.Mobile.iOS {
     
     public class DeviceInfo : IDeviceInfo {
+
+        public string AppVersion {
+            get { return NSBundle.MainBundle.InfoDictionary["CFBundleShortVersionString"].ToString(); }
+        }
+
 
         public int ScreenHeight {
             get { return (int)UIScreen.MainScreen.Bounds.Height; }
