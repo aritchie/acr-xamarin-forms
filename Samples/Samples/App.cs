@@ -32,7 +32,6 @@ namespace Samples {
                 .RegisterMvvmComponents(typeof(App).GetTypeInfo().Assembly)
                 .RegisterXamDependency<IBarCodeScanner>()
                 .RegisterXamDependency<IDeviceInfo>()
-                .RegisterXamDependency<IFileViewer>()
                 .RegisterXamDependency<IGeoLocator>()
                 .RegisterXamDependency<ILogger>()
                 .RegisterXamDependency<IFileSystem>()
