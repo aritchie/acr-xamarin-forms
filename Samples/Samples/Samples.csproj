@@ -103,6 +103,10 @@
     <Compile Include="Views\UserDialogView.xaml.cs">
       <DependentUpon>UserDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\FileSystemViewModel.cs" />
+    <Compile Include="Views\FileSystemView.xaml.cs">
+      <DependentUpon>FileSystemView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -135,6 +139,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\FileSystemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Acr.XamForms.Autofac\Acr.XamForms.Autofac.csproj">
@@ -146,7 +153,7 @@
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Controls\Acr.XamForms.Controls.csproj">
-      <Project>{35fddc55-cc73-4aee-bdd5-710a03404613}</Project>
+      <Project>{35FDDC55-CC73-4AEE-BDD5-710A03404613}</Project>
       <Name>Acr.XamForms.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
