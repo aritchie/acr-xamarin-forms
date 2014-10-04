@@ -12,6 +12,7 @@ namespace Acr.XamForms.Mobile.Droid {
 
     public class DeviceInfo : IDeviceInfo {
 
+        private readonly Lazy<string> appVersion; 
         private readonly Lazy<string> deviceId;
         private readonly Lazy<int> screenHeight;
         private readonly Lazy<int> screenWidth;
@@ -34,6 +35,11 @@ namespace Acr.XamForms.Mobile.Droid {
                 return tel.DeviceId;
             });
 
+        }
+
+
+        public string AppVersion {
+            get { return this.appVersion.Value; }
         }
 
 

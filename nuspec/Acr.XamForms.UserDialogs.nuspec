@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>2.1.0</version>
+        <version>2.1.1</version>
         <title>User Dialogs for Xamarin Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -21,6 +21,9 @@
             </group>
         </dependencies>
         <releaseNotes>
+2.1.1
+Update to XF 1.2.3
+
 2.1.0
 * NEW * Login Dialog on all platforms
 iOS8 now uses UIAlertController
@@ -30,7 +33,7 @@ Fix null reference with action sheet and back button on WP8
 Fix scrolling issue with action sheet in WP8
 
 2.0.1
-Updating to latest stable Xamarin.Forms release 
+Updating to latest stable Xamarin.Forms release
 
 2.0
 Create better method structure on main class
@@ -49,7 +52,7 @@ Initial Release
         <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\MonoAndroid\Acr.XamForms.UserDialogs.dll" />
         <file src="..\bin\Release\MonoAndroid\Acr.XamForms.UserDialogs.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.UserDialogs.Droid.dll" />
         <file src="..\bin\Release\MonoAndroid\AndHUD.dll" target="lib\MonoAndroid\AndHUD.dll" />
-        
+
         <!-- ios -->
         <file src="..\bin\Release\Portable\Acr.XamForms.UserDialogs.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.dll" />
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" target="lib\MonoTouch\Acr.XamForms.UserDialogs.iOS.dll" />

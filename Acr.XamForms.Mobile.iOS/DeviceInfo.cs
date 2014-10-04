@@ -9,7 +9,7 @@ namespace Acr.XamForms.Mobile.iOS {
     public class DeviceInfo : IDeviceInfo {
 
         public string AppVersion {
-            get { return NSBundle.MainBundle.InfoDictionary["CFBundleShortVersionString"].ToString(); }
+            get { return NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString(); }
         }
 
 
