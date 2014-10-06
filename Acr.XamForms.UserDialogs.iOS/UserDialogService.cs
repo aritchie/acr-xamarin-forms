@@ -98,6 +98,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
                     dlg.AddTextField(x => {
                         txtPass = x;
                         x.Placeholder = config.PasswordPlaceholder;
+                        x.SecureTextEntry = true;
                     });
                     Present(dlg);
                 }
