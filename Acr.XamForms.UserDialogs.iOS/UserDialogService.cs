@@ -184,18 +184,14 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
         private static void Present(UIAlertController controller) {
             Device.BeginInvokeOnMainThread(() => {
-                             var top = Utils.GetTopViewController();
+                var top = Utils.GetTopViewController();
                 var po = controller.PopoverPresentationController;
                 if (po != null) {
-                    po.SourceView = top.View;
-                    var viewHeight = top.View.Frame.Height;
-                    var viewWidth = top.View.Frame.Width;
-                    var sheetHeight = 400;
-                    var sheetWidth = 300;
-                    var h = (viewHeight / 2) - (sheetHeight / 2);
-                    var v = (viewWidth / 2) - (sheetWidth / 2);
-                    po.SourceRect = new RectangleF(v, h, sheetWidth, sheetHeight);
-                    po.PermittedArrowDirections = UIPopoverArrowDirection.Up;
+					po.SourceView = top.View;
+					var h = (top.View.Frame.Height / 2) - 400;
+					var v = (top.View.Frame.Width / 2) - 300;
+					po.SourceRect = new RectangleF(v, h, 0, 0);
+					po.PermittedArrowDirections = UIPopoverArrowDirection.Any;
                 }
                 top.PresentViewController(controller, true, null);
             });
