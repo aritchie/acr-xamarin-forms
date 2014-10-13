@@ -21,6 +21,9 @@
             </group>
         </dependencies>
         <releaseNotes>
+2.1.2
+FIX: iOS8 iPad actionsheet
+
 2.1.1
 Update to XF 1.2.3
 

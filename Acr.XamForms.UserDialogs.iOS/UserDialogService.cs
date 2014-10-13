@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Linq;
 using Acr.XamForms.UserDialogs.iOS;
 using BigTed;
@@ -9,7 +10,7 @@ using Xamarin.Forms;
 
 
 namespace Acr.XamForms.UserDialogs.iOS {
-    
+
     public class UserDialogService : AbstractUserDialogService {
 
         public override void ActionSheet(ActionSheetConfig config) {
@@ -182,11 +183,22 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
 
         private static void Present(UIAlertController controller) {
-            Device.BeginInvokeOnMainThread(() => 
-                Utils
-                    .GetTopViewController()
-                    .PresentViewController(controller, true, () => {})
-            );
+            Device.BeginInvokeOnMainThread(() => {
+                             var top = Utils.GetTopViewController();
+                var po = controller.PopoverPresentationController;
+                if (po != null) {
+                    po.SourceView = top.View;
+                    var viewHeight = top.View.Frame.Height;
+                    var viewWidth = top.View.Frame.Width;
+                    var sheetHeight = 400;
+                    var sheetWidth = 300;
+                    var h = (viewHeight / 2) - (sheetHeight / 2);
+                    var v = (viewWidth / 2) - (sheetWidth / 2);
+                    po.SourceRect = new RectangleF(v, h, sheetWidth, sheetHeight);
+                    po.PermittedArrowDirections = UIPopoverArrowDirection.Up;
+                }
+                top.PresentViewController(controller, true, null);
+            });
         }
         //public override void DateTimePrompt(DateTimePromptConfig config) {
         //    var sheet = new ActionSheetDatePicker {

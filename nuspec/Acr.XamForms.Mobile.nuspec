@@ -4,7 +4,7 @@
         <id>Acr.XamForms.Mobile</id>
         <version>1.5</version>
         <title>Mobile Services for Xamarin Forms</title>
-        <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, File System Management, SMS, File Opener, and Logging for Xamarin Forms</description>
+        <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, File System Management, SMS, and Logging for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
