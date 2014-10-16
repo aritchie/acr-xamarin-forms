@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>2.1.1</version>
+        <version>2.1.2</version>
         <title>User Dialogs for Xamarin Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
