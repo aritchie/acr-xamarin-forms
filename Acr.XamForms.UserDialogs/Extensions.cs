@@ -17,16 +17,16 @@ namespace Acr.XamForms.UserDialogs {
 
         public static Task AlertAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK") {
             var tcs = new TaskCompletionSource<object>();
-            dialogs.Alert(message, title, okText, () => tcs.SetResult(null));
+            dialogs.Alert(message, title, okText, () => tcs.TrySetResult(null));
             return tcs.Task;
         }
 
 
         public static Task AlertAsync(this IUserDialogService dialogs, AlertConfig config) {
             var tcs = new TaskCompletionSource<object>();
-            config.OnOk = () => tcs.SetResult(null);
+            config.OnOk = () => tcs.TrySetResult(null);
             dialogs.Alert(config);
-            return tcs.Task;    
+            return tcs.Task;
         }
 
 
@@ -39,7 +39,7 @@ namespace Acr.XamForms.UserDialogs {
 
         public static Task<bool> ConfirmAsync(this IUserDialogService dialogs, ConfirmConfig config) {
             var tcs = new TaskCompletionSource<bool>();
-            config.OnConfirm = tcs.SetResult;
+            config.OnConfirm = x => tcs.TrySetResult(x);
             dialogs.Confirm(config);
             return tcs.Task;
         }
@@ -71,7 +71,7 @@ namespace Acr.XamForms.UserDialogs {
 
         public static Task<LoginResult> LoginAsync(this IUserDialogService dialogs, LoginConfig config) {
             var tcs = new TaskCompletionSource<LoginResult>();
-            config.OnResult = tcs.SetResult;
+            config.OnResult = x => tcs.TrySetResult(x);
             dialogs.Login(config);
             return tcs.Task;
         }
@@ -79,14 +79,14 @@ namespace Acr.XamForms.UserDialogs {
 
         public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, string message, string title = null, string okText = "OK", string cancelText = "Cancel", string placeholder = "", bool secure = false) {
             var tcs = new TaskCompletionSource<PromptResult>();
-            dialogs.Prompt(message, tcs.SetResult, title, okText, cancelText, placeholder, secure);
+            dialogs.Prompt(message, x => tcs.TrySetResult(x), title, okText, cancelText, placeholder, secure);
             return tcs.Task;
         }
 
 
         public static Task<PromptResult> PromptAsync(this IUserDialogService dialogs, PromptConfig config) {
             var tcs = new TaskCompletionSource<PromptResult>();
-            config.OnResult = tcs.SetResult;
+            config.OnResult = x => tcs.TrySetResult(x);
             dialogs.Prompt(config);
             return tcs.Task;
         }
