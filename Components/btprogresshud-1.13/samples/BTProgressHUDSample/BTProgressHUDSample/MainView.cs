@@ -34,7 +34,7 @@ namespace BTProgressHUDDemo
 			});
 
 			MakeButton ("Show Message", () => {
-				BTProgressHUD.Show (status: "Processing your image"); 
+				BTProgressHUD.Show ("Processing your image", -1, ProgressHUD.MaskType.Black); 
 				KillAfter ();
 			});
 
