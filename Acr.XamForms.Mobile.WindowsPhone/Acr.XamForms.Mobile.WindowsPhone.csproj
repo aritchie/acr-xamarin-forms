@@ -86,7 +86,6 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DeviceInfo.cs" />
-    <Compile Include="Logger.cs" />
     <Compile Include="Net\NetworkService.cs" />
     <Compile Include="PhoneService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

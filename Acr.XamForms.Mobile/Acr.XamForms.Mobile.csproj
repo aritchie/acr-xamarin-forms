@@ -48,7 +48,6 @@
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="IO\IDirectory.cs" />
     <Compile Include="IO\IFile.cs" />
-    <Compile Include="ILogger.cs" />
     <Compile Include="Net\INetworkService.cs" />
     <Compile Include="IO\IFileSystem.cs" />
     <Compile Include="ISettings.cs" />

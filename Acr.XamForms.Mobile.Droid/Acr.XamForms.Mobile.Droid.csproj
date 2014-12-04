@@ -12,16 +12,10 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-<<<<<<< HEAD
     <AndroidUseLatestPlatformSdk>
     </AndroidUseLatestPlatformSdk>
     <NuGetPackageImportStamp>7dbcebd0</NuGetPackageImportStamp>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
-=======
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <NuGetPackageImportStamp>7dbcebd0</NuGetPackageImportStamp>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
->>>>>>> 3fa2301de9fd8251a51c3e6ead4e85acf3cc0358
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,34 +45,31 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xamarin.Mobile">
-      <HintPath>..\Components\xamarin.mobile-0.7.1\lib\android\Xamarin.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v4">
+    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Xamarin.Android.Support.v4.20.0.0.4\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Core">
+    <Reference Include="Xamarin.Forms.Core, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Xamarin.Forms.1.2.3.6257\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform.Android">
+    <Reference Include="Xamarin.Forms.Platform.Android, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Xamarin.Forms.1.2.3.6257\lib\MonoAndroid10\Xamarin.Forms.Platform.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
+    <Reference Include="Xamarin.Forms.Xaml, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Xamarin.Forms.1.2.3.6257\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
     <Reference Include="Xamarin.Mobile">
       <HintPath>..\Components\xamarin.mobile-0.7.4\lib\android\Xamarin.Mobile.dll</HintPath>
     </Reference>
-=======
->>>>>>> 3fa2301de9fd8251a51c3e6ead4e85acf3cc0358
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DeviceInfo.cs" />
-    <Compile Include="Logger.cs" />
     <Compile Include="Net\NetworkConnectionBroadcastReceiver.cs" />
     <Compile Include="Net\NetworkService.cs" />
     <Compile Include="PhoneService.cs" />
@@ -99,6 +90,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="xamarin.mobile">
+      <Visible>False</Visible>
+      <Version>0.7.4</Version>
+    </XamarinComponentReference>
+  </ItemGroup>
   <Import Project="..\Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.2.3.6257\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.2.3.6257\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
@@ -115,10 +112,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <XamarinComponentReference Include="xamarin.mobile">
-      <Version>0.7.4</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-  </ItemGroup>
 </Project>
