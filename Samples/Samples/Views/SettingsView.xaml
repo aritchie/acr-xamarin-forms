@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:acr="clr-namespace:Acr.XamForms.Converters;assembly=Acr.XamForms"
-             xmlns:acrview="clr-namespace:Acr.XamForms.Controls;assembly=Acr.XamForms.Controls"
              x:Class="Samples.Views.SettingsView"
              Title="Settings">
     <ContentPage.Resources>
@@ -17,12 +16,12 @@
     </ContentPage.ToolbarItems>
     
     <StackLayout>
-        <acrview:ListView ItemClickCommand="{Binding Select}" ItemsSource="{Binding Settings.All}">
+        <ListView x:Name="ListView" ItemsSource="{Binding Settings.All}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Key}" Detail="{Binding Value}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </acrview:ListView>
+        </ListView>
     </StackLayout>
 </ContentPage>
