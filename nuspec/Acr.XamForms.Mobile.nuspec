@@ -18,6 +18,8 @@
         <releaseNotes>
 1.6
 Fix iOS defect when reading properties on device info outside of main thread
+Clean out some useless services
+Fix Text-to-speech service on android
 
 1.5
 Update to Xamarin.Mobile 0.74

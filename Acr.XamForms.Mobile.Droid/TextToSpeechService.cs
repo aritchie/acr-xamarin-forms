@@ -11,7 +11,7 @@ namespace Acr.XamForms.Mobile.Droid {
 
 
         public TextToSpeechService() {
-            this.speech = new TextToSpeech(Forms.Context, this);
+			this.speech = new TextToSpeech(Forms.Context.ApplicationContext, this);
         }
 
 
@@ -21,9 +21,14 @@ namespace Acr.XamForms.Mobile.Droid {
         public void Speak(string text) {
             if (this.IsSpeaking || !this.IsInitialized)
                 return;
-
+				
             this.IsSpeaking = true;
-            this.speech.Speak(text, QueueMode.Flush, null);
+			try {
+            	this.speech.Speak(text, QueueMode.Flush, null);
+			}
+			finally {
+				this.IsSpeaking = false;
+			}
         }
 
 
@@ -31,15 +36,17 @@ namespace Acr.XamForms.Mobile.Droid {
             if (!this.IsSpeaking)
                 return;
 
-            this.speech.Stop();
-            this.IsSpeaking = false;
+			try {
+            	this.speech.Stop();
+			}
+			finally {
+				this.IsSpeaking = false;
+			}
         }
 
 
         public void OnInit(OperationResult status) {
-            this.IsInitialized = true;
+			this.IsInitialized = (status == OperationResult.Success);
         }
-        public IntPtr Handle { get { return IntPtr.Zero; }}
-        public void Dispose() {}
     }
 }
