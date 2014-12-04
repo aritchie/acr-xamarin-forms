@@ -95,16 +95,13 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Shared Utils\Shared Utils.projitems*{290f8977-f101-4bd8-8a29-19c78b4ebc23}*SharedItemsImports = 4
-		Acr.XamForms.BarCodeScanner.Shared\Acr.XamForms.BarCodeScanner.Shared.projitems*{f1fced90-6343-42b9-8769-5f5b1c5fe1e3}*SharedItemsImports = 4
 		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{1c973cc4-86f0-4798-b128-55fae3aad9e5}*SharedItemsImports = 13
-		Acr.XamForms.BarCodeScanner.Shared\Acr.XamForms.BarCodeScanner.Shared.projitems*{0ef6c543-9a82-4a29-a251-4d0a900232dd}*SharedItemsImports = 4
 		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{07658008-eb02-4c74-b798-0b8ed2beca6d}*SharedItemsImports = 4
 		Shared Utils\Shared Utils.projitems*{b12d20aa-0edf-4903-b385-bb8090848532}*SharedItemsImports = 4
 		Shared Utils\Shared Utils.projitems*{f68a14ab-0965-4582-9399-f22f5c4ceb15}*SharedItemsImports = 4
-		Acr.XamForms.BarCodeScanner.Shared\Acr.XamForms.BarCodeScanner.Shared.projitems*{dc51e5ac-4dfb-449e-95e3-a471c0ebb53c}*SharedItemsImports = 4
 		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{d7098843-29d9-4aa9-9b11-c2d938e1ae89}*SharedItemsImports = 4
-		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{a2908b9c-d5d0-4715-851d-3eb81ab2e452}*SharedItemsImports = 4
 		Shared Utils\Shared Utils.projitems*{a2908b9c-d5d0-4715-851d-3eb81ab2e452}*SharedItemsImports = 4
+		Acr.XamForms.Mobile.Shared\Acr.XamForms.Mobile.Shared.projitems*{a2908b9c-d5d0-4715-851d-3eb81ab2e452}*SharedItemsImports = 4
 		Shared Utils\Shared Utils.projitems*{4e641fa5-48d3-44c3-8ebf-6161fbfb784b}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
