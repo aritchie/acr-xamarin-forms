@@ -12,14 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-<<<<<<< HEAD
-    <AndroidUseLatestPlatformSdk>
-    </AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
-=======
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
->>>>>>> 3fa2301de9fd8251a51c3e6ead4e85acf3cc0358
     <NuGetPackageImportStamp>40b72b13</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
