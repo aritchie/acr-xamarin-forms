@@ -14,7 +14,7 @@ namespace Samples.WinPhone {
         public MainPage() {
             InitializeComponent();
             Forms.Init();
-            new Logger();
+            new DeviceInfo();
             new UserDialogService();
             new SignaturePadConfiguration();
             new BarCodeResult(null, BarCodeFormat.AZTEC);

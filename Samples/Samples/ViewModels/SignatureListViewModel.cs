@@ -28,7 +28,6 @@ namespace Samples.ViewModels {
 			this.dialogs = dialogs;
 			this.fileSystem = fileSystem;
 
-			this.Configure = new Command(() => App.NavigateTo<SignaturePadConfigViewModel>());
 			this.Create = new Command(async () => await this.OnCreate());
 			this.List = new ObservableList<Signature>();
 		}
@@ -61,7 +60,6 @@ namespace Samples.ViewModels {
 		}
 
 
-		public ICommand Configure { get; private set; }
 		public ICommand Create { get; private set; }
 
 

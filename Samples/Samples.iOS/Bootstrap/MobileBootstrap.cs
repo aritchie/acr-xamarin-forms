@@ -7,7 +7,7 @@ namespace Samples.iOS.Bootstrap
     {
         public MobileBootstrap() 
         {
-            new Logger();
+            new DeviceInfo();
         }
     }
 }

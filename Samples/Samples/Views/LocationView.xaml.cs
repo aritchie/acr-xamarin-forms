@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+
 
 namespace Samples.Views {
-    public partial class LocationView {
+    public partial class LocationView : ContentPage {
         public LocationView() {
             InitializeComponent();
         }
