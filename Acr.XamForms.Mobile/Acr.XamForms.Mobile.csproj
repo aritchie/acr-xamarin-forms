@@ -37,7 +37,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AbstractLogger.cs" />
     <Compile Include="AbstractSettings.cs" />
     <Compile Include="IO\Extensions.cs" />
     <Compile Include="Media\CameraDevice.cs" />
