@@ -3,13 +3,13 @@ using System.Linq;
 using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
 using Android.Content;
-using Android.Text;
 using Android.Text.Method;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidHUD;
 using Xamarin.Forms;
+using Android.Text;
 
 [assembly: Dependency(typeof(UserDialogService))]
 
@@ -106,13 +106,18 @@ namespace Acr.XamForms.UserDialogs.Droid {
             var context = Utils.GetActivityContext();
             var txtUser = new EditText(context) {
                 Hint = config.LoginPlaceholder,
-                Text = config.LoginValue ?? String.Empty
+                Text = config.LoginValue ?? String.Empty,
+				InputType = InputTypes.TextVariationVisiblePassword
             };
+			txtUser.SetMaxLines(1);
+
             var txtPass = new EditText(context) {
                 Hint = config.PasswordPlaceholder,
-                InputType = InputTypes.TextVariationPassword,
-                TransformationMethod = PasswordTransformationMethod.Instance
+                TransformationMethod = PasswordTransformationMethod.Instance,
+				InputType = InputTypes.TextVariationPassword
             };
+			txtPass.SetMaxLines(1);
+
             var layout = new LinearLayout(context) {
                 Orientation = Orientation.Vertical
             };
@@ -141,11 +146,12 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 var txt = new EditText(Utils.GetActivityContext()) {
                     Hint = config.Placeholder
                 };
-                if (config.IsSecure) { 
+				if (config.IsSecure) 
+					txt.SetMaxLines(1);
+				else {
                     txt.TransformationMethod = PasswordTransformationMethod.Instance;
-                    txt.InputType = InputTypes.TextVariationPassword;
-                }
-
+					txt.InputType = InputTypes.TextVariationPassword;
+				}
                 new AlertDialog
                     .Builder(Utils.GetActivityContext())
                     .SetMessage(config.Message)

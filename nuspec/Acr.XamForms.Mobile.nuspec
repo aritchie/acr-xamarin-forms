@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.Mobile</id>
-        <version>1.5</version>
+        <version>1.6</version>
         <title>Mobile Services for Xamarin Forms</title>
         <description>XPlat Camera-Gallery Access, Geo-Location, Settings, Network Detection, Phone, File System Management, SMS, and Logging for Xamarin Forms</description>
         <authors>Allan Ritchie</authors>
@@ -16,6 +16,9 @@
             <dependency id="Newtonsoft.Json" version="[6.0, 7)" />
         </dependencies>
         <releaseNotes>
+1.6
+Fix iOS defect when reading properties on device info outside of main thread
+
 1.5
 Update to Xamarin.Mobile 0.74
 Fixes for new iOS8 file structure
