@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SignaturePad.iOS">
-      <HintPath>..\Components\signature-pad-1.3.3\lib\ios\SignaturePad.iOS.dll</HintPath>
+      <HintPath>..\Components\signature-pad-1.3.5\lib\ios\SignaturePad.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -78,13 +78,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="signature-pad">
-      <Visible>False</Visible>
-      <Version>1.3.4</Version>
-    </XamarinComponentReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <XamarinComponentReference Include="signature-pad">
+      <Visible>False</Visible>
+      <Version>1.3.5</Version>
+    </XamarinComponentReference>
   </ItemGroup>
   <Import Project="..\Shared Utils\Shared Utils.projitems" Label="Shared" Condition="Exists('..\Shared Utils\Shared Utils.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />

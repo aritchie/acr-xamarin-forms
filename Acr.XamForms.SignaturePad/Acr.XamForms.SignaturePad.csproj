@@ -64,7 +64,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AbstractSignatureService.cs" />
     <Compile Include="DrawPoint.cs" />
     <Compile Include="ISignatureService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

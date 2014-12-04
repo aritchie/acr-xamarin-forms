@@ -29,7 +29,7 @@ namespace Samples.ViewModels {
 			this.fileSystem = fileSystem;
 
 			this.Configure = new Command(() => App.NavigateTo<SignaturePadConfigViewModel>());
-			this.Create = new Command(this.OnCreate);
+			this.Create = new Command(async () => await this.OnCreate());
 			this.List = new ObservableList<Signature>();
 		}
 
@@ -65,30 +65,29 @@ namespace Samples.ViewModels {
 		public ICommand Create { get; private set; }
 
 
-		private void OnCreate() {
-			this.signatureService.Request(result => {
-				if (result.Cancelled)
-					this.dialogs.Alert("Cancelled Signature");
+		private async Task OnCreate() {
+			var result = await this.signatureService.Request();
 
-				else { 
-					var fileName = String.Format(FILE_FORMAT, DateTime.Now);
-					IFile file = null;
-					using (var ms = new MemoryStream()) {
-						result.Stream.CopyTo(ms);
-						var bytes = ms.ToArray();
-						file = this.fileSystem.AppData.CreateFile(fileName);
-						using (var fs = file.OpenWrite()) 
-							fs.Write(bytes, 0, bytes.Length);
-					}
-					this.List.Add(new Signature {
-						FilePath = file.FullName,
-						FileName = file.Name,
-						FileSize = file.Length
-					});
-					this.dialogs.Alert(String.Format("Draw Points: {0}", result.Points.Count()));
-					this.NoData = !this.List.Any();
-				}
-			}); 
+			if (result.Cancelled)
+				this.dialogs.Alert("Cancelled Signature");
+
+			else {
+				var fileName = String.Format(FILE_FORMAT, DateTime.Now);
+				IFile file = null;
+                using (var stream = result.GetStream()) {
+					file = this.fileSystem.AppData.CreateFile(fileName);
+					using (var fs = file.OpenWrite())
+						stream.CopyTo(fs);
+                }
+
+				this.List.Add(new Signature {
+					FilePath = file.FullName,
+					FileName = file.Name,
+					FileSize = file.Length
+				});
+				this.dialogs.Alert(String.Format("Draw Points: {0}", result.Points.Count()));
+				this.NoData = !this.List.Any();
+			}
 		}
 
 

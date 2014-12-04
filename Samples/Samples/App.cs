@@ -30,7 +30,7 @@ namespace Samples {
 
             Container = new ContainerBuilder()
                 .RegisterMvvmComponents(typeof(App).GetTypeInfo().Assembly)
-                .RegisterXamDependency<IBarCodeScanner>()
+                .RegisterXamDependency<IBarCodeService>()
                 .RegisterXamDependency<IDeviceInfo>()
                 .RegisterXamDependency<IGeoLocator>()
                 .RegisterXamDependency<ILogger>()

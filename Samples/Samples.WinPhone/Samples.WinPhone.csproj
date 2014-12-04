@@ -161,14 +161,6 @@
       <Project>{1ed7e825-98ed-4740-8dd7-96e4aa3f1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Controls.WindowsPhone\Acr.XamForms.Controls.WindowsPhone.csproj">
-      <Project>{49c00272-4683-4fd0-b7f4-88d3f17477a3}</Project>
-      <Name>Acr.XamForms.Controls.WindowsPhone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Controls\Acr.XamForms.Controls.csproj">
-      <Project>{35fddc55-cc73-4aee-bdd5-710a03404613}</Project>
-      <Name>Acr.XamForms.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile.WindowsPhone\Acr.XamForms.Mobile.WindowsPhone.csproj">
       <Project>{d7098843-29d9-4aa9-9b11-c2d938e1ae89}</Project>
       <Name>Acr.XamForms.Mobile.WindowsPhone</Name>

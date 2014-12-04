@@ -34,6 +34,9 @@
     <DefineConstants>__IOS__</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Acr.XamForms.BarCodeScanner\BarCodeService.cs">
+      <Link>BarCodeService.cs</Link>
+    </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>

@@ -32,7 +32,10 @@ namespace Acr.XamForms.UserDialogs.iOS {
                     var action = new UIActionSheet(config.Title);
                     config.Options.ToList().ForEach(x => action.AddButton(x.Text));
 
-                    action.Dismissed += (sender, btn) => config.Options[btn.ButtonIndex].Action();
+                    action.Dismissed += (sender, btn) => {
+                        if (btn.ButtonIndex > -1 && btn.ButtonIndex < config.Options.Count)
+                            config.Options[btn.ButtonIndex].Action();
+                    };
                     action.ShowInView(view);
                 }
             });

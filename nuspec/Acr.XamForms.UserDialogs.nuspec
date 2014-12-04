@@ -21,6 +21,11 @@
             </group>
         </dependencies>
         <releaseNotes>
+2.2
+Tasks are now part of the interface again for easier mocking
+FIX: iOS7 dismiss and button index
+Update BTProgressHUD
+
 2.1.2
 FIX: iOS8 iPad actionsheet
 

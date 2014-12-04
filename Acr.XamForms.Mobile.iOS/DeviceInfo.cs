@@ -2,62 +2,42 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
+using Xamarin.Forms;
 
 
 namespace Acr.XamForms.Mobile.iOS {
-    
+
     public class DeviceInfo : IDeviceInfo {
 
-        public string AppVersion {
-            get { return NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString(); }
+        public DeviceInfo() {
+			this.AppVersion = NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
+			this.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+			this.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+			this.DeviceId = UIDevice.CurrentDevice.IdentifierForVendor.AsString();
+			this.Manufacturer = "Apple";
+			this.Model = UIDevice.CurrentDevice.Model;
+			this.OperatingSystem = String.Format("{0} {1}", UIDevice.CurrentDevice.SystemName, UIDevice.CurrentDevice.SystemVersion);
+			this.IsFrontCameraAvailable = UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Front);
+			this.IsRearCameraAvailable = UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear);
+			this.IsSimulator = (Runtime.Arch == Arch.SIMULATOR);
+
+            //UIApplication.SharedApplication.ApplicationState == UIApplicationState.Active
+		}
+
+
+		public string AppVersion { get; private set; }
+		public int ScreenHeight { get; private set; }
+		public int ScreenWidth { get; private set; }
+		public string DeviceId { get; private set; }
+		public string Manufacturer { get; private set; }
+		public string Model { get; private set; }
+		public string OperatingSystem { get; private set; }
+        public bool IsAppBackgrounded {
+            get { return (UIApplication.SharedApplication.ApplicationState == UIApplicationState.Background); }
         }
-
-
-        public int ScreenHeight {
-            get { return (int)UIScreen.MainScreen.Bounds.Height; }
-        }
-
-
-        public int ScreenWidth {
-            get { return (int)UIScreen.MainScreen.Bounds.Width; }
-        }
-
-
-        public string DeviceId {
-            get { return UIDevice.CurrentDevice.IdentifierForVendor.AsString(); }
-        }
-
-
-        public string Manufacturer {
-            get { return "Apple"; }
-        }
-
-
-        public string Model {
-            get { return UIDevice.CurrentDevice.Model; }
-        }
-
-        private string os;
-        public string OperatingSystem {
-            get {
-                this.os = this.os ?? String.Format("{0} {1}", UIDevice.CurrentDevice.SystemName, UIDevice.CurrentDevice.SystemVersion);
-                return this.os;
-            }
-        }
-
-        public bool IsFrontCameraAvailable {
-            get { return UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Front); }
-        }
-
-
-        public bool IsRearCameraAvailable {
-            get { return UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear); }
-        }
-
-
-        public bool IsSimulator {
-            get { return (Runtime.Arch == Arch.SIMULATOR); }
-        }
+		public bool IsFrontCameraAvailable { get; private set; }
+		public bool IsRearCameraAvailable { get; private set; }
+		public bool IsSimulator { get; private set; }
     }
 }
 /*

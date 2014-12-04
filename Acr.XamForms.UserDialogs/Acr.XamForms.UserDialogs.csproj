@@ -47,7 +47,6 @@
     <Compile Include="TODO\DateTimePromptResult.cs" />
     <Compile Include="TODO\DurationPromptConfig.cs" />
     <Compile Include="TODO\DurationPromptResult.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="IUserDialogService.cs" />
     <Compile Include="IProgressDialog.cs" />
     <Compile Include="ProgressConfig.cs" />

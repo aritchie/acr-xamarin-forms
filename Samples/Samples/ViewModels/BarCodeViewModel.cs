@@ -12,11 +12,11 @@ namespace Samples.ViewModels {
     
     public class BarCodeViewModel : ViewModel {
 
-        public IBarCodeScanner Scanner { get; private set; }
+        public IBarCodeService Scanner { get; private set; }
         private readonly IUserDialogService dialogs;
 
 
-        public BarCodeViewModel(IBarCodeScanner scanner, IUserDialogService dialogs) {
+        public BarCodeViewModel(IBarCodeService scanner, IUserDialogService dialogs) {
             this.Scanner = scanner;
             this.dialogs = dialogs;
 
@@ -32,8 +32,8 @@ namespace Samples.ViewModels {
         public ICommand Scan {
             get {
                 return new Command(async () => {
-                    var result = await this.Scanner.ReadAsync();
-                    if (result.Success) { 
+                    var result = await this.Scanner.Read();
+                    if (result.Success) {
                         this.dialogs.Alert(String.Format(
                             "Bar Code: {0} - Type: {1}",
                             result.Code,

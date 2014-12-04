@@ -106,11 +106,10 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\ControlsBootstrap.cs" />
     <Compile Include="Bootstrap\UserDialogsBootstrap.cs" />
     <Compile Include="Bootstrap\MobileBootstrap.cs" />
     <Compile Include="Bootstrap\SignaturePadBootstrap.cs" />
-    <Compile Include="Bootstrap\BarCodeScannerBootstrap.cs" />
+    <Compile Include="Bootstrap\BarCodeServiceBootstrap.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Info.plist" />
@@ -125,14 +124,6 @@
     <ProjectReference Include="..\..\Acr.XamForms.BarCodeScanner\Acr.XamForms.BarCodeScanner.csproj">
       <Project>{1ED7E825-98ED-4740-8DD7-96E4AA3F1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Controls.iOS\Acr.XamForms.Controls.iOS.csproj">
-      <Project>{98e51b02-cac1-4b18-8fcb-41feef35d2f3}</Project>
-      <Name>Acr.XamForms.Controls.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Controls\Acr.XamForms.Controls.csproj">
-      <Project>{35fddc55-cc73-4aee-bdd5-710a03404613}</Project>
-      <Name>Acr.XamForms.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile.iOS\Acr.XamForms.Mobile.iOS.csproj">
       <Project>{A2908B9C-D5D0-4715-851D-3EB81AB2E452}</Project>

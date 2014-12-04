@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BTProgressHUD">
-      <HintPath>..\Components\btprogresshud-1.10\lib\ios\BTProgressHUD.dll</HintPath>
+      <HintPath>..\Components\btprogresshud-1.14\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -74,7 +74,7 @@
   <ItemGroup>
     <XamarinComponentReference Include="btprogresshud">
       <Visible>False</Visible>
-      <Version>1.13</Version>
+      <Version>1.14</Version>
     </XamarinComponentReference>
   </ItemGroup>
   <Import Project="..\Shared Utils\Shared Utils.projitems" Label="Shared" Condition="Exists('..\Shared Utils\Shared Utils.projitems')" />

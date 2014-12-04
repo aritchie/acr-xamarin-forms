@@ -9,15 +9,13 @@ using Xamarin.Forms;
 namespace Samples.ViewModels {
 
     public class SignaturePadConfigViewModel : ViewModel {
-        private readonly ISignatureService signatureService;
         private readonly IUserDialogService dialogs;
 
 
-        public SignaturePadConfigViewModel(ISignatureService signatureService, IUserDialogService dialogs) {
-            this.signatureService = signatureService;
+        public SignaturePadConfigViewModel(IUserDialogService dialogs) {
             this.dialogs = dialogs;
 
-            var cfg = this.signatureService.Configuration;
+            var cfg = SignaturePadConfiguration.Default;
             this.saveText = cfg.SaveText;
             this.cancelText = cfg.CancelText;
             this.promptText = cfg.PromptText;
@@ -26,7 +24,7 @@ namespace Samples.ViewModels {
 
 
         private void SetTheme(string theme) {
-            var c = this.signatureService.Configuration;
+            var c = SignaturePadConfiguration.Default;
 
             switch (theme.ToLower()) {
                 case "black":
@@ -66,7 +64,7 @@ namespace Samples.ViewModels {
             get { return this.cancelText; }
             set { 
                 if (this.SetProperty(ref this.cancelText, value))
-                    this.signatureService.Configuration.CancelText = value;
+                    SignaturePadConfiguration.Default.CancelText = value;
             }
         }
 
@@ -76,7 +74,7 @@ namespace Samples.ViewModels {
             get { return this.saveText; }
             set { 
                 if (this.SetProperty(ref this.saveText, value))
-                    this.signatureService.Configuration.SaveText = value;
+                    SignaturePadConfiguration.Default.SaveText = value;
             }
         }
 
@@ -86,7 +84,7 @@ namespace Samples.ViewModels {
             get { return this.promptText; }
             set {
                 if (this.SetProperty(ref this.promptText, value))
-                    this.signatureService.Configuration.PromptText = value;
+                    SignaturePadConfiguration.Default.PromptText = value;
             }
         }
 
@@ -96,7 +94,7 @@ namespace Samples.ViewModels {
             get { return this.captionText; }
             set {
                 if (this.SetProperty(ref this.captionText, value))
-                    this.signatureService.Configuration.CaptionText = value;
+                    SignaturePadConfiguration.Default.CaptionText = value;
             }
         }
 
@@ -106,7 +104,7 @@ namespace Samples.ViewModels {
             get { return this.strokeWidth; }
             set {
                 if (this.SetProperty(ref this.strokeWidth, value))
-                    this.signatureService.Configuration.StrokeWidth = value;
+                    SignaturePadConfiguration.Default.StrokeWidth = value;
             }
         }
 
