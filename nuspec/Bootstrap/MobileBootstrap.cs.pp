@@ -7,7 +7,7 @@ namespace $rootnamespace$.Bootstrap
     {
         public MobileBootstrap() 
         {
-            new Logger();
+            new DeviceInfo();
         }
     }
 }
