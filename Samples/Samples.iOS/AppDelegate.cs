@@ -2,24 +2,23 @@
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 
 namespace Samples.iOS {
 
     [Register("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate {
+    public partial class AppDelegate : FormsApplicationDelegate
+    {
         private UIWindow window;
 
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             Forms.Init();
-            var startView = App.GetMainPage().CreateViewController();
-            window = new UIWindow(UIScreen.MainScreen.Bounds) {
-                RootViewController = startView
-            };
-            window.MakeKeyAndVisible();
+          
+            LoadApplication(new App());
 
-            return true;
+            return base.FinishedLaunching(app, options);
         }
     }
 }
