@@ -6,6 +6,7 @@ using Android.App;
 using Android.Net;
 using Java.Net;
 using Xamarin.Forms;
+using Application = Android.App.Application;
 
 [assembly: Dependency(typeof(NetworkService))]
 

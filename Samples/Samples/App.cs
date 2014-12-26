@@ -18,7 +18,7 @@ using Xamarin.Forms;
 
 namespace Samples {
 
-    public static class App {
+    public class App : Application {
         //private static IContainer container;
         public static IContainer Container { get; private set; }
         private static INavigation navigator;
@@ -48,11 +48,12 @@ namespace Samples {
         }
 
 
-        public static Page GetMainPage() {
+        public App()
+        {
             Init();
             var page = new NavigationPage(new HomeView());
             navigator = page.Navigation;
-            return page;
+            this.MainPage = page;
         }
 
 
