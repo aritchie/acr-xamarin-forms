@@ -1,26 +1,31 @@
 using System;
-using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.Telephony;
 using Xamarin.Forms;
 using B = Android.OS.Build;
+using App = Android.App.Application;
 
 
 namespace Acr.XamForms.Mobile.Droid {
 
     public class DeviceInfo : IDeviceInfo {
 
-        private readonly Lazy<string> appVersion; 
+        private readonly Lazy<string> appVersion;
         private readonly Lazy<string> deviceId;
         private readonly Lazy<int> screenHeight;
         private readonly Lazy<int> screenWidth;
 
 
         public DeviceInfo() {
-            this.appVersion = new Lazy<string>(() => 
-                Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, 0).VersionName
+            this.appVersion = new Lazy<string>(() =>
+                Forms
+                    .Context
+                    .ApplicationContext
+                    .PackageManager
+                    .GetPackageInfo(Forms.Context.PackageName, 0)
+                    .VersionName
             );
             this.screenHeight = new Lazy<int>(() => {
                 var d = Resources.System.DisplayMetrics;
@@ -34,7 +39,6 @@ namespace Acr.XamForms.Mobile.Droid {
                 var tel = (TelephonyManager)Forms.Context.ApplicationContext.GetSystemService(Context.TelephonyService);
                 return tel.DeviceId;
             });
-
         }
 
 

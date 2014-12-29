@@ -39,9 +39,11 @@ namespace Acr.XamForms {
         public static void BindViewModel(this Page page, IViewModel viewModel) {
             page.BindingContext = viewModel;
 
+
             page.Appearing += (sender, args1) => viewModel.OnAppearing();
             page.Disappearing += (sender, args1) => viewModel.OnDisappearing();
         }
+
 
 
         public static void ForEach<T>(this IList<T> list, Action<T> action) {
