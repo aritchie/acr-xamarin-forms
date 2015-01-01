@@ -69,20 +69,20 @@ namespace Acr.XamForms.SignaturePad.iOS {
                     var points = this.view
                         .Signature
                         .Points
-                        .Select(x => new DrawPoint(x.X, x.Y));
+                        .Select(x => new DrawPoint((float)x.X, (float)x.Y));
 
                     using (var image = this.view.Signature.GetImage()) 
                         using (var stream = GetImageStream(image, this.config.ImageType))
 						    using (var fs = new FileStream("Signature.tmp", FileMode.Create)) 
 							    stream.CopyTo(fs);
 
-				    this.DismissViewController(true, (Action)null);
+				    this.DismissViewController(true, null);
 				    this.onResult(new SignatureResult(false, () => new FileStream("Signature.tmp", FileMode.Open, FileAccess.Read, FileShare.Read), points));
                 };
 
                 this.view.CancelButton.SetTitle(this.config.CancelText, UIControlState.Normal);
                 this.view.CancelButton.TouchUpInside += (sender, args) => {
-                    this.DismissViewController(true, (Action)null);
+                    this.DismissViewController(true, null);
                     this.onResult(new SignatureResult(true, null, null));
                 };
             }

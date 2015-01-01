@@ -55,8 +55,8 @@ namespace Acr.XamForms.SignaturePad.iOS {
                 ? new CGRect (10, 10, Bounds.Width - 20, Bounds.Height - 60)
                 : new CGRect (84, 84, Bounds.Width - 168, Bounds.Width / 2);
 
-            this.SaveButton.Frame = new CGRect(10, (CGRect)this.Bounds.Height - 40, 120, 37);
-            this.CancelButton.Frame = new CGRect((CGRect)this.Bounds.Width - 130, (CGRect)this.Bounds.Height - 40, 120, 37);
+            this.SaveButton.Frame = new CGRect(10, this.Bounds.Height - 40, 120, 37);
+            this.CancelButton.Frame = new CGRect(this.Bounds.Width - 130, this.Bounds.Height - 40, 120, 37);
         }
     }
 }

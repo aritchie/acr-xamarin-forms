@@ -13,18 +13,18 @@
         <tags>xamarin barcode android ios winphone</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.3, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.3.1, 2.0)" />
             </group>
             <group targetFramework="MonoAndroid">
-                <dependency id="Xamarin.Forms" version="[1.3, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.3.1, 2.0)" />
                 <dependency id="ZXing.Net.Mobile" version="[1.4.7, 2.0)" />
             </group>
             <group targetFramework="MonoTouch">
-                <dependency id="Xamarin.Forms" version="[1.3, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.3.1, 2.0)" />
                 <dependency id="ZXing.Net.Mobile" version="[1.4.7, 2.0)" />
             </group>
             <group targetFramework="wp8">
-                <dependency id="Xamarin.Forms" version="[1.3., 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.3.1, 2.0)" />
                 <dependency id="ZXing.Net.Mobile" version="[1.4.7, 2.0)" />
             </group>
         </dependencies>
@@ -54,17 +54,17 @@ Initial Release
     </metadata>
     <files>
         <!-- PCL -->
-        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\portable-win+net45+MonoAndroid+MonoTouch+wp8\Acr.XamForms.BarCodeScanner.dll" />
+        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\portable-win+net45+MonoAndroid10+Xamarin.iOS10+wp8\Acr.XamForms.BarCodeScanner.dll" />
 
         <!-- droid -->
-        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoAndroid\Acr.XamForms.BarCodeScanner.dll" />
-        <file src="..\bin\Release\MonoAndroid\Acr.XamForms.BarCodeScanner.Droid.dll" target="lib\MonoAndroid\Acr.XamForms.BarCodeScanner.Droid.dll" />
-        <file src="Bootstrap\BarCodeServiceBootstrap.cs.pp" target="content\MonoAndroid\Bootstrap\BarCodeServiceBootstrap.cs.pp" />
+        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoAndroid10\Acr.XamForms.BarCodeScanner.dll" />
+        <file src="..\bin\Release\MonoAndroid\Acr.XamForms.BarCodeScanner.Droid.dll" target="lib\MonoAndroid10\Acr.XamForms.BarCodeScanner.Droid.dll" />
+        <file src="Bootstrap\BarCodeServiceBootstrap.cs.pp" target="content\MonoAndroid10\Bootstrap\BarCodeServiceBootstrap.cs.pp" />
         
         <!-- ios -->
-        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.dll" />
-        <file src="..\bin\Release\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" target="lib\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" />
-        <file src="Bootstrap\BarCodeServiceBootstrap.cs.pp" target="content\MonoTouch\Bootstrap\BarCodeServiceBootstrap.cs.pp" />
+        <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\Xamarin.iOS10\Acr.XamForms.BarCodeScanner.dll" />
+        <file src="..\bin\Release\MonoTouch\Acr.XamForms.BarCodeScanner.iOS.dll" target="lib\Xamarin.iOS10\Acr.XamForms.BarCodeScanner.iOS.dll" />
+        <file src="Bootstrap\BarCodeServiceBootstrap.cs.pp" target="content\Xamarin.iOS10\Bootstrap\BarCodeServiceBootstrap.cs.pp" />
         
         <!--winphone-->
         <file src="..\bin\Release\Portable\Acr.XamForms.BarCodeScanner.dll" target="lib\wp8\Acr.XamForms.BarCodeScanner.dll" />

@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
@@ -6,7 +7,7 @@ using Xamarin.Forms;
 
 namespace Samples.iOS {
 
-    [Foundation.Register("AppDelegate")]
+    [Register("AppDelegate")]
     public partial class AppDelegate : UIApplicationDelegate {
         private UIWindow window;
 
