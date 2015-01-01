@@ -3,7 +3,7 @@
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
         <version>3.0.0</version>
-        <title>User Dialogs for Xamarin Forms</title>
+        <title>User Dialogs Plugin for Xamarin.Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
         <description>Alert, Confirm, Prompt, Toast, Action Sheet, Login, Loading, and Progress Dialogs calls for Xamarin Forms</description>
