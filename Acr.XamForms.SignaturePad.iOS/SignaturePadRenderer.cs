@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using Acr.XamForms.SignaturePad;
 using Acr.XamForms.SignaturePad.iOS;
-using MonoTouch.UIKit;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using NativeView = SignaturePad.SignaturePadView;
@@ -60,7 +60,7 @@ namespace Acr.XamForms.SignaturePad.iOS {
                         ? view.GetImage().AsJPEG().AsStream()
                         : view.GetImage().AsPNG().AsStream(),
                 () => view.Points.Select(x => new DrawPoint(x.X, x.Y)), 
-                x => view.LoadPoints(x.Select(y => new PointF(y.X, y.Y)).ToArray()),
+                x => view.LoadPoints(x.Select(y => new CGPoint(y.X, y.Y)).ToArray()),
                 () => view.IsBlank
             );
 

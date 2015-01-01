@@ -3,8 +3,8 @@ using System.IO;
 using Acr.XamForms.Mobile.IO;
 using Xamarin.Forms;
 #if __IOS__
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 #endif
 
 

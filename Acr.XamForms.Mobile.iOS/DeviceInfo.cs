@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using Foundation;
+using ObjCRuntime;
+using UIKit;
 
 
 namespace Acr.XamForms.Mobile.iOS {

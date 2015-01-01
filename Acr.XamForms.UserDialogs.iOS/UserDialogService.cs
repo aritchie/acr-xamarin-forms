@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using Acr.XamForms.UserDialogs.iOS;
 using BigTed;
-using MonoTouch.UIKit;
+using UIKit;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(UserDialogService))]
@@ -33,8 +33,8 @@ namespace Acr.XamForms.UserDialogs.iOS {
                     config.Options.ToList().ForEach(x => action.AddButton(x.Text));
 
                     action.Dismissed += (sender, btn) => {
-                        if (btn.ButtonIndex > -1 && btn.ButtonIndex < config.Options.Count)
-                            config.Options[btn.ButtonIndex].Action();
+                        if ((int)btn.ButtonIndex > -1 && (int)btn.ButtonIndex < config.Options.Count)
+                            config.Options[(int)btn.ButtonIndex].Action();
                     };
                     action.ShowInView(view);
                 }
@@ -74,7 +74,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
                 else {
                     var dlg = new UIAlertView(config.Title ?? String.Empty, config.Message, null, config.CancelText, config.OkText);
                     dlg.Clicked += (s, e) => {
-                        var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
+                        var ok = ((int)dlg.CancelButtonIndex != (int)e.ButtonIndex);
                         config.OnConfirm(ok);
                     };
                     dlg.Show();
@@ -108,15 +108,15 @@ namespace Acr.XamForms.UserDialogs.iOS {
                 }
                 else {
                     var dlg = new UIAlertView { AlertViewStyle = UIAlertViewStyle.LoginAndPasswordInput };
-                    txtUser = dlg.GetTextField(0);
-                    txtPass = dlg.GetTextField(1);
+                    txtUser = dlg.GetTextField((nint)0);
+                    txtPass = dlg.GetTextField((nint)1);
 
                     txtUser.Placeholder = config.LoginPlaceholder;
                     txtUser.Text = config.LoginValue ?? String.Empty;
                     txtPass.Placeholder = config.PasswordPlaceholder;
 
                     dlg.Clicked += (s, e) => {
-                        var ok = (dlg.CancelButtonIndex != e.ButtonIndex);
+                        var ok = ((int)dlg.CancelButtonIndex != (int)e.ButtonIndex);
                         config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, ok));
                     };
                     dlg.Show();
@@ -165,12 +165,12 @@ namespace Acr.XamForms.UserDialogs.iOS {
                             ? UIAlertViewStyle.SecureTextInput 
                             : UIAlertViewStyle.PlainTextInput
                     };
-                    var txt = dlg.GetTextField(0);
+                    var txt = dlg.GetTextField((nint)0);
                     txt.SecureTextEntry = config.IsSecure;
                     txt.Placeholder = config.Placeholder;
 
                     dlg.Clicked += (s, e) => {
-                        result.Ok = (dlg.CancelButtonIndex != e.ButtonIndex);
+                        result.Ok = ((int)dlg.CancelButtonIndex != (int)e.ButtonIndex);
                         result.Text = txt.Text.Trim();
                         config.OnResult(result);
                     };
@@ -193,7 +193,7 @@ namespace Acr.XamForms.UserDialogs.iOS {
 					po.SourceView = top.View;
 					var h = (top.View.Frame.Height / 2) - 400;
 					var v = (top.View.Frame.Width / 2) - 300;
-					po.SourceRect = new RectangleF(v, h, 0, 0);
+					po.SourceRect = new CGRect(v, h, 0, 0);
 					po.PermittedArrowDirections = UIPopoverArrowDirection.Any;
                 }
                 top.PresentViewController(controller, true, null);

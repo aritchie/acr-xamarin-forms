@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
+using UIKit;
 using Xamarin.Forms.Platform.iOS;
 
 
@@ -51,14 +51,14 @@ namespace Acr.XamForms.SignaturePad.iOS {
             this.view.Signature.SignaturePrompt.TextColor = this.config.PromptTextColor.ToUIColor();
             this.view.Signature.StrokeColor = this.config.StrokeColor.ToUIColor();
             this.view.Signature.StrokeWidth = this.config.StrokeWidth;
-            this.view.Signature.Layer.ShadowOffset = new SizeF(0, 0);
+            this.view.Signature.Layer.ShadowOffset = new CGSize(0, 0);
             this.view.Signature.Layer.ShadowOpacity = 1f;
 
             if (this.onResult == null) {
                 this.view.CancelButton.Hidden = true;
                 this.view.SaveButton.Hidden = true;
                 this.view.Signature.ClearLabel.Hidden = true;
-                this.view.Signature.LoadPoints(this.points.Select(x => new PointF { X = x.X, Y = x.Y }).ToArray());
+                this.view.Signature.LoadPoints(this.points.Select(x => new CGPoint { X = x.X, Y = x.Y }).ToArray());
             }
             else {
                 this.view.SaveButton.SetTitle(this.config.SaveText, UIControlState.Normal);
@@ -76,20 +76,20 @@ namespace Acr.XamForms.SignaturePad.iOS {
 						    using (var fs = new FileStream("Signature.tmp", FileMode.Create)) 
 							    stream.CopyTo(fs);
 
-				    this.DismissViewController(true, null);
+				    this.DismissViewController(true, (Action)null);
 				    this.onResult(new SignatureResult(false, () => new FileStream("Signature.tmp", FileMode.Open, FileAccess.Read, FileShare.Read), points));
                 };
 
                 this.view.CancelButton.SetTitle(this.config.CancelText, UIControlState.Normal);
                 this.view.CancelButton.TouchUpInside += (sender, args) => {
-                    this.DismissViewController(true, null);
+                    this.DismissViewController(true, (Action)null);
                     this.onResult(new SignatureResult(true, null, null));
                 };
             }
         }
 
 
-        public void LoadSignature(params PointF[] points) {
+        public void LoadSignature(params CGPoint[] points) {
             this.view.Signature.LoadPoints(points);
         }
 

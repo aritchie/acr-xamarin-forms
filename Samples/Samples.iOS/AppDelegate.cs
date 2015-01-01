@@ -1,12 +1,12 @@
-﻿using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using System;
+using Foundation;
+using UIKit;
 using Xamarin.Forms;
 
 
 namespace Samples.iOS {
 
-    [Register("AppDelegate")]
+    [Foundation.Register("AppDelegate")]
     public partial class AppDelegate : UIApplicationDelegate {
         private UIWindow window;
 
@@ -14,7 +14,7 @@ namespace Samples.iOS {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             Forms.Init();
             var startView = App.GetMainPage().CreateViewController();
-            window = new UIWindow(UIScreen.MainScreen.Bounds) {
+            window = new UIWindow((RectangleF)UIScreen.MainScreen.Bounds) {
                 RootViewController = startView
             };
             window.MakeKeyAndVisible();
