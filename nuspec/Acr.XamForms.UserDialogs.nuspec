@@ -24,6 +24,7 @@
 3.0
 Tasks are now part of the interface again for easier mocking
 FIX: iOS7 dismiss and button index
+FIX: Android login password display
 Update BTProgressHUD
 Update to iOS unified
 Update to Xamarin Forms 1.3
