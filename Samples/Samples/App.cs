@@ -19,8 +19,7 @@ namespace Samples {
         public static IContainer Container { get; private set; }
 
 
-		protected override void OnStart() {
-			base.OnStart();
+		public App() {
 			var builder = new ContainerBuilder();
 			RegisterXamService<IBarCodeService>(builder);
 			RegisterXamService<IDeviceInfo>(builder);
@@ -41,7 +40,7 @@ namespace Samples {
 				.InstancePerDependency();
 
 			Container = builder.Build();
-			MainPage = new NavigationPage(new HomeView());
+			this.MainPage = new NavigationPage(new HomeView());
 		}
 
 
