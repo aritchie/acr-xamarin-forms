@@ -2,7 +2,7 @@
 using Acr.XamForms.ViewModels;
 using Acr.XamForms.Mobile.IO;
 
-namespace Samples {
+namespace Samples.ViewModels {
 
 	public class FileSystemViewModel : ViewModel {
 		private readonly IFileSystem fileSystem;

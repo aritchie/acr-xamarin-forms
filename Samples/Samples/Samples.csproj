@@ -44,7 +44,6 @@
     <Compile Include="ViewModels\DeviceInfoViewModel.cs" />
     <Compile Include="ViewModels\SignatureListViewModel.cs" />
     <Compile Include="ViewModels\LocationViewModel.cs" />
-    <Compile Include="ViewModels\MailViewModel.cs" />
     <Compile Include="ViewModels\NetworkViewModel.cs" />
     <Compile Include="ViewModels\PhoneViewModel.cs" />
     <Compile Include="ViewModels\PhotoViewModel.cs" />
@@ -52,7 +51,6 @@
     <Compile Include="ViewModels\SmsViewModel.cs" />
     <Compile Include="ViewModels\TextToSpeechViewModel.cs" />
     <Compile Include="ViewModels\UserDialogViewModel.cs" />
-    <Compile Include="ViewModels\VideoViewModel.cs" />
     <Compile Include="Views\BarCodeView.xaml.cs">
       <DependentUpon>BarCodeView.xaml</DependentUpon>
     </Compile>
