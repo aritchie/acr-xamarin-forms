@@ -119,10 +119,6 @@
       <Project>{1ED7E825-98ED-4740-8DD7-96E4AA3F1128}</Project>
       <Name>Acr.XamForms.BarCodeScanner</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Acr.XamForms.Mobile.iOS\Acr.XamForms.Mobile.iOS.csproj">
-      <Project>{A2908B9C-D5D0-4715-851D-3EB81AB2E452}</Project>
-      <Name>Acr.XamForms.Mobile.iOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Acr.XamForms.Mobile\Acr.XamForms.Mobile.csproj">
       <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
       <Name>Acr.XamForms.Mobile</Name>
@@ -150,6 +146,10 @@
     <ProjectReference Include="..\Samples\Samples.csproj">
       <Name>Samples</Name>
       <Project>{CC18E151-5792-4DA5-ADE6-7CFBA16A593E}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Acr.XamForms.Mobile.iOS\Acr.XamForms.Mobile.iOS.csproj">
+      <Project>{A2908B9C-D5D0-4715-851D-3EB81AB2E452}</Project>
+      <Name>Acr.XamForms.Mobile.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
