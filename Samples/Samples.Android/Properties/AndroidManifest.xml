@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.acrapps.forms" android:versionCode="1" android:versionName="1.0">
-	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
-	<application android:label="ACR Xamarin Forms" android:icon="@drawable/Icon"></application>
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
+	<application android:label="ACR Xamarin Forms" android:icon="@drawable/Icon">
+	</application>
 	<uses-permission android:name="android.permission.FLASHLIGHT" />
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.CALL_PHONE" />

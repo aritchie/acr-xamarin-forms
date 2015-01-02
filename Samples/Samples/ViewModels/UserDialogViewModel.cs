@@ -42,7 +42,7 @@ namespace Samples.ViewModels {
                     var cfg = new ActionSheetConfig().SetTitle("Test Title");
                     for (var i = 0; i < 10; i++) {
                         var display = (i + 1);
-                        cfg.Add("Option " + display, () => String.Format("Option {0} Selected", display));
+						cfg.Add("Option " + display, () => this.Result = String.Format("Option {0} Selected", display));
                     }
                     this.dialogService.ActionSheet(cfg);
                 });

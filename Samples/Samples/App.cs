@@ -15,8 +15,34 @@ using Xamarin.Forms;
 
 namespace Samples {
 
-    public static class App {
+	public class App : Xamarin.Forms.Application {
         public static IContainer Container { get; private set; }
+
+
+		protected override void OnStart() {
+			base.OnStart();
+			var builder = new ContainerBuilder();
+			RegisterXamService<IBarCodeService>(builder);
+			RegisterXamService<IDeviceInfo>(builder);
+			RegisterXamService<IGeoLocator>(builder);
+			RegisterXamService<IFileSystem>(builder);
+			RegisterXamService<INetworkService>(builder);
+			RegisterXamService<IPhoneService>(builder);
+			RegisterXamService<IMediaPicker>(builder);
+			RegisterXamService<ISettings>(builder);
+			RegisterXamService<ITextToSpeechService>(builder);
+			RegisterXamService<IUserDialogService>(builder);
+			RegisterXamService<ISignatureService>(builder);
+
+			builder
+				.RegisterAssemblyTypes(typeof(App).GetTypeInfo().Assembly)
+				.Where(x => x.Namespace.Equals("samples.viewmodels", StringComparison.CurrentCultureIgnoreCase))
+				.AsSelf()
+				.InstancePerDependency();
+
+			Container = builder.Build();
+			MainPage = new NavigationPage(new HomeView());
+		}
 
 
         public static T Resolve<T>() {
@@ -24,44 +50,10 @@ namespace Samples {
         }
 
 
-        public static void Init() {
-            if (Container != null)
-                return;
-
-            var builder = new ContainerBuilder();
-            RegisterXamService<IBarCodeService>(builder);
-            RegisterXamService<IDeviceInfo>(builder);
-            RegisterXamService<IGeoLocator>(builder);
-            RegisterXamService<IFileSystem>(builder);
-            RegisterXamService<INetworkService>(builder);
-            RegisterXamService<IPhoneService>(builder);
-            RegisterXamService<IMediaPicker>(builder);
-            RegisterXamService<ISettings>(builder);
-            RegisterXamService<ITextToSpeechService>(builder);
-            RegisterXamService<IUserDialogService>(builder);
-            RegisterXamService<ISignatureService>(builder);
-
-            builder
-                .RegisterAssemblyTypes(typeof(App).GetTypeInfo().Assembly)
-                .Where(x => x.Namespace.Equals("samples.viewmodels", StringComparison.CurrentCultureIgnoreCase))
-                .AsSelf()
-                .InstancePerDependency();
-
-            Container = builder.Build();
-        }
-
-
         private static void RegisterXamService<T>(ContainerBuilder builder) where T : class {
             builder
                 .Register(x => DependencyService.Get<T>())
                 .SingleInstance();
-        }
-
-
-        public static Page GetMainPage() {
-            Init();
-            var page = new NavigationPage(new HomeView());
-            return page;
         }
     }
 }

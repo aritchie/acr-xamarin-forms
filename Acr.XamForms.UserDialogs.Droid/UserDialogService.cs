@@ -112,9 +112,9 @@ namespace Acr.XamForms.UserDialogs.Droid {
 			txtUser.SetMaxLines(1);
 
             var txtPass = new EditText(context) {
-                Hint = config.PasswordPlaceholder,
+                Hint = config.PasswordPlaceholder ?? "*",
                 TransformationMethod = PasswordTransformationMethod.Instance,
-				InputType = InputTypes.TextVariationPassword
+				InputType = InputTypes.ClassText | InputTypes.TextVariationPassword
             };
 			txtPass.SetMaxLines(1);
 
