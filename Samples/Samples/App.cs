@@ -8,9 +8,9 @@ using Acr.XamForms.Mobile.Media;
 using Acr.XamForms.Mobile.Net;
 using Acr.XamForms.SignaturePad;
 using Acr.XamForms.UserDialogs;
-using Autofac;
 using Samples.Views;
 using Xamarin.Forms;
+using Autofac;
 
 
 namespace Samples {

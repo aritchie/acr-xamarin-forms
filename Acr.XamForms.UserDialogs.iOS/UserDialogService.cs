@@ -15,15 +15,6 @@ namespace Acr.XamForms.UserDialogs.iOS {
 
         public override void ActionSheet(ActionSheetConfig config) {
             Device.BeginInvokeOnMainThread(() => {
-
-<<<<<<< HEAD
-                action.Clicked += (sender, btn) => {
-                    if (btn != null && btn.ButtonIndex >= 0)
-                        config.Options[btn.ButtonIndex].Action();
-                };
-                var view = Utils.GetTopView();
-                action.ShowInView(view);
-=======
                 if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {
                     var sheet = UIAlertController.Create(config.Title ?? String.Empty, String.Empty, UIAlertControllerStyle.ActionSheet);
                     config.Options.ToList().ForEach(x => 
@@ -46,7 +37,6 @@ namespace Acr.XamForms.UserDialogs.iOS {
                     };
                     action.ShowInView(view);
                 }
->>>>>>> dev
             });
         }
 
@@ -208,53 +198,5 @@ namespace Acr.XamForms.UserDialogs.iOS {
                 top.PresentViewController(controller, true, null);
             });
         }
-        //public override void DateTimePrompt(DateTimePromptConfig config) {
-        //    var sheet = new ActionSheetDatePicker {
-        //        Title = config.Title,
-        //        DoneText = config.OkText
-        //    };
-
-        //    switch (config.SelectionType) {
-        //        case DateTimeSelectionType.Date:
-        //            sheet.DatePicker.Mode = UIDatePickerMode.Date;
-        //            break;
-
-        //        case DateTimeSelectionType.Time:
-        //            sheet.DatePicker.Mode = UIDatePickerMode.Time;
-        //            break;
-
-        //        case DateTimeSelectionType.DateTime:
-        //            sheet.DatePicker.Mode = UIDatePickerMode.DateAndTime;
-        //            break;
-        //    }
-        //    if (config.MinValue != null)
-        //        sheet.DatePicker.MinimumDate = config.MinValue.Value;
-
-        //    if (config.MaxValue != null)
-        //        sheet.DatePicker.MaximumDate = config.MaxValue.Value;
-
-        //    sheet.DateTimeSelected += (sender, args) => {
-        //        // TODO: stop adjusting date/time
-        //        config.OnResult(new DateTimePromptResult(sheet.DatePicker.Date));
-        //    };
-
-        //    var top = Utils.GetTopView();
-        //    sheet.Show(top);
-        //    //sheet.DatePicker.MinuteInterval
-        //}
-
-
-        //public override void DurationPrompt(DurationPromptConfig config) {
-        //    var sheet = new ActionSheetDatePicker {
-        //        Title = config.Title,
-        //        DoneText = config.OkText
-        //    };
-        //    sheet.DatePicker.Mode = UIDatePickerMode.CountDownTimer;
-
-        //    sheet.DateTimeSelected += (sender, args) => config.OnResult(new DurationPromptResult(args.TimeOfDay));
-
-        //    var top = Utils.GetTopView();
-        //    sheet.Show(top);
-        //}
     }
 }
