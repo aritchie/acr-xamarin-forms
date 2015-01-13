@@ -73,7 +73,7 @@ namespace Samples.ViewModels {
 				var fileName = String.Format(FILE_FORMAT, DateTime.Now);
 				IFile file = null;
                 using (var stream = result.GetStream()) {
-					file = this.fileSystem.AppData.CreateFile(fileName);
+					file = this.fileSystem.Temp.CreateFile(fileName);
 					using (var fs = file.OpenWrite())
 						stream.CopyTo(fs);
                 }
@@ -94,9 +94,14 @@ namespace Samples.ViewModels {
 			get {
 				this.selectCmd = this.selectCmd ?? new Command<Signature>(s => 
 					this.dialogs.ActionSheet(new ActionSheetConfig()
-						.Add("View", () => 
-							Device.OpenUri(new Uri("file://" + s.FilePath))
-						)
+						.Add("View", () => {
+                            try {
+							    Device.OpenUri(new Uri("file://" + s.FilePath));
+                            }
+                            catch {
+                                this.dialogs.Alert("Cannot open file");
+                            }
+						})
 						.Add("Delete", async () => {
 							var r = await this.dialogs.ConfirmAsync(String.Format("Are you sure you want to delete {0}", s.FileName));
 							if (!r)

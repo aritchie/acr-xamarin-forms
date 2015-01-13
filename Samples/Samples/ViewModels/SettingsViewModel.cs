@@ -52,7 +52,7 @@ namespace Samples.ViewModels {
         private ICommand addCommand;
         public ICommand Add {
             get {
-                this.addCommand = this.addCommand ?? new Command(() => this.OnAdd());
+                this.addCommand = this.addCommand ?? new Command(async () => await this.OnAdd());
                 return this.addCommand;
             }
         }
@@ -61,7 +61,7 @@ namespace Samples.ViewModels {
         private ICommand clearCommand;
         public ICommand Clear {
             get {
-                this.clearCommand = this.clearCommand ?? new Command(() => this.OnClear());
+                this.clearCommand = this.clearCommand ?? new Command(async () => await this.OnClear());
                 return this.clearCommand;
             }
         }

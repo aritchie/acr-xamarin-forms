@@ -29,7 +29,7 @@ namespace Samples.ViewModels {
         public ICommand Alert {
             get {
                 return new Command(async () => {
-                    await dialogService.AlertAsync("Test alert", "Alert Title", "CHANGE ME!");
+                    await this.dialogService.AlertAsync("Test alert", "Alert Title", "CHANGE ME!");
                     this.Result = "Returned from alert!";
                 });
             }
@@ -42,8 +42,9 @@ namespace Samples.ViewModels {
                     var cfg = new ActionSheetConfig().SetTitle("Test Title");
                     for (var i = 0; i < 10; i++) {
                         var display = (i + 1);
-                        cfg.Add("Option " + display, () => String.Format("Option {0} Selected", display));
+                        cfg.Add("Option " + display, () => this.Result = String.Format("Option {0} Selected", display));
                     }
+                    this.dialogService.ActionSheet(cfg);
                 });
             }
         }
@@ -52,7 +53,7 @@ namespace Samples.ViewModels {
         public ICommand Confirm {
             get {
                 return new Command(async () => {
-                    var r = await dialogService.ConfirmAsync("Pick a choice", "Pick Title", "Yes", "No");
+                    var r = await this.dialogService.ConfirmAsync("Pick a choice", "Pick Title", "Yes", "No");
                     var text = (r ? "Yes" : "No");
                     this.Result = "Confirmation Choice: " + text;
                 });
@@ -63,7 +64,7 @@ namespace Samples.ViewModels {
         public ICommand Login {
             get {
                 return new Command(async () => {
-                    var r = await dialogService.LoginAsync();
+                    var r = await this.dialogService.LoginAsync();
                     this.Result = String.Format(
                         "Login {0} - User Name: {1} - Password: {2}",
                         r.Ok ? "Success" : "Cancelled",
@@ -89,14 +90,14 @@ namespace Samples.ViewModels {
                 return new Command(async () => {
                     var cancelled = false;
 
-                    using (var dlg = dialogService.Progress("Test Progress")) {
+                    using (var dlg = this.dialogService.Progress("Test Progress")) {
                         dlg.SetCancel(() => cancelled = true);
                         while (!cancelled && dlg.PercentComplete < 100) {
                             await Task.Delay(TimeSpan.FromMilliseconds(500));
                             dlg.PercentComplete += 2;
                         }
                     }
-                    this.Result = (cancelled ? "Progress Cancelled" : "Progress Complete");                    
+                    this.Result = (cancelled ? "Progress Cancelled" : "Progress Complete");
                 });
             }
         }
@@ -105,12 +106,12 @@ namespace Samples.ViewModels {
         public ICommand ProgressNoCancel {
             get {
                 return new Command(async () => {
-                    using (var dlg = dialogService.Progress("Progress (No Cancel)")) {
+                    using (var dlg = this.dialogService.Progress("Progress (No Cancel)")) {
                         while (dlg.PercentComplete < 100) {
                             await Task.Delay(TimeSpan.FromSeconds(1));
                             dlg.PercentComplete += 20;
                         }
-                    }                    
+                    }
                 });
             }
         }
@@ -119,9 +120,9 @@ namespace Samples.ViewModels {
         public ICommand LoadingNoCancel {
             get {
                 return new Command(async () => {
-                    using (dialogService.Loading("Loading (No Cancel)")) 
+                    using (this.dialogService.Loading("Loading (No Cancel)")) 
                         await Task.Delay(TimeSpan.FromSeconds(3));
-                    
+
                     this.Result = "Loading Complete";
                 });
             }
@@ -133,7 +134,7 @@ namespace Samples.ViewModels {
                 return new Command(async () => {
                     var cancelSrc = new CancellationTokenSource();
 
-                    using (var dlg = dialogService.Loading("Loading")) {
+                    using (var dlg = this.dialogService.Loading("Loading")) {
                         dlg.SetCancel(cancelSrc.Cancel);
 
                         try { 
@@ -141,7 +142,7 @@ namespace Samples.ViewModels {
                         }
                         catch { }
                     }
-                    this.Result = (cancelSrc.IsCancellationRequested ? "Loading Cancelled" : "Loading Complete");                    
+                    this.Result = (cancelSrc.IsCancellationRequested ? "Loading Cancelled" : "Loading Complete");
                 });
             }
         }
@@ -151,9 +152,9 @@ namespace Samples.ViewModels {
             get {
                 return new Command(() => {
                     this.Result = "Toast Shown";
-                    dialogService.Toast("Test Toast", onClick: () => {
+                    this.dialogService.Toast("Test Toast", onClick: () => {
                         this.Result = "Toast Pressed";
-                    });                    
+                    });
                 });
             }
         }

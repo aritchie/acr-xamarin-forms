@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Acr.XamForms.Mobile.Net;
 using Acr.XamForms.Mobile.WindowsPhone.Net;
@@ -10,12 +11,13 @@ using Xamarin.Forms;
 
 
 namespace Acr.XamForms.Mobile.WindowsPhone.Net {
-    
+
     public class NetworkService : AbstractNetworkService {
 
         public NetworkService() {
             this.UpdateStatus();
             DeviceNetworkInformation.NetworkAvailabilityChanged += this.OnNetworkAvailabilityChanged;
+            NetworkChange.NetworkAddressChanged += (sender, args) => {}; // this has to be listened to as well to hear previous event
         }
 
 
