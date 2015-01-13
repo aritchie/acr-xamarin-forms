@@ -1,10 +1,10 @@
 using System;
-using MonoTouch.AVFoundation;
-using MonoTouch.Foundation;
+using AVFoundation;
+using Foundation;
 
 
 namespace Acr.XamForms.Mobile.iOS {
-    
+
     [Preserve]
     public class TextToSpeechService : ITextToSpeechService {
         private readonly AVSpeechSynthesizer synthesizer = new AVSpeechSynthesizer();

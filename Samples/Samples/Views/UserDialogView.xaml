@@ -12,6 +12,7 @@
                 <Button Text="Action Sheet" Command="{Binding ActionSheet}" />
                 <Button Text="Alert" Command="{Binding Alert}" />
                 <Button Text="Confirm" Command="{Binding Confirm}" />
+                <Button Text="Login" Command="{Binding Login}" />
                 <!--<Button Text="Date Prompt" Command="{Binding DatePrompt}" />
                 <Button Text="Time Prompt" Command="{Binding TimePrompt}" />
                 <Button Text="Date/Time Prompt" Command="{Binding DateTimePrompt}" />
@@ -23,6 +24,10 @@
                 <Button Text="Loading (No Cancel)" Command="{Binding LoadingNoCancel}" />
                 <Button Text="Progress" Command="{Binding Progress}" />
                 <Button Text="Progress (No Cancel)" Command="{Binding ProgressNoCancel}" />
+                
+                <Label Text="Custom Text" />
+                <Entry Text="{Binding CustomText}" />
+                <Button Text="Show/Hide With Custom Text" Command="{Binding SingletonShowHide}" />
             </StackLayout>
         </ScrollView>
     <!--</StackLayout>-->

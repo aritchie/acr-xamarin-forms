@@ -7,7 +7,7 @@ namespace Samples.Android.Bootstrap
     {
         public MobileBootstrap() 
         {
-            new Logger();
+            new DeviceInfo();
         }
     }
 }

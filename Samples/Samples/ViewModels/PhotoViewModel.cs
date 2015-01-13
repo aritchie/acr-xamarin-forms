@@ -11,12 +11,10 @@ namespace Samples.ViewModels {
     
     public class PhotoViewModel : ViewModel {
         private readonly IUserDialogService dialogs;
-        private readonly IMediaPicker picker;
 
 
         public PhotoViewModel(IUserDialogService dialogs, IMediaPicker picker) {
             this.dialogs = dialogs;
-            this.picker = picker;
 
             this.FromCamera = new Command(async () => {
                 if (!picker.IsCameraAvailable)

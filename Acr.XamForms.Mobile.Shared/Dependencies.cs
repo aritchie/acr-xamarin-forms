@@ -11,7 +11,6 @@ using Acr.XamForms.Mobile.WindowsPhone;
 #endif
 
 [assembly: Dependency(typeof(DeviceInfo))]
-[assembly: Dependency(typeof(FileViewer))]
 [assembly: Dependency(typeof(GeoLocator))]
 //[assembly: Dependency(typeof(MailService))]
 [assembly: Dependency(typeof(PhoneService))]

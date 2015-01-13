@@ -11,6 +11,39 @@ namespace Acr.XamForms.SignaturePad {
 
 
     public class SignaturePadConfiguration {
+		private static SignaturePadConfiguration defaultConfig;
+		public static SignaturePadConfiguration Default {
+			get {
+				defaultConfig = defaultConfig ?? new SignaturePadConfiguration();
+				return defaultConfig;
+			}
+			set {
+				if (defaultConfig == null)
+					throw new ArgumentException("Default configuration cannot be null");
+
+				defaultConfig = value;
+			}
+		}
+
+
+		public SignaturePadConfiguration() {
+			this.ImageType = ImageFormatType.Png;
+			this.MainBackgroundColor = Color.White;
+			this.CaptionTextColor = Color.Black;
+			this.ClearTextColor = Color.Black;
+			this.PromptTextColor = Color.White;
+			this.StrokeColor = Color.Black;
+			this.StrokeWidth = 2f;
+			this.SignatureBackgroundColor = Color.White;
+			this.SignatureLineColor = Color.Black;
+
+			this.SaveText = "Save";
+			this.CancelText = "Cancel";
+			this.ClearText = "Clear";
+			this.PromptText = "";
+			this.CaptionText = "Please Sign Here";
+		}
+
 
         public ImageFormatType ImageType { get; set; }
 
@@ -20,7 +53,7 @@ namespace Acr.XamForms.SignaturePad {
         public Color MainBackgroundColor { get; set; }
         public Color SignatureBackgroundColor { get; set; }
         public Color SignatureLineColor { get; set; }
-        
+
         public string CaptionText { get; set; }
         public Color CaptionTextColor { get; set; }
 

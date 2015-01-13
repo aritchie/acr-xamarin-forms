@@ -8,12 +8,12 @@ using Xamarin.Forms.Platform.Android;
 namespace Samples.Droid {
 
     [Activity(Label = "ACR Xamarim Forms Examples", MainLauncher = true)]
-    public class MainActivity : AndroidActivity {
+	public class MainActivity : FormsApplicationActivity {
 
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
             Forms.Init(this, bundle);
-            this.SetPage(App.GetMainPage());
+			this.LoadApplication(new App());
         }
     }
 }

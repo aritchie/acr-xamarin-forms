@@ -1,6 +1,6 @@
-﻿using System;
-using System.Drawing;
-using MonoTouch.UIKit;
+using System;
+using CoreGraphics;
+using UIKit;
 using NativeView = global::SignaturePad.SignaturePadView;
 
 
@@ -17,7 +17,7 @@ namespace Acr.XamForms.SignaturePad.iOS {
             //BackgroundColor = UIColor.White;
             this.SaveButton = UIButton.FromType(UIButtonType.RoundedRect);
             this.CancelButton = UIButton.FromType(UIButtonType.RoundedRect);
-            this.Frame = UIScreen.MainScreen.ApplicationFrame;
+            this.Frame = (CGRect)UIScreen.MainScreen.ApplicationFrame;
 
             this.Signature = new NativeView();
             this.TranslatesAutoresizingMaskIntoConstraints = false;
@@ -29,8 +29,8 @@ namespace Acr.XamForms.SignaturePad.iOS {
 
 
         public override void LayoutSubviews() {
-            var frame = this.Frame;
-            var sbframe = UIApplication.SharedApplication.StatusBarFrame;
+            var frame = (CGRect)this.Frame;
+            var sbframe = (CGRect)UIApplication.SharedApplication.StatusBarFrame;
             var portrait = UIApplication.SharedApplication.StatusBarOrientation.HasFlag(UIDeviceOrientation.Portrait);
 
             var width = portrait
@@ -49,14 +49,14 @@ namespace Acr.XamForms.SignaturePad.iOS {
                 ? frame.Location.Y + sbframe.Height
                 : 0;
 
-            this.Frame = new RectangleF(x, y, width, height);
+            this.Frame = new CGRect(x, y, width, height);
 
             this.Signature.Frame = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone
-                ? new RectangleF (10, 10, Bounds.Width - 20, Bounds.Height - 60)
-                : new RectangleF (84, 84, Bounds.Width - 168, Bounds.Width / 2);
+                ? new CGRect (10, 10, Bounds.Width - 20, Bounds.Height - 60)
+                : new CGRect (84, 84, Bounds.Width - 168, Bounds.Width / 2);
 
-            this.SaveButton.Frame = new RectangleF(10, this.Bounds.Height - 40, 120, 37);
-            this.CancelButton.Frame = new RectangleF(this.Bounds.Width - 130, this.Bounds.Height - 40, 120, 37);
+            this.SaveButton.Frame = new CGRect(10, this.Bounds.Height - 40, 120, 37);
+            this.CancelButton.Frame = new CGRect(this.Bounds.Width - 130, this.Bounds.Height - 40, 120, 37);
         }
     }
 }

@@ -78,6 +78,33 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
         }
 
 
+        public override void Login(LoginConfig config) {
+            var prompt = new CustomMessageBox {
+                Caption = config.Title,
+                Message = config.Message,
+                LeftButtonContent = config.OkText,
+                RightButtonContent = config.CancelText
+            };
+
+            var txtUser = new PhoneTextBox {
+                Hint = config.LoginPlaceholder,
+                Text = config.LoginValue ?? String.Empty
+            };
+            var txtPass = new PasswordBox();
+            var stack = new StackPanel();
+            stack.Children.Add(txtUser);
+            stack.Children.Add(txtPass);
+            prompt.Content = stack;
+
+            prompt.Dismissed += (sender, args) => config.OnResult(new LoginResult(
+                txtUser.Text, 
+                txtPass.Password, 
+                args.Result == CustomMessageBoxResult.LeftButton
+            ));
+            this.Dispatch(prompt.Show);
+        }
+
+
         public override void Prompt(PromptConfig config) {
             var prompt = new CustomMessageBox {
                 Caption = config.Title,

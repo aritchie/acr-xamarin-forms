@@ -1,20 +1,19 @@
-﻿#if __ANDROID__
+#if __ANDROID__
 using System;
 using System.Threading;
-using Android.App;
 using Android.Content;
 using Xamarin.Forms;
 
 
 namespace Acr.XamForms {
-    
+
     public static class Utils {
-        
+
         public static void RequestMainThread(Action action) {
-            if (Application.SynchronizationContext == SynchronizationContext.Current)
+            if (Android.App.Application.SynchronizationContext == SynchronizationContext.Current)
                 action();
             else
-                Application.SynchronizationContext.Post(x => MaskException(action), null);
+                Android.App.Application.SynchronizationContext.Post(x => MaskException(action), null);
         }
 
 

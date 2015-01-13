@@ -1,7 +1,7 @@
 #if __IOS__
 using System;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 
 
 namespace Acr.XamForms {
@@ -14,7 +14,7 @@ namespace Acr.XamForms {
                 .Windows
                 .Reverse()
                 .FirstOrDefault(x => 
-                    x.WindowLevel == UIWindowLevel.Normal && 
+(float)                    x.WindowLevel == (float)UIWindowLevel.Normal && 
                     !x.Hidden
                 );
 

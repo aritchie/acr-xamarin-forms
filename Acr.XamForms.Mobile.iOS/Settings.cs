@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
+using Foundation;
 
 
 namespace Acr.XamForms.Mobile.iOS {
-    
+
     public class Settings : AbstractSettings {
         private static readonly NSUserDefaults prefs = NSUserDefaults.StandardUserDefaults;
         public static readonly string[] ProtectedSettingsKeys = new [] {
@@ -53,7 +53,7 @@ namespace Acr.XamForms.Mobile.iOS {
             foreach (var item in dict)
                 if (this.CanTouch(item.Key.ToString()))
                     prefs.RemoveObject(item.Key.ToString());
-                    
+
             //prefs.RemovePersistentDomain(NSBundle.MainBundle.BundleIdentifier);
             prefs.Synchronize();
         }

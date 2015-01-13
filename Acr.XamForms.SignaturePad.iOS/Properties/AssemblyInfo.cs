@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 
 [assembly: AssemblyTitle("Acr.XamForms.SignaturePad.iOS")]
 [assembly: AssemblyDescription("")]

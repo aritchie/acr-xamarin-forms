@@ -26,6 +26,9 @@ namespace Acr.XamForms.SignaturePad.Droid {
             var view = new NativeView(Forms.Context);
             var el = e.NewElement;
             
+            if (el.BackgroundColor != Color.Default)
+                view.BackgroundColor = el.BackgroundColor.ToAndroid();
+
             if (!String.IsNullOrWhiteSpace(el.CaptionText))
                 view.Caption.Text = el.CaptionText;
 
@@ -71,7 +74,10 @@ namespace Acr.XamForms.SignaturePad.Droid {
                 return;
 
             var el = this.Element;
-            if (e.PropertyName == SignaturePadView.CaptionTextProperty.PropertyName)
+            if (e.PropertyName == SignaturePadView.BackgroundColorProperty.PropertyName)
+                this.Control.BackgroundColor = el.BackgroundColor.ToAndroid();
+
+            else if (e.PropertyName == SignaturePadView.CaptionTextProperty.PropertyName)
                 this.Control.Caption.Text = el.CaptionText;
 
             else if (e.PropertyName == SignaturePadView.CaptionTextColorProperty.PropertyName)

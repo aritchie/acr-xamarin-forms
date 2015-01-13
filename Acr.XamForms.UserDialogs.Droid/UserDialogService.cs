@@ -4,10 +4,12 @@ using Acr.XamForms.UserDialogs.Droid;
 using Android.App;
 using Android.Content;
 using Android.Text.Method;
+using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidHUD;
 using Xamarin.Forms;
+using Android.Text;
 
 [assembly: Dependency(typeof(UserDialogService))]
 
@@ -63,7 +65,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
         //public override void DateTimePrompt(DateTimePromptConfig config) {
         //    var date = DateTime.Now;
         //    switch (config.SelectionType) {
-                
+
         //        case DateTimeSelectionType.DateTime: // TODO
         //        case DateTimeSelectionType.Date:
         //            var datePicker = new DatePickerDialog(Utils.GetActivityContext(), (sender, args) => {
@@ -73,7 +75,6 @@ namespace Acr.XamForms.UserDialogs.Droid {
         //            datePicker.DismissEvent += (sender, args) => config.OnResult(new DateTimePromptResult(date));
         //            datePicker.SetTitle(config.Title);
         //            datePicker.Show();
-                    
         //            break;
 
         //        case DateTimeSelectionType.Time:
@@ -101,15 +102,56 @@ namespace Acr.XamForms.UserDialogs.Droid {
         //}
 
 
+        public override void Login(LoginConfig config) {
+            var context = Utils.GetActivityContext();
+            var txtUser = new EditText(context) {
+                Hint = config.LoginPlaceholder,
+                Text = config.LoginValue ?? String.Empty,
+				InputType = InputTypes.TextVariationVisiblePassword
+            };
+			txtUser.SetMaxLines(1);
+
+            var txtPass = new EditText(context) {
+                Hint = config.PasswordPlaceholder ?? "*",
+                TransformationMethod = PasswordTransformationMethod.Instance,
+				InputType = InputTypes.ClassText | InputTypes.TextVariationPassword
+            };
+			txtPass.SetMaxLines(1);
+
+            var layout = new LinearLayout(context) {
+                Orientation = Orientation.Vertical
+            };
+            layout.AddView(txtUser, ViewGroup.LayoutParams.MatchParent);
+            layout.AddView(txtPass, ViewGroup.LayoutParams.MatchParent);
+
+            Utils.RequestMainThread(() => 
+                new AlertDialog
+                    .Builder(Utils.GetActivityContext())
+                    .SetTitle(config.Title)
+                    .SetMessage(config.Message)
+                    .SetView(layout)
+                    .SetPositiveButton(config.OkText, (o, e) =>
+                        config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, true))
+                    )
+                    .SetNegativeButton(config.CancelText, (o, e) =>
+                        config.OnResult(new LoginResult(txtUser.Text, txtPass.Text, false))
+                    )
+                    .Show()
+            );
+        }
+
+
         public override void Prompt(PromptConfig config) {
             Utils.RequestMainThread(() => {
                 var txt = new EditText(Utils.GetActivityContext()) {
                     Hint = config.Placeholder
                 };
-                if (config.IsSecure)
-                    //txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+				if (config.IsSecure) 
+					txt.SetMaxLines(1);
+				else {
                     txt.TransformationMethod = PasswordTransformationMethod.Instance;
-
+					txt.InputType = InputTypes.TextVariationPassword;
+				}
                 new AlertDialog
                     .Builder(Utils.GetActivityContext())
                     .SetMessage(config.Message)

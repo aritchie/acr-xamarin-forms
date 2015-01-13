@@ -5,12 +5,12 @@ using Xamarin.Forms;
 
 
 namespace Acr.XamForms.SignaturePad {
-    
+
     public class SignaturePadView : View {
         private Func<ImageFormatType, Stream> getImageFunc;
         private Func<IEnumerable<DrawPoint>> getDrawPointsFunc;
-        private Action<IEnumerable<DrawPoint>> loadDrawPoints; 
-        private Func<bool> isBlankFunc; 
+        private Action<IEnumerable<DrawPoint>> loadDrawPoints;
+        private Func<bool> isBlankFunc;
 
 
         public Stream GetImage(ImageFormatType imageFormat) {
@@ -51,7 +51,7 @@ namespace Acr.XamForms.SignaturePad {
         public static readonly BindableProperty SignatureLineColorProperty = BindableProperty.Create<SignaturePadView, Color>(x => x.SignatureLineColor, Color.Default);
         public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create<SignaturePadView, Color>(x => x.StrokeColor, Color.Default);
         public static readonly BindableProperty StrokeWidthProperty = BindableProperty.Create<SignaturePadView, float>(x => x.StrokeWidth, (float)0);
-        
+
 
         public string CaptionText {
             get { return (string)this.GetValue(SignaturePadView.CaptionTextProperty); }

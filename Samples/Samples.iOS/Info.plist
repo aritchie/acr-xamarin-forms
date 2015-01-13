@@ -21,13 +21,13 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.1</string>
+	<string>8.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>ACR Xamarin Forms Samples</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.acr.samples</string>
+	<string>com.acrapps.mvvm</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.0.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>NSMainNibFile</key>

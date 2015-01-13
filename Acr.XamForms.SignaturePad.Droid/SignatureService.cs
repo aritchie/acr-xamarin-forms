@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Acr.XamForms.SignaturePad.Droid;
 using Xamarin.Forms;
 
@@ -6,26 +8,31 @@ using Xamarin.Forms;
 
 
 namespace Acr.XamForms.SignaturePad.Droid {
-    
-    public class SignatureService : AbstractSignatureService {
 
-        //internal static IEnumerable<DrawPoint> CurrentPoints { get; private set; }
-        internal static SignaturePadConfiguration CurrentConfig { get; private set; }
-        internal static Action<SignatureResult> OnResult { get; private set; }
+    public class SignatureService : ISignatureService {
 
-
-        public override void Request(Action<SignatureResult> onResult) { 
-            //CurrentPoints = null;
-            CurrentConfig = this.Configuration;
-            OnResult = onResult;
-            Forms.Context.StartActivity(typeof(SignatureServiceActivity));
-        }
+		internal SignaturePadConfiguration CurrentConfig { get; private set; }
+		private TaskCompletionSource<SignatureResult> tcs;
 
 
-        //public override void Load(IEnumerable<DrawPoint> points) {
-        //    CurrentConfig = this.Configuration;
-        //    CurrentPoints = points;
-        //    OnResult = null;
-        //}
+		internal void Complete(SignatureResult result) {
+			this.tcs.TrySetResult(result);
+		}
+
+
+		internal void Cancel() {
+			this.tcs.TrySetResult(new SignatureResult(true, null, null));
+		}
+
+
+		public virtual Task<SignatureResult> Request(SignaturePadConfiguration config, CancellationToken cancelToken) {
+			CurrentConfig = config ?? SignaturePadConfiguration.Default;
+
+			this.tcs = new TaskCompletionSource<SignatureResult>();
+			cancelToken.Register(this.Cancel);
+			Forms.Context.StartActivity(typeof(SignaturePadActivity));
+
+			return this.tcs.Task;
+		}
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 
@@ -15,6 +16,7 @@ namespace Acr.XamForms.Mobile.Net {
         public bool IsWifi { get; protected set; }
         public bool IsMobile { get; protected set; }
         public bool IsRoaming { get; protected set; }
+        public string IpAddress { get; protected set; }
 
 
         protected void PostUpdateStates() {
@@ -27,6 +29,7 @@ namespace Acr.XamForms.Mobile.Net {
             this.OnPropertyChanged("IsMobile");
             this.OnPropertyChanged("IsRoaming");
             this.OnPropertyChanged("IsConnected");
+            this.OnPropertyChanged("IpAddress");
             this.OnStatusChanged();
         }
 

@@ -31,7 +31,9 @@ namespace Samples.ViewModels {
                 if (value == null)
                     return;
 
-                if (char.IsDigit(value, value.Length - 1) && value.Length <= 10)
+				if (value.Length == 0)
+					this.phoneNumber = String.Empty;
+				else if (char.IsDigit(value, value.Length - 1) && value.Length <= 10)
                     this.phoneNumber = value;
 
                 this.OnPropertyChanged();

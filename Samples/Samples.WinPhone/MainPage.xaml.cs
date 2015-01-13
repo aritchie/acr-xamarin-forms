@@ -9,17 +9,16 @@ using Xamarin.Forms;
 
 namespace Samples.WinPhone {
 
-    public partial class MainPage : PhoneApplicationPage {
+	public partial class MainPage : global::Xamarin.Forms.Platform.WinPhone.FormsApplicationPage {
 
         public MainPage() {
             InitializeComponent();
             Forms.Init();
-            new Logger();
+            new DeviceInfo();
             new UserDialogService();
             new SignaturePadConfiguration();
             new BarCodeResult(null, BarCodeFormat.AZTEC);
-
-            this.Content = Samples.App.GetMainPage().ConvertPageToUIElement(this);
+			this.LoadApplication(new App());
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -43,14 +42,20 @@ namespace Samples.ViewModels {
                     var cfg = new ActionSheetConfig().SetTitle("Test Title");
                     for (var i = 0; i < 10; i++) {
                         var display = (i + 1);
+<<<<<<< HEAD
                         cfg.Add("Option " + display, () => String.Format("Option {0} Selected", display));
                     }
                     dialogService.ActionSheet(cfg);
+=======
+						cfg.Add("Option " + display, () => this.Result = String.Format("Option {0} Selected", display));
+                    }
+                    this.dialogService.ActionSheet(cfg);
+>>>>>>> dev
                 });
             }
         }
 
-        
+
         public ICommand Confirm {
             get {
                 return new Command(async () => {
@@ -61,6 +66,20 @@ namespace Samples.ViewModels {
             }
         }
 
+
+        public ICommand Login {
+            get {
+                return new Command(async () => {
+                    var r = await dialogService.LoginAsync();
+                    this.Result = String.Format(
+                        "Login {0} - User Name: {1} - Password: {2}",
+                        r.Ok ? "Success" : "Cancelled",
+                        r.LoginText,
+                        r.Password
+                    );
+                });
+            }
+        }
 
         public ICommand Prompt {
             get { return this.PromptCommand(false); }
@@ -146,6 +165,23 @@ namespace Samples.ViewModels {
             }
         }
 
+
+        private string customText;
+        public string CustomText {
+            get { return this.customText; }
+            set { this.SetProperty(ref this.customText, value); }
+        }
+
+
+        public ICommand SingletonShowHide {
+            get {
+                return new Command(async () => {
+                    this.dialogService.ShowLoading(this.CustomText);
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    this.dialogService.HideLoading();
+                });
+            }
+        }
 
         //public ICommand DatePrompt {
         //    get {

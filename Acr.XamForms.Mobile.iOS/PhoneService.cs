@@ -1,10 +1,10 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 
 namespace Acr.XamForms.Mobile.iOS {
-    
+
     [Preserve]
     public class PhoneService : IPhoneService {
 

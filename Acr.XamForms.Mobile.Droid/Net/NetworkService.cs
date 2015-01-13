@@ -2,10 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Acr.XamForms.Mobile.Droid.Net;
 using Acr.XamForms.Mobile.Net;
-using Android.App;
+using App = Android.App.Application;
 using Android.Net;
 using Java.Net;
 using Xamarin.Forms;
+
 
 [assembly: Dependency(typeof(NetworkService))]
 
@@ -16,12 +17,19 @@ namespace Acr.XamForms.Mobile.Droid.Net {
 
         public NetworkService() {
             NetworkConnectionBroadcastReceiver.OnChange = this.SetFromInfo;
-            var manager = (ConnectivityManager)Forms.Context.GetSystemService(Application.ConnectivityService);
+            var manager = (ConnectivityManager)Forms.Context.GetSystemService(App.ConnectivityService);
             this.SetFromInfo(manager.ActiveNetworkInfo);
         }
 
 
         private void SetFromInfo(NetworkInfo network) {
+            //var active = NetworkInterface
+            //    .GetAllNetworkInterfaces()
+            //    .FirstOrDefault(x => 
+            //        x.NetworkInterfaceType == NetworkInterfaceType.Ethernet || 
+            //        x.NetworkInterfaceType == NetworkInterfaceType.Wireless80211
+            //    );
+
             if (network == null || !network.IsConnected)
                 this.IsConnected = false;
             else {

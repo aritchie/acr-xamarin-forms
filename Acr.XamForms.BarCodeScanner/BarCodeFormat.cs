@@ -2,7 +2,7 @@
 
 
 namespace Acr.XamForms.BarCodeScanner {
-    
+
     public enum BarCodeFormat {
         AZTEC = 1,
         CODABAR = 2,

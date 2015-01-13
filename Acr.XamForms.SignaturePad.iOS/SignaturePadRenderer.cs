@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using Acr.XamForms.SignaturePad;
 using Acr.XamForms.SignaturePad.iOS;
-using MonoTouch.UIKit;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using NativeView = SignaturePad.SignaturePadView;
@@ -25,6 +25,9 @@ namespace Acr.XamForms.SignaturePad.iOS {
             var view = new NativeView();
             var el = e.NewElement;
             
+            if (el.BackgroundColor != Color.Default)
+                view.BackgroundColor = el.BackgroundColor.ToUIColor();
+
             if (!String.IsNullOrWhiteSpace(el.CaptionText))
                 view.Caption.Text = el.CaptionText;
 
@@ -51,13 +54,13 @@ namespace Acr.XamForms.SignaturePad.iOS {
 
             if (el.StrokeWidth > 0)
                 view.StrokeWidth = el.StrokeWidth;
-            
+
             this.Element.SetInternals(
                 imgFormat => imgFormat == ImageFormatType.Jpg
                         ? view.GetImage().AsJPEG().AsStream()
                         : view.GetImage().AsPNG().AsStream(),
-                () => view.Points.Select(x => new DrawPoint(x.X, x.Y)), 
-                x => view.LoadPoints(x.Select(y => new PointF(y.X, y.Y)).ToArray()),
+                () => view.Points.Select(x => new DrawPoint((float)x.X, (float)x.Y)), 
+                x => view.LoadPoints(x.Select(y => new CGPoint(y.X, y.Y)).ToArray()),
                 () => view.IsBlank
             );
 
@@ -72,7 +75,10 @@ namespace Acr.XamForms.SignaturePad.iOS {
                 return;
 
             var el = this.Element;
-            if (e.PropertyName == SignaturePadView.CaptionTextProperty.PropertyName)
+            if (e.PropertyName == SignaturePadView.BackgroundColorProperty.PropertyName)
+                this.Control.BackgroundColor = el.BackgroundColor.ToUIColor();
+
+            else if (e.PropertyName == SignaturePadView.CaptionTextProperty.PropertyName)
                 this.Control.Caption.Text = el.CaptionText;
 
             else if (e.PropertyName == SignaturePadView.CaptionTextColorProperty.PropertyName)
