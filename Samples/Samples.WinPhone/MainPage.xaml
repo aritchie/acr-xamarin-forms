@@ -14,4 +14,4 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-</winPhone:FormsApplicationPage
+</winPhone:FormsApplicationPage>
