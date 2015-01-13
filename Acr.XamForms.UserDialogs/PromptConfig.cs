@@ -22,14 +22,6 @@ namespace Acr.XamForms.UserDialogs {
         }
 
 
-        //public static PromptConfig Create(string message, Action<PromptResult> onResult) {
-        //    return new PromptConfig {
-        //        Message = message,
-        //        OnResult = onResult
-        //    };
-        //}
-
-
         public PromptConfig SetTitle(string title) {
             this.Title = title;
             return this;

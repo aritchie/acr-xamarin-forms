@@ -62,46 +62,6 @@ namespace Acr.XamForms.UserDialogs.Droid {
         }
 
 
-        //public override void DateTimePrompt(DateTimePromptConfig config) {
-        //    var date = DateTime.Now;
-        //    switch (config.SelectionType) {
-
-        //        case DateTimeSelectionType.DateTime: // TODO
-        //        case DateTimeSelectionType.Date:
-        //            var datePicker = new DatePickerDialog(Utils.GetActivityContext(), (sender, args) => {
-        //                date = args.Date;
-        //            }, 1900, 1, 1);
-        //            //picker.CancelEvent
-        //            datePicker.DismissEvent += (sender, args) => config.OnResult(new DateTimePromptResult(date));
-        //            datePicker.SetTitle(config.Title);
-        //            datePicker.Show();
-        //            break;
-
-        //        case DateTimeSelectionType.Time:
-        //            var timePicker = new TimePickerDialog(Utils.GetActivityContext(), (sender, args) => {
-        //                date = new DateTime(
-        //                    date.Year,
-        //                    date.Month,
-        //                    date.Day,
-        //                    args.HourOfDay,
-        //                    args.Minute,
-        //                    0
-        //                );
-        //            }, 0, 0, false); // takes 24 hour arg
-        //            timePicker.DismissEvent += (sender, args) => config.OnResult(new DateTimePromptResult(date));
-        //            timePicker.SetTitle(config.Title);
-        //            timePicker.Show();
-        //            break;
-        //    }
-        //}
-
-
-        //public override void DurationPrompt(DurationPromptConfig config) {
-        //    // TODO
-        //    throw new NotImplementedException();
-        //}
-
-
         public override void Login(LoginConfig config) {
             var context = Utils.GetActivityContext();
             var txtUser = new EditText(context) {
@@ -146,11 +106,10 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 var txt = new EditText(Utils.GetActivityContext()) {
                     Hint = config.Placeholder
                 };
-				if (config.IsSecure) 
-					txt.SetMaxLines(1);
-				else {
+                txt.SetMaxLines(1);
+				if (config.IsSecure) {
                     txt.TransformationMethod = PasswordTransformationMethod.Instance;
-					txt.InputType = InputTypes.TextVariationPassword;
+					txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 				}
                 new AlertDialog
                     .Builder(Utils.GetActivityContext())
