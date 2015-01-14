@@ -17,10 +17,14 @@ namespace Acr.XamForms.UserDialogs {
         IProgressDialog Progress(ProgressConfig config);
         IProgressDialog Loading(string title = null, Action onCancel = null, string cancelText = "Cancel", bool show = true);
         IProgressDialog Progress(string title = null, Action onCancel = null, string cancelText = "Cancel", bool show = true);
+        IDownloadDialog NetworkLoading(string message = "Downloading");
 
         void ShowLoading(string title = "Loading");
         void HideLoading();
         void Toast(string message, int timeoutSeconds = 3, Action onClick = null);
+
+        void ShowNetworkLoading(string message = "Downloading");
+        void HideNetworkLoading();
 
         Task AlertAsync(string message, string title = null, string okText = "OK");
         Task AlertAsync(AlertConfig config);

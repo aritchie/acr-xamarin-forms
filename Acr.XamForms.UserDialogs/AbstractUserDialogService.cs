@@ -14,6 +14,10 @@ namespace Acr.XamForms.UserDialogs {
         //public abstract void DurationPrompt(DurationPromptConfig config);
         public abstract void Prompt(PromptConfig config);
         public abstract void Toast(string message, int timeoutSeconds = 3, Action onClick = null);
+        public abstract void ShowNetworkLoading(string message = "Downloading");
+        public abstract void HideNetworkLoading();
+        public abstract IDownloadDialog NetworkLoading(string message = "Downloading");
+
         protected abstract IProgressDialog CreateDialogInstance();
 
 
@@ -27,6 +31,7 @@ namespace Acr.XamForms.UserDialogs {
 
 
         private IProgressDialog loading;
+
         public virtual void ShowLoading(string title) {
             if (this.loading == null)
                 this.loading = this.Loading(title, null, null, true);

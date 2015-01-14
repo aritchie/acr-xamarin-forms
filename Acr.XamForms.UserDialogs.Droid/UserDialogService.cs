@@ -148,6 +148,33 @@ namespace Acr.XamForms.UserDialogs.Droid {
             });
         }
 
+        public override void ShowNetworkLoading(string message = "Downloading")
+        {
+            Utils.RequestMainThread(() =>
+            {
+                var activity = Utils.GetActivityContext() as Activity;
+                if (activity == null)
+                    return;
+                activity.SetProgressBarIndeterminateVisibility(true);
+            });
+        }
+
+        public override void HideNetworkLoading()
+        {
+            Utils.RequestMainThread(() =>
+            {
+                var activity = Utils.GetActivityContext() as Activity;
+                if (activity == null)
+                    return;
+                activity.SetProgressBarIndeterminateVisibility(false);
+            });
+        }
+
+        public override IDownloadDialog NetworkLoading(string message = "Downloading")
+        {
+            return new DownloadDialog();
+        }
+
 
         protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
