@@ -15,6 +15,7 @@ using Microsoft.Phone.Shell;
 namespace Acr.XamForms.UserDialogs.WindowsPhone {
     
     public class UserDialogService : AbstractUserDialogService {
+        private ProgressIndicator _progress;
 
         public override void ActionSheet(ActionSheetConfig config) {
             var sheet = new CustomMessageBox {
@@ -129,6 +130,17 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
             this.Dispatch(prompt.Show);
         }
 
+        public override void ShowNetworkLoading(string message = "Downloading")
+        {
+            _progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = message
+            };
+            SystemTray.SetProgressIndicator(Deployment.Current, _progress);
+        }
+
 
         public override void Toast(string message, int timeoutSeconds, Action onClick) {
             var resources = Application.Current.Resources;
@@ -176,6 +188,16 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
             Deployment.Current.Dispatcher.BeginInvoke(action);
         }
 
+
+        public override void HideNetworkLoading()
+        {
+            _progress.IsVisible = false;
+        }
+
+        public override IDownloadDialog NetworkLoading(string message = "Downloading")
+        {
+            return new DownloadDialog(message);
+        }
 
         protected override IProgressDialog CreateDialogInstance() {
             return new ProgressDialog();
