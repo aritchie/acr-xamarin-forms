@@ -7,6 +7,7 @@ namespace Acr.XamForms.UserDialogs {
 
         public string Title { get; set; }
         public string Message { get; set; }
+        public string Text { get; set; }
         public Action<PromptResult> OnResult { get; set; }
 
         // TODO: can cancel

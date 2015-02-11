@@ -104,7 +104,8 @@ namespace Acr.XamForms.UserDialogs.Droid {
         public override void Prompt(PromptConfig config) {
             Utils.RequestMainThread(() => {
                 var txt = new EditText(Utils.GetActivityContext()) {
-                    Hint = config.Placeholder
+                    Hint = config.Placeholder,
+                    Text = config.Text
                 };
                 txt.SetMaxLines(1);
 				if (config.IsSecure) {
