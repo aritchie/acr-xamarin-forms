@@ -9,6 +9,8 @@
         <ScrollView>
             <StackLayout>
                 <Label Text="{Binding Result}" />
+                <Button Text="Success" Command="{Binding DisplaySuccess}" />
+                <Button Text="Error" Command="{Binding DisplayError}" />
                 <Button Text="Action Sheet" Command="{Binding ActionSheet}" />
                 <Button Text="Alert" Command="{Binding Alert}" />
                 <Button Text="Confirm" Command="{Binding Confirm}" />

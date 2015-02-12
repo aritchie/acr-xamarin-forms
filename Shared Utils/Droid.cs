@@ -9,6 +9,10 @@ namespace Acr.XamForms {
 
     public static class Utils {
 
+//		public static void RequestMainThread(Action action){
+//			Xamarin.Forms.Device.BeginInvokeOnMainThread (action);
+//		}
+
         public static void RequestMainThread(Action action) {
             if (Android.App.Application.SynchronizationContext == SynchronizationContext.Current)
                 action();

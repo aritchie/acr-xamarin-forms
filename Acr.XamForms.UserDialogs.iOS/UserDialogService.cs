@@ -132,6 +132,19 @@ namespace Acr.XamForms.UserDialogs.iOS {
             });
         }
 
+		public override void ShowSuccess(string message, int timeoutSeconds = 3, Action onClick = null){
+			Device.BeginInvokeOnMainThread(() => {
+				var ms = timeoutSeconds * 1000;
+				BTProgressHUD.ShowSuccessWithStatus(message, ms);
+			});
+		}
+		public override void ShowError(string message, int timeoutSeconds = 3, Action onClick = null){
+			Device.BeginInvokeOnMainThread(() => {
+				var ms = timeoutSeconds * 1000;
+				BTProgressHUD.ShowErrorWithStatus(message, ms);
+			});
+		}
+
 
         public override void Prompt(PromptConfig config) {
             Device.BeginInvokeOnMainThread(() => {

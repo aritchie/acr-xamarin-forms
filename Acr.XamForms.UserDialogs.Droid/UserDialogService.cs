@@ -5,7 +5,6 @@ using Android.App;
 using Android.Content;
 using Android.Text.Method;
 using Android.Views;
-using Android.Views.InputMethods;
 using Android.Widget;
 using AndroidHUD;
 using Xamarin.Forms;
@@ -147,6 +146,35 @@ namespace Acr.XamForms.UserDialogs.Droid {
                 );
             });
         }
+
+		public override void ShowSuccess(string message, int timeoutSeconds = 3, Action onClick = null){
+			Utils.RequestMainThread(() => {
+				onClick = onClick ?? (() => {});
+
+				AndHUD.Shared.ShowSuccess(
+					Utils.GetActivityContext(), 
+					message, 
+					MaskType.Clear,
+					TimeSpan.FromSeconds(timeoutSeconds),
+					onClick
+				);
+			});
+		}
+
+		public override void ShowError(string message, int timeoutSeconds = 3, Action onClick = null){
+			Utils.RequestMainThread(() => {
+				onClick = onClick ?? (() => {});
+
+				AndHUD.Shared.ShowError(
+					Utils.GetActivityContext(), 
+					message, 
+					MaskType.Clear,
+					TimeSpan.FromSeconds(timeoutSeconds),
+					onClick
+				);
+			});
+		}
+
 
 
         protected override IProgressDialog CreateDialogInstance() {

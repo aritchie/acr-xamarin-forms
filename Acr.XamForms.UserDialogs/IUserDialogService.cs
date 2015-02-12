@@ -22,6 +22,9 @@ namespace Acr.XamForms.UserDialogs {
         void HideLoading();
         void Toast(string message, int timeoutSeconds = 3, Action onClick = null);
 
+		void ShowSuccess(string message, int timeoutSeconds = 3, Action onClick = null);
+		void ShowError(string message, int timeoutSeconds = 3, Action onClick = null);
+
         Task AlertAsync(string message, string title = null, string okText = "OK");
         Task AlertAsync(AlertConfig config);
         Task<bool> ConfirmAsync(string message, string title = null, string okText = "OK", string cancelText = "Cancel");

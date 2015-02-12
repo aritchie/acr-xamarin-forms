@@ -14,6 +14,8 @@ namespace Acr.XamForms.UserDialogs {
         //public abstract void DurationPrompt(DurationPromptConfig config);
         public abstract void Prompt(PromptConfig config);
         public abstract void Toast(string message, int timeoutSeconds = 3, Action onClick = null);
+		public abstract void ShowSuccess(string message, int timeoutSeconds = 3, Action onClick = null);
+		public abstract void ShowError(string message, int timeoutSeconds = 3, Action onClick = null);
         protected abstract IProgressDialog CreateDialogInstance();
 
 

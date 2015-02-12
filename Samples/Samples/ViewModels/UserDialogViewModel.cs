@@ -159,6 +159,27 @@ namespace Samples.ViewModels {
             }
         }
 
+		public ICommand DisplaySuccess {
+			get {
+				return new Command(() => {
+					this.Result = "Success Shown";
+					this.dialogService.ShowSuccess("Test Succes", onClick: () => {
+						this.Result = "Success Pressed";
+					});
+				});
+			}
+		}
+
+		public ICommand DisplayError {
+			get {
+				return new Command(() => {
+					this.Result = "Error Shown";
+					this.dialogService.ShowError("Test Error", onClick: () => {
+						this.Result = "Error Pressed";
+					});
+				});
+			}
+		}
 
         private string customText;
         public string CustomText {
