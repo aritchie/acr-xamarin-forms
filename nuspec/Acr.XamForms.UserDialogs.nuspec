@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Acr.XamForms.UserDialogs</id>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
         <title>User Dialogs Plugin for Xamarin.Forms</title>
         <authors>Allan Ritchie</authors>
         <owners>Allan Ritchie</owners>
@@ -23,14 +23,18 @@ This plugin for Xamarin.Forms contains several useful dialogs that you can call 
         <tags>xamarin forms dialogs</tags>
         <dependencies>
             <group>
-                <dependency id="Xamarin.Forms" version="[1.3.2.6316, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.3.3.6323, 2.0)" />
             </group>
             <group targetFramework="wp8">
-                <dependency id="Xamarin.Forms" version="[1.3.2.6316, 2.0)" />
+                <dependency id="Xamarin.Forms" version="[1.3.3.6323, 2.0)" />
                 <dependency id="WPtoolkit" version="[4.2013.08.16, 5.0)" />
             </group>
         </dependencies>
         <releaseNotes>
+3.0.2
+Update to Xamarin.Forms 1.3.3
+!!!READ!!! - This library is now in a state of deprecation - you should switch to Acr.UserDialogs
+
 3.0.1
 Update to Xamarin.Forms 1.3.2
 
