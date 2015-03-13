@@ -151,7 +151,27 @@ namespace Acr.XamForms.UserDialogs.iOS {
                         result.Text = txt.Text.Trim();
                         config.OnResult(result);
                     }));
-                    dlg.AddTextField(x => {
+
+                    // Set keyboard
+                    UIKeyboardType keyboardType;
+                    switch (config.InputKeyboard)
+                    {
+                        case Keyboard.Numeric:
+                            keyboardType = UIKeyboardType.NumberPad;
+                            break;
+                        case Keyboard.Phone:
+                            keyboardType = UIKeyboardType.PhonePad;
+                            break;
+                        case Keyboard.Email:
+                            keyboardType = UIKeyboardType.EmailAddress;
+                            break;
+                        default:
+                            keyboardType = UIKeyboardType.Default;
+                            break;
+                    }
+
+					dlg.AddTextField(x => {
+						x.KeyboardType = keyboardType;
                         x.SecureTextEntry = config.IsSecure;
                         x.Placeholder = config.Placeholder ?? String.Empty;
                         txt = x;
@@ -164,7 +184,27 @@ namespace Acr.XamForms.UserDialogs.iOS {
                             ? UIAlertViewStyle.SecureTextInput 
                             : UIAlertViewStyle.PlainTextInput
                     };
-                    var txt = dlg.GetTextField((nint)0);
+
+                    // Set keyboard
+                    UIKeyboardType keyboardType;
+                    switch (config.InputKeyboard)
+                    {
+                        case Keyboard.Numeric:
+                            keyboardType = UIKeyboardType.NumberPad;
+                            break;
+                        case Keyboard.Phone:
+                            keyboardType = UIKeyboardType.PhonePad;
+                            break;
+                        case Keyboard.Email:
+                            keyboardType = UIKeyboardType.EmailAddress;
+                            break;
+                        default:
+                            keyboardType = UIKeyboardType.Default;
+                            break;
+                    }
+
+					var txt = dlg.GetTextField((nint)0);
+	                txt.KeyboardType = keyboardType;
                     txt.SecureTextEntry = config.IsSecure;
                     txt.Placeholder = config.Placeholder;
 
