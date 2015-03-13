@@ -107,10 +107,28 @@ namespace Acr.XamForms.UserDialogs.Droid {
                     Hint = config.Placeholder
                 };
                 txt.SetMaxLines(1);
-				if (config.IsSecure) {
+
+                // Set keyboard
+                switch (config.InputKeyboard)
+                {
+                    case Keyboard.Numeric:
+                        txt.InputType = InputTypes.ClassNumber;
+                        break;
+                    case Keyboard.Phone:
+                        txt.InputType = InputTypes.ClassPhone;
+                        break;
+                    case Keyboard.Email:
+                        txt.InputType = InputTypes.TextVariationEmailAddress;
+                        break;
+                    default:
+                        txt.InputType = InputTypes.ClassText;
+                        break;
+                }
+
+                if (config.IsSecure) {
                     txt.TransformationMethod = PasswordTransformationMethod.Instance;
-					txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
-				}
+                    txt.InputType |= InputTypes.TextVariationPassword;
+                }
                 new AlertDialog
                     .Builder(Utils.GetActivityContext())
                     .SetMessage(config.Message)

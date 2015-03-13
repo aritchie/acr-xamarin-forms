@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 
 namespace Acr.XamForms.UserDialogs {
@@ -14,11 +14,13 @@ namespace Acr.XamForms.UserDialogs {
         public string CancelText { get; set; }
         public string Placeholder { get; set; }
         public bool IsSecure { get; set; }
+        public Keyboard InputKeyboard { get; set; }
 
 
         public PromptConfig() {
             this.OkText = "OK";
             this.CancelText = "Cancel";
+            this.InputKeyboard = Keyboard.Default;
         }
 
 
@@ -53,6 +55,11 @@ namespace Acr.XamForms.UserDialogs {
 
         public PromptConfig SetSecure(bool isSecure) {
             this.IsSecure = isSecure;
+            return this;
+        }
+
+        public PromptConfig SetInputKeyboard(Keyboard inputKeyboard) {
+            this.InputKeyboard = inputKeyboard;
             return this;
         }
     }

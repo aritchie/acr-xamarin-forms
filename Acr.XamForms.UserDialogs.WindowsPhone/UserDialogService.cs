@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 using Acr.XamForms.UserDialogs.WindowsPhone;
 using Microsoft.Phone.Controls;
@@ -113,18 +114,49 @@ namespace Acr.XamForms.UserDialogs.WindowsPhone {
                 RightButtonContent = config.CancelText
             };
 
-            var password = new PasswordBox();
-            var txt = new PhoneTextBox { Hint = config.Placeholder };
+            // Set keyboard
+            var inputScope = new InputScope();
+            InputScopeNameValue inputScopeName;
+
+            switch (config.InputKeyboard)
+            {
+                case Keyboard.Numeric:
+                    inputScopeName = InputScopeNameValue.Number;
+                    break;
+                case Keyboard.Phone:
+                    inputScopeName = InputScopeNameValue.TelephoneNumber;
+                    break;
+                case Keyboard.Email:
+                    inputScopeName = InputScopeNameValue.EmailNameOrAddress;
+                    break;
+                default:
+                    inputScopeName = InputScopeNameValue.AlphanumericFullWidth;
+                    break;
+            }
+
             if (config.IsSecure)
-                prompt.Content = password;
-            else 
-                prompt.Content = txt;
+                inputScopeName = InputScopeNameValue.Password;
+
+            inputScope.Names.Add(inputScopeName);
+
+            var txt = new TextBox { InputScope = inputScope };
+	        txt.GotFocus += (sender, args) =>
+			{
+				// Only clear if text is placeholder, still a hack
+				if(txt.Text.Equals(config.Placeholder) && txt.Text.Length == config.Placeholder.Length)
+					txt.Text = string.Empty;
+			};
+			txt.LostFocus += (sender, args) =>
+	        {
+		        if (string.IsNullOrEmpty(txt.Text))
+			        txt.Text = config.Placeholder;
+	        };
+
+            prompt.Content = txt;
 
             prompt.Dismissed += (sender, args) => config.OnResult(new PromptResult {
                 Ok = args.Result == CustomMessageBoxResult.LeftButton,
-                Text = config.IsSecure
-                    ? password.Password
-                    : txt.Text.Trim()
+                Text = txt.Text.Trim()
             });
             this.Dispatch(prompt.Show);
         }

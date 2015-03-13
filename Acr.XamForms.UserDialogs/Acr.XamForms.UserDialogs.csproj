@@ -41,6 +41,7 @@
     <Compile Include="ActionSheetConfig.cs" />
     <Compile Include="AlertConfig.cs" />
     <Compile Include="ConfirmConfig.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="LoginConfig.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="IUserDialogService.cs" />
