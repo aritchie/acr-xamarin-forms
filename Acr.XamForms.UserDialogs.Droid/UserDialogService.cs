@@ -107,6 +107,8 @@ namespace Acr.XamForms.UserDialogs.Droid {
                     Hint = config.Placeholder
                 };
                 txt.SetMaxLines(1);
+                txt.SetSingleLine(true);
+                
 				if (config.IsSecure) {
                     txt.TransformationMethod = PasswordTransformationMethod.Instance;
 					txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
