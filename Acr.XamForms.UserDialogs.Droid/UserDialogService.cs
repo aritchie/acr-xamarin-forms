@@ -111,6 +111,15 @@ namespace Acr.XamForms.UserDialogs.Droid {
                     txt.TransformationMethod = PasswordTransformationMethod.Instance;
 					txt.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
 				}
+				
+		var onDismissedListener = new OnDismissListener();
+                onDismissedListener.OnDismissed = () => {
+                    config.OnResult(new PromptResult  {
+                            Ok = false,
+                            Text = txt.Text
+                        });
+                };
+                
                 new AlertDialog
                     .Builder(Utils.GetActivityContext())
                     .SetMessage(config.Message)
@@ -128,6 +137,7 @@ namespace Acr.XamForms.UserDialogs.Droid {
                             Text = txt.Text
                         })
                     )
+                    .SetOnDismissListener(onDismissedListener)
                     .Show();
             });
         }
@@ -153,4 +163,12 @@ namespace Acr.XamForms.UserDialogs.Droid {
             return new ProgressDialog();
         }
     }
+    
+    class OnDismissListener : Java.Lang.Object, IDialogInterfaceOnDismissListener {
+        public Action OnDismissed;
+
+        public void OnDismiss(IDialogInterface dialog)  {
+            OnDismissed();
+        }
+    }    
 }
