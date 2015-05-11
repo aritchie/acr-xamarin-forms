@@ -31,7 +31,7 @@ namespace Acr.XamForms.SignaturePad.iOS {
         public override void LayoutSubviews() {
             var frame = (CGRect)this.Frame;
             var sbframe = (CGRect)UIApplication.SharedApplication.StatusBarFrame;
-            var portrait = UIApplication.SharedApplication.StatusBarOrientation.HasFlag(UIDeviceOrientation.Portrait);
+            var portrait = UIApplication.SharedApplication.StatusBarOrientation.HasFlag(UIInterfaceOrientation.Portrait);
 
             var width = portrait
                 ? frame.Size.Width
