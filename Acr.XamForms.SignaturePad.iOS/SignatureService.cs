@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Acr.XamForms.SignaturePad.iOS;
+using UIKit;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(SignatureService))]
@@ -16,7 +18,7 @@ namespace Acr.XamForms.SignaturePad.iOS {
             var tcs = new TaskCompletionSource<SignatureResult>();
             var controller = new SignatureServiceController(config, x => tcs.TrySetResult(x));
 
-            var topCtrl = Utils.GetTopViewController();
+            var topCtrl = this.GetTopViewController();
             topCtrl.PresentViewController(controller, true, null);
             cancelToken.Register(() => {
                 tcs.TrySetCanceled();
@@ -24,5 +26,38 @@ namespace Acr.XamForms.SignaturePad.iOS {
             });
 			return tcs.Task;
 		}
+
+
+        protected virtual UIWindow GetTopWindow() {
+            return UIApplication.SharedApplication
+                .Windows
+                .Reverse()
+                .FirstOrDefault(x =>
+                    x.WindowLevel == UIWindowLevel.Normal &&
+                    !x.Hidden
+                );
+        }
+
+
+        protected virtual UIView GetTopView() {
+            return this.GetTopWindow().Subviews.Last();
+        }
+
+
+        protected virtual UIViewController GetTopViewController() {
+            var root = this.GetTopWindow().RootViewController;
+            var tabs = root as UITabBarController;
+            if (tabs != null)
+				return tabs.PresentedViewController ?? tabs.SelectedViewController;
+
+            var nav = root as UINavigationController;
+            if (nav != null)
+                return nav.VisibleViewController;
+
+            if (root.PresentedViewController != null)
+                return root.PresentedViewController;
+
+            return root;
+        }
 	}
 }
