@@ -4,11 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.XamForms.Mobile;
-using Acr.XamForms.Mobile.IO;
 using Acr.XamForms.SignaturePad;
-using Acr.XamForms.UserDialogs;
-using Acr.XamForms.ViewModels;
 using Samples.Models;
 using Xamarin.Forms;
 
@@ -33,7 +29,7 @@ namespace Samples.ViewModels {
 		}
 
 
-		public override void OnAppearing() {  
+		public override void OnAppearing() {
 			this.List.Clear();
 
 			var signatures = this.fileSystem
@@ -92,7 +88,7 @@ namespace Samples.ViewModels {
 		private Command<Signature> selectCmd;
 		public Command<Signature> Select {
 			get {
-				this.selectCmd = this.selectCmd ?? new Command<Signature>(s => 
+				this.selectCmd = this.selectCmd ?? new Command<Signature>(s =>
 					this.dialogs.ActionSheet(new ActionSheetConfig()
 						.Add("View", () => {
                             try {

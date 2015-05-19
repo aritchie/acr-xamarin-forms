@@ -15,18 +15,6 @@ namespace Samples.Views {
             this.Content = new ScrollView {
                 Content = new StackLayout {
                     Children = {
-                        this.Nav<BarCodeView, BarCodeViewModel>("BarCode Scanning"),
-                        this.Nav<UserDialogView, UserDialogViewModel>("User Dialogs"),
-                        this.Nav<DeviceInfoView, DeviceInfoViewModel>("Device Information"),
-						this.Nav<FileSystemView, FileSystemViewModel>("File System"),
-                        this.Nav<NetworkView, NetworkViewModel>("Network"),
-                        this.Nav<SettingsView, SettingsViewModel>("Settings"),
-                        this.Nav<PhoneView, PhoneViewModel>("Phone Call"),
-                        this.Nav<SmsView, SmsViewModel>("Send SMS"),
-                        this.Nav<ConverterView, ConverterViewModel>("Converters"),
-                        this.Nav<LocationView, LocationViewModel>("Location"),
-                        this.Nav<PhotoView, PhotoViewModel>("Camera/Photo Gallery"),
-                        this.Nav<TextToSpeechView, TextToSpeechViewModel>("Text-to-Speech"),
                         this.Nav<SignatureListView, SignatureListViewModel>("SignaturePad Service"),
                         this.Nav<SignaturePadConfigView, SignaturePadConfigViewModel>("SignaturePad Service Configuration"),
                         new Button {
