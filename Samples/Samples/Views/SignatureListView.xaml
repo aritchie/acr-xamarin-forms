@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:acr="clr-namespace:Acr.XamForms.Converters;assembly=Acr.XamForms"
              xmlns:local="clr-namespace:Samples.Views;assembly=Samples"
+             xmlns:misc="clr-namespace:Samples.Misc;assembly=Samples"
              x:Class="Samples.Views.SignatureListView"
              Title="Signature Pad">
     
     <ContentPage.Resources>
         <ResourceDictionary>
-            <acr:InverseBoolConverter x:Key="Not" />
-            <acr:FileSizeConverter x:Key="FileSize" />
+          <misc:InverseBoolConverter x:Key="Not" />
+          <misc:FileSizeConverter x:Key="FileSize" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

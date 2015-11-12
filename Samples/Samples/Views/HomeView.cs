@@ -1,8 +1,8 @@
 ﻿using System;
-using Acr.XamForms.ViewModels;
+using Acr;
 using Samples.ViewModels;
 using Xamarin.Forms;
-
+using Ninject;
 
 namespace Samples.Views {
 
@@ -20,11 +20,11 @@ namespace Samples.Views {
                         new Button {
                             Text = "XAML Signature Pad",
                             HorizontalOptions = LayoutOptions.FillAndExpand,
-                            Command = new Command(async () => {
+                            Command = new Xamarin.Forms.Command(async () => {
                                 if (Device.OS == TargetPlatform.WinPhone)
                                     await this.DisplayAlert("Not Support", "Windows Phone does not currently support the signature pad", "");
                                 else
-                                    await this.Navigation.PushAsync(new SignatureXamlView());
+                                    await App.Navigation.PushAsync(new SignatureXamlView());
                             }),
                             Font = Font.SystemFontOfSize(NamedSize.Large)
                         }
@@ -36,18 +36,18 @@ namespace Samples.Views {
 
         private Button Nav<TPage, TViewModel>(string text)
                 where TPage : ContentPage, new()
-                where TViewModel : IViewModel {
+                where TViewModel : ViewModel {
 
             return new Button {
                 Text = text,
 
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Command = new Command(() => {
-                    var vm = App.Resolve<TViewModel>();
+                Command = new Xamarin.Forms.Command(() => {
+                    var vm = App.Kernel.Get<TViewModel>();
                     var page = new TPage {
                         BindingContext = vm
                     };
-                    this.Navigation.PushAsync(page);
+                    App.Navigation.PushAsync(page);
                 }),
                 Font = Font.SystemFontOfSize(NamedSize.Large)
             };

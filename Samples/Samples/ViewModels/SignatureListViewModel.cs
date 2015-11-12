@@ -7,47 +7,54 @@ using System.Windows.Input;
 using Acr.XamForms.SignaturePad;
 using Samples.Models;
 using Xamarin.Forms;
-
+using Acr.UserDialogs;
+using Acr;
+using PCLStorage;
 
 namespace Samples.ViewModels {
 
-	public class SignatureListViewModel : ViewModel {
-
+	public class SignatureListViewModel : ViewModel
+    { 
 		private const string FILE_FORMAT = "{0:dd-MM-yyyy_hh-mm-ss_tt}.jpg";
 		private readonly ISignatureService signatureService;
-		private readonly IFileSystem fileSystem;
-		private readonly IUserDialogService dialogs;
+        private IFolder folder = FileSystem.Current.LocalStorage;
 
-
-		public SignatureListViewModel(ISignatureService signatureService, IUserDialogService dialogs, IFileSystem fileSystem) {
-			this.signatureService = signatureService;
-			this.dialogs = dialogs;
-			this.fileSystem = fileSystem;
-
-			this.Create = new Command(async () => await this.OnCreate());
-			this.List = new ObservableList<Signature>();
+        public SignatureListViewModel() {
+            signatureService = DependencyService.Get<ISignatureService>();
+            this.Create = new Xamarin.Forms.Command(async () => await this.OnCreate());
+			this.List = new ObservableCollection<Signature>();
 		}
 
+        public void OnAppearing()
+        {
+            this.List.Clear();
+            Task.Run(async () =>
+            {
+                var fileList = await FileSystem.Current.LocalStorage.GetFilesAsync();
 
-		public override void OnAppearing() {
-			this.List.Clear();
+                foreach (IFile file in fileList)
+                {
+                    using (Stream stream = await file.OpenAsync(FileAccess.Read))
+                    {
+                        var signature = new Signature
+                        {
+                            FileName = file.Name,
+                            FilePath = file.Path,
+                            FileSize = stream.Length
+                        };
 
-			var signatures = this.fileSystem
-				.AppData
-				.Files
-				.Select(x => new Signature {
-					FileName = x.Name,
-					FilePath = x.FullName,
-					FileSize = x.Length
-				})
-				.ToList();
-
-			this.List.AddRange(signatures);
-			this.NoData = !this.List.Any();
-		}
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            this.List.Add(signature);
+                        });
+                    }
+                }
+            });
+            this.NoData = !this.List.Any();
+        }
 
 
-		public ObservableList<Signature> List { get; private set; }
+        public ObservableCollection<Signature> List { get; set; }
 
 		private bool noData;
 		public bool NoData {
@@ -63,49 +70,67 @@ namespace Samples.ViewModels {
 			var result = await this.signatureService.Request();
 
 			if (result.Cancelled)
-				this.dialogs.Alert("Cancelled Signature");
-
-			else {
+            {
+                await App.Current.MainPage.DisplayAlert(null, "Canceled Signature", "Close");
+			}
+            else
+            {
 				var fileName = String.Format(FILE_FORMAT, DateTime.Now);
-				IFile file = null;
-                using (var stream = result.GetStream()) {
-					file = this.fileSystem.Temp.CreateFile(fileName);
-					using (var fs = file.OpenWrite())
-						stream.CopyTo(fs);
+                long fileSize;
+
+                IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+
+                using (var image = result.GetStream())
+                {
+                    using (System.IO.Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            image.CopyTo(ms);
+
+                            byte[] buffer = ms.ToArray();
+                            stream.Write(buffer, 0, buffer.Length);
+                            fileSize = buffer.Length;
+                            await stream.FlushAsync();
+                        }   
+                    }
                 }
 
-				this.List.Add(new Signature {
-					FilePath = file.FullName,
-					FileName = file.Name,
-					FileSize = file.Length
-				});
-				this.dialogs.Alert(String.Format("Draw Points: {0}", result.Points.Count()));
-				this.NoData = !this.List.Any();
+                this.List.Add(new Signature
+                {
+                    FilePath = file.Path,
+                    FileName = file.Name,
+                    FileSize = fileSize
+                });
+
+                await App.Current.MainPage.DisplayAlert(null, String.Format("Draw Points: {0}", result.Points.Count()), "Close");
+
+                this.NoData = !this.List.Any();
 			}
 		}
 
 
-		private Command<Signature> selectCmd;
-		public Command<Signature> Select {
+		private Xamarin.Forms.Command<Signature> selectCmd;
+		public Xamarin.Forms.Command<Signature> Select {
 			get {
-				this.selectCmd = this.selectCmd ?? new Command<Signature>(s =>
-					this.dialogs.ActionSheet(new ActionSheetConfig()
+				this.selectCmd = this.selectCmd ?? new Xamarin.Forms.Command<Signature>(s =>
+                    UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
 						.Add("View", () => {
                             try {
 							    Device.OpenUri(new Uri("file://" + s.FilePath));
                             }
                             catch {
-                                this.dialogs.Alert("Cannot open file");
+                                UserDialogs.Instance.Alert("Cannot open file");
                             }
 						})
 						.Add("Delete", async () => {
-							var r = await this.dialogs.ConfirmAsync(String.Format("Are you sure you want to delete {0}", s.FileName));
+							var r = await UserDialogs.Instance.ConfirmAsync(String.Format("Are you sure you want to delete {0}", s.FileName));
 							if (!r)
 								return;
 
-							var file = this.fileSystem.GetFile(s.FilePath);
-							file.Delete();
-							this.List.Remove(s);
+                            var file = await folder.GetFileAsync(s.FileName);
+                            await file.DeleteAsync();
+			                this.List.Remove(s);
 							this.NoData = !this.List.Any();
 						})
 						.Add("Cancel")

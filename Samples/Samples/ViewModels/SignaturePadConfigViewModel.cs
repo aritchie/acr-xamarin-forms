@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Windows.Input;
 using Acr.XamForms.SignaturePad;
-using Acr.XamForms.UserDialogs;
-using Acr.XamForms.ViewModels;
+using Acr.UserDialogs;
 using Xamarin.Forms;
-
+using Acr;
 
 namespace Samples.ViewModels {
 
     public class SignaturePadConfigViewModel : ViewModel {
-        private readonly IUserDialogService dialogs;
 
-
-        public SignaturePadConfigViewModel(IUserDialogService dialogs) {
-            this.dialogs = dialogs;
-
+        public SignaturePadConfigViewModel() {
             var cfg = SignaturePadConfiguration.Default;
             this.saveText = cfg.SaveText;
             this.cancelText = cfg.CancelText;
@@ -50,10 +45,14 @@ namespace Samples.ViewModels {
         private ICommand changeThemeCmd;
         public ICommand ChangeTheme {
             get {
-                this.changeThemeCmd = this.changeThemeCmd ?? new Command(() => this.dialogs.ActionSheet(new ActionSheetConfig()
-                    .Add("Black", () => SetTheme("Black"))
-                    .Add("White", () => SetTheme("White"))
-                ));
+                this.changeThemeCmd = this.changeThemeCmd ?? new Xamarin.Forms.Command(async (e) => {
+                    var action = await App.Current.MainPage.DisplayActionSheet(null, "Cancel", null, "Black", "White");
+
+                    if (action != null && !action.Equals("Cancel"))
+                    {
+                        SetTheme(action);
+                    }
+                });
                 return this.changeThemeCmd;
             }
         }
