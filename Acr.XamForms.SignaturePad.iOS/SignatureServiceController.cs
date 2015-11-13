@@ -63,6 +63,8 @@ namespace Acr.XamForms.SignaturePad.iOS {
             }
             else {
                 this.view.SaveButton.SetTitle(this.config.SaveText, UIControlState.Normal);
+                this.view.SaveButton.SetTitleColor(this.config.SaveTextColor.ToUIColor(), UIControlState.Normal);
+                this.view.SaveButton.BackgroundColor = this.config.SaveButtonColor.ToUIColor();
                 this.view.SaveButton.TouchUpInside += (sender, args) => {
                     if (this.view.Signature.IsBlank)
                         return;
@@ -83,6 +85,8 @@ namespace Acr.XamForms.SignaturePad.iOS {
                 };
 
                 this.view.CancelButton.SetTitle(this.config.CancelText, UIControlState.Normal);
+                this.view.CancelButton.SetTitleColor(this.config.CanceTextColor.ToUIColor(), UIControlState.Normal);
+                this.view.CancelButton.BackgroundColor = this.config.CanceButtonColor.ToUIColor();
                 this.view.CancelButton.TouchUpInside += (sender, args) => {
                     this.DismissViewController(true, null);
                     this.onResult(new SignatureResult(true, null, null));

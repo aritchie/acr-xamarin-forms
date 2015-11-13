@@ -10,19 +10,30 @@ using Xamarin.Forms;
 using Acr.UserDialogs;
 using Acr;
 using PCLStorage;
+using Samples.Views;
 
 namespace Samples.ViewModels {
 
 	public class SignatureListViewModel : ViewModel
     { 
-		private const string FILE_FORMAT = "{0:dd-MM-yyyy_hh-mm-ss_tt}.jpg";
-		private readonly ISignatureService signatureService;
+		private const string FILE_FORMAT = "{0:dd-MM-yyyy_hh-mm-ss_tt}.{1}";
+        private readonly ISignatureService signatureService;
         private IFolder folder = FileSystem.Current.LocalStorage;
+        private Page MainPage {
+            get
+            {
+                return App.Current.MainPage;
+            }
+        }
 
         public SignatureListViewModel() {
             signatureService = DependencyService.Get<ISignatureService>();
             this.Create = new Xamarin.Forms.Command(async () => await this.OnCreate());
 			this.List = new ObservableCollection<Signature>();
+            MessagingCenter.Subscribe<SignatureListView>(this, "Appearing", ((SignatureListView) =>
+            {
+                OnAppearing();
+            }));
 		}
 
         public void OnAppearing()
@@ -49,8 +60,12 @@ namespace Samples.ViewModels {
                         });
                     }
                 }
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    this.NoData = !this.List.Any();
+                });
             });
-            this.NoData = !this.List.Any();
         }
 
 
@@ -75,7 +90,10 @@ namespace Samples.ViewModels {
 			}
             else
             {
-				var fileName = String.Format(FILE_FORMAT, DateTime.Now);
+                //Grab the configured image type
+                var imageType = signatureService.GetConfiguration().ImageType;
+
+                var fileName =  String.Format(FILE_FORMAT, DateTime.Now, imageType.ToString().ToLower());
                 long fileSize;
 
                 IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
@@ -109,36 +127,89 @@ namespace Samples.ViewModels {
 			}
 		}
 
-
 		private Xamarin.Forms.Command<Signature> selectCmd;
-		public Xamarin.Forms.Command<Signature> Select {
-			get {
-				this.selectCmd = this.selectCmd ?? new Xamarin.Forms.Command<Signature>(s =>
-                    UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
-						.Add("View", () => {
-                            try {
-							    Device.OpenUri(new Uri("file://" + s.FilePath));
-                            }
-                            catch {
-                                UserDialogs.Instance.Alert("Cannot open file");
-                            }
-						})
-						.Add("Delete", async () => {
-							var r = await UserDialogs.Instance.ConfirmAsync(String.Format("Are you sure you want to delete {0}", s.FileName));
-							if (!r)
-								return;
+        /// <summary>
+        /// Handles the Selection of a Saved Signature. Allows user to view/delete
+        /// </summary>
+		public Xamarin.Forms.Command<Signature> Select
+        {
+            get
+            {
+                this.selectCmd = this.selectCmd ?? new Xamarin.Forms.Command<Signature>(async (signature) =>
+                {
+                    var action = await App.Current.MainPage.DisplayActionSheet(null, "Cancel", null, "View", "Delete");
 
-                            var file = await folder.GetFileAsync(s.FileName);
+                    if (!string.IsNullOrEmpty(action) && !action.Equals("Cancel"))
+                    {
+                        if (action.Equals("View"))
+                        {
+                            await BuildViewPage(signature);
+                        }
+                        else if (action.Equals("Delete"))
+                        {
+                            var deleteAction = await MainPage.DisplayActionSheet(String.Format("Are you sure you want to delete {0}", signature.FileName), null, null, "Yes", "No");
+                            if ("No".Equals(deleteAction))
+                                return;
+
+                            var file = await folder.GetFileAsync(signature.FileName);
                             await file.DeleteAsync();
-			                this.List.Remove(s);
-							this.NoData = !this.List.Any();
-						})
-						.Add("Cancel")
-					)
-				);
-				return this.selectCmd;
-			}
-		}
-	}
+                            this.List.Remove(signature);
+                            this.NoData = !this.List.Any();
+                        }
+                    }
+                });
+                return this.selectCmd;
+            }
+        }
+
+        /// <summary>
+        /// Builds the Content Page to Show the save signature and displays it in a modal
+        /// </summary>
+        /// <param name="signature"></param>
+        /// <returns></returns>
+        private async Task BuildViewPage(Signature signature)
+        {
+            try
+            {
+                #region Create Signature Image control
+                var img = new Image
+                {
+                    BackgroundColor = Color.White,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                };
+                img.Source = ImageSource.FromFile(new Uri(signature.FilePath).AbsolutePath);
+                #endregion
+
+                #region Close Button
+                var button = new Button();
+                button.Text = "Close";
+                button.Clicked += (snd, evtArgs) =>
+                {
+                    App.Navigation.PopModalAsync();
+                };
+                #endregion
+
+                #region Content Page
+                ContentPage imageDisplayModal = new ContentPage
+                {
+                    Content = new StackLayout
+                    {
+                        Children =
+                        {
+                            img,
+                            button
+                        }
+                    }
+                };
+                #endregion
+                await MainPage.Navigation.PushModalAsync(imageDisplayModal);
+            }
+            catch
+            {
+                await MainPage.DisplayAlert(null, "Cannot open file", "Close");
+            }
+        }
+    }
 }
 

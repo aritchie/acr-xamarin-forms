@@ -34,5 +34,18 @@ namespace Acr.XamForms.SignaturePad.Droid {
 
 			return this.tcs.Task;
 		}
+
+        /// <summary>
+        /// Return the Current SignaturePad Configuration
+        /// </summary>
+        /// <returns>CurrentConfig - The currently set signature pad configuation</returns>
+        public SignaturePadConfiguration GetConfiguration()
+        {
+            if (CurrentConfig == null)
+            {
+                CurrentConfig = SignaturePadConfiguration.Default;
+            }
+            return CurrentConfig;
+        }
     }
 }

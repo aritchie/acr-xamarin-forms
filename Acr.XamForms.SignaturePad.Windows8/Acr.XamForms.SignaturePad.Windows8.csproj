@@ -122,7 +122,6 @@
       <DependentUpon>SignaturePad.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignaturePadRenderer.cs" />
-    <Compile Include="SignaturePadServiceUserControl.cs" />
     <Compile Include="SignatureService.cs" />
     <Compile Include="PlatformConverters.cs" />
   </ItemGroup>

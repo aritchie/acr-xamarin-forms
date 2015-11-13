@@ -36,8 +36,12 @@ namespace Acr.XamForms.SignaturePad {
 			this.StrokeWidth = 2f;
 			this.SignatureBackgroundColor = Color.White;
 			this.SignatureLineColor = Color.Black;
+            this.SaveTextColor = Color.Black;
+            this.SaveButtonColor = Color.Gray;
+            this.CanceTextColor = Color.Black;
+            this.CanceButtonColor = Color.Gray;
 
-			this.SaveText = "Save";
+            this.SaveText = "Save";
 			this.CancelText = "Cancel";
 			this.ClearText = "Clear";
 			this.PromptText = "";
@@ -48,7 +52,12 @@ namespace Acr.XamForms.SignaturePad {
         public ImageFormatType ImageType { get; set; }
 
         public string SaveText { get; set; }
+        public Color SaveTextColor { get; set; }
+        public Color SaveButtonColor { get; set; }
+
         public string CancelText { get; set; }
+        public Color CanceTextColor { get; set; }
+        public Color CanceButtonColor { get; set; }
 
         public Color MainBackgroundColor { get; set; }
         public Color SignatureBackgroundColor { get; set; }

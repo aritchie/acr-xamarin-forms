@@ -17,6 +17,13 @@ namespace Acr.XamForms.SignaturePad.Windows8
         Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
         private Windows.Storage.StorageFile file;
         private SignaturePadControl signaturePad;
+        private Windows.UI.Xaml.Controls.Frame frame
+        {
+            get
+            {
+                return ((Windows.UI.Xaml.Controls.Frame)Window.Current.Content);
+            }
+        }
 
         public SignaturePadServicePage()
         {
@@ -25,7 +32,7 @@ namespace Acr.XamForms.SignaturePad.Windows8
             var signatureConfiguration = this.Resolve().CurrentConfig;
 
             //Main Content
-            LayoutRoot.Background = new SolidColorBrush(PlatformConverters.FormsToWindowsColor(signatureConfiguration.MainBackgroundColor));
+            LayoutRoot.Background = new SolidColorBrush(PlatformConverters.FormsToWindowsColor(Color.Black));
 
             #region SignaturePadControl Setup
             signaturePad = new SignaturePadControl();
@@ -38,19 +45,19 @@ namespace Acr.XamForms.SignaturePad.Windows8
             signaturePad.SignaturePrompt.Foreground = PlatformConverters.BrushFromColor(signatureConfiguration.PromptTextColor);
             signaturePad.Stroke = new SolidColorBrush(PlatformConverters.FormsToWindowsColor(signatureConfiguration.StrokeColor));
             signaturePad.StrokeWidth = (int)signatureConfiguration.StrokeWidth;
+            signaturePad.Margin = new Windows.UI.Xaml.Thickness(0, 0, 0, 39);
             LayoutRoot.Children.Insert(0, (signaturePad));
             #endregion
 
             //Save Button Setup
             SaveButton.Content = signatureConfiguration.SaveText;
+            SaveButton.Foreground = new SolidColorBrush(PlatformConverters.FormsToWindowsColor(signatureConfiguration.SaveTextColor));
+            SaveButton.Background = new SolidColorBrush(PlatformConverters.FormsToWindowsColor(signatureConfiguration.SaveButtonColor));
 
             //Cancel Button Setup
             CancelButton.Content = signatureConfiguration.CancelText;
-        }
-
-        protected override void OnNavigatedFrom(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
+            CancelButton.Foreground = new SolidColorBrush(PlatformConverters.FormsToWindowsColor(signatureConfiguration.CanceTextColor));
+            CancelButton.Background = new SolidColorBrush(PlatformConverters.FormsToWindowsColor(signatureConfiguration.CanceButtonColor));
         }
 
         private SignatureService Resolve()
@@ -79,23 +86,26 @@ namespace Acr.XamForms.SignaturePad.Windows8
                     }
                 }
 
-                this.Resolve().Complete(new SignatureResult(
-                  false,
-                  () =>
-                  {
-                      var task = file.OpenStreamForReadAsync();
-                      task.Wait();
-                      return task.Result;
-                  },
-                  points
-                  ));
+                this.Resolve().Complete(
+                    new SignatureResult(
+                        false,
+                        () =>
+                        {
+                            var task = file.OpenStreamForReadAsync();
+                            task.Wait();
+                            return task.Result;
+                        },
+                        points
+                    )
+                );
+                frame.GoBack();
             });
         }
 
         private void OnCancel(object sender, RoutedEventArgs args)
         {
             this.Resolve().Cancel();
-            ((Windows.UI.Xaml.Controls.Frame)Window.Current.Content).GoBack();
+            frame.GoBack();
         }
     }
 }

@@ -13,7 +13,9 @@ namespace Acr.XamForms.SignaturePad.iOS {
 
 	public class SignatureService : ISignatureService {
 
-		public Task<SignatureResult> Request(SignaturePadConfiguration config = null, CancellationToken cancelToken = default(CancellationToken)) {
+        internal SignaturePadConfiguration CurrentConfig { get; private set; }
+
+        public Task<SignatureResult> Request(SignaturePadConfiguration config = null, CancellationToken cancelToken = default(CancellationToken)) {
 			config = config ?? SignaturePadConfiguration.Default;
             var tcs = new TaskCompletionSource<SignatureResult>();
             var controller = new SignatureServiceController(config, x => tcs.TrySetResult(x));
@@ -59,5 +61,18 @@ namespace Acr.XamForms.SignaturePad.iOS {
 
             return root;
         }
-	}
+
+        /// <summary>
+        /// Return the Current SignaturePad Configuration
+        /// </summary>
+        /// <returns>CurrentConfig - The currently set signature pad configuation</returns>
+        public SignaturePadConfiguration GetConfiguration()
+        {
+            if (CurrentConfig == null)
+            {
+                CurrentConfig = SignaturePadConfiguration.Default;
+            }
+            return CurrentConfig;
+        }
+    }
 }

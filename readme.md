@@ -1,6 +1,5 @@
 ##Xamarin Forms Signature Pad 
 =================
-
 ###Signature Pad
 Android/iOS Control provided by [Xamarin Signature Pad](https://github.com/xamarin/SignaturePad).  
 This Library is a Fork of https://github.com/aritchie/acr-xamarin-forms

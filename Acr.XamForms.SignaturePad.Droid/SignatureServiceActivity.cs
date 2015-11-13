@@ -49,7 +49,12 @@ namespace Acr.XamForms.SignaturePad.Droid {
             this.signatureView.StrokeWidth = cfg.StrokeWidth;
 
             this.btnSave.Text = cfg.SaveText;
+            this.btnSave.SetTextColor(cfg.SaveTextColor.ToAndroid());
+            this.btnSave.SetBackgroundColor(cfg.SaveButtonColor.ToAndroid());
+
             this.btnCancel.Text = cfg.CancelText;
+            this.btnCancel.SetTextColor(cfg.CanceTextColor.ToAndroid());
+            this.btnCancel.SetBackgroundColor(cfg.CanceButtonColor.ToAndroid());
         }
 
 

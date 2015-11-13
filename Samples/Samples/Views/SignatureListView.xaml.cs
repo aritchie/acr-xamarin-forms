@@ -15,7 +15,15 @@ namespace Samples.Views {
 					return;
 
 				((SignatureListViewModel)this.BindingContext).Select.Execute(e.SelectedItem);
-			};
+
+                ((ListView)sender).SelectedItem = null;
+            };
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Send<SignatureListView>(this, "Appearing");
         }
     }
 }
