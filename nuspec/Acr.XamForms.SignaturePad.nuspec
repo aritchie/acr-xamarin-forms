@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>SignaturePad Xamarin Forms PCL</id>
+        <id>SignaturePad.Xamarin.Forms.PCL</id>
         <version>1.0</version>
         <title>Signature Pad for Xamarin.Forms</title>
         <description>Signature Pad view renderer and service dialog for Xamarin Forms</description>
@@ -19,7 +19,7 @@
     </metadata>
     <files>
         <!-- PCL -->
-        <file src="..\bin\Release\Portable\Acr.XamForms.SignaturePad.dll" target="lib\portable-win+net45+MonoAndroid10+Xamarin.iOS10+wp8\Acr.XamForms.SignaturePad.dll" />
+        <file src="..\bin\Release\Portable\Acr.XamForms.SignaturePad.dll" target="lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Acr.XamForms.SignaturePad.dll" />
 
         <!-- droid -->
         <file src="..\bin\Release\Portable\Acr.XamForms.SignaturePad.dll" target="lib\MonoAndroid10\Acr.XamForms.SignaturePad.dll" />
@@ -31,5 +31,13 @@
         <file src="..\bin\Release\MonoTouch\Acr.XamForms.SignaturePad.iOS.dll" target="lib\Xamarin.iOS10\Acr.XamForms.SignaturePad.iOS.dll" />
         <file src="..\bin\Release\MonoTouch\SignaturePad.iOS.dll" target="lib\Xamarin.iOS10\SignaturePad.iOS.dll" />
         <file src="Bootstrap\SignaturePadBootstrap.cs.pp" target="content\Xamarin.iOS10\Bootstrap\SignaturePadBootstrap.cs.pp" />
+      
+        <!-- Windows Runtime-->      
+        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.dll" target="lib\win8\Acr.XamForms.SignaturePad.dll"/>
+        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.pdb" target="lib\win8\Acr.XamForms.SignaturePad.pdb"/>
+        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.dll" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.dll"/>
+        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.pdb" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.pdb"/>
+        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.pri" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.pri"/>
+        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.xr.xml" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.xr.xml"/>
     </files>
 </package>

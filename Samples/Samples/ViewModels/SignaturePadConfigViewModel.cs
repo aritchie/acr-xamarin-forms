@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using Acr.XamForms.SignaturePad;
-using Acr.UserDialogs;
 using Xamarin.Forms;
 using Acr;
 

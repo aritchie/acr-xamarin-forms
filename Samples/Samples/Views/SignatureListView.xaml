@@ -22,7 +22,7 @@
                     <ViewCell>
                         <ViewCell.View>
                             <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding FilePath}" WidthRequest="40" HeightRequest="40" />
+                                <Image Source="{Binding FilePath}" WidthRequest="40" HeightRequest="40" BackgroundColor="White"/>
                                 <Label Text="{Binding FileName}" HorizontalOptions="FillAndExpand" />
                                 <Label Text="{Binding FileSize, Converter={StaticResource FileSize}}" />
                             </StackLayout>

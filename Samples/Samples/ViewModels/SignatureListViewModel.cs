@@ -7,7 +7,6 @@ using System.Windows.Input;
 using Acr.XamForms.SignaturePad;
 using Samples.Models;
 using Xamarin.Forms;
-using Acr.UserDialogs;
 using Acr;
 using PCLStorage;
 using Samples.Views;
