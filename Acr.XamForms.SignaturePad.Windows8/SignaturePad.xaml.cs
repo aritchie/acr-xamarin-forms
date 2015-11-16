@@ -163,8 +163,6 @@ namespace Xamarin.Controls
             }
         }
 
-
-
         public SignaturePad ()
         {
             InitializeComponent ();
@@ -195,6 +193,8 @@ namespace Xamarin.Controls
             foreach (var line in lines)
                 inkPresenter.Children.Remove(line);
 
+            points = new List<List<Point>>(); //Reset Points
+
             clearText.Visibility = Visibility.Collapsed;
         }
 
@@ -204,42 +204,65 @@ namespace Xamarin.Controls
         }
 
         #region Touch Events
-        protected void inkPresenter_OnMouseLeftButtonDown (object sender, PointerRoutedEventArgs e)
+        /// <summary>
+        /// Handles the pointer pressed event. Sets the previousPosition to the 
+        /// current position of the pointer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void inkPresenter_OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-
             // Get information about the pointer location. 
             previousPosition = e.GetCurrentPoint(this).Position;
-            points.Add(new List<Point>());
-            points.Last().Add(previousPosition);
-
             pressed = true;
         }
 
-        protected void inkPresenter_OnMouseMoved (object sender, PointerRoutedEventArgs e)
+        /// <summary>
+        /// Handles the pointer moved event. If the pointer is pressed and has moved it will 
+        /// draw the line on the canvas and add the points drawn to the points list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void inkPresenter_OnPointerMoved(object sender, PointerRoutedEventArgs e)
         {
             if (!pressed) return;
 
             var positions = e.GetIntermediatePoints(this).Select(ppt => ppt.Position);
+            var currentPosition = e.GetCurrentPoint(this).Position;
 
-            foreach (Point pt in positions)
+            //Only add points if previous and current positions are different
+            if (positions.Any() &&
+                currentPosition.X != previousPosition.X &&
+                currentPosition.Y != previousPosition.Y)
             {
-                this.inkPresenter.Children.Add(
-                  new Line()
-                  {
-                      X1 = previousPosition.X,
-                      Y1 = previousPosition.Y,
-                      X2 = pt.X,
-                      Y2 = pt.Y,
-                      Stroke = this.Stroke,
-                      StrokeThickness = this.StrokeWidth
-                  }
-                );
-                previousPosition = pt;
-            }
-            points.Last().AddRange(positions);
+                points.Add(new List<Point>());
+                points.Last().Add(previousPosition);
+
+                foreach (Point pt in positions)
+                {
+                    this.inkPresenter.Children.Add(
+                      new Line()
+                      {
+                          X1 = previousPosition.X,
+                          Y1 = previousPosition.Y,
+                          X2 = pt.X,
+                          Y2 = pt.Y,
+                          Stroke = this.Stroke,
+                          StrokeThickness = this.StrokeWidth
+                      }
+                    );
+                    previousPosition = pt;
+                }
+                points.Last().AddRange(positions);
+            } 
         }
 
-        protected void inkPresenter_OnMouseLeftButtonUp (object sender, PointerRoutedEventArgs e)
+        /// <summary>
+        /// Handles the PointerReleased Event. Toggled the Visibility of the clearText TextBlock
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void inkPresenter_OnPointerReleased(object sender, PointerRoutedEventArgs e)
         {
             if (pressed)
                 pressed = false;

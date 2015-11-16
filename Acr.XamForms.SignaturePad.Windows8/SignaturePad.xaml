@@ -17,9 +17,9 @@
             HorizontalAlignment="Stretch" 
             Background="Transparent"
             Opacity="1"
-            PointerPressed="inkPresenter_OnMouseLeftButtonDown"
-            PointerMoved="inkPresenter_OnMouseMoved"
-            PointerReleased="inkPresenter_OnMouseLeftButtonUp" 
+            PointerPressed="inkPresenter_OnPointerPressed"
+            PointerMoved="inkPresenter_OnPointerMoved"
+            PointerReleased="inkPresenter_OnPointerReleased" 
             Loaded="inkPresenter_Loaded"/>
         <TextBlock 
             Text="X" 
