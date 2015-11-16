@@ -38,6 +38,8 @@
         <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.dll" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.dll"/>
         <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.pdb" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.pdb"/>
         <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.pri" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.pri"/>
-        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.xr.xml" target="lib\win8\Acr.XamForms.SignaturePad.Windows8.xr.xml"/>
+        <file src="..\bin\Release\WindowsRT\Acr.XamForms.SignaturePad.Windows8.xr.xml" target="lib\win8\Acr.XamForms.SignaturePad.Windows8\Acr.XamForms.SignaturePad.Windows8.xr.xml"/>  
+        <file src="..\bin\Release\WindowsRT\SignaturePadServicePage.xbf" target="lib\win8\Acr.XamForms.SignaturePad.Windows8\SignaturePadServicePage.xbf"/>
+        <file src="..\bin\Release\WindowsRT\SignaturePad.xbf" target="lib\win8\Acr.XamForms.SignaturePad.Windows8\SignaturePad.xbf"/>
     </files>
 </package>
