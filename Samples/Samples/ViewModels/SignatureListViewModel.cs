@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Acr;
 using PCLStorage;
 using Samples.Views;
+using System.Diagnostics;
 
 namespace Samples.ViewModels {
 
@@ -55,7 +56,10 @@ namespace Samples.ViewModels {
 
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            this.List.Add(signature);
+                            if (this.List.FirstOrDefault(x => x.FileName.Equals(signature.FileName)) == null)
+                            {
+                                this.List.Add(signature);
+                            }
                         });
                     }
                 }
@@ -149,11 +153,22 @@ namespace Samples.ViewModels {
                             var deleteAction = await MainPage.DisplayActionSheet(String.Format("Are you sure you want to delete {0}", signature.FileName), null, null, "Yes", "No");
                             if ("No".Equals(deleteAction))
                                 return;
-
-                            var file = await folder.GetFileAsync(signature.FileName);
-                            await file.DeleteAsync();
-                            this.List.Remove(signature);
-                            this.NoData = !this.List.Any();
+                            try
+                            {
+                                var file = await folder.GetFileAsync(signature.FileName);
+                                await file.DeleteAsync();
+                            }
+                            catch (FileNotFoundException e)
+                            {
+                                #if DEBUG
+                                Debug.WriteLine(e.StackTrace);
+                                #endif
+                            }
+                            finally
+                            {
+                                this.List.Remove(signature);
+                                this.NoData = !this.List.Any();
+                            }
                         }
                     }
                 });

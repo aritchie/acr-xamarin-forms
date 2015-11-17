@@ -24,7 +24,7 @@ namespace Xamarin.Controls
         Point previousPosition = default(Point);
         List<List<Point>> points = new List<List<Point>>();
         bool pressed = false;
-       
+        BitmapInfo bitmapInfo = new BitmapInfo();
 
         //Create an array containing all of the points used to draw the signature.  Uses null
         //to indicate a new line.
@@ -52,40 +52,63 @@ namespace Xamarin.Controls
             get { return points.Count () == 0; }
         }
 
-        public async Task<Stream> GetImage(ImageFormatType imgFormat)
+        /// <summary>
+        /// Retrieves the signature image from the canvas
+        /// </summary>
+        /// <param name="imgFormat"></param>
+        /// <returns></returns>
+        public Stream GetImage(ImageFormatType imgFormat)
         {
-            Size canvasSize = this.inkPresenter.RenderSize;
-            Point defaultPoint = this.inkPresenter.RenderTransformOrigin;
+            var imageTask = Task.Run(async () =>
+            {
+                //Create new Random Access Tream
+                var stream = new InMemoryRandomAccessStream();
 
-            this.inkPresenter.Measure(canvasSize);
-            this.inkPresenter.UpdateLayout();
-            this.inkPresenter.Arrange(new Rect(defaultPoint, canvasSize));
+                //Create bitmap encoder
+                var encoder = await BitmapEncoder.CreateAsync(
+                    imgFormat == ImageFormatType.Png ? BitmapEncoder.PngEncoderId : BitmapEncoder.JpegEncoderId, stream);
 
-            // Convert canvas to bmp.  
-            var renderTargetBitmap = new RenderTargetBitmap();
-            await renderTargetBitmap.RenderAsync(this.inkPresenter);
+                //Set the pixel data and flush it
+                encoder.SetPixelData(
+                            BitmapPixelFormat.Bgra8,
+                            BitmapAlphaMode.Straight,
+                            (uint)bitmapInfo.PixelWidth,
+                            (uint)bitmapInfo.PixelHeight, 96d, 96d,
+                            bitmapInfo.BitmapBuffer.ToArray());
+                await encoder.FlushAsync();
+                return stream.AsStream();
+            });
+            imageTask.Wait();
+            return imageTask.Result;
+        }
 
-            //Fetch the Pixel Buffer fromt the bitmap
-            IBuffer buffer = await renderTargetBitmap.GetPixelsAsync();
+        /// <summary>
+        /// Updates the BitmapBuffer object with the current state of the canvas
+        /// </summary>
+        public void UpdateBitmapBuffer()
+        {
+            Task.Run(() =>
+            {
+                var task = this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                {
+                    Size canvasSize = this.inkPresenter.RenderSize;
+                    Point defaultPoint = this.inkPresenter.RenderTransformOrigin;
 
-            //Create new Random Access Tream
-            var stream = new InMemoryRandomAccessStream();
+                    this.inkPresenter.Measure(canvasSize);
+                    this.inkPresenter.UpdateLayout();
+                    this.inkPresenter.Arrange(new Rect(defaultPoint, canvasSize));
 
-            //Create bitmap encoder
-            var encoder = await BitmapEncoder.CreateAsync(
-                imgFormat == ImageFormatType.Png ? BitmapEncoder.PngEncoderId : BitmapEncoder.JpegEncoderId, stream);
+                    // Convert canvas to bmp.  
+                    var renderTargetBitmap = new RenderTargetBitmap();
+                    await renderTargetBitmap.RenderAsync(this.inkPresenter);
 
-            //Set the pixel data and flush it
-            encoder.SetPixelData(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Straight,
-                        (uint)renderTargetBitmap.PixelWidth,
-                        (uint)renderTargetBitmap.PixelHeight, 96d, 96d,
-                        buffer.ToArray());
-            await encoder.FlushAsync();
-
-            //Return the bitmpa stream;
-            return stream.AsStream();
+                    //Fetch the Pixel Buffer fromt the bitmap
+                    bitmapInfo.BitmapBuffer = await renderTargetBitmap.GetPixelsAsync();
+                    bitmapInfo.PixelWidth = renderTargetBitmap.PixelWidth;
+                    bitmapInfo.PixelHeight = renderTargetBitmap.PixelHeight;
+                }).AsTask();
+                task.Wait();
+            });
         }
 
         /// <summary>
@@ -271,6 +294,8 @@ namespace Xamarin.Controls
             {
                 clearText.Visibility = Visibility.Visible;
             }
+
+            UpdateBitmapBuffer(); //Update the BitMapBuffer model with the current state of the canvas
         }
         #endregion
 
@@ -307,6 +332,27 @@ namespace Xamarin.Controls
             //image.Source = GetImage (false);
             ////Display the clear button.
             clearText.Visibility = Visibility.Visible;
+
+            UpdateBitmapBuffer(); //Update the BitmapBuffer
+        }
+
+        /// <summary>
+        /// Class to contain the Current State of the Canvas Bitmap
+        /// </summary>
+        private class BitmapInfo
+        {
+            public IBuffer BitmapBuffer
+            {
+                get; set;
+            }
+            public int PixelWidth
+            {
+                get; set;
+            }
+            public int PixelHeight
+            {
+                get; set;
+            }
         }
     }
 }

@@ -65,41 +65,37 @@ namespace Acr.XamForms.SignaturePad.Windows8
             return DependencyService.Get<ISignatureService>() as SignatureService;
         }
 
-        private async void OnSave(object sender, RoutedEventArgs args)
+        private void OnSave(object sender, RoutedEventArgs args)
         {
             if (signaturePad.IsBlank)
                 return;
 
             var points = signaturePad.Points.Select(x => new DrawPoint((float)x.X, (float)x.Y));
 
-            var service = this.Resolve();
+            var service = this.Resolve(); //Grab the signature service
 
-            await Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            using (var image = this.signaturePad.GetImage(service.CurrentConfig.ImageType))
             {
-                using (var image = await this.signaturePad.GetImage(service.CurrentConfig.ImageType))
+                //Create new memory stream
+                using (var memoryStream = new MemoryStream())
                 {
-                    file = await localFolder.CreateFileAsync("signature.tmp", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        image.CopyTo(memoryStream);
-                        await Windows.Storage.FileIO.WriteBytesAsync(file, memoryStream.ToArray());
-                    }
-                }
+                    //Copy the image buffer stream to the memory stream
+                    image.CopyTo(memoryStream);
 
-                this.Resolve().Complete(
-                    new SignatureResult(
-                        false,
-                        () =>
-                        {
-                            var task = file.OpenStreamForReadAsync();
-                            task.Wait();
-                            return task.Result;
-                        },
-                        points
-                    )
-                );
-                frame.GoBack();
-            });
+                    this.Resolve().Complete(
+                        new SignatureResult(
+                           false,
+                           () =>
+                           {  
+                               //Return a new readable memory stream from the byteArray of the current memory stream 
+                               return new MemoryStream(memoryStream.ToArray());
+                           },
+                           points
+                       )
+                    );
+                }
+            }
+            frame.GoBack();
         }
 
         private void OnCancel(object sender, RoutedEventArgs args)

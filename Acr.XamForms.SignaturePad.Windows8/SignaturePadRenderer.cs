@@ -55,12 +55,7 @@ namespace Acr.XamForms.SignaturePad.Windows8 {
                 view.StrokeWidth = (int)el.StrokeWidth;
 
             this.Element.SetInternals(
-                (ImageFormatType typeFormat)=> 
-                {
-                    var getImageTask = view.GetImage(typeFormat);
-                    getImageTask.Wait();
-                    return getImageTask.Result;
-                }, 
+                view.GetImage,
                 () => view.Points.Select(x => new DrawPoint((float)x.X, (float)x.Y)),
                 x => view.LoadPoints(x.Select(y => new Windows.Foundation.Point(System.Convert.ToDouble(y.X), System.Convert.ToDouble(y.Y))).ToArray()),
                 () => view.IsBlank);
