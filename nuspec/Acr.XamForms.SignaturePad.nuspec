@@ -4,7 +4,7 @@
         <id>SignaturePad.Xamarin.Forms.PCL</id>
         <version>1.0</version>
         <title>Signature Pad for Xamarin.Forms</title>
-        <description>Signature Pad view renderer and service dialog for Xamarin Forms</description>
+        <description>Signature Pad view renderer and service dialog for Xamarin Forms (iOS, Android, Windows Runtime)</description>
         <authors>Nathan Danner</authors>
         <owners>Nathan Danner</owners>
         <licenseUrl>http://opensource.org/licenses/ms-pl.html</licenseUrl>
