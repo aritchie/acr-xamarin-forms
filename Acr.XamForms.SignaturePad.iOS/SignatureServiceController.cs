@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
 using Foundation;
-
+using SignaturePad.iOS;
 
 namespace Acr.XamForms.SignaturePad.iOS {
 
