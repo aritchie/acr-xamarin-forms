@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Common", ".Common", "{E950E9B4-0546-4D84-A7CC-F17474D230CC}"
 	ProjectSection(SolutionItems) = preProject
@@ -37,9 +37,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acr.XamForms.SignaturePad.WindowsPhone", "Acr.XamForms.SignaturePad.WindowsPhone\Acr.XamForms.SignaturePad.WindowsPhone.csproj", "{FB73D461-D197-42A2-8928-086333277E54}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Shared Utils\Shared Utils.projitems*{b12d20aa-0edf-4903-b385-bb8090848532}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|ARM = Ad-Hoc|ARM

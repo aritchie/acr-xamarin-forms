@@ -36,7 +36,7 @@ namespace Samples.Views {
 
         private Button Nav<TPage, TViewModel>(string text)
                 where TPage : ContentPage, new()
-                where TViewModel : IViewModel {
+                where TViewModel : ViewModel {
 
             return new Button {
                 Text = text,
