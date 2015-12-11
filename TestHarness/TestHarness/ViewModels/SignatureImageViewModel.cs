@@ -8,22 +8,45 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Acr.XamForms.SignaturePad;
+using Acr.UserDialogs;
+using System.IO;
 
 namespace TestHarness.ViewModels
 {
     public class SignatureImageViewModel : INotifyPropertyChanged
     {
-        public event EventHandler SignatureCaptureRequested;
         public event ImagePropertyChangedEventHandler SignatureChanged;
+		private ISignatureService _sigService;
 
         public SignatureImageViewModel()
         {
-            SignatureCommand = new Command(() => {
+			_sigService = DependencyService.Get<ISignatureService> ();
+
+            SignatureCommand = new Command(async (obj) => {
                 Debug.WriteLine("Signature pad requested...");
-                if (SignatureCaptureRequested != null)
-                {
-                    SignatureCaptureRequested(this, EventArgs.Empty);
-                }
+				var result = await _sigService.Request(new SignaturePadConfiguration() {
+					StrokeColor = Color.Blue,
+					StrokeWidth = Device.OnPlatform<int>(2, 4, 4),
+					ClearTextColor = Color.Red,
+					PromptTextColor = Color.Red,
+					SignatureLineColor = Color.Red,
+					CaptionText = "Rotate for larger signing area",
+					CaptionTextColor = Color.Black
+				});
+
+				if (result.Cancelled)
+					await UserDialogs.Instance.AlertAsync("Signature Cancelled");
+				else {
+					using (var sigStream = result.GetStream())
+					{
+						sigStream.Position = 0;
+						var ms = new MemoryStream();
+						sigStream.CopyTo(ms);
+						byte[] sigBytes = ms.ToArray();
+						SignatureImage = sigBytes;
+					}
+				}
             });
         }
 

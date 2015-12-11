@@ -25,7 +25,7 @@
     <MtouchSdkVersion>7.1</MtouchSdkVersion>
     <MtouchExtraArgs>
     </MtouchExtraArgs>
-    <MtouchArch>Default, ARMv7</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
@@ -54,7 +54,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchExtraArgs>
     </MtouchExtraArgs>
-    <MtouchArch>Default, ARMv7</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
@@ -75,7 +75,7 @@
     <MtouchSdkVersion>7.1</MtouchSdkVersion>
     <MtouchExtraArgs>
     </MtouchExtraArgs>
-    <MtouchArch>Default, ARMv7</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>

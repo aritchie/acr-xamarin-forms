@@ -18,17 +18,6 @@ namespace TestHarness.Views
             var viewModel = new SignatureImageViewModel();
             BindingContext = viewModel;
 
-            viewModel.SignatureCaptureRequested += async (sender, e) => {
-                var signatureCaptureVM = new SignatureCaptureViewModel();
-                signatureCaptureVM.SignatureCaptured += (object sdr, ImagePropertyChangedEventArgs args) => {
-                    Debug.WriteLine("Signature captured...");
-                    viewModel.SignatureImage = args.Image;
-                };
-
-                var signatureView = new SignatureCaptureView(signatureCaptureVM);
-                await Navigation.PushModalAsync(signatureView, true);
-            };
-
             viewModel.SignatureChanged += (sender, args) => {
                 signatureImage.Source = ImageSource.FromStream(() => new System.IO.MemoryStream(args.Image));
             };
