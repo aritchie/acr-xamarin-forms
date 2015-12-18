@@ -512,6 +512,7 @@ namespace Samples.Droid
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Dimension.notification_large_icon_width = global::Samples.Droid.Resource.Dimension.notification_large_icon_width;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Dimension.notification_subtext_size = global::Samples.Droid.Resource.Dimension.notification_subtext_size;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::Samples.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::Samples.Droid.Resource.Drawable.abc_action_bar_item_background_material;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Drawable.abc_btn_borderless_material = global::Samples.Droid.Resource.Drawable.abc_btn_borderless_material;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Drawable.abc_btn_check_material = global::Samples.Droid.Resource.Drawable.abc_btn_check_material;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::Samples.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
@@ -609,11 +610,14 @@ namespace Samples.Droid
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Drawable.mr_ic_settings_light = global::Samples.Droid.Resource.Drawable.mr_ic_settings_light;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Drawable.notification_template_icon_bg = global::Samples.Droid.Resource.Drawable.notification_template_icon_bg;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action0 = global::Samples.Droid.Resource.Id.action0;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_bar = global::Samples.Droid.Resource.Id.action_bar;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_bar_activity_content = global::Samples.Droid.Resource.Id.action_bar_activity_content;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_bar_container = global::Samples.Droid.Resource.Id.action_bar_container;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_bar_root = global::Samples.Droid.Resource.Id.action_bar_root;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_bar_spinner = global::Samples.Droid.Resource.Id.action_bar_spinner;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_bar_subtitle = global::Samples.Droid.Resource.Id.action_bar_subtitle;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_bar_title = global::Samples.Droid.Resource.Id.action_bar_title;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_context_bar = global::Samples.Droid.Resource.Id.action_context_bar;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_divider = global::Samples.Droid.Resource.Id.action_divider;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_menu_divider = global::Samples.Droid.Resource.Id.action_menu_divider;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Id.action_menu_presenter = global::Samples.Droid.Resource.Id.action_menu_presenter;
@@ -902,6 +906,10 @@ namespace Samples.Droid
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::Samples.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::Samples.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::Samples.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::Samples.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::Samples.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::Samples.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::Samples.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::Samples.Droid.Resource.Style.Base_V7_Theme_AppCompat;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::Samples.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
 			global::Acr.XamForms.SignaturePad.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::Samples.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
