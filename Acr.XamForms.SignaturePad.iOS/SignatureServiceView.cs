@@ -1,7 +1,7 @@
 using System;
 using CoreGraphics;
 using UIKit;
-using NativeView = SignaturePad.iOS.SignaturePadView;
+using NativeView = SignaturePad.SignaturePadView;
 
 
 namespace SignaturePad.iOS

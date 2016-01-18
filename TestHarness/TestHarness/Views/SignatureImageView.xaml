@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestHarness.Views.SignatureImageView">
+  <StackLayout Orientation="Vertical">
+    <Frame HasShadow="false"
+      Padding="5"
+      BackgroundColor="White" >
+
+      <Frame.OutlineColor>
+        <OnPlatform x:TypeArguments="Color"
+          Android="Silver"
+          iOS="Transparent" />
+      </Frame.OutlineColor>
+
+      <Frame.GestureRecognizers>
+        <TapGestureRecognizer
+          NumberOfTapsRequired="1"
+          Command="{Binding SignatureCommand}" />
+      </Frame.GestureRecognizers>
+
+      <Image HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        x:Name="signatureImage"
+        Aspect="AspectFit"
+        WidthRequest="450"
+        HeightRequest="128" />
+    </Frame>
+    <Label Text="Tap box above to sign."
+      HorizontalOptions="Center" />
+  </StackLayout>
+
+</ContentPage>
