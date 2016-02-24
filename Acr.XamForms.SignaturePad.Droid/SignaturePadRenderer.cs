@@ -61,6 +61,7 @@ namespace Acr.XamForms.SignaturePad.Droid {
                 () => view.Points.Select(x => new DrawPoint(x.X, x.Y)), 
                 x => view.LoadPoints(x.Select(y => new PointF(y.X, y.Y)).ToArray()),
                 () => view.IsBlank
+                () => view.Clear()
             );
 
             this.SetNativeControl(view);
