@@ -11,6 +11,7 @@ namespace Acr.XamForms.SignaturePad {
         private Func<IEnumerable<DrawPoint>> getDrawPointsFunc;
         private Action<IEnumerable<DrawPoint>> loadDrawPoints;
         private Func<bool> isBlankFunc;
+        private Action clearFunc;
 
 
         public Stream GetImage(ImageFormatType imageFormat) {
@@ -26,18 +27,22 @@ namespace Acr.XamForms.SignaturePad {
         public void LoadDrawPoints(IEnumerable<DrawPoint> drawPoints) {
             this.loadDrawPoints(drawPoints);
         }
-
+        public void Clear()
+        {
+            this.clearFunc ();
+        }
 
         public bool IsBlank {
             get { return this.isBlankFunc(); }
         }
 
 
-        public void SetInternals(Func<ImageFormatType, Stream> getImage, Func<IEnumerable<DrawPoint>> getPoints, Action<IEnumerable<DrawPoint>> loadPoints,  Func<bool> isBlank) {
+        public void SetInternals(Func<ImageFormatType, Stream> getImage, Func<IEnumerable<DrawPoint>> getPoints, Action<IEnumerable<DrawPoint>> loadPoints,  Func<bool> isBlank,Action clear) {
             this.getImageFunc = getImage;
             this.getDrawPointsFunc = getPoints;
             this.loadDrawPoints = loadPoints;
             this.isBlankFunc = isBlank;
+            this.clearFunc = clear;
         }
 
         #region Properties
